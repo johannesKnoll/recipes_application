@@ -19,10 +19,12 @@ public class ProductService {
     private ProductRepository productRepository;
 
     //create operation
-    public Product create(Company company, String name, String description,
-                          double price, String type,
-                          boolean shipable, String picture, double valuation) {
-        Product product = new Product(name,description, price, shipable,picture,valuation);
+    public Product create(Company company, String name, String description, double calories, double protein,
+                          double fat, double carbohydrate, int time, boolean isVegan, boolean isVegetarian, boolean hasMeat,
+                          String picture) {
+        Product product = new Product(company,name, description, calories, protein,
+         fat,  carbohydrate,time,  isVegan,  isVegetarian,  hasMeat,
+        picture);
         product.setCompany(company);
         return productRepository.save(product);
     }
@@ -57,10 +59,9 @@ public class ProductService {
         Product product = productRepository.findProductByName(name);
         product.setName(name);
         product.setDescription(description);
-        product.setPrice(price);
-        product.setShipable(shipable);
+
         product.setPicture(picture);
-        product.setValuation(valuation);
+
         return productRepository.save(product);
     }
 

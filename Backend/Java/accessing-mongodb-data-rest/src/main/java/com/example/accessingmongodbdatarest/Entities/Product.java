@@ -20,33 +20,37 @@ public class Product {
 
     private String name;
     private String description;
-    private double price;
+    private double calories;
+    private double protein;
+    private double fat;
+    private double carbohydrate;
+    private int time;
+    private boolean isVegan;
+    private boolean isVegetarian;
+    private boolean hasMeat;
 
-    private boolean shipable;           //Versandsfähig oder nicht
+   /* private boolean shipable;           //Versandsfähig oder nicht*/
     @Lob
     private String picture;
-    private double valuation;
 
-    public Product(String name, String description, double price,  boolean shipable, String picture, double valuation) {
-        //this.company = company;
+    public Product(Company company, String name, String description, double calories, double protein,
+                   double fat, double carbohydrate, int time, boolean isVegan, boolean isVegetarian, boolean hasMeat,
+                   String picture) {
+        this.company = company;
         this.name = name;
         this.description = description;
-        this.price = price;
-
-        this.shipable = shipable;
+        this.calories = calories;
+        this.protein = protein;
+        this.fat = fat;
+        this.carbohydrate = carbohydrate;
+        this.time = time;
+        this.isVegan = isVegan;
+        this.isVegetarian = isVegetarian;
+        this.hasMeat = hasMeat;
         this.picture = picture;
-        this.valuation = valuation;
     }
 
     public Product() {
-    }
-
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
     }
 
     public Long getId() {
@@ -55,6 +59,14 @@ public class Product {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     public String getName() {
@@ -73,21 +85,68 @@ public class Product {
         this.description = description;
     }
 
-    public double getPrice() {
-        return price;
+    public double getCalories() {
+        return calories;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setCalories(double calories) {
+        this.calories = calories;
     }
 
-
-    public boolean isShipable() {
-        return shipable;
+    public double getProtein() {
+        return protein;
     }
 
-    public void setShipable(boolean shipable) {
-        this.shipable = shipable;
+    public void setProtein(double protein) {
+        this.protein = protein;
+    }
+
+    public double getFat() {
+        return fat;
+    }
+
+    public void setFat(double fat) {
+        this.fat = fat;
+    }
+
+    public double getCarbohydrate() {
+        return carbohydrate;
+    }
+
+    public void setCarbohydrate(double carbohydrate) {
+        this.carbohydrate = carbohydrate;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
+    }
+
+    public boolean isVegan() {
+        return isVegan;
+    }
+
+    public void setVegan(boolean vegan) {
+        isVegan = vegan;
+    }
+
+    public boolean isVegetarian() {
+        return isVegetarian;
+    }
+
+    public void setVegetarian(boolean vegetarian) {
+        isVegetarian = vegetarian;
+    }
+
+    public boolean isHasMeat() {
+        return hasMeat;
+    }
+
+    public void setHasMeat(boolean hasMeat) {
+        this.hasMeat = hasMeat;
     }
 
     public String getPicture() {
@@ -96,13 +155,5 @@ public class Product {
 
     public void setPicture(String picture) {
         this.picture = picture;
-    }
-
-    public double getValuation() {
-        return valuation;
-    }
-
-    public void setValuation(double valuation) {
-        this.valuation = valuation;
     }
 }

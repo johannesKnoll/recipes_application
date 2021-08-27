@@ -14,7 +14,7 @@ public class ProductDTO {
 
     private String name;
     private String description;
-    private double price;
+    private double calories;
     private String type;                //Sach- oder Dienstleistung
     private boolean shipable;
 
@@ -27,11 +27,11 @@ public class ProductDTO {
         this.companyId = product.getCompany().getId();
         this.name = product.getName();
         this.description = product.getDescription();
-        this.price = product.getPrice();
+        this.calories = product.getCalories();
 
-        this.shipable = product.isShipable();
+      /*  this.shipable = product.isShipable();*/
         this.picture = product.getPicture();
-        this.valuation = product.getValuation();
+      /*  this.valuation = product.getValuation();*/
     }
 
     public Long getId() {
@@ -66,12 +66,12 @@ public class ProductDTO {
         this.description = description;
     }
 
-    public double getPrice() {
-        return price;
+    public double getCalories() {
+        return calories;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setCalories(double calories) {
+        this.calories = calories;
     }
 
     public String getType() {
