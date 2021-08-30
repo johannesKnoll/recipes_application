@@ -1,3 +1,4 @@
+/*
 package com.example.accessingmongodbdatarest.Repositories;
 
 import com.example.accessingmongodbdatarest.Entities.Company;
@@ -18,3 +19,4 @@ public interface CompanyRepository extends CrudRepository<Company, Long> {
 
     //List<Company> findAllBy();
 }
+*/

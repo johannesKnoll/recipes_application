@@ -1,6 +1,6 @@
 package com.example.accessingmongodbdatarest.Repositories;
 
-import com.example.accessingmongodbdatarest.DTO.ProductDTO;
+
 import com.example.accessingmongodbdatarest.Entities.Product;
 import org.springframework.data.repository.CrudRepository;
 

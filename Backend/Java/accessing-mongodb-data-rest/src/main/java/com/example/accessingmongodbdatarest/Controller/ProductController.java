@@ -1,10 +1,8 @@
 package com.example.accessingmongodbdatarest.Controller;
 
 import com.example.accessingmongodbdatarest.DTO.ProductDTO;
-import com.example.accessingmongodbdatarest.Entities.Company;
 import com.example.accessingmongodbdatarest.Entities.Product;
 import com.example.accessingmongodbdatarest.Entities.User;
-import com.example.accessingmongodbdatarest.Repositories.CompanyRepository;
 import com.example.accessingmongodbdatarest.Repositories.ProductRepository;
 import com.example.accessingmongodbdatarest.Repositories.UserRepository;
 import com.example.accessingmongodbdatarest.Services.ProductService;
@@ -34,8 +32,8 @@ public class ProductController {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private CompanyRepository companyRepository;
+    /*@Autowired
+    private CompanyRepository companyRepository;*/
 
     private Optional<User> getAuthorizedUser() {
         Object abc = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -44,13 +42,13 @@ public class ProductController {
         return userRepository.findByUsername(userDetails.getUsername());
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    //@PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping(value = "/createProduct", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> create(@RequestBody Product product) {
         Optional<User> user = getAuthorizedUser();
-        Company company = companyRepository.findByUser_Id(user.get().getId());
+        //Company company = companyRepository.findByUser_Id(user.get().getId());
 
-        product.setCompany(company);
+        product.setUser(user);
         product.setId(0L);
         product = productRepository.save(product);
 

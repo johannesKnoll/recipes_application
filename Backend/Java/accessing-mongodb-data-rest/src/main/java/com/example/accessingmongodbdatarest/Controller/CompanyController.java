@@ -1,3 +1,4 @@
+/*
 package com.example.accessingmongodbdatarest.Controller;
 
 import com.example.accessingmongodbdatarest.DTO.CompanyDTO;
@@ -50,3 +51,4 @@ public class CompanyController {
 
 
 }
+*/

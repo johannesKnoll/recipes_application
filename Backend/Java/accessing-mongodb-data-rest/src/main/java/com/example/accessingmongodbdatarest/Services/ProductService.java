@@ -1,17 +1,14 @@
 package com.example.accessingmongodbdatarest.Services;
 
-import com.example.accessingmongodbdatarest.DTO.ProductDTO;
-import com.example.accessingmongodbdatarest.Entities.Company;
 import com.example.accessingmongodbdatarest.Entities.Product;
+import com.example.accessingmongodbdatarest.Entities.User;
 import com.example.accessingmongodbdatarest.Repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Blob;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
+
 @Service
 public class ProductService {
 
@@ -19,13 +16,13 @@ public class ProductService {
     private ProductRepository productRepository;
 
     //create operation
-    public Product create(Company company, String name, String description, double calories, double protein,
+    public Product create(Optional<User> user, String name, String description, double calories, double protein,
                           double fat, double carbohydrate, int time, boolean isVegan, boolean isVegetarian, boolean hasMeat,
                           String picture) {
-        Product product = new Product(company,name, description, calories, protein,
+        Product product = new Product(user,name, description, calories, protein,
          fat,  carbohydrate,time,  isVegan,  isVegetarian,  hasMeat,
         picture);
-        product.setCompany(company);
+        product.setUser(user);
         return productRepository.save(product);
     }
 

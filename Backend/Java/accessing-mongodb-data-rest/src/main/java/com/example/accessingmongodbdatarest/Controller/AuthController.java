@@ -97,8 +97,8 @@ public class AuthController {
                 signUpRequest.getEmail(),
                 encoder.encode(signUpRequest.getPassword()));
 
-        Set<String> strRoles = new HashSet<>();
-        Set<Role> roles = new HashSet<>();
+        /*Set<String> strRoles = new HashSet<>();
+        Set<Role> roles = new HashSet<>();*/
 
         /*
         if (strRoles == null) {
@@ -128,8 +128,8 @@ public class AuthController {
             });
         }*/
 
-        roles.add(roleRepository.findByRoleName(Role.ADMIN));
-        user.setRoles(roles);
+        /*roles.add(roleRepository.findByRoleName(Role.ADMIN));
+        user.setRoles(roles);*/
         userRepository.save(user);
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!", 3));

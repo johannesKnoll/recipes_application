@@ -1,6 +1,6 @@
+
 package com.example.accessingmongodbdatarest.DTO;
 
-import com.example.accessingmongodbdatarest.Entities.Company;
 import com.example.accessingmongodbdatarest.Entities.Product;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
@@ -24,14 +24,17 @@ public class ProductDTO {
 
     public ProductDTO(Product product){
         this.id = product.getId();
-        this.companyId = product.getCompany().getId();
+        //this.companyId = product.getCompany().getId();
         this.name = product.getName();
         this.description = product.getDescription();
         this.calories = product.getCalories();
 
-      /*  this.shipable = product.isShipable();*/
+/*  this.shipable = product.isShipable();*//*
+
         this.picture = product.getPicture();
-      /*  this.valuation = product.getValuation();*/
+      */
+/*  this.valuation = product.getValuation();*/
+
     }
 
     public Long getId() {

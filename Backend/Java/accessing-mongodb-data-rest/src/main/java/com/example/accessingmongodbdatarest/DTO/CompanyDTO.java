@@ -1,3 +1,4 @@
+/*
 package com.example.accessingmongodbdatarest.DTO;
 
 import com.example.accessingmongodbdatarest.Entities.Company;
@@ -57,3 +58,4 @@ public class CompanyDTO {
         this.email = email;
     }
 }
+*/
