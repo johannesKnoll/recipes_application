@@ -10,24 +10,39 @@ public class ProductDTO {
 
     private Long id;
 
-    private Long companyId;
+    private Long userId;
 
     private String name;
     private String description;
     private double calories;
-    private String type;                //Sach- oder Dienstleistung
-    private boolean shipable;
+    //private String type;                //Sach- oder Dienstleistung
+    //private boolean shipable;
+    private double protein;
+    private double fat;
+    private double carbohydrate;
+    private int time;
+    private boolean isVegan;
+    private boolean isVegetarian;
+    private boolean hasMeat;
 
     //Versandsfähig oder nicht
     private String picture;
-    private double valuation;
+    //private double valuation;
 
     public ProductDTO(Product product){
         this.id = product.getId();
+        this.userId = product.getUser().getId();
         //this.companyId = product.getCompany().getId();
         this.name = product.getName();
         this.description = product.getDescription();
         this.calories = product.getCalories();
+        this.protein = product.getProtein();
+        this.fat = product.getFat();
+        this.carbohydrate = product.getCarbohydrate();
+        this.time = product.getTime();
+        this.isVegan = product.isVegan();
+        this.isVegetarian = product.isVegetarian();
+        this.hasMeat = product.isHasMeat();
 
 /*  this.shipable = product.isShipable();*//*
 
@@ -46,11 +61,11 @@ public class ProductDTO {
     }
 
     public Long getCompanyId() {
-        return companyId;
+        return userId;
     }
 
-    public void setCompanyId(Long companyId) {
-        this.companyId = companyId;
+    public void setCompanyId(Long userId) {
+        this.userId = userId;
     }
 
     public String getName() {
@@ -77,7 +92,7 @@ public class ProductDTO {
         this.calories = calories;
     }
 
-    public String getType() {
+    /*public String getType() {
         return type;
     }
 
@@ -91,7 +106,7 @@ public class ProductDTO {
 
     public void setShipable(boolean shipable) {
         this.shipable = shipable;
-    }
+    }*/
 
     public String getPicture() {
         return picture;
@@ -101,11 +116,75 @@ public class ProductDTO {
         this.picture = picture;
     }
 
-    public double getValuation() {
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public double getProtein() {
+        return protein;
+    }
+
+    public void setProtein(double protein) {
+        this.protein = protein;
+    }
+
+    public double getFat() {
+        return fat;
+    }
+
+    public void setFat(double fat) {
+        this.fat = fat;
+    }
+
+    public double getCarbohydrate() {
+        return carbohydrate;
+    }
+
+    public void setCarbohydrate(double carbohydrate) {
+        this.carbohydrate = carbohydrate;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
+    }
+
+    public boolean isVegan() {
+        return isVegan;
+    }
+
+    public void setVegan(boolean vegan) {
+        isVegan = vegan;
+    }
+
+    public boolean isVegetarian() {
+        return isVegetarian;
+    }
+
+    public void setVegetarian(boolean vegetarian) {
+        isVegetarian = vegetarian;
+    }
+
+    public boolean isHasMeat() {
+        return hasMeat;
+    }
+
+    public void setHasMeat(boolean hasMeat) {
+        this.hasMeat = hasMeat;
+    }
+
+    /*public double getValuation() {
         return valuation;
     }
 
     public void setValuation(double valuation) {
         this.valuation = valuation;
-    }
+    }*/
 }
