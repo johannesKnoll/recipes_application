@@ -4,8 +4,11 @@ import com.example.accessingmongodbdatarest.Entities.Product;
 import com.example.accessingmongodbdatarest.Entities.User;
 import com.example.accessingmongodbdatarest.Repositories.ProductRepository;
 import com.example.accessingmongodbdatarest.Repositories.UserRepository;
+import com.example.accessingmongodbdatarest.Security.services.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -59,15 +63,17 @@ public class UserController {
         return "Deleted all records";
     }*/
     private User getAuthorizedUser() {
-
-       UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-         return userRepository.findByUsername((String) userDetails.getUsername());
+       UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+       String username = userDetails.getUsername();
+       return userRepository.findByUsername(username);
     }
-    @RequestMapping("/addTofavorite/{recipeId}")
-    public String addTofavorite (@PathVariable("recipeId")long id){
+
+    @RequestMapping("/addToFavorite/{recipeId}")
+    public String addToFavorite(@PathVariable("recipeId")long id){
         User user = getAuthorizedUser();
         Product productToAdd = productRepository.findById(id);
         user.addToFavorite(productToAdd);
+        userRepository.save(user);
 
         return "Das Rezept wurde erfolgreich in die Favoriteliste hinzugefügt. Guten Apptitet;)";
     }
