@@ -13,5 +13,5 @@ public interface ProductRepository extends CrudRepository<Product, String > {
 
     public Product findById(long id);
 
-    public List<Product> findAllByCompany_Id(long companyId);
+    public List<Product> findAllByUser_Id(long userId);
 }

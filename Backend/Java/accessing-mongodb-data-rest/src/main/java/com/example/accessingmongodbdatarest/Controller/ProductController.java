@@ -35,7 +35,7 @@ public class ProductController {
     /*@Autowired
     private CompanyRepository companyRepository;*/
 
-    private Optional<User> getAuthorizedUser() {
+    private User getAuthorizedUser() {
         Object abc = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -45,7 +45,7 @@ public class ProductController {
     //@PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping(value = "/createProduct", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> create(@RequestBody Product product) {
-        Optional<User> user = getAuthorizedUser();
+        User user = getAuthorizedUser();
         //Company company = companyRepository.findByUser_Id(user.get().getId());
 
         product.setUser(user);

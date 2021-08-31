@@ -16,7 +16,7 @@ public class ProductService {
     private ProductRepository productRepository;
 
     //create operation
-    public Product create(Optional<User> user, String name, String description, double calories, double protein,
+    public Product create(User user, String name, String description, double calories, double protein,
                           double fat, double carbohydrate, int time, boolean isVegan, boolean isVegetarian, boolean hasMeat,
                           String picture) {
         Product product = new Product(user,name, description, calories, protein,
@@ -35,7 +35,7 @@ public class ProductService {
     }
 
     public List<Product> getAllByUserId(long id){
-        Iterator<Product> source = productRepository.findAllByCompany_Id(id).iterator();
+        Iterator<Product> source = productRepository.findAllByUser_Id(id).iterator();
         List<Product> target = new ArrayList<>();
         source.forEachRemaining(target::add);
         return target;

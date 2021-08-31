@@ -2,10 +2,13 @@ package com.example.accessingmongodbdatarest.Entities;
 
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -24,25 +27,19 @@ public class User {
     private String email;
 
     @NotBlank
-    @Size(max = 20)
+    //@Size(min = 8, max = 20)
     private String password;
 
     @OneToMany
     private List<Product> recipes;
-    /*@OneToOne
-    private User user;*/
 
     @NotBlank
-    @Size(max = 40)
+    @Size(max = 20)
     private String name;
 
     @NotBlank
-    @Size(max = 40)
+    @Size(max = 20)
     private String lastName;
-//    private String owner;
-
-
-//    private String telefon;
 
     public User(String username, String email, String password, String name, String lastName) {
         this.username = username;
@@ -51,11 +48,11 @@ public class User {
         this.name = name;
         this.lastName = lastName;
     }
-    public User(String username, String email, String password) {
+    /*public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
-    }
+    }*/
 
     /*public User getUser() {
         return user;

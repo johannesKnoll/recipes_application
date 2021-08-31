@@ -5,7 +5,7 @@ package com.example.accessingmongodbdatarest.Entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.Optional;
+import java.util.*;
 
 @Entity
 public class Product {
@@ -16,7 +16,7 @@ public class Product {
 
     @ManyToOne
     @JsonIgnore
-    private Optional<User> user;
+    private User user;
 
     private String name;
     private String description;
@@ -33,7 +33,7 @@ public class Product {
     @Lob
     private String picture;
 
-    public Product(Optional<User> user, String name, String description, double calories, double protein,
+    public Product(User user, String name, String description, double calories, double protein,
                    double fat, double carbohydrate, int time, boolean isVegan, boolean isVegetarian, boolean hasMeat,
                    String picture) {
         this.user = user;
@@ -61,11 +61,11 @@ public class Product {
         this.id = id;
     }
 
-    public Optional<User> getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(Optional<User> user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
