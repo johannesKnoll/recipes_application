@@ -41,6 +41,9 @@ public class User {
     @Size(max = 20)
     private String lastName;
 
+    @OneToMany
+    private Set<Product> favoriteList = new HashSet<>();
+
     public User(String username, String email, String password, String name, String lastName) {
         this.username = username;
         this.email = email;
@@ -61,6 +64,7 @@ public class User {
     public void setUser(User user) {
         this.user = user;
     }*/
+
 
     public User() {
     }
@@ -145,4 +149,17 @@ public class User {
     public void setTelefon(String telefon) {
         this.telefon = telefon;
     }*/
+
+    public Set<Product> getFavoriteList() {
+        return favoriteList;
+    }
+
+    public void setFavoriteList(Set<Product> favoriteList) {
+        this.favoriteList = favoriteList;
+    }
+
+    public void addToFavorite(Product addedProductFavorite){
+        favoriteList.add(addedProductFavorite);
+    }
+
 }
