@@ -6,6 +6,7 @@ import com.example.accessingmongodbdatarest.Entities.User;
 import com.example.accessingmongodbdatarest.Repositories.ProductRepository;
 import com.example.accessingmongodbdatarest.Repositories.UserRepository;
 import com.example.accessingmongodbdatarest.Security.services.UserDetailsImpl;
+import com.example.accessingmongodbdatarest.Services.ProductService;
 import com.example.accessingmongodbdatarest.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -31,6 +32,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ProductService productService;
     /*
     @Autowired
     private UserService userService;
@@ -90,8 +94,19 @@ public class UserController {
     @GetMapping("/getAllRecipes")
     public List<Product> getAllRecipes(){
         User user = getAuthorizedUser();
-        return user.getProducts();
+        long userId = user.getId();
+        List<Product> allProducts = productService.getAllByUserId(userId);
+        return allProducts;
     }
+
+    @GetMapping("/getAllPublicRecipes")
+    public List<Product> getAllPublicRecipes(){
+        List<Product> allPublicProducts =  productService.getAll();
+        allPublicProducts.stream().collect(
+
+        )
+    }
+
 
     @GetMapping("/getLoggedInUser")
     public UserDTO getLoggedInUser(){

@@ -50,10 +50,12 @@ public class ProductController {
         Product product1 = new Product(user, product.isPublic(),  product.getName(), product.getDescription(),product.getCalories(),  product.getProtein(),
                 product.getFat(), product.getCarbohydrate(),  product.getTime(), product.isVegan(),  product.isVegetarian(), product.isHasMeat(),
                 product.getPicture() );
+        userRepository.save(user);
+        user.addToRecipes(product1);
+        return ResponseEntity.ok(product1);
 
-        if(product.isPublic()){
+   /*     if(product1.isPublic()){
             user.addToRecipes(product1);
-            userRepository.save(user);
 
             product1.setUser(user);
   //          productRepository.save(product1);
@@ -61,10 +63,10 @@ public class ProductController {
             return ResponseEntity.ok(product1);
         }else{
             user.addToRecipes(product1);
-            userRepository.save(user);
+
 
             return ResponseEntity.ok(product1);
-        }
+        }*/
 
 
     }
