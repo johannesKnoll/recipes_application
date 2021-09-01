@@ -1,9 +1,12 @@
 package com.example.accessingmongodbdatarest.Services;
 
+import com.example.accessingmongodbdatarest.DTO.UserDTO;
 import com.example.accessingmongodbdatarest.Entities.User;
 import com.example.accessingmongodbdatarest.Entities.User;
 import com.example.accessingmongodbdatarest.Repositories.UserRepository;
+import com.example.accessingmongodbdatarest.Security.services.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,6 +19,12 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    private User getAuthorizedUser() {
+        UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = userDetails.getUsername();
+        return userRepository.findByUsername(username);
+    }
+
     public User create(String username, String email, String password, String name, String lastname){
         return userRepository.save(new User(username, email, password, name, lastname));
     }
@@ -26,6 +35,13 @@ public class UserService {
         source.forEachRemaining(target::add);
 
         return target;
+    }
+
+    public UserDTO getLoggedInUser(){
+        User user = getAuthorizedUser();
+        UserDTO userDTO = new UserDTO(user);
+
+        return userDTO;
     }
 
     /*public User getUserByProductId(long productId){

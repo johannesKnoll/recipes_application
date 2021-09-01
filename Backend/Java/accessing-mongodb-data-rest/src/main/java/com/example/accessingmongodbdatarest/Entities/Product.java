@@ -18,6 +18,8 @@ public class Product {
     @JsonIgnore
     private User user;
 
+    private boolean isPublic;
+
     private String name;
     private String description;
     private double calories;
@@ -33,10 +35,11 @@ public class Product {
     @Lob
     private String picture;
 
-    public Product(User user, String name, String description, double calories, double protein,
+    public Product(User user, boolean isPublic, String name, String description, double calories, double protein,
                    double fat, double carbohydrate, int time, boolean isVegan, boolean isVegetarian, boolean hasMeat,
                    String picture) {
         this.user = user;
+        this.isPublic = isPublic;
         this.name = name;
         this.description = description;
         this.calories = calories;
@@ -67,6 +70,14 @@ public class Product {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public boolean isPublic() {
+        return isPublic;
+    }
+
+    public void setPublic(boolean aPublic) {
+        isPublic = aPublic;
     }
 
     public String getName() {

@@ -1,23 +1,23 @@
 package com.example.accessingmongodbdatarest.Controller;
 
+import com.example.accessingmongodbdatarest.DTO.UserDTO;
 import com.example.accessingmongodbdatarest.Entities.Product;
 import com.example.accessingmongodbdatarest.Entities.User;
 import com.example.accessingmongodbdatarest.Repositories.ProductRepository;
 import com.example.accessingmongodbdatarest.Repositories.UserRepository;
 import com.example.accessingmongodbdatarest.Security.services.UserDetailsImpl;
+import com.example.accessingmongodbdatarest.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/users")
@@ -28,6 +28,9 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private UserService userService;
     /*
     @Autowired
     private UserService userService;
@@ -76,6 +79,23 @@ public class UserController {
         userRepository.save(user);
 
         return "Das Rezept wurde erfolgreich in die Favoriteliste hinzugefügt. Guten Apptitet;)";
+    }
+
+    @GetMapping("/getAllFavorites")
+    public Set<Product> getAllFavoritesByUserId(){
+        User user = getAuthorizedUser();
+        return user.getFavoriteList();
+    }
+
+    @GetMapping("/getAllRecipes")
+    public List<Product> getAllRecipes(){
+        User user = getAuthorizedUser();
+        return user.getProducts();
+    }
+
+    @GetMapping("/getLoggedInUser")
+    public UserDTO getLoggedInUser(){
+        return userService.getLoggedInUser();
     }
 
 }

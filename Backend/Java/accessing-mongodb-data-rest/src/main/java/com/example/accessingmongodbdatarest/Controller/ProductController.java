@@ -5,6 +5,7 @@ import com.example.accessingmongodbdatarest.Entities.Product;
 import com.example.accessingmongodbdatarest.Entities.User;
 import com.example.accessingmongodbdatarest.Repositories.ProductRepository;
 import com.example.accessingmongodbdatarest.Repositories.UserRepository;
+import com.example.accessingmongodbdatarest.Security.services.UserDetailsImpl;
 import com.example.accessingmongodbdatarest.Services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -36,23 +37,33 @@ public class ProductController {
     private CompanyRepository companyRepository;*/
 
     private User getAuthorizedUser() {
-        Object abc = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = userDetails.getUsername();
 
-        return userRepository.findByUsername(userDetails.getUsername());
+        return userRepository.findByUsername(username);
     }
 
     //@PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping(value = "/createProduct", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> create(@RequestBody Product product) {
         User user = getAuthorizedUser();
-        //Company company = companyRepository.findByUser_Id(user.get().getId());
 
-        product.setUser(user);
-        product.setId(0L);
-        product = productRepository.save(product);
+        if(product.isPublic()){
+            user.addToRecipes(product);
+            userRepository.save(user);
 
-        return ResponseEntity.ok(product);
+            product.setUser(user);
+            productRepository.save(product);
+
+            return ResponseEntity.ok(product);
+        }else{
+            user.addToRecipes(product);
+            userRepository.save(user);
+
+            return ResponseEntity.ok(product);
+        }
+
+
     }
 
     @RequestMapping("/getProduct")

@@ -1,6 +1,8 @@
 package com.example.accessingmongodbdatarest.Entities;
 
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import javax.transaction.Transactional;
 import javax.validation.constraints.Email;
@@ -31,6 +33,7 @@ public class User {
     private String password;
 
     @OneToMany
+    @Cascade(org.hibernate.annotations.CascadeType.MERGE)
     private List<Product> recipes;
 
     @NotBlank
@@ -160,6 +163,10 @@ public class User {
 
     public void addToFavorite(Product addedProductFavorite){
         favoriteList.add(addedProductFavorite);
+    }
+
+    public void addToRecipes(Product product){
+        recipes.add(product);
     }
 
 }
