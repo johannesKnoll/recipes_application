@@ -56,7 +56,7 @@ public class ProductController {
             userRepository.save(user);
 
             product1.setUser(user);
-            productRepository.save(product1);
+  //          productRepository.save(product1);
 
             return ResponseEntity.ok(product1);
         }else{
