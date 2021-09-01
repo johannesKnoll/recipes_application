@@ -18,7 +18,7 @@ public class Product {
     @JsonIgnore
     private User user;
 
-    private boolean isPublic;
+    private boolean isPublic = true;
 
     private String name;
     private String description;

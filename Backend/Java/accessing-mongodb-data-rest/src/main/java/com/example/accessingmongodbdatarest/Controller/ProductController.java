@@ -47,20 +47,23 @@ public class ProductController {
     @PostMapping(value = "/createProduct", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> create(@RequestBody Product product) {
         User user = getAuthorizedUser();
+        Product product1 = new Product(user, product.isPublic(),  product.getName(), product.getDescription(),product.getCalories(),  product.getProtein(),
+                product.getFat(), product.getCarbohydrate(),  product.getTime(), product.isVegan(),  product.isVegetarian(), product.isHasMeat(),
+                product.getPicture() );
 
         if(product.isPublic()){
-            user.addToRecipes(product);
+            user.addToRecipes(product1);
             userRepository.save(user);
 
-            product.setUser(user);
-            productRepository.save(product);
+            product1.setUser(user);
+            productRepository.save(product1);
 
-            return ResponseEntity.ok(product);
+            return ResponseEntity.ok(product1);
         }else{
-            user.addToRecipes(product);
+            user.addToRecipes(product1);
             userRepository.save(user);
 
-            return ResponseEntity.ok(product);
+            return ResponseEntity.ok(product1);
         }
 
 
