@@ -32,8 +32,7 @@ public class Product {
     private boolean isVegan;
     private boolean isVegetarian;
     private boolean hasMeat;
-    @Transient
-    private ArrayList<Integer> ratelist = new ArrayList<>();;
+    private ArrayList<Integer> ratelist;
 
     private double averageRate;
 
@@ -57,6 +56,7 @@ public class Product {
         this.isVegetarian = isVegetarian;
         this.hasMeat = hasMeat;
         this.picture = picture;
+        this.ratelist = new ArrayList<>();
         //ratelist
           averageRate = 0.0;
     }
