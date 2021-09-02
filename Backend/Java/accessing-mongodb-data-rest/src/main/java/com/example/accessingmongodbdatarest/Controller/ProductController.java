@@ -47,7 +47,7 @@ public class ProductController {
 
     //@PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping(value = "/createProduct", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> create(@RequestBody Product product) {
+    public ResponseEntity<Product> create(@RequestBody Product product) {
         User user = getAuthorizedUser();
         Product product1 = new Product(user, product.isPublic(),  product.getName(), product.getDescription(),product.getCalories(),  product.getProtein(),
                 product.getFat(), product.getCarbohydrate(),  product.getTime(), product.isVegan(),  product.isVegetarian(), product.isHasMeat(),
@@ -57,7 +57,7 @@ public class ProductController {
         productRepository.save(product1);
         return ResponseEntity.ok(product1);
 
-   /*     if(product1.isPublic()){
+   /*     if(product1.isPublic()){9
             user.addToRecipes(product1);
 
             product1.setUser(user);
@@ -83,6 +83,7 @@ public class ProductController {
     public List<ProductDTO> getProductById(@PathVariable("productId") long id) {
         return productService.getProductById(id).stream().map(ProductDTO::new).collect(Collectors.toList());
     }
+
 
     @RequestMapping("/getAllProduct")
     public List<ProductDTO> getAll(){
