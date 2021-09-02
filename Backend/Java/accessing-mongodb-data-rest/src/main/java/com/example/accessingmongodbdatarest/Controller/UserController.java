@@ -17,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -98,15 +99,6 @@ public class UserController {
         List<Product> allProducts = productService.getAllByUserId(userId);
         return allProducts;
     }
-
-    @GetMapping("/getAllPublicRecipes")
-    public List<Product> getAllPublicRecipes(){
-        List<Product> allPublicProducts =  productService.getAll();
-        allPublicProducts.stream().collect(
-
-        )
-    }
-
 
     @GetMapping("/getLoggedInUser")
     public UserDTO getLoggedInUser(){

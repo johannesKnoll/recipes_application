@@ -16,8 +16,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Blob;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 
@@ -52,6 +54,7 @@ public class ProductController {
                 product.getPicture() );
         userRepository.save(user);
         user.addToRecipes(product1);
+        productRepository.save(product1);
         return ResponseEntity.ok(product1);
 
    /*     if(product1.isPublic()){
@@ -84,6 +87,19 @@ public class ProductController {
     @RequestMapping("/getAllProduct")
     public List<ProductDTO> getAll(){
         return productService.getAll().stream().map(ProductDTO::new).collect(Collectors.toList());
+    }
+
+    @GetMapping("/getAllPublicRecipes")
+    public Set<Product> getAllPublicRecipes(){
+        List<Product> allProducts =  productService.getAll();
+        Set<Product> allPublicProducts = new HashSet<Product>();
+
+        for (Product product : allProducts) {
+            if(product.isPublic()){
+                allPublicProducts.add(product);
+            }
+        }
+        return allPublicProducts;
     }
 
     @GetMapping("/getAllByCompanyId/{companyId}")
