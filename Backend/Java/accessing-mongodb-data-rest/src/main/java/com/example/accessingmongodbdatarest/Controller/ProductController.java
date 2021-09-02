@@ -3,6 +3,7 @@ package com.example.accessingmongodbdatarest.Controller;
 import com.example.accessingmongodbdatarest.DTO.ProductDTO;
 import com.example.accessingmongodbdatarest.Entities.Product;
 import com.example.accessingmongodbdatarest.Entities.User;
+import com.example.accessingmongodbdatarest.Payload.Request.RatingRequest;
 import com.example.accessingmongodbdatarest.Repositories.ProductRepository;
 import com.example.accessingmongodbdatarest.Repositories.UserRepository;
 import com.example.accessingmongodbdatarest.Security.services.UserDetailsImpl;
@@ -15,11 +16,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Blob;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.sql.*;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -70,9 +68,28 @@ public class ProductController {
 
             return ResponseEntity.ok(product1);
         }*/
-
-
     }
+
+    @PostMapping(value = "/rateProduct/{productId}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public String addRating(@PathVariable("productId") long productId , @RequestBody RatingRequest ratingRequest){
+        Product productRate = productRepository.findById(productId);
+        productRate.addToRate(ratingRequest.getRating());
+        double rateing = 0;
+        ArrayList<Integer> actualProductRate = productRate.getRatelist();
+        double j =0;
+        for (Integer i :actualProductRate) {
+            j = j + i;
+        }
+        rateing = j/ actualProductRate.size();
+        System.out.println(rateing);
+        //productRate.setRatelist(ratingRequest);
+        productRate.setAverageRate(rateing);
+        productRepository.save(productRate);
+
+        return "Thank you for your rating :)";
+    }
+
+
 
     @RequestMapping("/getProduct")
     public Product getProduct(@RequestParam String name) {

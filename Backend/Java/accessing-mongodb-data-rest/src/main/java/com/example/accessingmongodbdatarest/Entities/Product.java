@@ -3,9 +3,11 @@ package com.example.accessingmongodbdatarest.Entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.persistence.*;
 import java.util.*;
+import java.util.ArrayList;
 
 @Entity
 public class Product {
@@ -30,6 +32,10 @@ public class Product {
     private boolean isVegan;
     private boolean isVegetarian;
     private boolean hasMeat;
+    @Transient
+    private ArrayList<Integer> ratelist = new ArrayList<>();;
+
+    private double averageRate;
 
    /* private boolean shipable;           //Versandsfähig oder nicht*/
     @Lob
@@ -51,6 +57,8 @@ public class Product {
         this.isVegetarian = isVegetarian;
         this.hasMeat = hasMeat;
         this.picture = picture;
+        //ratelist
+          averageRate = 0.0;
     }
 
     public Product() {
@@ -166,5 +174,26 @@ public class Product {
 
     public void setPicture(String picture) {
         this.picture = picture;
+    }
+
+    public ArrayList<Integer> getRatelist() {
+        return ratelist;
+    }
+
+    public void setRatelist(ArrayList<Integer> rateslist) {
+        this.ratelist = rateslist;
+    }
+
+    public double getAverageRate() {
+        return averageRate;
+    }
+
+    public void addToRate(int actualRate){
+        ratelist.add(actualRate);
+    }
+
+    public void setAverageRate(double averageRate) {
+
+        this.averageRate = averageRate;
     }
 }
