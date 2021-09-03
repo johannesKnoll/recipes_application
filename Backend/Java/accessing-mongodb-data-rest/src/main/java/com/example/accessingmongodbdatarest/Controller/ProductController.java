@@ -9,12 +9,16 @@ import com.example.accessingmongodbdatarest.Repositories.UserRepository;
 import com.example.accessingmongodbdatarest.Security.services.UserDetailsImpl;
 import com.example.accessingmongodbdatarest.Services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpStatusCodeException;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.sql.*;
 import java.util.*;
@@ -33,8 +37,6 @@ public class ProductController {
     @Autowired
     private UserRepository userRepository;
 
-    /*@Autowired
-    private CompanyRepository companyRepository;*/
 
     private User getAuthorizedUser() {
         UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -45,8 +47,8 @@ public class ProductController {
 
     //@PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping(value = "/createProduct", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Product> create(@RequestBody Product product) {
-        User user = getAuthorizedUser();
+    public ResponseEntity<Product> create(@RequestBody Product product, @AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {
+        User user = userRepository.findById(userDetailsImpl.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Keinen User gefunden"));
         Product product1 = new Product(user, product.isPublic(),  product.getName(), product.getDescription(),product.getCalories(),  product.getProtein(),
                 product.getFat(), product.getCarbohydrate(),  product.getTime(), product.isVegan(),  product.isVegetarian(), product.isHasMeat(),
                 product.getPicture() );
