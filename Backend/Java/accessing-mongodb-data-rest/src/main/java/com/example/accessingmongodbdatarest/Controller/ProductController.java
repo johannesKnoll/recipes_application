@@ -143,4 +143,10 @@ public class ProductController {
         return "Deleted all records products";
     }
 
+    @GetMapping("/getDailyRecipe")
+    public String getDailyRecipe(){
+
+    productService.getDailyRecipe();
+        return "DailyRecipe";
+    }
 }
