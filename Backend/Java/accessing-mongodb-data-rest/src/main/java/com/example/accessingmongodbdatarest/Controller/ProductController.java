@@ -12,15 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.sql.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -139,8 +135,14 @@ public class ProductController {
         return "Deleted all records products";
     }
 
-    @GetMapping("/getDailyRecipe")
-    public Product getDailyRecipe(){
-        return productService.getDailyRecipe();
+    @RequestMapping("/getDailyRecipe/{productId}")
+    public List<ProductDTO> getDailyRecipe(@PathVariable("productId") long id) {
+        return productService.getProductById(id).stream().map(ProductDTO::new).collect(Collectors.toList());
     }
+
+   //@RequestMapping("/getProduct")
+    //public Product getProduct(@RequestParam String name) {
+     //   return productService.getProductByName(name);
+  //  }
+
 }

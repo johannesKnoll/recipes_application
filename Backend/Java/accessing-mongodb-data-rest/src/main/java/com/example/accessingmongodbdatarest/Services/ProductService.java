@@ -120,34 +120,39 @@ public class ProductService {
         System.out.println("actualRecipe2");
         return actualRecipe;
     }*/
-   public Product getDailyRecipe() {
+
+   public List<Product> getDailyRecipe(int actualRecipeDependsOnDate) {
+       Date date =new Date();
+       //int actualRecipeDependsOnDate;
+       actualRecipeDependsOnDate = date.getDate();
+       System.out.println("Date:" +date.getDay());
+       return productRepository.findProductById(actualRecipeDependsOnDate);
+
+   }
+
+      /* Iterator<Product> source = productRepository.findAll().iterator();
+
+       List<Product> target = new ArrayList<>();
+       source.forEachRemaining(target::add);
+
+   public List<Product> getProductById(long id) {
+        return productRepository.findProductById(id);
+    }
+
+       List<Product> allProducts =  target;
+       List<Product> allPublicProducts = new ArrayList<>();
+       ArrayList<Product> actualRecipe = null;
+       actualRecipe = productRepository.findAllDailyRecipe();
        Date date =new Date();
        System.out.println("Date:" +date.getDay());
        int actualRecipeDependsOnDate = date.getDay();
-       Product actualRecipe = null;
-       actualRecipe = allRecipes.get(actualRecipeDependsOnDate);
-       if(allRecipes.size()>actualRecipeDependsOnDate ){
 
+       //actualRecipe = allRecipes.get(actualRecipeDependsOnDate);
+
+       allRecipes = allPublicProducts;
+       return (Product) allPublicProducts;
        }
-       for (; local < allRecipes.size(); ) {
+       */
 
-           local++;
-           try {
-               Thread.sleep(5000);
 
-               System.out.println("sleep vor return1");
-               //TimeUnit.HOURS.sleep(24);
-
-               System.out.println("actualRecipe" + local);
-               return actualRecipe;
-
-           } catch (InterruptedException e) {
-               e.printStackTrace();
-           } finally {
-               getDailyRecipe();
-           }
-       }
-       System.out.println("return2");
-       return actualRecipe;
-   }
 }
