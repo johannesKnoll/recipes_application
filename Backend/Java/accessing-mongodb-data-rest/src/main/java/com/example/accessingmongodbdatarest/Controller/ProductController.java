@@ -135,14 +135,8 @@ public class ProductController {
         return "Deleted all records products";
     }
 
-    @RequestMapping("/getDailyRecipe/{productId}")
-    public List<ProductDTO> getDailyRecipe(@PathVariable("productId") long id) {
-        return productService.getProductById(id).stream().map(ProductDTO::new).collect(Collectors.toList());
+    @GetMapping("/getDailyRecipe")
+    public List<ProductDTO> getDailyRecipe() {
+        return productService.getDailyRecipe().stream().map(ProductDTO::new).collect(Collectors.toList());
     }
-
-   //@RequestMapping("/getProduct")
-    //public Product getProduct(@RequestParam String name) {
-     //   return productService.getProductByName(name);
-  //  }
-
 }

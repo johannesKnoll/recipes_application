@@ -93,39 +93,11 @@ public class ProductService {
         productRepository.delete(product);
     }
     //Get Daily Recipes
-
-    int local=0;
-
-   /* public Product getDailyRecipe() {
-        if(local==allRecipes.size()){
-            local =0;
-        }
-        Product actualRecipe = null;
-        for (; local < allRecipes.size(); ) {
-            actualRecipe = allRecipes.get(local);
-            local++;
-            try {
-                Thread.sleep(3000);
-                System.out.println("sleep");
-                //TimeUnit.HOURS.sleep(24);
-                //System.out.println("actualRecipe" + local);
-                return actualRecipe;
-
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } finally {
-                getDailyRecipe();
-            }
-        }
-        System.out.println("actualRecipe2");
-        return actualRecipe;
-    }*/
-
-   public List<Product> getDailyRecipe(int actualRecipeDependsOnDate) {
+   public List<Product> getDailyRecipe() {
        Date date =new Date();
-       //int actualRecipeDependsOnDate;
+       int actualRecipeDependsOnDate;
        actualRecipeDependsOnDate = date.getDate();
-       System.out.println("Date:" +date.getDay());
+       //System.out.println("Date:" +date.getDay());
        return productRepository.findProductById(actualRecipeDependsOnDate);
 
    }
