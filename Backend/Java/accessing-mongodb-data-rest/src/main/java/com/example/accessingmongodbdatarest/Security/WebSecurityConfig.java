@@ -2,6 +2,7 @@ package com.example.accessingmongodbdatarest.Security;
 
 import com.example.accessingmongodbdatarest.Security.jwt.AuthEntryPointJwt;
 import com.example.accessingmongodbdatarest.Security.jwt.AuthTokenFilter;
+import com.example.accessingmongodbdatarest.Security.jwt.JwtUtils;
 import com.example.accessingmongodbdatarest.Security.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -41,16 +42,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private AuthEntryPointJwt unauthorizedHandler;
 
     @Bean
-    public Filter authenticationJwtTokenFilter() {
+    public AuthTokenFilter authenticationJwtTokenFilter() {
         return new AuthTokenFilter();
     }
 
     @Override
     public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-        authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        authenticationManagerBuilder.userDetailsService(userDetailsService).
+                passwordEncoder(passwordEncoder());
     }
 
-    @Bean
+    /*@Bean
     public FilterRegistrationBean simpleCorsFilter() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
@@ -62,7 +64,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
         bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
         return bean;
-    }
+    }*/
 
     @Bean
     @Override
@@ -79,13 +81,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-                //.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests().antMatchers("/api/auth/**").permitAll()
-                .antMatchers("**").permitAll()
+                //.antMatchers("**").permitAll()
                 .anyRequest().authenticated();
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 
-        http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+        //http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
     }
 }
