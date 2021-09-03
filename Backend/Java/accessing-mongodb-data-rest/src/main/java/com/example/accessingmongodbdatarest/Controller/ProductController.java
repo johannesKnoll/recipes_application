@@ -31,6 +31,7 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+
     @Autowired
     private ProductRepository productRepository;
 
@@ -110,15 +111,8 @@ public class ProductController {
     }
 
     @GetMapping("/getAllPublicRecipes")
-    public Set<Product> getAllPublicRecipes(){
-        List<Product> allProducts =  productService.getAll();
-        Set<Product> allPublicProducts = new HashSet<Product>();
-
-        for (Product product : allProducts) {
-            if(product.isPublic()){
-                allPublicProducts.add(product);
-            }
-        }
+    public List<Product> getAllPublicRecipes(){
+        List<Product> allPublicProducts = productService.getAllPublicRecipes();
         return allPublicProducts;
     }
 
@@ -146,9 +140,7 @@ public class ProductController {
     }
 
     @GetMapping("/getDailyRecipe")
-    public String getDailyRecipe(){
-
-    productService.getDailyRecipe();
-        return "DailyRecipe";
+    public Product getDailyRecipe(){
+        return productService.getDailyRecipe();
     }
 }

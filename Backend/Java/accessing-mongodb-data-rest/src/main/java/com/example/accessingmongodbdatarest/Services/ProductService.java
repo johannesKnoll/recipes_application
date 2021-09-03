@@ -28,11 +28,31 @@ public class ProductService {
     }
 
     //Retieve operation
+    List<Product> allRecipes;
     public List<Product> getAll() {
         Iterator<Product> source = productRepository.findAll().iterator();
+
         List<Product> target = new ArrayList<>();
         source.forEachRemaining(target::add);
         return target;
+    }
+
+    public List<Product> getAllPublicRecipes(){
+        Iterator<Product> source = productRepository.findAll().iterator();
+
+        List<Product> target = new ArrayList<>();
+        source.forEachRemaining(target::add);
+
+        List<Product> allProducts =  target;
+        List<Product> allPublicProducts = new ArrayList<>();
+
+        for (Product product : allProducts) {
+            if(product.isPublic()){
+                allPublicProducts.add(product);
+            }
+        }
+        allRecipes = allPublicProducts;
+        return allPublicProducts;
     }
 
     public List<Product> getAllByUserId(long id) {
@@ -73,16 +93,22 @@ public class ProductService {
         productRepository.delete(product);
     }
     //Get Daily Recipes
-    int local = 0;
-    List<Product> allRecipes = getAll();
+
+    int local=0;
+
     public Product getDailyRecipe() {
-        Product actualRecipe = allRecipes.get(0);
-        for (int i = local; i < allRecipes.size(); local++) {
+        if(local==allRecipes.size()){
+            local =0;
+        }
+        Product actualRecipe = null;
+        for (; local < allRecipes.size(); ) {
+            actualRecipe = allRecipes.get(local);
+            local++;
             try {
-                Thread.sleep(100);
+                Thread.sleep(3000);
                 System.out.println("sleep");
                 //TimeUnit.HOURS.sleep(24);
-                System.out.println("actualRecipe1");
+                //System.out.println("actualRecipe" + local);
                 return actualRecipe;
 
             } catch (InterruptedException e) {
