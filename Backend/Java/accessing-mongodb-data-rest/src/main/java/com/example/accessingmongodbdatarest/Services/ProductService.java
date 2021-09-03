@@ -96,7 +96,7 @@ public class ProductService {
 
     int local=0;
 
-    public Product getDailyRecipe() {
+   /* public Product getDailyRecipe() {
         if(local==allRecipes.size()){
             local =0;
         }
@@ -119,5 +119,35 @@ public class ProductService {
         }
         System.out.println("actualRecipe2");
         return actualRecipe;
-    }
+    }*/
+   public Product getDailyRecipe() {
+       Date date =new Date();
+       System.out.println("Date:" +date.getDay());
+       int actualRecipeDependsOnDate = date.getDay();
+       Product actualRecipe = null;
+       actualRecipe = allRecipes.get(actualRecipeDependsOnDate);
+       if(allRecipes.size()>actualRecipeDependsOnDate ){
+
+       }
+       for (; local < allRecipes.size(); ) {
+
+           local++;
+           try {
+               Thread.sleep(5000);
+
+               System.out.println("sleep vor return1");
+               //TimeUnit.HOURS.sleep(24);
+
+               System.out.println("actualRecipe" + local);
+               return actualRecipe;
+
+           } catch (InterruptedException e) {
+               e.printStackTrace();
+           } finally {
+               getDailyRecipe();
+           }
+       }
+       System.out.println("return2");
+       return actualRecipe;
+   }
 }
