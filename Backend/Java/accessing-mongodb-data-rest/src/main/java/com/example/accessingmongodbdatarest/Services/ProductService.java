@@ -62,7 +62,7 @@ public class ProductService {
         allRecipes = allPublicProducts;
         return allPublicProducts;
     }
-
+//Vegetarian
     public List<Product> getVegetarianRecipes(){
         Iterator<Product> source = productRepository.findAll().iterator();
 
@@ -79,6 +79,25 @@ public class ProductService {
         }
        // allRecipes = allVegetarianProducts;
         return allVegetarianProducts;
+    }
+
+    //Vegan
+    public List<Product> getVeganRecipes(){
+        Iterator<Product> source = productRepository.findAll().iterator();
+
+        List<Product> target = new ArrayList<>();
+        source.forEachRemaining(target::add);
+
+        List<Product> allProducts =  target;
+        List<Product> allVeganProducts = new ArrayList<>();
+
+        for (Product product : allProducts) {
+            if(product.isVegan()){
+                allVeganProducts.add(product);
+            }
+        }
+        // allRecipes = allVegetarianProducts;
+        return allVeganProducts;
     }
 
     public List<Product> getAllByUserId(long id) {

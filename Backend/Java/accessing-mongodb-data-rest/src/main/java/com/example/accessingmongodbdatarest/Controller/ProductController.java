@@ -120,6 +120,12 @@ public class ProductController {
         return allVegetarianRecipes;
     }
 
+    @GetMapping("/getVeganRecipes")
+    public List<Product> getVeganRecipes(){
+        List<Product> allVeganRecipes = productService.getVeganRecipes();
+        return allVeganRecipes;
+    }
+
 
     @GetMapping("/getAllByCompanyId/{companyId}")
     public List<ProductDTO> getAllByCompanyId(@PathVariable("companyId") long id){
