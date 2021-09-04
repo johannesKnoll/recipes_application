@@ -90,9 +90,10 @@ public class ProductController {
 
 
 
-    @RequestMapping("/getProduct")
-    public Product getProduct(@RequestParam String name) {
-        return productService.getProductByName(name);
+    @RequestMapping("/getProduct/{productId}")
+    public Product getProduct(@PathVariable("productId") long id) {
+       // productRepository.save(productService.getProductById(id));
+        return (Product) productService.getProductById(id);
     }
 
     @RequestMapping("/getProductById/{productId}")
@@ -139,4 +140,11 @@ public class ProductController {
     public List<ProductDTO> getDailyRecipe() {
         return productService.getDailyRecipe().stream().map(ProductDTO::new).collect(Collectors.toList());
     }
+
+    @GetMapping("/getRecebtlyViewed")
+    public Product getRecebtlyViewed() {
+       // return productService.getRecentlyViewed().stream().map(ProductDTO::new).collect(Collectors.toList());
+        return productService.getRecentlyViewed();
+    }
+
 }

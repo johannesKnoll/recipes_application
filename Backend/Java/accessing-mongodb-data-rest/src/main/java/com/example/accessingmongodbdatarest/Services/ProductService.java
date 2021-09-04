@@ -15,6 +15,12 @@ public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
+    List<Product> recentlyViewd =  new ArrayList<>();
+    //private String recentlyViewd ="";
+    public ProductRepository call(){
+        ProductRepository productRepository1 =productRepository;
+        return productRepository1;
+    }
 
     //create operation
     public Product create(User user, boolean isPublic, String name, String description, double calories, double protein,
@@ -28,7 +34,8 @@ public class ProductService {
     }
 
     //Retieve operation
-    List<Product> allRecipes;
+
+     List<Product> allRecipes;
     public List<Product> getAll() {
         Iterator<Product> source = productRepository.findAll().iterator();
 
@@ -36,6 +43,7 @@ public class ProductService {
         source.forEachRemaining(target::add);
         return target;
     }
+
 
     public List<Product> getAllPublicRecipes(){
         Iterator<Product> source = productRepository.findAll().iterator();
@@ -59,6 +67,7 @@ public class ProductService {
         Iterator<Product> source = productRepository.findAllByUser_Id(id).iterator();
         List<Product> target = new ArrayList<>();
         source.forEachRemaining(target::add);
+
         return target;
     }
 
@@ -67,6 +76,8 @@ public class ProductService {
     }
 
     public List<Product> getProductById(long id) {
+        recentlyViewd.add(productRepository.findById(id));
+        getRecentlyViewed();
         return productRepository.findProductById(id);
     }
 
@@ -98,33 +109,19 @@ public class ProductService {
        int actualRecipeDependsOnDate;
        actualRecipeDependsOnDate = date.getDate();
        //System.out.println("Date:" +date.getDay());
+
        return productRepository.findProductById(actualRecipeDependsOnDate);
 
    }
+   public Product getRecentlyViewed(){
+   /*     if(recentlyViewd.size() ==0){
+            System.out.println("there is no viewed Receipe yet");
 
-      /* Iterator<Product> source = productRepository.findAll().iterator();
+        }else */
 
-       List<Product> target = new ArrayList<>();
-       source.forEachRemaining(target::add);
-
-   public List<Product> getProductById(long id) {
-        return productRepository.findProductById(id);
-    }
-
-       List<Product> allProducts =  target;
-       List<Product> allPublicProducts = new ArrayList<>();
-       ArrayList<Product> actualRecipe = null;
-       actualRecipe = productRepository.findAllDailyRecipe();
-       Date date =new Date();
-       System.out.println("Date:" +date.getDay());
-       int actualRecipeDependsOnDate = date.getDay();
-
-       //actualRecipe = allRecipes.get(actualRecipeDependsOnDate);
-
-       allRecipes = allPublicProducts;
-       return (Product) allPublicProducts;
-       }
-       */
+          return recentlyViewd.get(recentlyViewd.size() - 1);
+    //   return productRepository.findProductById();
+   }
 
 
 }
