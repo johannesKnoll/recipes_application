@@ -113,14 +113,15 @@ public class ProductService {
        return productRepository.findProductById(actualRecipeDependsOnDate);
 
    }
-   public Product getRecentlyViewed(){
+   public List<Product> getRecentlyViewed(){
    /*     if(recentlyViewd.size() ==0){
             System.out.println("there is no viewed Receipe yet");
 
         }else */
 
-          return recentlyViewd.get(recentlyViewd.size() - 1);
+          //return recentlyViewd.get(recentlyViewd.size() - 1);
     //   return productRepository.findProductById();
+       return recentlyViewd;
    }
 
 

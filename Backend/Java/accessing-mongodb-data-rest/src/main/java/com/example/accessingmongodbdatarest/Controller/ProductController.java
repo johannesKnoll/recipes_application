@@ -98,6 +98,7 @@ public class ProductController {
 
     @RequestMapping("/getProductById/{productId}")
     public List<ProductDTO> getProductById(@PathVariable("productId") long id) {
+
         return productService.getProductById(id).stream().map(ProductDTO::new).collect(Collectors.toList());
     }
 
@@ -142,7 +143,7 @@ public class ProductController {
     }
 
     @GetMapping("/getRecebtlyViewed")
-    public Product getRecebtlyViewed() {
+    public List<Product> getRecebtlyViewed() {
        // return productService.getRecentlyViewed().stream().map(ProductDTO::new).collect(Collectors.toList());
         return productService.getRecentlyViewed();
     }
