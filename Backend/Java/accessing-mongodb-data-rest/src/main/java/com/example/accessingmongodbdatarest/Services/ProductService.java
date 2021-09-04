@@ -63,6 +63,24 @@ public class ProductService {
         return allPublicProducts;
     }
 
+    public List<Product> getVegetarianRecipes(){
+        Iterator<Product> source = productRepository.findAll().iterator();
+
+        List<Product> target = new ArrayList<>();
+        source.forEachRemaining(target::add);
+
+        List<Product> allProducts =  target;
+        List<Product> allVegetarianProducts = new ArrayList<>();
+
+        for (Product product : allProducts) {
+            if(product.isVegetarian()){
+                allVegetarianProducts.add(product);
+            }
+        }
+       // allRecipes = allVegetarianProducts;
+        return allVegetarianProducts;
+    }
+
     public List<Product> getAllByUserId(long id) {
         Iterator<Product> source = productRepository.findAllByUser_Id(id).iterator();
         List<Product> target = new ArrayList<>();

@@ -114,6 +114,13 @@ public class ProductController {
         return allPublicProducts;
     }
 
+    @GetMapping("/getVegetarianRecipes")
+    public List<Product> getVegetarianRecipes(){
+        List<Product> allVegetarianRecipes = productService.getVegetarianRecipes();
+        return allVegetarianRecipes;
+    }
+
+
     @GetMapping("/getAllByCompanyId/{companyId}")
     public List<ProductDTO> getAllByCompanyId(@PathVariable("companyId") long id){
         return productService.getAllByUserId(id).stream().map(ProductDTO::new).collect(Collectors.toList());
