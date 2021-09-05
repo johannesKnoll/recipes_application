@@ -1,6 +1,7 @@
 package com.example.accessingmongodbdatarest.Services;
 
 import com.example.accessingmongodbdatarest.DTO.UserDTO;
+import com.example.accessingmongodbdatarest.Entities.Product;
 import com.example.accessingmongodbdatarest.Entities.User;
 import com.example.accessingmongodbdatarest.Entities.User;
 import com.example.accessingmongodbdatarest.Repositories.UserRepository;
@@ -43,7 +44,18 @@ public class UserService {
 
         return userDTO;
     }
-
+    //Update operation
+    public User updateEmail(String username, String email) {
+        UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        username = userDetails.getUsername();
+         email = userDetails.getEmail();
+        User user = userRepository.findByUsername(username);
+ //       userRepository.findByUsername(username);
+        user.setEmail(email);
+        System.out.println(email);
+        //userRepository.save(email);
+        return userRepository.save(user);
+    }
     /*public User getUserByProductId(long productId){
         return userRepository.findUserByProducts(productId);
     }

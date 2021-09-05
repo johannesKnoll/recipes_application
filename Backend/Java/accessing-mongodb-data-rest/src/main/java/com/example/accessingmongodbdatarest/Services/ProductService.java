@@ -1,9 +1,12 @@
 package com.example.accessingmongodbdatarest.Services;
 
+import ch.qos.logback.core.joran.spi.NoAutoStart;
 import com.example.accessingmongodbdatarest.Entities.Product;
 import com.example.accessingmongodbdatarest.Entities.User;
 import com.example.accessingmongodbdatarest.Repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.sql.Blob;
@@ -141,6 +144,8 @@ public class ProductService {
         productRepository.delete(product);
     }
     //Get Daily Recipes
+
+
    public List<Product> getDailyRecipe() {
        Date date =new Date();
        int actualRecipeDependsOnDate;

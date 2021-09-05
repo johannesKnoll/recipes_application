@@ -9,6 +9,7 @@ import com.example.accessingmongodbdatarest.Repositories.UserRepository;
 import com.example.accessingmongodbdatarest.Services.ProductService;
 import org.aspectj.lang.annotation.After;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,6 +17,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.swing.*;
+import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -24,19 +27,21 @@ import java.util.Set;
 public class AccessingMongodbDataRestApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AccessingMongodbDataRestApplication.class, args);
+		SpringApplication.run(AccessingMongodbDataRestApplication.class, args)
 
+;
 	}
 
 
 	@Autowired
 	PasswordEncoder encoder;
 
+
 	@Bean
 	public CommandLineRunner init(UserRepository userRepository, ProductRepository productRepository)  {
 		
 		return (args) -> {
-
+		//	new ProductService().getDailyRecipe();
 			/*userRepository.save(new User("Abdul", bCryptPasswordEncoder.encode("123"), "info@abdul.de"));
 			userRepository.save(new User("Johannes", bCryptPasswordEncoder.encode("123"), "info@johannes.de"));
 			userRepository.save(new User("Suliman", bCryptPasswordEncoder.encode("123"), "info@suliman.de"));
@@ -132,10 +137,16 @@ public class AccessingMongodbDataRestApplication {
 //			new ProductService().call();
 //			new ProductService().getDailyRecipe();
 			//new ProductService().getDailyRecipe();
+
+
 		};
+
+
+
 
 	}
 
 }
+
 
 
