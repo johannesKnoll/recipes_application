@@ -4,6 +4,8 @@ import com.example.accessingmongodbdatarest.DTO.UserDTO;
 import com.example.accessingmongodbdatarest.Entities.Product;
 import com.example.accessingmongodbdatarest.Entities.User;
 import com.example.accessingmongodbdatarest.Payload.Request.RatingRequest;
+import com.example.accessingmongodbdatarest.Payload.Request.UpdateEmailRequest;
+import com.example.accessingmongodbdatarest.Payload.Request.UpdateUsernameRequest;
 import com.example.accessingmongodbdatarest.Repositories.ProductRepository;
 import com.example.accessingmongodbdatarest.Repositories.UserRepository;
 import com.example.accessingmongodbdatarest.Security.services.UserDetailsImpl;
@@ -20,6 +22,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.print.attribute.standard.Media;
 import java.security.Principal;
 import java.util.HashSet;
 import java.util.List;
@@ -110,13 +113,37 @@ public class UserController {
     }
 
 
-    @PostMapping(value = "/updateEmail/{email}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    /*@PostMapping(value = "/updateEmail/{email}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public String updateEmail(@PathVariable("email") String email , @RequestBody User user) {
         UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         user = userRepository.findByUsername(userDetails.getUsername());
         user.setEmail(email);
         userRepository.save(user);
         return "Email has been changed :)";
+    }*/
+
+    @PostMapping(value = "/updateEmail", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public String updateEmail(@RequestBody UpdateEmailRequest updateEmailRequest) {
+        UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userRepository.findByUsername(userDetails.getUsername());
+
+        UpdateEmailRequest newEmail = new UpdateEmailRequest(updateEmailRequest.getEmail());
+
+        user.setEmail(newEmail.getEmail());
+        userRepository.save(user);
+
+        return "Email has been changed :)";
+    }
+
+    @PostMapping(value = "/updateUsername", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public String updateUsername(@RequestBody UpdateUsernameRequest updateUsernameRequest) {
+        UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userRepository.findByUsername(userDetails.getUsername());
+
+        user.setUsername(updateUsernameRequest.getUsername());
+        userRepository.save(user);
+
+        return "Username has been changed :)";
     }
         //User user = userRepository.findByUsername(userDetailsImpl.getUsername());
        //  user = userService.updateEmail(name ,email);

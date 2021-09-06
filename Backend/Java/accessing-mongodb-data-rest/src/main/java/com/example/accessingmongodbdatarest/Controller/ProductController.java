@@ -155,7 +155,7 @@ public class ProductController {
         return productService.getDailyRecipe().stream().map(ProductDTO::new).collect(Collectors.toList());
     }
 
-    @GetMapping("/getRecebtlyViewed")
+    @GetMapping("/getRecentlyViewed")
     public List<Product> getRecebtlyViewed() {
        // return productService.getRecentlyViewed().stream().map(ProductDTO::new).collect(Collectors.toList());
         return productService.getRecentlyViewed();
