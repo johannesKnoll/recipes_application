@@ -70,11 +70,14 @@ public class UserService {
         User user = userRepository.findByUsername(userDetails.getUsername());
         UpdatePasswordRequest newPassword = new UpdatePasswordRequest(updatePasswordRequest.getPassword(), updatePasswordRequest.getRepeatPassword());
         if (newPassword.getPassword().equals(newPassword.getRepeatPassword()) ){
+            if(newPassword.getPassword().length() < 8){
+                return ResponseEntity.badRequest().body(new MessageResponse("Länge des Passworts muss mindestens 8 Zeichen betragen", 7));
+            }
             String resetPasswword = passwordEncoder.encode(newPassword.getRepeatPassword());
             user.setPassword(resetPasswword);
             userRepository.save(user);
             return ResponseEntity.ok().body(new MessageResponse("Das Passwort wurde erfolgreich aktualisiert :)",5));
-        }else if(newPassword.getPassword() != newPassword.getRepeatPassword()) {
+        }else if(!newPassword.getPassword().equals(newPassword.getRepeatPassword())) {
             return ResponseEntity.ok().body(new MessageResponse("Geben Sie bitte die gleichen Passwörter ein", 6));
         }
         else{
