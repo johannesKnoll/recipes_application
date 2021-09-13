@@ -11,6 +11,9 @@ import {
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import  RecipeCard  from '../components/RecipeCard';
+import RecentCard from '../components/RecentCard';
+
 
 export function Overview() {
     const testData = [
@@ -46,11 +49,31 @@ export function Overview() {
                     }
                     renderItem={({ item }) => {
                         return(
-                            <View>
-                                <Text>{item.id}</Text>
-                            </View>
+                            <RecipeCard
+                            recipe={item}
+                            onPress={null}
+                            >
+                            </RecipeCard>
                         )
                     }}>
+
+                </FlatList>
+
+                <FlatList
+                    data={testData}
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    keyExtractor={item => `${item.id}`}
+                    renderItem={({ item }) => {
+                        return (
+                            <RecentCard
+                            recipe={item}
+                            onPress={null}
+                            >
+                            </RecentCard>
+                        )
+                    }}
+                >
 
                 </FlatList>
 
