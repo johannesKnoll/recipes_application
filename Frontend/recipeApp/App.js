@@ -2,10 +2,12 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { ScreenNavigation } from './screens/ScreenNavigation';
-
+import Login from './screens/login';
 export default function App() {
   return (
-      <ScreenNavigation></ScreenNavigation>
+
+    <Login></Login>
+    //<ScreenNavigation></ScreenNavigation>
   );
 }
 
