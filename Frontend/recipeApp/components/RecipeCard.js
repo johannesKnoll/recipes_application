@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
+import {
+    Text,
+    View
+} from 'react-native';
 
-export class RecipeCard extends Component{
-    constructor(props){
-        super(props);
-        this.state = {};
-    }
+const RecipeCard = ({  }) => {
+    return(
+        <View>
 
-    render(){
-        return(
-            <div>
-
-            </div>
-        )
-    }
+        </View>
+    )
 }
+
+export default RecipeCard;
