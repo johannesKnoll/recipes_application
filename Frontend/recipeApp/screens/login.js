@@ -9,11 +9,26 @@ import {
     Button,
     TouchableOpacity,
     ImageBackground,
+
 } from "react-native";
+import { login } from "../api";
+import SignUp from "./signUp";
+//import { createStackNavigator } from 'react-navigation-stack';
+
+
+
+
 
 export default function Login() {
-    const [email, setEmail] = useState("");
+
+    const [userName, setuserName] = useState("");
     const [password, setPassword] = useState("");
+    function onClickSignin(userName, password) {
+        login(userName, password)
+            .then(loggedInUser => {
+                console.log(loggedInUser);
+            })
+    }
     return (
         <View style={styles.container}>
             <ImageBackground resizeMode="cover" style={styles.backgroundImage} source={require("../assets/login.jpeg")}>
@@ -26,7 +41,7 @@ export default function Login() {
                         style={styles.TextInput}
                         placeholder="E-Mail"
                         placeholderTextColor="#003f5c"
-                        onChangeText={(email) => setEmail(email)}
+                        onChangeText={(userName) => setuserName(userName)}
                     />
                 </View>
 
@@ -44,11 +59,11 @@ export default function Login() {
                 <TouchableOpacity>
                     <Text style={styles.forgot_button}>Passwort vergessen?</Text>
                 </TouchableOpacity>
-                <TouchableOpacity>
-                    <Text style={styles.forgot_button}>Noch kein Konto? Jetzt Regestrieren</Text>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('SignUp')}  >
+                    <Text style={styles.forgot_button}>Noch kein Konto? Jetzt Registrieren</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.loginBtn}>
+                <TouchableOpacity style={styles.loginBtn} onClick={onClickSignin(userName, password)}>
                     <Text style={styles.loginText}>Einloggen</Text>
                 </TouchableOpacity>
             </ImageBackground>
@@ -56,6 +71,12 @@ export default function Login() {
     );
 }
 
+//const Navigator = createStackNavigator({
+//  Login: { screen: login },
+//SignUp: { screen: SignUp },
+
+//});
+//createAppContainer(Navigator);
 const styles = StyleSheet.create({
     container: {
         flex: 1,
