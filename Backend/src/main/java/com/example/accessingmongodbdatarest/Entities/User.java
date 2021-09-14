@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -46,6 +47,9 @@ public class User {
 
     @OneToMany
     private Set<Product> favoriteList = new HashSet<>();
+
+    @OneToMany
+    private List<Product> recentylyViewed = new ArrayList<>(5);
 
     public User(String username, String email, String password, String name, String lastName) {
         this.username = username;
@@ -172,4 +176,20 @@ public class User {
         recipes.add(product);
     }
 
+    public List<Product> getRecentylyViewed() {
+        return recentylyViewed;
+    }
+
+    public void setRecentylyViewed(List<Product> recentylyViewed) {
+        this.recentylyViewed = recentylyViewed;
+    }
+
+    public void addToRecently(Product product){
+        recentylyViewed.add(0, product);
+    }
+
+    public void removeFromRecently(Product product){
+        recentylyViewed.remove(4);
+        recentylyViewed.add(0, product);
+    }
 }

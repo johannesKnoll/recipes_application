@@ -93,14 +93,14 @@ public class ProductController {
     @RequestMapping("/getProduct/{productId}")
     public Product getProduct(@PathVariable("productId") long id) {
        // productRepository.save(productService.getProductById(id));
-        return (Product) productService.getProductById(id);
+        return productService.getProductById(id);
     }
 
-    @RequestMapping("/getProductById/{productId}")
+    /*@RequestMapping("/getProductById/{productId}")
     public List<ProductDTO> getProductById(@PathVariable("productId") long id) {
 
-        return productService.getProductById(id).stream().map(ProductDTO::new).collect(Collectors.toList());
-    }
+        return productService.getProducts(id).stream().map(ProductDTO::new).collect(Collectors.toList());
+    }*/
 
 
     @RequestMapping("/getAllProduct")

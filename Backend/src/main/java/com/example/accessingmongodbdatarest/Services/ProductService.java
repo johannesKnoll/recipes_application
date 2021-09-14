@@ -4,9 +4,12 @@ import ch.qos.logback.core.joran.spi.NoAutoStart;
 import com.example.accessingmongodbdatarest.Entities.Product;
 import com.example.accessingmongodbdatarest.Entities.User;
 import com.example.accessingmongodbdatarest.Repositories.ProductRepository;
+import com.example.accessingmongodbdatarest.Repositories.UserRepository;
+import com.example.accessingmongodbdatarest.Security.services.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.sql.Blob;
@@ -18,11 +21,20 @@ public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
-    List<Product> recentlyViewd =  new ArrayList<>();
+
+    @Autowired
+    private UserRepository userRepository;
+    //List<Product> recentlyViewd =  new ArrayList<>();
     //private String recentlyViewd ="";
     public ProductRepository call(){
         ProductRepository productRepository1 =productRepository;
         return productRepository1;
+    }
+
+    private User getAuthorizedUser() {
+        UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = userDetails.getUsername();
+        return userRepository.findByUsername(username);
     }
 
     //create operation
@@ -115,9 +127,22 @@ public class ProductService {
         return productRepository.findProductByName(name);
     }
 
-    public List<Product> getProductById(long id) {
-        recentlyViewd.add(productRepository.findById(id));
-        getRecentlyViewed();
+    public Product getProductById(long id) {
+        //recentlyViewd.add(productRepository.findById(id));
+        //getRecentlyViewed();
+
+        User user = getAuthorizedUser();
+        if(user.getRecentylyViewed().size() < 5){
+            user.addToRecently(productRepository.findById(id));
+        }else if(user.getRecentylyViewed().size() >= 5){
+            user.removeFromRecently(productRepository.findById(id));
+        }
+        userRepository.save(user);
+
+        return productRepository.findById(id);
+    }
+
+    public List<Product> getProducts(long id){
         return productRepository.findProductById(id);
     }
 
@@ -156,14 +181,8 @@ public class ProductService {
 
    }
    public List<Product> getRecentlyViewed(){
-   /*     if(recentlyViewd.size() ==0){
-            System.out.println("there is no viewed Receipe yet");
-
-        }else */
-
-          //return recentlyViewd.get(recentlyViewd.size() - 1);
-    //   return productRepository.findProductById();
-       return recentlyViewd;
+        User user = getAuthorizedUser();
+        return user.getRecentylyViewed();
    }
 
 
