@@ -45,7 +45,10 @@ import { SearchBar } from 'react-native-elements';
         // </View>
 
         <SafeAreaView
-            style={{flex: 1, backgroundColor: "white"}}>
+        showHorizontalScrollIndicator={false}
+        showVerticalScrollIndicator={false}
+            style={{flex: 1, backgroundColor: "white"}}
+            >
         <View
             style={{
                     margin: 15
@@ -63,7 +66,7 @@ import { SearchBar } from 'react-native-elements';
                 data={testData}
                 keyExtractor={item => `${item.id}`}
                 keyboardDismissMode="on-drag"
-                //showVerticalScrollIndicator={true}
+                showsHorizontalScrollIndicator={false}
                 ListHeaderComponent={
                     <View>
                         <Text
@@ -78,8 +81,9 @@ import { SearchBar } from 'react-native-elements';
                         </Text>
                         <FlatList
                             data={testData}
-                            horizontal                        
+                            horizontal 
                             showsHorizontalScrollIndicator={false}
+                            showVerticalScrollIndicator={false}
                             keyExtractor={item => `${item.id}`}
                             renderItem={({ item }) => {
                                 return (

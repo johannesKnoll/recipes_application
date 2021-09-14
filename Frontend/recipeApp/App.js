@@ -8,7 +8,10 @@ export default function App() {
   return (
     //<SignUp></SignUp>
     //<Login></Login>
-    <ScreenNavigation></ScreenNavigation>
+    <ScreenNavigation>
+                  showHorizontalScrollIndicator={false}
+            showVerticalScrollIndicator={false}
+    </ScreenNavigation>
   );
 }
 
