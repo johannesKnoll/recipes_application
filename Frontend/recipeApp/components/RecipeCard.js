@@ -11,11 +11,11 @@ const RecipeCard = ({recipe, onPress}) => {
         <TouchableOpacity
             style={{
                 flexDirection: 'row',
-                alignItems: 'top',
+                //alignItems: 'top',
                 padding: 10,
                 marginTop: 10,
-                marginRight: 10,
-                marginLeft: 10,
+                marginRight: 15,
+                marginLeft: 15,
                 borderRadius: 10,
                 backgroundColor:'lightgray'
             }}
@@ -46,7 +46,6 @@ const RecipeCard = ({recipe, onPress}) => {
                     fontWeight: "bold",
                     flex: 1,
                     fontSize: 20
-                    //fontFamily: 'Montserrat'
                 }}
             >
                 {recipe.name}
@@ -58,7 +57,6 @@ const RecipeCard = ({recipe, onPress}) => {
                     color: 'black',
                     marginBottom: 20,
                     fontSize: 20
-                    //fontFamily: Montserrat
                 }}
             >
                 {recipe.id}
