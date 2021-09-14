@@ -137,6 +137,7 @@ public class ProductService {
         }else if(user.getRecentylyViewed().size() >= 5){
             user.removeFromRecently(productRepository.findById(id));
         }
+        userRepository.save(user);
 
         return productRepository.findById(id);
     }

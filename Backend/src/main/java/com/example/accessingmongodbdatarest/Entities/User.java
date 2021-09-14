@@ -48,6 +48,7 @@ public class User {
     @OneToMany
     private Set<Product> favoriteList = new HashSet<>();
 
+    @OneToMany
     private List<Product> recentylyViewed = new ArrayList<>(5);
 
     public User(String username, String email, String password, String name, String lastName) {
