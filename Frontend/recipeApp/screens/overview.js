@@ -35,9 +35,10 @@ import { SearchBar } from 'react-native-elements';
     //     search: '',
     //   };
     const [search, setSearch] = React.useState("");
-      const updateSearch = (search) => {
-        setSearch({ search });
-      };
+
+    const updateSearch = (search) => {
+      setSearch(search);
+    };
 
     return (
         // <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -55,10 +56,11 @@ import { SearchBar } from 'react-native-elements';
                 }}
         >
             <SearchBar
-                    placeholder="Type Here..."
-                    backgroundColor="lightgrey"
-                    onChangeText={updateSearch}
-                    value={search}
+                lightTheme={true}
+                placeholder="Type Here..."
+                backgroundColor="white"
+                onChangeText={updateSearch}
+                value={search}
             />
             </View>
 

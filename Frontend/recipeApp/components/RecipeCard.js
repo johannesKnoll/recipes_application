@@ -5,6 +5,7 @@ import {
     TouchableOpacity,
     Image
 } from 'react-native';
+import { Icon } from 'react-native-elements';
 
 const RecipeCard = ({recipe, onPress}) => {
     return(
@@ -19,52 +20,65 @@ const RecipeCard = ({recipe, onPress}) => {
                 borderRadius: 10,
                 backgroundColor:'lightgray'
             }}
-        onPress={onPress}
+            onPress={onPress}
         >
-        {/*Image*/}
-        <Image
-        source={require("../pictures/picture1.jpg")}
-        resizeMode="cover"
-        style={{
-            width: 100,
-            height: 100,
-            borderRadius: 10
-        }}
-        >
-        </Image>
-
-        {/*Details*/}
-        <View
-            style={{
-                width: '65%',
-                paddingHorizontal: 20
-            }}
-        >
-            {/*Name*/}
-            <Text
+            {/*Image*/}
+            <Image
+                source={require("../pictures/picture1.jpg")}
+                resizeMode="cover"
                 style={{
-                    fontWeight: "bold",
-                    flex: 1,
-                    fontSize: 20
+                    width: 100,
+                    height: 100,
+                    borderRadius: 10
                 }}
             >
-                {recipe.name}
-            </Text>
+            </Image>
 
-            {/*Servings*/}
-            <Text
+            {/*Details*/}
+            <View
                 style={{
-                    color: 'black',
-                    marginBottom: 20,
-                    fontSize: 20
+                    width: '65%',
+                    paddingHorizontal: 20
                 }}
             >
-                {recipe.id}
-            </Text>
-          </View>
+                {/*Name*/}
+                <Text
+                    style={{
+                        fontWeight: "bold",
+                        flex: 1,
+                        fontSize: 20
+                    }}
+                >
+                    {recipe.name}
+                </Text>
+
+                {/*Servings*/}
+                <Text
+                    style={{
+                        color: 'black',
+                        marginBottom: 20,
+                        fontSize: 20
+                    }}
+                >
+                    {recipe.id}
+                </Text>
+            </View>
+            <View
+                style={{
+                    position: 'absolute',
+                    top: 10,
+                    right: 10
+                }}
+            >
+                <Icon
+                    name='bookmark-outline'
+                    type='ionicon'
+                    color='tomato'
+                    size={35}
+                />
+                {/* To do: call setFavourite route on backend after onPress */}
+            </View>
         </TouchableOpacity>
-        
-
     )
 }
 
