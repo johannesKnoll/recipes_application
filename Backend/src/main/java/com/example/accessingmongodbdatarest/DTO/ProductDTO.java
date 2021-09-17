@@ -5,6 +5,7 @@ import com.example.accessingmongodbdatarest.Entities.Product;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import java.sql.Blob;
+import java.util.List;
 
 public class ProductDTO {
 
@@ -13,7 +14,7 @@ public class ProductDTO {
     private Long userId;
 
     private String name;
-    private String description;
+    private List<String> description;
     private double calories;
     //private String type;                //Sach- oder Dienstleistung
     //private boolean shipable;
@@ -76,11 +77,11 @@ public class ProductDTO {
         this.name = name;
     }
 
-    public String getDescription() {
+    public List<String> getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(List<String> description) {
         this.description = description;
     }
 

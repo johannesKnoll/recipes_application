@@ -38,7 +38,7 @@ public class ProductService {
     }
 
     //create operation
-    public Product create(User user, boolean isPublic, String name, String description, double calories, double protein,
+    public Product create(User user, boolean isPublic, String name, ArrayList<String> description, double calories, double protein,
                           double fat, double carbohydrate, int time, boolean isVegan, boolean isVegetarian, boolean hasMeat,
                           String picture) {
         Product product = new Product(user, isPublic, name, description, calories, protein,
@@ -147,7 +147,7 @@ public class ProductService {
     }
 
     //Update operation
-    public Product update(String name, String description,
+    public Product update(String name, ArrayList<String> description,
                           double price,
                           boolean shipable, String picture, double valuation) {
         Product product = productRepository.findProductByName(name);

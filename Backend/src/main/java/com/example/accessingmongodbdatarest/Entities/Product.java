@@ -23,7 +23,7 @@ public class Product {
     private boolean isPublic;
 
     private String name;
-    private String description;
+    private ArrayList<String> description;
     private double calories;
     private double protein;
     private double fat;
@@ -40,7 +40,7 @@ public class Product {
     @Lob
     private String picture;
 
-    public Product(User user, boolean isPublic, String name, String description, double calories, double protein,
+    public Product(User user, boolean isPublic, String name, ArrayList<String> description, double calories, double protein,
                    double fat, double carbohydrate, int time, boolean isVegan, boolean isVegetarian, boolean hasMeat,
                    String picture) {
         this.user = user;
@@ -96,11 +96,11 @@ public class Product {
         this.name = name;
     }
 
-    public String getDescription() {
+    public ArrayList<String> getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(ArrayList<String> description) {
         this.description = description;
     }
 

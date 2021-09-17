@@ -133,7 +133,7 @@ public class ProductController {
     }
 
     @RequestMapping("/update")
-    public String update(@RequestParam String name, @RequestParam String description,
+    public String update(@RequestParam String name, @RequestParam ArrayList<String> description,
                          @RequestParam double price,
                          @RequestParam boolean shipable, @RequestParam String picture, @RequestParam double valuation) {
         Product product = productService.update(name, description, price, shipable, picture, valuation);
