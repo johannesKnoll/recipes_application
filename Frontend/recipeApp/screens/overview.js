@@ -49,19 +49,19 @@ import { SearchBar } from 'react-native-elements';
         showHorizontalScrollIndicator={false}
         showVerticalScrollIndicator={false}
             style={{flex: 1, backgroundColor: "white"}}
-            >
-        <View
-            style={{
-                    margin: 15
-                }}
         >
-            <SearchBar
-                lightTheme={true}
-                placeholder="Type Here..."
-                backgroundColor="white"
-                onChangeText={updateSearch}
-                value={search}
-            />
+            <View
+                style={{
+                        margin: 15
+                    }}
+            >
+                <SearchBar
+                    lightTheme={true}
+                    placeholder="Type Here..."
+                    backgroundColor="white"
+                    onChangeText={updateSearch}
+                    value={search}
+                />
             </View>
 
             <FlatList
