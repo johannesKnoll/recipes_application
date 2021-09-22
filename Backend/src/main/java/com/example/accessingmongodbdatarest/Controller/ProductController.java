@@ -48,7 +48,7 @@ public class ProductController {
         User user = userRepository.findById(userDetailsImpl.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Keinen User gefunden"));
         Product product1 = new Product(user, product.isPublic(),  product.getName(), product.getDescription(),product.getCalories(),  product.getProtein(),
                 product.getFat(), product.getCarbohydrate(),  product.getTime(), product.isVegan(),  product.isVegetarian(), product.isHasMeat(),
-                product.getPicture() );
+                product.getIngredients(), product.getPicture() );
         userRepository.save(user);
         user.addToRecipes(product1);
         productRepository.save(product1);

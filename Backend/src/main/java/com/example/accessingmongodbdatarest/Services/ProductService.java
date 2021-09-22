@@ -40,10 +40,9 @@ public class ProductService {
     //create operation
     public Product create(User user, boolean isPublic, String name, ArrayList<String> description, double calories, double protein,
                           double fat, double carbohydrate, int time, boolean isVegan, boolean isVegetarian, boolean hasMeat,
-                          String picture) {
+                          ArrayList<String> ingredients, String picture) {
         Product product = new Product(user, isPublic, name, description, calories, protein,
-                fat, carbohydrate, time, isVegan, isVegetarian, hasMeat,
-                picture);
+                fat, carbohydrate, time, isVegan, isVegetarian, hasMeat, ingredients, picture);
         product.setUser(user);
         return productRepository.save(product);
     }
@@ -58,7 +57,6 @@ public class ProductService {
         source.forEachRemaining(target::add);
         return target;
     }
-
 
     public List<Product> getAllPublicRecipes(){
         Iterator<Product> source = productRepository.findAll().iterator();
