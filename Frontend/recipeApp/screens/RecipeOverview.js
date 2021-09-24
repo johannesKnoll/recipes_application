@@ -6,12 +6,21 @@ import {
     SafeAreaView,
     TouchableOpacity,
     TextInput,
-    FlatList
+    FlatList,
+    ScrollView
 } from 'react-native';
+import { Icon } from 'react-native-elements';
 
 const RecipeOverview = () => {
     return(
-        <SafeAreaView>
+        <SafeAreaView
+            showHorizontalScrollIndicator={false}
+            showVerticalScrollIndicator={false}
+            style={{
+                flex: 1,
+                position: 'relative'
+            }}
+        >
 
             <View>
                 <Image
@@ -30,8 +39,98 @@ const RecipeOverview = () => {
                         fontSize: 40,
                         fontWeight: 'bold'
                     }}>
-                    Hallo
+                    Gemüsesuppe
                 </Text>
+            </View>
+            <View
+                style={{
+                    alignItems: 'left',
+                    height: 35,
+                    float: 'left',
+                    marginBottom: 15
+                }}>
+                <Icon
+                    name='leaf'
+                    type='font-awesome-5'
+                    color='grey'
+                    size={35}
+                />
+                <Icon
+                    name='carrot'
+                    type='font-awesome-5'
+                    color='grey'
+                    size={35}
+                />
+            </View>
+            <View
+                style={{
+                    left: 20,
+                    position: 'absolute',
+                    marginTop: 410,
+                    float: 'left',
+                    height: '35%',
+                    width: '30%'
+                }}>
+                <Text
+                style={{
+                    fontSize: 25
+                }}>
+                Zutaten
+            </Text>
+                <ScrollView 
+                    showsVerticalScrollIndicator={false}
+                    style={{
+                        margin: 10,
+                        marginHorizontal: 20
+                    }}>
+
+                    <Text style={{
+                        fontSize: 20
+                    }}>
+                        200g Kartoffeln <br></br>
+                        100g Möhren <br></br>
+                        250ml Wasser <br></br>
+                    </Text>
+
+                </ScrollView>
+            </View>
+            <View
+                style={{
+                    right: 20,
+                    position: 'absolute',
+                    marginTop: 410,
+                    marginLeft: 200,
+                    height: '50%',
+                    width: '60%'
+                }}>
+                <Text
+                    style={{
+                        fontSize: 25
+                    }}>
+                    Bearbeitungsschritte
+                </Text>
+                <ScrollView 
+                    showsVerticalScrollIndicator={false}
+                    style={{
+                        margin: 10,
+                        marginHorizontal: 20
+                    }}>
+                    
+
+                    <Text style={{
+                        fontSize: 21
+                    }}>
+                        1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                        eiusmod tempor incididunt ut labore et dolore magna aliqua. <p></p>
+                        2. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        aliquip ex ea commodo consequat. <p></p>
+                        3. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                        pariatur. <p></p>
+                        4. Excepteur sint occaecat cupidatat non proident, sunt in
+                        culpa qui officia deserunt mollit anim id est laborum.
+                    </Text>
+
+                </ScrollView>
             </View>
 
         </SafeAreaView>
