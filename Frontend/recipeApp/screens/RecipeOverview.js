@@ -9,7 +9,7 @@ import {
     FlatList,
     ScrollView
 } from 'react-native';
-import { Icon } from 'react-native-elements';
+import { Icon, Divider } from 'react-native-elements';
 
 const RecipeOverview = () => {
     return(
@@ -44,36 +44,54 @@ const RecipeOverview = () => {
             </View>
             <View
                 style={{
-                    alignItems: 'left',
-                    height: 35,
-                    float: 'left',
+                    position: 'relative',
+                    margin: 20,
+                    flex: 1,
+                    justifyContent: 'center',
+                    flexDirection: 'row',
+                    height: 100,
                     marginBottom: 15
                 }}>
                 <Icon
+                    style={{
+                        marginRight: 50
+                    }}
                     name='leaf'
                     type='font-awesome-5'
                     color='grey'
                     size={35}
                 />
                 <Icon
+                    style={{
+                        marginRight: 50
+                    }}
                     name='carrot'
                     type='font-awesome-5'
                     color='grey'
                     size={35}
                 />
+                <Icon
+                    name='drumstick-bite'
+                    type='font-awesome-5'
+                    color='grey'
+                    size={35}
+                />
             </View>
+
+
             <View
                 style={{
                     left: 20,
                     position: 'absolute',
-                    marginTop: 410,
+                    marginTop: 430,
                     float: 'left',
                     height: '35%',
                     width: '30%'
                 }}>
                 <Text
                 style={{
-                    fontSize: 25
+                    fontSize: 25,
+                    fontWeight: 'bold'
                 }}>
                 Zutaten
             </Text>
@@ -98,14 +116,15 @@ const RecipeOverview = () => {
                 style={{
                     right: 20,
                     position: 'absolute',
-                    marginTop: 410,
+                    marginTop: 430,
                     marginLeft: 200,
                     height: '50%',
                     width: '60%'
                 }}>
                 <Text
                     style={{
-                        fontSize: 25
+                        fontSize: 25,
+                        fontWeight: 'bold'
                     }}>
                     Bearbeitungsschritte
                 </Text>
