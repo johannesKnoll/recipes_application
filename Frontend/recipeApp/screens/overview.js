@@ -31,6 +31,8 @@ export function Overview() {
         }
     ];
 
+
+
     // state = {
     //     search: '',
     //   };
@@ -44,17 +46,19 @@ export function Overview() {
         // <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         //     <Text>Overview!</Text>
         // </View>
-
+        
         <SafeAreaView
         showHorizontalScrollIndicator={false}
         showVerticalScrollIndicator={false}
             style={{flex: 1, backgroundColor: "white"}}
         >
+          
             <View
                 style={{
                         margin: 15
                     }}
             >
+                  
                 <SearchBar
                     lightTheme={true}
                     placeholder="Type Here..."
@@ -63,6 +67,7 @@ export function Overview() {
                     value={search}
                 />
             </View>
+            
 
             <FlatList
                 data={testData}
@@ -122,7 +127,7 @@ export function Overview() {
                 }}>
 
             </FlatList>
-
+            
         </SafeAreaView>
     );
 }
