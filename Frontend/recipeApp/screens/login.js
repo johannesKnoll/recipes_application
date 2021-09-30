@@ -1,5 +1,5 @@
+import *as React from 'react';
 import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
 import {
     StyleSheet,
     Text,
@@ -15,15 +15,36 @@ import { login } from "../api";
 import { Overview } from "./overview";
 import SignUp from "./signUp";
 //import { createStackNavigator } from 'react-navigation-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
 
+export default function Login({navigation}) {
+
+    const Stack = createNativeStackNavigator();
+
+    const StackNavigator = (
+        <Stack.Navigator>
+          <Stack.Screen
+            name="overview"
+            component={Overview} 
+          />
+          </Stack.Navigator>);
+
+function Login_Navigation() {
+    return (
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen name="overview" component={Overview} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
 
 
-export default function Login() {
-
-    const [userName, setuserName] = useState("");
-    const [password, setPassword] = useState("");
+    const [userName, setuserName] = React.useState("");
+    const [password, setPassword] = React.useState("");
     function onClickSignin(userName, password) {
         console.log("Login clicked")
         login(userName, password)
