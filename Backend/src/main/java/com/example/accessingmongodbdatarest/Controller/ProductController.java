@@ -48,7 +48,7 @@ public class ProductController {
         User user = userRepository.findById(userDetailsImpl.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Keinen User gefunden"));
         Product product1 = new Product(user, product.isPublic(),  product.getName(), product.getDescription(),product.getCalories(),  product.getProtein(),
                 product.getFat(), product.getCarbohydrate(),  product.getTime(), product.isVegan(),  product.isVegetarian(), product.isHasMeat(),
-                product.getPicture() );
+                product.getIngredients(), product.getPicture() );
         userRepository.save(user);
         user.addToRecipes(product1);
         productRepository.save(product1);
@@ -133,7 +133,7 @@ public class ProductController {
     }
 
     @RequestMapping("/update")
-    public String update(@RequestParam String name, @RequestParam String description,
+    public String update(@RequestParam String name, @RequestParam ArrayList<String> description,
                          @RequestParam double price,
                          @RequestParam boolean shipable, @RequestParam String picture, @RequestParam double valuation) {
         Product product = productService.update(name, description, price, shipable, picture, valuation);

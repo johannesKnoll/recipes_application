@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { User } from './Entities/User';
+import { User, Product } from './Entities/User';
 
 const instance = axios.create({
     baseURL: "http://localhost:8080",
@@ -29,3 +29,11 @@ export const login = (username: string, password: string): Promise<User | undefi
         return undefined;
     }, fail => undefined)
         .catch(err => undefined);
+
+
+export const getAllRecipes = (): Promise<Array<Product>> => 
+    Api.get("/product/getAllProduct")
+        .then(res => {
+            console.log("Recipes", res.data);
+            return res.data;
+        })
