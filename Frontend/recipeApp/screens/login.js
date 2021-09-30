@@ -62,7 +62,7 @@ function Login_Navigation() {
                 <View style={styles.inputView}>
                     <TextInput
                         style={styles.TextInput}
-                        placeholder="E-Mail"
+                        placeholder="Username"
                         placeholderTextColor="#003f5c"
                         onChangeText={(userName) => setuserName(userName)}
                     />

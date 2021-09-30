@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import { 
     Text, 
@@ -30,6 +29,9 @@ export function Overview({navigation}) {
             name: "Test3"
         }
     ];
+
+    login("thorstenBorsten", "password");
+    const recipes = getAllRecipes();
 
 
 
@@ -87,7 +89,7 @@ export function Overview({navigation}) {
                             Zuletzt angesehen
                         </Text>
                         <FlatList
-                            data={testData}
+                            data={recipes}
                             horizontal 
                             showsHorizontalScrollIndicator={false}
                             showVerticalScrollIndicator={false}
