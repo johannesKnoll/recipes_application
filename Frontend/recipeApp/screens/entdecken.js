@@ -59,10 +59,6 @@ export function Entdecken() {
                     value={search}
                 />
             </View>
-            <View
-            style={{flex: 1, width: '100%'}}>
-                
-                    <View>
                         <Text
                             style={{
                                 marginLeft: 20,
@@ -74,7 +70,6 @@ export function Entdecken() {
                             Vegan
                         </Text>
                         <FlatList
-                            contentContainerStyle={{flexGrow: 1, paddingBottom: 5}}
                             horizontal
                             data={testData}
                             keyExtractor={item => `${item.id}`}
@@ -88,13 +83,10 @@ export function Entdecken() {
                                     >
                                     </RecentCard>
                                 )
-                            }}
-                            onEndReachedThreshold={0.5}>
+                            }}>
 
                         </FlatList>
-                    </View>
-                    <View>
-                        <Text
+                        {/* <Text
                             style={{
                                 marginLeft: 20,
                                 fontSize: 30,
@@ -105,7 +97,6 @@ export function Entdecken() {
                             Vegatarisch
                         </Text>
                         <FlatList
-                            contentContainerStyle={{flexGrow: 1, paddingBottom: 5}}
                             horizontal
                             data={testData}
                             keyExtractor={item => `${item.id}`}
@@ -119,12 +110,9 @@ export function Entdecken() {
                                     >
                                     </RecentCard>
                                 )
-                            }}
-                            onEndReachedThreshold={0.5}>
+                            }}>
 
-                        </FlatList>
-                    </View>
-            </View>
+                        </FlatList> */}
         </SafeAreaView>
     );
 }

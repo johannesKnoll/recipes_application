@@ -1,11 +1,84 @@
 
 import * as React from 'react';
-import { Text, View } from 'react-native';
+
+import {
+    StyleSheet,
+    Text,
+    View,
+    Image,
+    TextInput,
+    Button,
+    TouchableOpacity,
+    ImageBackground,
+
+} from "react-native";
+
 
 export function User() {
+
+
+
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>User!</Text>
+        <View style={styles.container}>
+            <ImageBackground resizeMode="cover" style={styles.backgroundImage} source={require("../assets/settings.jpg")}>
+                <TouchableOpacity style={styles.changePasswordEmail}>
+                    <Text>E-Mail ändern</Text>
+                </TouchableOpacity >
+                <TouchableOpacity style={styles.changePasswordEmail}  >
+                    <Text >Passwort ändern</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={styles.logoutBtn} >
+                    <Text style={styles.font} ><b>Logout</b></Text>
+                </TouchableOpacity>
+            </ImageBackground>
         </View>
+
     );
+
+
 }
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "#fff",
+
+        alignItems: "center",
+        justifyContent: "center",
+    }, logoutBtn: {
+        width: "80%",
+        borderRadius: 25,
+        height: 50,
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 40,
+        marginBottom: 30,
+        backgroundColor: "#FF0000",
+        opacity: "0.4",
+        margin: "auto",
+
+    }, changePasswordEmail: {
+        width: "80%",
+        borderRadius: 25,
+        height: 50,
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 40,
+        marginBottom: 30,
+        backgroundColor: "#FFFFFF",
+        opacity: "0.4",
+        margin: "auto",
+
+    },
+    backgroundImage: {
+        width: "100%",
+        hight: "100%",
+        flex: 1,
+        justifyContent: "center"
+    },
+    font: {
+        fontSize: 16,
+    }
+});
+
+

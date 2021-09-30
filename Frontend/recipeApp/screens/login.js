@@ -25,6 +25,7 @@ export default function Login() {
     const [userName, setuserName] = useState("");
     const [password, setPassword] = useState("");
     function onClickSignin(userName, password) {
+        console.log("Login clicked")
         login(userName, password)
             .then(loggedInUser => {
                 console.log(loggedInUser);

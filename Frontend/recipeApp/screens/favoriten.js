@@ -106,11 +106,11 @@ export function Favoriten() {
                 }
                 renderItem={({ item }) => {
                     return (
-                        <RecipeCard
+                        <RecentCard
                             recipe={item}
                             onPress={null}
                         >
-                        </RecipeCard>
+                        </RecentCard>
                     )
                 }}>
 
