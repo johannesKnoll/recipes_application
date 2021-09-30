@@ -24,33 +24,40 @@ const HomeScreen = ()=>{
     
   }
 
+  const inputHandlerAmount = (text, key)=>{
+    const _inputs = [...inputs];
+    _inputs[key].value = text;
+    _inputs[key].key   = key;
+    setInputs(_inputs);
+    
+  }
+
   return (
     <View style={styles.container}>
       <ScrollView style={styles.inputsContainer}>
       {inputs.map((input, key)=>(
         <View style={styles.inputContainer}>
-          <TextInput placeholder={"Enter Name"} value={input.value}  onChangeText={(text)=>inputHandler(text,key)} />
-          <TextInput placeholder={"test"} value={input.value}  onChangeText={(text)=>inputHandler(text,key)} />
+          <TextInput placeholder={"Zutat"} value={input.value}  onChangeText={(text)=>inputHandler(text,key)} />
+          <TextInput placeholder={"Menge"} value={input.value}  onChangeText={(text)=>inputHandlerAmount(text,key)} />
  
-      <Form>
-      <FormGroup>
-        {/* <Label for="exampleSelect">Select</Label> */}
-        <Input type="select" name="select" id="exampleSelect">
-          <option>KG</option>
-          <option>L</option>
-          <option>ML</option>
-          <option>G</option>
-          <option>Stk</option>
-        </Input>
-      </FormGroup>
-      </Form>
-          <TouchableOpacity onPress = {()=> deleteHandler(key)}>
-            <Text style={{color: "red", fontSize: 13}}>Delete</Text>
-          </TouchableOpacity> 
+          <Form>
+            <FormGroup>
+              {/* <Label for="exampleSelect">Select</Label> */}
+              <Input type="select" placeholder="Einheit" name="select" id="exampleSelect">
+                <option>kg</option>
+                <option>l</option>
+                <option>ml</option>
+                <option>g</option>
+                <option>Stk</option>
+              </Input>
+            </FormGroup>
+          </Form>
+          <Button color="red" title="Eintrag löschen" onPress={() => deleteHandler(key)}>
+          </Button>
         </View>
       ))}
       </ScrollView>
-      <Button title="Add" onPress={addHandler} />
+      <Button title="Neue Zutat" onPress={addHandler} />
     </View>
   );
 }

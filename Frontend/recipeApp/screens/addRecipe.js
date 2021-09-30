@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './AddRecipe.css';
 import { Link } from 'react-router-dom';
+import { SafeAreaView } from 'react-native';
 import { Container, Button, Form, Input, Label, FormGroup } from 'reactstrap';
 import ScreenNavigation from './ScreenNavigation';
 import HomeScreen from '../components/HomeScreen';
@@ -74,21 +75,21 @@ class AddRecipe extends Component {
     console.log(recipe);
   }
 
-  async componentDidMount() {
-    const responseCategory = await fetch('http://localhost:8080/product/getAllProduct');
-    const bodyCategory = await responseCategory.json();
-    // this.setState({
-    //   categories: bodyCategory,
-    //   isLoading: false
-    // });
+  // async componentDidMount() {
+  //   const responseCategory = await fetch('http://localhost:8080/product/getAllProduct');
+  //   const bodyCategory = await responseCategory.json();
+  //   // this.setState({
+  //   //   categories: bodyCategory,
+  //   //   isLoading: false
+  //   // });
 
-    const responseRecipe = await fetch('http://localhost:8080/product/getAllProduct');
-    const bodyRecipe = await responseRecipe.json();
-    this.setState({
-      recipes: bodyRecipe,
-      isLoading: false
-    });
-  }
+  //   const responseRecipe = await fetch('http://localhost:8080/product/getAllProduct');
+  //   const bodyRecipe = await responseRecipe.json();
+  //   this.setState({
+  //     recipes: bodyRecipe,
+  //     isLoading: false
+  //   });
+  // }
 
   render() {
     const title = <h3 className="pt-2" style={{ display: 'flex', justifyContent: 'center' }}>Add New Recipe</h3>
@@ -103,6 +104,11 @@ class AddRecipe extends Component {
     let optionList = categories.map(category => <option id={category.id}> {category.name} </option>);
 
     return (
+      <SafeAreaView
+        showHorizontalScrollIndicator={false}
+        showVerticalScrollIndicator={false}
+            style={{flex: 1, backgroundColor: "white"}}
+        >
       <div className="Site">
         <div className="Home-image"></div>
         <Container className="Site-content">
@@ -110,17 +116,17 @@ class AddRecipe extends Component {
 
           <Form onSubmit={this.handleSubmit} className="test">
             <FormGroup>
-              <Label for="name">Title</Label>
+              <Label for="name">Name</Label>
               <Input type="name" name="name" id="name" onChange={this.handleChange} autoComplete="name" />
             </FormGroup>
 
             <FormGroup>
-              <Label for="image">Select an image: </Label>
+              <Label for="image">Bild aussuchen: </Label>
               <input className="mt-2 ml-2" type="file" name="image" onChange={this.handleChangeImage} />
             </FormGroup>
 
             <FormGroup>
-              <Label for="category">Category</Label>
+              <Label for="category">Kategorie</Label>
               <div className="form-check">
                 <input className="form-check-input" type="checkbox" value="" id="defaultCheck1" />
                 <label className="form-check-label" htmlFor="defaultCheck1">
@@ -130,7 +136,7 @@ class AddRecipe extends Component {
               <div className="form-check">
                 <input className="form-check-input" type="checkbox" value="" id="defaultCheck1" />
                 <label className="form-check-label" htmlFor="defaultCheck1">
-                  Vegetarien
+                  Vegetarisch
                 </label>
               </div>
               <div className="form-check">
@@ -141,13 +147,14 @@ class AddRecipe extends Component {
               </div>
             </FormGroup>
             <FormGroup>
+              <Label>Zutaten</Label>
               <HomeScreen />
               {/* <Label for="ingredients">Ingredients</Label>
               <Input type="text" name="ingredients" id="ingredients" onChange={this.handleChange}/> */}
             </FormGroup>
 
             <FormGroup>
-              <Label for="preparation">Preparation</Label>
+              <Label for="preparation">Bearbeitungsschritte</Label>
               <Input type="text" name="preparation" id="preparation" onChange={this.handleChange} />
             </FormGroup>
 
@@ -160,6 +167,7 @@ class AddRecipe extends Component {
         </Container>
 
       </div>
+      </SafeAreaView>
     );
   }
 }
