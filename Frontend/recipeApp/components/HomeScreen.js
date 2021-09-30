@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, Button, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
+import { Select, Form, FormGroup, Label, Input  } from  'reactstrap'
 
 const HomeScreen = ()=>{
   const [inputs, setInputs] = useState([{key: '', value: ''}]);
@@ -29,6 +30,20 @@ const HomeScreen = ()=>{
       {inputs.map((input, key)=>(
         <View style={styles.inputContainer}>
           <TextInput placeholder={"Enter Name"} value={input.value}  onChangeText={(text)=>inputHandler(text,key)} />
+          <TextInput placeholder={"test"} value={input.value}  onChangeText={(text)=>inputHandler(text,key)} />
+ 
+      <Form>
+      <FormGroup>
+        {/* <Label for="exampleSelect">Select</Label> */}
+        <Input type="select" name="select" id="exampleSelect">
+          <option>KG</option>
+          <option>L</option>
+          <option>ML</option>
+          <option>G</option>
+          <option>Stk</option>
+        </Input>
+      </FormGroup>
+      </Form>
           <TouchableOpacity onPress = {()=> deleteHandler(key)}>
             <Text style={{color: "red", fontSize: 13}}>Delete</Text>
           </TouchableOpacity> 

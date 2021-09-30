@@ -3,7 +3,7 @@ import './AddRecipe.css';
 import { Link } from 'react-router-dom';
 import { Container, Button, Form, Input, Label, FormGroup } from 'reactstrap';
 import ScreenNavigation from './ScreenNavigation';
-import HomeScreen  from '../components/HomeScreen';
+import HomeScreen from '../components/HomeScreen';
 
 
 class AddRecipe extends Component {
@@ -121,28 +121,27 @@ class AddRecipe extends Component {
 
             <FormGroup>
               <Label for="category">Category</Label>
-
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked />
-                <label class="form-check-label" for="exampleRadios1">
+              <div className="form-check">
+                <input className="form-check-input" type="checkbox" value="" id="defaultCheck1" />
+                <label className="form-check-label" htmlFor="defaultCheck1">
                   Fleisch
                 </label>
               </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" />
-                <label class="form-check-label" for="exampleRadios2">
-                  Vegetariern
+              <div className="form-check">
+                <input className="form-check-input" type="checkbox" value="" id="defaultCheck1" />
+                <label className="form-check-label" htmlFor="defaultCheck1">
+                  Vegetarien
                 </label>
               </div>
-              <div class="form-check disabled">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3" />
-                <label class="form-check-label" for="exampleRadios3">
+              <div className="form-check">
+                <input className="form-check-input" type="checkbox" value="" id="defaultCheck2" />
+                <label className="form-check-label" htmlFor="defaultCheck2">
                   Vegan
                 </label>
               </div>
             </FormGroup>
             <FormGroup>
-              <HomeScreen/>
+              <HomeScreen />
               {/* <Label for="ingredients">Ingredients</Label>
               <Input type="text" name="ingredients" id="ingredients" onChange={this.handleChange}/> */}
             </FormGroup>
