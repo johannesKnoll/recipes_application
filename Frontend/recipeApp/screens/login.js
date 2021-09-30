@@ -24,6 +24,7 @@ export default function Login() {
     const [userName, setuserName] = useState("");
     const [password, setPassword] = useState("");
     function onClickSignin(userName, password) {
+        console.log("Login clicked")
         login(userName, password)
             .then(loggedInUser => {
                 console.log(loggedInUser);
@@ -63,7 +64,7 @@ export default function Login() {
                     <Text style={styles.forgot_button}>Noch kein Konto? Jetzt Registrieren</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.loginBtn} onClick={onClickSignin(userName, password)}>
+                <TouchableOpacity style={styles.loginBtn} onPress={onClickSignin(userName, password)}>
                     <Text style={styles.loginText}>Einloggen</Text>
                 </TouchableOpacity>
             </ImageBackground>
