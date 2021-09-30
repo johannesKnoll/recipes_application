@@ -9,11 +9,11 @@ export default function App() {
   return (
     //<SignUp></SignUp>
     //<Login></Login>
-    <ScreenNavigation>
-                  showHorizontalScrollIndicator={false}
-            showVerticalScrollIndicator={false}
-    </ScreenNavigation>
-    //<RecipeOverview></RecipeOverview>
+    // <ScreenNavigation>
+    //               showHorizontalScrollIndicator={false}
+    //         showVerticalScrollIndicator={false}
+    // </ScreenNavigation>
+    <RecipeOverview></RecipeOverview>
   );
 }
 
