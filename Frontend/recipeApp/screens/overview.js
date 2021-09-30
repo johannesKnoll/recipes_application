@@ -15,7 +15,7 @@ import  RecipeCard  from '../components/RecipeCard';
 import RecentCard from '../components/RecentCard';
 import { SearchBar } from 'react-native-elements';
 
-export function Overview() {
+export function Overview({navigation}) {
     const testData = [
         {
             id: 1,
