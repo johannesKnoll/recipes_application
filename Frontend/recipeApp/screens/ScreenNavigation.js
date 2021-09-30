@@ -6,7 +6,7 @@ import { Overview } from './overview';
 import { User } from './user';
 import { Favoriten } from './favoriten';
 import { Entdecken } from './entdecken';
-import { AddRecipe } from './addRecipe';
+import  AddRecipe  from './AddRecipe';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
