@@ -9,12 +9,12 @@ import { ChangeEmail } from './screens/changeEmail';
 import { ChangePassword } from './screens/changePassword';
 export default function App() {
   return (
-    //<SignUp></SignUp>
+    <SignUp></SignUp>
     //<Login></Login>
-     <ScreenNavigation>
-                   showHorizontalScrollIndicator={false}
-             showVerticalScrollIndicator={false}
-     </ScreenNavigation>
+    //  <ScreenNavigation>
+    //                showHorizontalScrollIndicator={false}
+    //          showVerticalScrollIndicator={false}
+    //  </ScreenNavigation>
     //<RecipeOverview></RecipeOverview>
   //<ChangePassword></ChangePassword>
   );
