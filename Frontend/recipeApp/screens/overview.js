@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import { 
     Text, 
@@ -15,6 +14,8 @@ import  RecipeCard  from '../components/RecipeCard';
 import RecentCard from '../components/RecentCard';
 import { SearchBar } from 'react-native-elements';
 
+import { getAllRecipes, login } from '../api';
+
 export function Overview() {
     const testData = [
         {
@@ -30,6 +31,9 @@ export function Overview() {
             name: "Test3"
         }
     ];
+
+    login("thorstenBorsten", "password");
+    const recipes = getAllRecipes();
 
 
 
@@ -87,7 +91,7 @@ export function Overview() {
                             Zuletzt angesehen
                         </Text>
                         <FlatList
-                            data={testData}
+                            data={recipes}
                             horizontal 
                             showsHorizontalScrollIndicator={false}
                             showVerticalScrollIndicator={false}
