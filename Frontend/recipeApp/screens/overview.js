@@ -32,10 +32,19 @@ export function Overview() {
         }
     ];
 
-    login("thorstenBorsten", "password");
-    const recipes = getAllRecipes();
+    const [recipes, setRecipes] = React.useState([]);
 
 
+    React.useEffect(() => {
+        login("thorstenBorsten", "password");
+
+        getAllRecipes()
+            .then(res => {
+                const recipesNew = res;
+                setRecipes(recipesNew);
+            })
+
+    },[]);
 
     // state = {
     //     search: '',
