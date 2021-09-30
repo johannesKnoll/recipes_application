@@ -104,7 +104,6 @@ class AddRecipe extends Component {
 
     return (
       <div className="Site">
-
         <div className="Home-image"></div>
         <Container className="Site-content">
           {title}
