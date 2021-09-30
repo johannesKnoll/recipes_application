@@ -5,6 +5,8 @@ import com.example.accessingmongodbdatarest.Entities.Product;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import java.sql.Blob;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductDTO {
 
@@ -13,7 +15,7 @@ public class ProductDTO {
     private Long userId;
 
     private String name;
-    private String description;
+    private List<String> description;
     private double calories;
     //private String type;                //Sach- oder Dienstleistung
     //private boolean shipable;
@@ -27,6 +29,7 @@ public class ProductDTO {
 
     //Versandsfähig oder nicht
     private String picture;
+    private ArrayList<String> ingredients;
     //private double valuation;
 
     public ProductDTO(Product product){
@@ -43,6 +46,7 @@ public class ProductDTO {
         this.isVegan = product.isVegan();
         this.isVegetarian = product.isVegetarian();
         this.hasMeat = product.isHasMeat();
+        this.ingredients = product.getIngredients();
 
 /*  this.shipable = product.isShipable();*//*
 
@@ -76,11 +80,11 @@ public class ProductDTO {
         this.name = name;
     }
 
-    public String getDescription() {
+    public List<String> getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(List<String> description) {
         this.description = description;
     }
 
@@ -178,6 +182,14 @@ public class ProductDTO {
 
     public void setHasMeat(boolean hasMeat) {
         this.hasMeat = hasMeat;
+    }
+
+    public ArrayList<String> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(ArrayList<String> ingredients) {
+        this.ingredients = ingredients;
     }
 
     /*public double getValuation() {
