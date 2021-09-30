@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { User } from './Entities/User';
+import { User, Product } from './Entities/User';
 
 const instance = axios.create({
     baseURL: "http://localhost:8080",
@@ -12,19 +12,28 @@ export const login = (username: string, password: string): Promise<User | undefi
         username,
         password
     }).then(res => {
+        console.log("Response of Login: ", res);
         //if (res.data.token) {
         // login successful, save session token
         localStorage.setItem("user", JSON.stringify(res.data));
-        Api.defaults.headers.common['Authorization'] = `Bearer ${res.data.accessToken}`;
         const user = {
             id: res.data.id,
             roles: res.data.roles,
-            token: res.data.token,
+            token: res.data.accessToken,
             username: res.data.username
         } as User;
-        // console.log(Api.defaults);
+        Api.defaults.headers.common['Authorization'] = `Bearer ${user.token}`;
+         console.log("In Login", user);
         return user;
         //}
         return undefined;
     }, fail => undefined)
         .catch(err => undefined);
+
+
+export const getAllRecipes = (): Promise<Array<Product>> => 
+    Api.get("/product/getAllProduct")
+        .then(res => {
+            console.log("Recipes", res.data);
+            return res.data;
+        })

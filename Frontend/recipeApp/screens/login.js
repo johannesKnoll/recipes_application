@@ -12,6 +12,7 @@ import {
 
 } from "react-native";
 import { login } from "../api";
+import { Overview } from "./overview";
 import SignUp from "./signUp";
 //import { createStackNavigator } from 'react-navigation-stack';
 
@@ -24,6 +25,7 @@ export default function Login() {
     const [userName, setuserName] = useState("");
     const [password, setPassword] = useState("");
     function onClickSignin(userName, password) {
+        console.log("Login clicked")
         login(userName, password)
             .then(loggedInUser => {
                 console.log(loggedInUser);
@@ -39,7 +41,7 @@ export default function Login() {
                 <View style={styles.inputView}>
                     <TextInput
                         style={styles.TextInput}
-                        placeholder="E-Mail"
+                        placeholder="Username"
                         placeholderTextColor="#003f5c"
                         onChangeText={(userName) => setuserName(userName)}
                     />
@@ -57,13 +59,13 @@ export default function Login() {
                 </View>
 
                 <TouchableOpacity>
-                    <Text style={styles.forgot_button}>Passwort vergessen?</Text>
+                    <Text style={styles.forgot_}>Passwort vergessen?</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('SignUp')}  >
                     <Text style={styles.forgot_button}>Noch kein Konto? Jetzt Registrieren</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.loginBtn} onClick={onClickSignin(userName, password)}>
+                <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.navigate('overview')} onClick={onClickSignin(userName, password)}>
                     <Text style={styles.loginText}>Einloggen</Text>
                 </TouchableOpacity>
             </ImageBackground>

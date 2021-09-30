@@ -5,6 +5,7 @@ import com.example.accessingmongodbdatarest.Entities.Product;
 import com.example.accessingmongodbdatarest.Entities.User;
 import com.example.accessingmongodbdatarest.Payload.Request.RatingRequest;
 import com.example.accessingmongodbdatarest.Payload.Request.UpdateEmailRequest;
+import com.example.accessingmongodbdatarest.Payload.Request.UpdatePasswordRequest;
 import com.example.accessingmongodbdatarest.Payload.Request.UpdateUsernameRequest;
 import com.example.accessingmongodbdatarest.Repositories.ProductRepository;
 import com.example.accessingmongodbdatarest.Repositories.UserRepository;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -40,6 +42,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+
 
     @Autowired
     private ProductService productService;
@@ -145,19 +149,19 @@ public class UserController {
 
         return "Username has been changed :)";
     }
-        //User user = userRepository.findByUsername(userDetailsImpl.getUsername());
-       //  user = userService.updateEmail(name ,email);
-       // return user.toString();
-        //return user.setName(name);
-       // userRepository.save(user);
-      //  return "email has been changed";
+    @PostMapping(value = "/updatePassword", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> updatePassword(@RequestBody UpdatePasswordRequest updatePasswordRequest) {
+
+      /*  UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userRepository.findByUsername(userDetails.getPassword());
+
+        user.setUsername(updatePasswordRequest.getPassword());
+        userRepository.save(user);
+        return
+        */
+        return userService.updatePassword(updatePasswordRequest);
     }
-    /*
-    @RequestMapping(value = "/updateEmail")
-    public String updateEmail(@RequestBody User user){
-        User u = new User(user.getEmail());
-        userRepository.save(u);
-        return "email Changed";
-    }*/
+    }
+
 
 
