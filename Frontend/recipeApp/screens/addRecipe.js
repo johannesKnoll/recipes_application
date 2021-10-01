@@ -110,13 +110,11 @@ class AddRecipe extends Component {
         showVerticalScrollIndicator={false}
             style={{flex: 1, backgroundColor: "white"}}
         >
-          <ScrollView showVerticalScrollIndicator={false}>
+      <ScrollView showVerticalScrollIndicator={false}>
       <div className="Site">
 
         <div className="Home-image"></div>
         <Container className="Site-content">
-         
-
           <Form onSubmit={this.handleSubmit} className="test">
             <FormGroup>
                {title}

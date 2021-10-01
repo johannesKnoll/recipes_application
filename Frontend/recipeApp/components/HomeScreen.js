@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, Button, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
-import { Select, Form, FormGroup, Label, Input  } from  'reactstrap'
+import { Select, Form, FormGroup, Label, Input  } from  'reactstrap';
 
 const HomeScreen = ()=>{
   const [inputs, setInputs] = useState([{key: '', value: ''}]);
@@ -37,13 +37,13 @@ const HomeScreen = ()=>{
       <ScrollView style={styles.inputsContainer}>
       {inputs.map((input, key)=>(
         <View style={styles.inputContainer}>
-          <TextInput placeholder={"Zutat"} value={input.value}  onChangeText={(text)=>inputHandler(text,key)} />
-          <TextInput placeholder={"Menge"} value={input.value}  onChangeText={(text)=>inputHandlerAmount(text,key)} />
+          <Input style={{marginRight: 15, padding: 10}} placeholder={"Zutat"} value={input.value}  onChangeText={(text)=>inputHandler(text,key)} />
+          <Input style={{marginRight: 15, padding: 10}} placeholder={"Menge"} value={input.value}  onChangeText={(text)=>inputHandlerAmount(text,key)} />
  
           <Form>
             <FormGroup>
               {/* <Label for="exampleSelect">Select</Label> */}
-              <Input type="select" placeholder="Einheit" name="select" id="exampleSelect">
+              <Input className="form-control" type="select" placeholder="Einheit" name="select" id="exampleSelect">
                 <option>kg</option>
                 <option>l</option>
                 <option>ml</option>
