@@ -6,7 +6,7 @@ export interface User{
 
 export interface Product{
     id: number,
-    userId; number,
+    userId: number,
     name: string,
     description: Array<string>,
     calories: number,

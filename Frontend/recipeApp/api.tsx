@@ -37,3 +37,9 @@ export const getAllRecipes = (): Promise<Array<Product>> =>
             console.log("Recipes", res.data);
             return res.data;
         })
+
+export const getDailyRecipe = (): Promise<Product> =>
+    Api.get("/product/getDailyRecipe")
+        .then(res => {
+            return res.data
+        })
