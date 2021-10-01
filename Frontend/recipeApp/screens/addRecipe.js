@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import './AddRecipe.css';
 import { Link } from 'react-router-dom';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, ScrollView } from 'react-native';
 import { Container, Button, Form, Input, Label, FormGroup } from 'reactstrap';
 import ScreenNavigation from './ScreenNavigation';
 import HomeScreen from '../components/HomeScreen';
+
 
 
 class AddRecipe extends Component {
@@ -109,13 +110,16 @@ class AddRecipe extends Component {
         showVerticalScrollIndicator={false}
             style={{flex: 1, backgroundColor: "white"}}
         >
+          <ScrollView showVerticalScrollIndicator={false}>
       <div className="Site">
+
         <div className="Home-image"></div>
         <Container className="Site-content">
-          {title}
+         
 
           <Form onSubmit={this.handleSubmit} className="test">
             <FormGroup>
+               {title}
               <Label for="name">Name</Label>
               <Input type="name" name="name" id="name" onChange={this.handleChange} autoComplete="name" />
             </FormGroup>
@@ -167,6 +171,7 @@ class AddRecipe extends Component {
         </Container>
 
       </div>
+      </ScrollView>
       </SafeAreaView>
     );
   }
