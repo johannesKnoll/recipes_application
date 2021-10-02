@@ -172,7 +172,7 @@ public class ProductService {
    public List<Product> getDailyRecipe() {
        Date date =new Date();
        int actualRecipeDependsOnDate;
-       actualRecipeDependsOnDate = date.getDate();
+       actualRecipeDependsOnDate = date.getDate() +2 ;
        //System.out.println("Date:" +date.getDay());
 
        return productRepository.findProductById(actualRecipeDependsOnDate);

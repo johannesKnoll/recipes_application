@@ -64,44 +64,43 @@ public class AccessingMongodbDataRestApplication {
 			/*Company company = companyRepository.save(new Company(thorsten, "Friseure Mannhein", "Abdul Lattouf", "info@friseure-mannheim.de", "0621-1234"));
 			Company company2 = companyRepository.save(new Company(sürem, "Media Markt", "Sürem Meinsch", "info@mediamarkt.de", "0621-9365"));*/
 
-			ArrayList<Product> RecipeDailyList = new ArrayList<Product>();
-			//RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger","Beschreibung day1",800, 30,25, 80, 30, false, false,true, "pic" )));
-			//RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger","Beschreibung day2",800, 30,25, 80, 30, false, false,true, "pic" )));
-			//RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger","Beschreibung day3",800, 30,25, 80, 30, false, false,true, "pic" )));
-			//RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger","Beschreibung day4",800, 30,25, 80, 30, false, false,true, "pic" )));
-			//RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger","Beschreibung day5",800, 30,25, 80, 30, false, false,true, "pic" )));
-			//RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger","Beschreibung day6",800, 30,25, 80, 30, false, false,true, "pic" )));
-			//RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger","Beschreibung day7",800, 30,25, 80, 30, false, false,true, "pic" )));
-			//RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger","Beschreibung day8",800, 30,25, 80, 30, false, false,true, "pic" )));
-			//RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger","Beschreibung day9",800, 30,25, 80, 30, false, false,true, "pic" )));
-			//RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger","Beschreibung day10",800, 30,25, 80, 30, false, false,true, "pic" )));
-			//RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger","Beschreibung day11",800, 30,25, 80, 30, false, false,true, "pic" )));
-			//RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger","Beschreibung day12",800, 30,25, 80, 30, false, false,true, "pic" )));
-			//RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger","Beschreibung day13",800, 30,25, 80, 30, false, false,true, "pic" )));
-			//RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger","Beschreibung day14",800, 30,25, 80, 30, false, false,true, "pic" )));
-			//RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger","Beschreibung day15",800, 30,25, 80, 30, false, false,true, "pic" )));
-			//RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger","Beschreibung day16",800, 30,25, 80, 30, false, false,true, "pic" )));
-			//RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger","Beschreibung day17",800, 30,25, 80, 30, false, false,true, "pic" )));
-			//RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger","Beschreibung day18",800, 30,25, 80, 30, false, false,true, "pic" )));
-			//RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger","Beschreibung day19",800, 30,25, 80, 30, false, false,true, "pic" )));
-			//RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger","Beschreibung day20",800, 30,25, 80, 30, false, false,true, "pic" )));
-			//RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger","Beschreibung day21",800, 30,25, 80, 30, false, false,true, "pic" )));
-			//RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger","Beschreibung day22",800, 30,25, 80, 30, false, false,true, "pic" )));
-			//RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger","Beschreibung day23",800, 30,25, 80, 30, false, false,true, "pic" )));
-			//RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger","Beschreibung day24",800, 30,25, 80, 30, false, false,true, "pic" )));
-			//RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger","Beschreibung day25",800, 30,25, 80, 30, false, false,true, "pic" )));
-			//RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger","Beschreibung day26",800, 30,25, 80, 30, false, false,true, "pic" )));
-			//RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger","Beschreibung day27",800, 30,25, 80, 30, false, false,true, "pic" )));
-			//RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger","Beschreibung day28",800, 30,25, 80, 30, false, false,true, "pic" )));
-			//RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger","Beschreibung day29",800, 30,25, 80, 30, false, false,true, "pic" )));
-			//RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger","Beschreibung day30",800, 30,25, 80, 30, false, false,true, "pic" )));
-			//RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger","Beschreibung day31",800, 30,25, 80, 30, false, false,true, "pic" )));
-
-
 			ArrayList<String> test = new ArrayList<>();
 			ArrayList<String> ingredients = new ArrayList<>();
 			test.add("Test");
 			ingredients.add("200g Kartoffeln");
+
+			ArrayList<Product> RecipeDailyList = new ArrayList<Product>();
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, false,true, ingredients, "pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, false,true, ingredients, "pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, false,true, ingredients, "pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, false,true, ingredients, "pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, false,true, ingredients, "pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, false,true, ingredients, "pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, false,true, ingredients, "pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, false,true, ingredients, "pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, false,true, ingredients, "pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, false,true, ingredients,"pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, false,true, ingredients,"pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, false,true, ingredients,"pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, false,true, ingredients,"pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, false,true, ingredients,"pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, false,true, ingredients,"pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, false,true, ingredients,"pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, false,true, ingredients,"pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, false,true, ingredients,"pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, false,true, ingredients,"pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, false,true, ingredients,"pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, false,true, ingredients,"pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, false,true, ingredients,"pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, false,true, ingredients,"pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, false,true, ingredients,"pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, false,true, ingredients,"pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, false,true, ingredients,"pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, false,true, ingredients,"pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, false,true, ingredients,"pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, false,true, ingredients,"pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, false,true, ingredients,"pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, false,true, ingredients,"pic" )));
 
 			Product lg = productRepository.save(new Product(thorsten, true, "Burger", test, 800, 30,25, 80, 30, false, false,true, ingredients, "pic" ));
 
