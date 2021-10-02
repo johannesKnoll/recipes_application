@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
+ import "./HomeScreen.css"
 import { View, Text, Button, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
 import { Select, Form, FormGroup, Label, Input, Row, Col } from  'reactstrap';
+
 
 const HomeScreen = ()=>{
   const [inputs, setInputs] = useState([{key: '', value: ''}]);
@@ -39,31 +41,37 @@ const HomeScreen = ()=>{
         <View style={styles.inputContainer}>
  
           <Form>
-            <FormGroup  className="form-group form-inline">
+            <FormGroup  >
               <Row>
                 <Col>
-                  <Input   style={{marginRight: '10px'}} placeholder={"Zutat"} value={input.value}  onChangeText={(text)=>inputHandler(text,key)} />
+                  <Input    placeholder={"Zutat"} value={input.value}  onChangeText={(text)=>inputHandler(text,key)} />
                   {/* style={{marginRight: 15, padding: 10}} */}
                 </Col>
                 <Col>
-                  <Input  style={{marginRight: '10px'}} placeholder={"Menge"} value={input.value}  onChangeText={(text)=>inputHandlerAmount(text,key)} />
+                  <Input   placeholder={"Menge"} value={input.value}  onChangeText={(text)=>inputHandlerAmount(text,key)} />
                 </Col>
+                {/* style={{marginRight: '10px'}} */}
               {/* <Label for="exampleSelect">Select</Label> */}
                 <Col>
-                  <Input style={{marginRight: '10px'}} type="select" placeholder="Einheit" name="select" id="exampleSelect">
+                  <Input  type="select" placeholder="Einheit" name="select" id="exampleSelect">
                     <option>kg</option>
                     <option>l</option>
                     <option>ml</option>
                     <option>g</option>
                     <option>Stk</option>
                   </Input>
-                </Col>
-               
+                {/* </Col>
+                <Col> */}
+          </Col>
+                <Col>
+                <Button  className= "test2" color="red" type="submit" title="Eintrag löschen" onPress={() => deleteHandler(key)}>
+          </Button>
+          </Col>
+         
               </Row>
             </FormGroup>
           </Form>
-          <Button color="red" title="Eintrag löschen" onPress={() => deleteHandler(key)}>
-          </Button>
+        
         </View>
       ))}
       </ScrollView>
@@ -75,9 +83,9 @@ const HomeScreen = ()=>{
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: 'white',
+    // flex: 1,
+    // padding: 20,
+    // backgroundColor: 'white',
     
    
   },
@@ -85,11 +93,14 @@ const styles = StyleSheet.create({
     flex: 1, marginBottom: 20
   },
   inputContainer: {
+    padding: '1%',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     borderBottomWidth: 1,
     borderBottomColor: "lightgray",
+    
+    
    
    
   }
