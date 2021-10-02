@@ -35,7 +35,6 @@ public class ProductDTO {
     public ProductDTO(Product product){
         this.id = product.getId();
         this.userId = product.getUser().getId();
-        //this.companyId = product.getCompany().getId();
         this.name = product.getName();
         this.description = product.getDescription();
         this.calories = product.getCalories();
@@ -62,14 +61,6 @@ public class ProductDTO {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getCompanyId() {
-        return userId;
-    }
-
-    public void setCompanyId(Long userId) {
-        this.userId = userId;
     }
 
     public String getName() {

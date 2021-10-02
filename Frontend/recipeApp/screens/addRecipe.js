@@ -4,20 +4,24 @@ import { Link } from 'react-router-dom';
 import { SafeAreaView, ScrollView, View, Button } from 'react-native';
 import { Container, Form, Input, Label, FormGroup, Row, Col } from 'reactstrap';
 import ScreenNavigation from './ScreenNavigation';
-import HomeScreen from '../components/HomeScreen';
-import DynamicFormSteps from '../components/DynamicFormSteps';
+import { createRecipe } from '../api';
 
 
 
 class AddRecipe extends Component {
   emptyRecipe = {
-    id: '104',
     name: 'Default Recipe',
     image: '/recipes/recipe-background-alt.jpg',
+    time: 0,
+    calories: 0,
+    protein: 0,
+    fat: 0,
+    carbohydrate: 0,
     ingredients: 'Rice',
     preparation: 'Boil the rice',
     category: { id: '1', name: 'Vegan' }
   }
+
 
   constructor(props) {
     super(props);
@@ -53,6 +57,17 @@ class AddRecipe extends Component {
     let recipe = { ...this.state.recipe };
     recipe[name] = value;
     this.setState({ recipe });
+    console.log(this.state.recipe, "Recipe handle Change");
+  }
+
+  handleChangeTime(event) {
+    const target = event.target;
+    const value = target.value;
+    const time = target.time;
+    let recipe = { ...this.state.recipe };
+    recipe[time] = value;
+    this.setState({ recipe });
+    console.log(this.state.recipe, "Recipe handle Change");
   }
 
   handleChangeImage(event) {
@@ -109,6 +124,30 @@ class AddRecipe extends Component {
     const title = <h3 className="pt-2" style={{ display: 'flex', justifyContent: 'center' }}>Add New Recipe</h3>
     const { categories, isLoading } = this.state;
 
+    
+    // const newRecipe = {
+    //   name: "Frontend Yippie",
+    //   description: [
+    //       "Test",
+    //       "Test"
+    //   ],
+    //   calories: 100.0,
+    //   protein: 0.0,
+    //   fat: 100.0,
+    //   carbohydrate: 100.0,
+    //   time: 100,
+    //   hasMeat: true,
+    //   picture: "pic",
+    //   ingredients: [
+    //       "200g Kartoffeln"
+    //   ],
+    //   public: true,
+    //   vegan: false,
+    //   vegetarian: false
+    // };
+
+    // createRecipe(newRecipe);
+
     // Methods for adding and deleting ingredients
     //const [inputs, setInputs] = React.useState([{key: '', value: ''}]);
 
@@ -131,7 +170,9 @@ class AddRecipe extends Component {
       const _inputs = [...this.state.inputs];
       _inputs[key].value = text;
       _inputs[key].key   = key;
-      this.state.setInputs(_inputs);
+      this.setState({
+        inputs: _inputs
+      })
     }
 
     //Methods for adding and deleting cooking steps
@@ -186,7 +227,7 @@ class AddRecipe extends Component {
                 </Col>
                 <Col>
                   <Label>Zeitaufwand (in Min)</Label>
-                  <Input type="number" placeholder="Zeit" onChange={this.handleChange}></Input>
+                  <Input type="number" placeholder="Zeit" onChange={this.handleChangeTime}></Input>
                 </Col>
               </Row>
             </FormGroup>
@@ -261,10 +302,10 @@ class AddRecipe extends Component {
                           <FormGroup>
                               <Row>
                                 <Col>
-                                  <Input style={{ marginRight: 15, padding: 10, marginTop: 10 }} type="name" placeholder={"Zutat"} value={input.value} onChangeText={(text) => inputHandler(text, key)} />
+                                  <Input style={{ marginRight: 15, padding: 10, marginTop: 10 }} type="name" placeholder={"Zutat"} onChangeText={(text) => inputHandler(text, key)} />
                                 </Col>
                                 <Col>
-                                  <Input style={{ marginRight: 15, padding: 10, marginTop: 10 }} type="name" placeholder={"Menge"} value={input.value} onChangeText={(text) => inputHandlerAmount(text, key)} />
+                                  <Input style={{ marginRight: 15, padding: 10, marginTop: 10 }} type="name" placeholder={"Menge"} onChangeText={(text) => inputHandler(text, key)} />
                                 </Col>
                                 {/* <Label for="exampleSelect">Select</Label> */}
                                 <Col>
@@ -316,7 +357,7 @@ class AddRecipe extends Component {
                             <FormGroup>
                               <Row>
                                 <Col>
-                                  <Input type="textarea" style={{ marginRight: 15, padding: 10, marginTop: 10 }} placeholder={"Bearbeitungsschritt"} value={input.value} onChangeText={(text) => inputHandlerSteps(text, key)} />
+                                  <Input type="textarea" style={{ marginRight: 15, padding: 10, marginTop: 10 }} placeholder={"Bearbeitungsschritt"} onChangeText={(text) => inputHandlerSteps(text, key)} />
                                 </Col>
                               </Row>
                             </FormGroup>

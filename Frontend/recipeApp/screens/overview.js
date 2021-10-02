@@ -14,7 +14,7 @@ import  RecipeCard  from '../components/RecipeCard';
 import RecentCard from '../components/RecentCard';
 import { SearchBar } from 'react-native-elements';
 import {login, getAllRecipes, getDailyRecipe } from '../api';
-import { Product } from '../Entities/User';
+import { Recipe } from '../Entities/Recipe';
 
 export function Overview({navigation}) {
     const testData = [

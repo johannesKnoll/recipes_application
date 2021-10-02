@@ -1,5 +1,7 @@
 import axios from 'axios';
-import { User, Product } from './Entities/User';
+import { User } from './Entities/User';
+import { Recipe } from './Entities/Recipe';
+import { RecipeCreate } from './Entities/RecipeCreate';
 
 const instance = axios.create({
     baseURL: "http://localhost:8080",
@@ -31,15 +33,21 @@ export const login = (username: string, password: string): Promise<User | undefi
         .catch(err => undefined);
 
 
-export const getAllRecipes = (): Promise<Array<Product>> => 
+export const getAllRecipes = (): Promise<Array<Recipe>> => 
     Api.get("/product/getAllProduct")
         .then(res => {
             console.log("Recipes", res.data);
             return res.data;
         })
 
-export const getDailyRecipe = (): Promise<Product> =>
+export const getDailyRecipe = (): Promise<Recipe> =>
     Api.get("/product/getDailyRecipe")
+        .then(res => {
+            return res.data
+        })
+
+export const createRecipe = (recipe: RecipeCreate): Promise<RecipeCreate | undefined> =>
+    Api.post("/product/createProduct", recipe)
         .then(res => {
             return res.data
         })
