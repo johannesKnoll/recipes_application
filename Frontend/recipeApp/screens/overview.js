@@ -33,23 +33,23 @@ export function Overview({navigation}) {
     ];
 
     const [recipes, setRecipes] = React.useState([]);
-    const [dailyRecipe, setDailyRecipe] = React.useState<Product>({
-        id: 0,
-        userId: 0,
-        name: "",
-        description: [],
-        calories: 0,
-        protein: 0,
-        fat: 0,
-        carbohydrate: 0,
-        time: 0,
-        hasMeat: false,
-        picture: "",
-        ingredients: [],
-        compynayId: 0,
-        vegan: false,
-        vegetarian: false
-    });
+    // const [dailyRecipe, setDailyRecipe] = React.useState<Product>({
+    //     id: 0,
+    //     userId: 0,
+    //     name: "",
+    //     description: [],
+    //     calories: 0,
+    //     protein: 0,
+    //     fat: 0,
+    //     carbohydrate: 0,
+    //     time: 0,
+    //     hasMeat: false,
+    //     picture: "",
+    //     ingredients: [],
+    //     compynayId: 0,
+    //     vegan: false,
+    //     vegetarian: false
+    // });
 
 
     React.useEffect(() => {
@@ -64,8 +64,8 @@ export function Overview({navigation}) {
         getDailyRecipe()
             .then(res => {
                 const dailyRecipeNew = res;
+                //setDailyRecipe(dailyRecipeNew);
                 console.log(dailyRecipeNew, "Daily Recipe");
-                setDailyRecipe(dailyRecipeNew);
             })
 
     },[]);

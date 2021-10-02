@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { View, Text, Button, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
 import { Select, Form, FormGroup, Label, Input, Row, Col } from  'reactstrap';
 
-const HomeScreen = ()=>{
+const DynamicFormSteps = ()=>{
   const [inputs, setInputs] = useState([{key: '', value: ''}]);
 
   const addHandler = ()=>{
@@ -24,14 +24,6 @@ const HomeScreen = ()=>{
     
   }
 
-  const inputHandlerAmount = (text, key)=>{
-    const _inputs = [...inputs];
-    _inputs[key].value = text;
-    _inputs[key].key   = key;
-    setInputs(_inputs);
-    
-  }
-
   return (
     <View style={styles.container}>
       <ScrollView style={styles.inputsContainer}>
@@ -42,20 +34,7 @@ const HomeScreen = ()=>{
             <FormGroup>
               <Row>
                 <Col>
-                  <Input style={{marginRight: 15, padding: 10, marginTop: 10}} type="name" placeholder={"Zutat"} value={input.value}  onChangeText={(text)=>inputHandler(text,key)} />
-                </Col>
-                <Col>
-                  <Input style={{marginRight: 15, padding: 10, marginTop: 10}} type="name" placeholder={"Menge"} value={input.value}  onChangeText={(text)=>inputHandlerAmount(text,key)} />
-                </Col>
-              {/* <Label for="exampleSelect">Select</Label> */}
-                <Col>
-                  <Input style={{marginRight: 15, padding: 10, marginTop: 10}} className="form-control" type="select" placeholder="Einheit" name="select" id="exampleSelect">
-                    <option>kg</option>
-                    <option>l</option>
-                    <option>ml</option>
-                    <option>g</option>
-                    <option>Stk</option>
-                  </Input>
+                  <Input type="textarea" style={{marginRight: 15, padding: 10, marginTop: 10}} placeholder={"Bearbeitungsschritt"} value={input.value}  onChangeText={(text)=>inputHandler(text,key)} />
                 </Col>
               </Row>
             </FormGroup>
@@ -65,7 +44,7 @@ const HomeScreen = ()=>{
         </View>
       ))}
       </ScrollView>
-      <Button title="Neue Zutat" onPress={addHandler} />
+      <Button title="Neuer Schritt" onPress={addHandler} />
     </View>
   );
 }
@@ -92,4 +71,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default HomeScreen
+export default DynamicFormSteps
