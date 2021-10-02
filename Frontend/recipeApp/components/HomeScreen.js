@@ -67,7 +67,7 @@ const HomeScreen = ()=>{
         </View>
       ))}
       </ScrollView>
-      <Button title="Neue Zutat" onPress={addHandler} />
+      <Button  color="green" title="Neue Zutat" onPress={addHandler} />
 
     </View>
   );

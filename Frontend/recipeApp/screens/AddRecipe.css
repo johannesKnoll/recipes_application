@@ -1,15 +1,3 @@
-.AppRecipe {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.css-textinput-11aywtz{
-  margin:5 ;
-}
 .test{
   /* display: inline-table; */
   /* width: 100%; */
@@ -48,10 +36,6 @@ padding: 50px;
 }
 
 
-
-
-
-
 .Home-image {
   background-image: url(./assets/recipe-background.jpg);
   background-position: top;
@@ -59,26 +43,7 @@ padding: 50px;
   top: 0;
   background-size: cover;
   height: 25vh;
-  opacity: 0.9;
-}
-
-.Recipe-image {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 35vh;
-  width: 75%;
-  opacity: 0.9;
-}
-
-.card-img-top {
-  width: 60%;
-  height: 10vw;
-  object-fit: cover;
-}
-
-.App-link {
-  color: #61dafb;
+  /* opacity: 0.9; */
 }
 
 
@@ -93,7 +58,7 @@ padding: 50px;
 *,
 *::before,
 *::after {
-box-sizing: border-box;
+box-sizing:unset;
 }
 
 html {
@@ -111,7 +76,7 @@ button,
 select,
 optgroup,
 textarea {
-margin: 0;
+margin: 1.5%;
 font-family: inherit;
 font-size: inherit;
 line-height: inherit;
@@ -127,31 +92,24 @@ font-weight: 500;
 line-height: 1.2;
 }
 
-h1, .h1 {
-font-size: 2.5rem;
-}
-
-h2, .h2 {
-font-size: 2rem;
-}
-
 h3, .h3 {
 font-size: 1.75rem;
 }
 
-h4, .h4 {
-font-size: 1.5rem;
-}
 
 
 
 
 .container {
-width: 90%;
+/* width: 80%;
 padding-right: 15px;
 padding-left: 15px;
 margin-right: auto;
-margin-left: auto;
+margin-left: auto; */
+position: absolute;
+right: 20%;
+width: 45%;
+padding: 50px;
 }
 
 
@@ -245,11 +203,15 @@ transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-
 
 .btn-primary {
 color: #fff;
-background-color: #007bff;
-border-color: #007bff;
+background-color: green;
+border-color: green;
 }
 
-
+.ml-1{
+  color: #fff;
+  background-color: #839783;
+  border-color: #839783;
+  }
 
 
 
