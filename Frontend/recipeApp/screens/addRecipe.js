@@ -11,15 +11,18 @@ import { createRecipe } from '../api';
 class AddRecipe extends Component {
   emptyRecipe = {
     name: 'Default Recipe',
-    image: '/recipes/recipe-background-alt.jpg',
     time: 0,
+    image: '/recipes/recipe-background-alt.jpg',
     calories: 0,
     protein: 0,
     fat: 0,
     carbohydrate: 0,
     ingredients: 'Rice',
     preparation: 'Boil the rice',
-    category: { id: '1', name: 'Vegan' }
+    hasMeat : false,
+    isVegetarian : false,
+    isVegan : false,
+    // category: { id: '1', name: 'Vegan' }
   }
 
 
@@ -48,6 +51,9 @@ class AddRecipe extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeImage = this.handleChangeImage.bind(this);
     this.handleChangeCategory = this.handleChangeCategory.bind(this);
+    this. handleChangeTime = this.handleChangeTime.bind(this);
+    this.setStateCategory = this.setStateCategory.bind(this);
+
   }
 
   handleChange(event) {
@@ -69,6 +75,16 @@ class AddRecipe extends Component {
     this.setState({ recipe });
     console.log(this.state.recipe, "Recipe handle Change");
   }
+ setStateCategory(event) {
+  const target = event.target;
+  const value = target.value;
+  const name = target.name;
+  let recipe = { ...this.state.recipe };
+  recipe[name] = value;
+  this.setState({ recipe });
+  console.log(this.state.recipe, "Recipe handle Change");
+}
+
 
   handleChangeImage(event) {
     const target = event.target;
@@ -104,21 +120,21 @@ class AddRecipe extends Component {
     console.log(recipe);
   }
 
-  // async componentDidMount() {
-  //   const responseCategory = await fetch('http://localhost:8080/product/getAllProduct');
-  //   const bodyCategory = await responseCategory.json();
-  //   // this.setState({
-  //   //   categories: bodyCategory,
-  //   //   isLoading: false
-  //   // });
+  async componentDidMount() {
+    const responseCategory = await fetch('http://localhost:8080/product/createProduct');
+    const bodyCategory = await responseCategory.json();
+    // this.setState({
+    //   categories: bodyCategory,
+    //   isLoading: false
+    // });
 
-  //   const responseRecipe = await fetch('http://localhost:8080/product/getAllProduct');
-  //   const bodyRecipe = await responseRecipe.json();
-  //   this.setState({
-  //     recipes: bodyRecipe,
-  //     isLoading: false
-  //   });
-  // }
+    const responseRecipe = await fetch('http://localhost:8080/product/createProduct');
+    const bodyRecipe = await responseRecipe.json();
+    this.setState({
+      recipes: bodyRecipe,
+      isLoading: false
+    });
+  }
 
   render() {
     const title = <h3 className="pt-2" style={{ display: 'flex', justifyContent: 'center' }}>Add New Recipe</h3>
@@ -175,6 +191,8 @@ class AddRecipe extends Component {
       })
     }
 
+
+
     //Methods for adding and deleting cooking steps
     const addHandlerSteps = ()=>{
       const _inputs = [...this.state.inputsSteps];
@@ -190,6 +208,7 @@ class AddRecipe extends Component {
         inputsSteps: _inputs
       })
     }
+
 
     const inputHandlerSteps = (text, key)=>{
       const _inputs = [...this.state.inputsSteps];
@@ -227,7 +246,7 @@ class AddRecipe extends Component {
                 </Col>
                 <Col>
                   <Label>Zeitaufwand (in Min)</Label>
-                  <Input type="number" placeholder="Zeit" onChange={this.handleChangeTime}></Input>
+                  <Input type="number" name="time" id="time" placeholder="Zeit" onChange={this.handleChange} autoComplete="time"></Input>
                 </Col>
               </Row>
             </FormGroup>
@@ -236,19 +255,19 @@ class AddRecipe extends Component {
               <Row>
                 <Col>
                   <Label>Kalorien</Label>
-                  <Input type="number" placeholder="Kalorien" onChange={this.handleChange}></Input>
+                  <Input type="number" name="calories" placeholder="Kalorien" onChange={this.handleChange}></Input>
                 </Col>
                 <Col>
                   <Label>Proteine</Label>
-                  <Input type="number" placeholder="Proteine" onChange={this.handleChange}></Input>
+                  <Input type="number" name= "protein" placeholder="Proteine" onChange={this.handleChange}></Input>
                 </Col>
                 <Col>
                   <Label>Fett</Label>
-                  <Input type="number" placeholder="Fett" onChange={this.handleChange}></Input>
+                  <Input type="number" name="fat" placeholder="Fett" onChange={this.handleChange}></Input>
                 </Col>
                 <Col>
                   <Label>Kohlenhydrate</Label>
-                  <Input type="number" placeholder="Kohlenhydrate" onChange={this.handleChange}></Input>
+                  <Input type="number" name="carbohydrate" placeholder="Kohlenhydrate" onChange={this.handleChange}></Input>
                 </Col>
               </Row>
             </FormGroup>
@@ -261,19 +280,19 @@ class AddRecipe extends Component {
             <FormGroup>
               <Label for="category">Kategorie</Label>
               <div className="form-check">
-                <input className="form-check-input" type="checkbox" value="" id="defaultCheck1" />
+                <input className="form-check-input" name="hasMeet" type="checkbox" value="" id="defaultCheck1" onChange={this.setStateCategory} />
                 <label className="form-check-label" htmlFor="defaultCheck1">
                   Fleisch
                 </label>
               </div>
               <div className="form-check">
-                <input className="form-check-input" type="checkbox" value="" id="defaultCheck1" />
+                <input className="form-check-input" name="isVegetarian" type="checkbox" value="" id="defaultCheck1" onChange={this.setStateCategory} />
                 <label className="form-check-label" htmlFor="defaultCheck1">
                   Vegetarisch
                 </label>
               </div>
               <div className="form-check">
-                <input className="form-check-input" type="checkbox" value="" id="defaultCheck2" />
+                <input className="form-check-input" name="isVegan" type="checkbox" value="" id="defaultCheck2" onChange={this.setState}/>
                 <label className="form-check-label" htmlFor="defaultCheck2">
                   Vegan
                 </label>
