@@ -39,17 +39,18 @@ const HomeScreen = ()=>{
         <View style={styles.inputContainer}>
  
           <Form>
-            <FormGroup>
+            <FormGroup  className="form-group form-inline">
               <Row>
                 <Col>
-                  <Input style={{marginRight: 15, padding: 10, marginTop: 10}} placeholder={"Zutat"} value={input.value}  onChangeText={(text)=>inputHandler(text,key)} />
+                  <Input   style={{marginRight: '10px'}} placeholder={"Zutat"} value={input.value}  onChangeText={(text)=>inputHandler(text,key)} />
+                  {/* style={{marginRight: 15, padding: 10}} */}
                 </Col>
                 <Col>
-                  <Input style={{marginRight: 15, padding: 10}} placeholder={"Menge"} value={input.value}  onChangeText={(text)=>inputHandlerAmount(text,key)} />
+                  <Input  style={{marginRight: '10px'}} placeholder={"Menge"} value={input.value}  onChangeText={(text)=>inputHandlerAmount(text,key)} />
                 </Col>
               {/* <Label for="exampleSelect">Select</Label> */}
                 <Col>
-                  <Input className="form-control" type="select" placeholder="Einheit" name="select" id="exampleSelect">
+                  <Input style={{marginRight: '10px'}} type="select" placeholder="Einheit" name="select" id="exampleSelect">
                     <option>kg</option>
                     <option>l</option>
                     <option>ml</option>
@@ -57,8 +58,7 @@ const HomeScreen = ()=>{
                     <option>Stk</option>
                   </Input>
                 </Col>
-                <Col>
-                </Col>
+               
               </Row>
             </FormGroup>
           </Form>
@@ -68,6 +68,7 @@ const HomeScreen = ()=>{
       ))}
       </ScrollView>
       <Button title="Neue Zutat" onPress={addHandler} />
+
     </View>
   );
 }
