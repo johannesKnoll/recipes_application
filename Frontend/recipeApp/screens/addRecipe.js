@@ -63,6 +63,7 @@ class AddRecipe extends Component {
     let recipe = { ...this.state.recipe };
     recipe[name] = value;
     this.setState({ recipe });
+    recipe['preparation'].push("Test");
     console.log(this.state.recipe, "Recipe handle Change");
   }
 
@@ -172,12 +173,14 @@ class AddRecipe extends Component {
     // Methods for adding and deleting ingredients
     //const [inputs, setInputs] = React.useState([{key: '', value: ''}]);
 
-    const addHandler = ()=>{
+    const addHandler = (event)=>{
       const _inputs = [...this.state.inputs];
       _inputs.push({key: '', value: ''});
       this.setState({
         inputs: _inputs
       })
+
+      console.log(event.target.value);
     }
     
     const deleteHandler = (key)=>{
@@ -205,8 +208,6 @@ class AddRecipe extends Component {
       this.setState({
         inputsSteps: _inputs
       })
-
-      
     }
     
     const deleteHandlerSteps = (key)=>{
@@ -351,7 +352,7 @@ class AddRecipe extends Component {
                         </View>
                       ))}
                     </ScrollView>
-                    <Button title="Neue Zutat" onPress={addHandler} />
+                    <Button title="Neue Zutat" onPress={e => addHandler} />
                   </View>
 
               {/* <HomeScreen /> */}
@@ -383,7 +384,7 @@ class AddRecipe extends Component {
                             <FormGroup>
                               <Row>
                                 <Col>
-                                  <Input type="textarea" name="steps" style={{ marginRight: 15, padding: 10, marginTop: 10 }} placeholder={"Bearbeitungsschritt"}/>
+                                  <Input type="name" name="steps" style={{ marginRight: 15, padding: 10, marginTop: 10 }} placeholder={"Bearbeitungsschritt"} onChange={e => console.log(e.target.value, "Steps event")}/>
                                 </Col>
                               </Row>
                             </FormGroup>
