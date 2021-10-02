@@ -18,7 +18,7 @@ class AddRecipe extends Component {
     fat: 0,
     carbohydrate: 0,
     ingredients: 'Rice',
-    preparation: 'Boil the rice',
+    preparation: [],
     hasMeat : false,
     isVegetarian : false,
     isVegan : false,
@@ -75,15 +75,20 @@ class AddRecipe extends Component {
     this.setState({ recipe });
     console.log(this.state.recipe, "Recipe handle Change");
   }
- setStateCategory(event) {
-  const target = event.target;
-  const value = target.value;
-  const name = target.name;
-  let recipe = { ...this.state.recipe };
-  recipe[name] = value;
-  this.setState({ recipe });
-  console.log(this.state.recipe, "Recipe handle Change");
-}
+
+  setStateCategory(event) {
+   const target = event.target;
+   const value = target.checked;
+   const name = target.name;
+   let recipe = { ...this.state.recipe };
+   recipe[name] = value;
+   this.setState({ recipe });
+   console.log(this.state.recipe, "Recipe handle Change");
+ }
+
+ handleStepChange(event){
+
+ }
 
 
   handleChangeImage(event) {
@@ -98,7 +103,7 @@ class AddRecipe extends Component {
   handleChangeCategory(event) {
     const target = event.target;
     const selectedIndex = target.selectedIndex + 1;
-    const value = target.value;
+    const value = target.checked;
     const name = target.name;
     let recipe = { ...this.state.recipe };
     recipe[name].id = selectedIndex;
@@ -200,6 +205,8 @@ class AddRecipe extends Component {
       this.setState({
         inputsSteps: _inputs
       })
+
+      
     }
     
     const deleteHandlerSteps = (key)=>{
@@ -280,19 +287,19 @@ class AddRecipe extends Component {
             <FormGroup>
               <Label for="category">Kategorie</Label>
               <div className="form-check">
-                <input className="form-check-input" name="hasMeet" type="checkbox" value="" id="defaultCheck1" onChange={this.setStateCategory} />
+                <input className="form-check-input" name="hasMeat" type="checkbox" value="" id="defaultCheck1" onChange={ e => this.setStateCategory(e)} />
                 <label className="form-check-label" htmlFor="defaultCheck1">
                   Fleisch
                 </label>
               </div>
               <div className="form-check">
-                <input className="form-check-input" name="isVegetarian" type="checkbox" value="" id="defaultCheck1" onChange={this.setStateCategory} />
+                <input className="form-check-input" name="isVegetarian" type="checkbox" value="" id="defaultCheck1" onChange={e => this.setStateCategory(e)} />
                 <label className="form-check-label" htmlFor="defaultCheck1">
                   Vegetarisch
                 </label>
               </div>
               <div className="form-check">
-                <input className="form-check-input" name="isVegan" type="checkbox" value="" id="defaultCheck2" onChange={this.setState}/>
+                <input className="form-check-input" name="isVegan" type="checkbox" value="" id="defaultCheck2" onChange={e => this.setStateCategory(e)}/>
                 <label className="form-check-label" htmlFor="defaultCheck2">
                   Vegan
                 </label>
@@ -376,7 +383,7 @@ class AddRecipe extends Component {
                             <FormGroup>
                               <Row>
                                 <Col>
-                                  <Input type="textarea" style={{ marginRight: 15, padding: 10, marginTop: 10 }} placeholder={"Bearbeitungsschritt"} onChangeText={(text) => inputHandlerSteps(text, key)} />
+                                  <Input type="textarea" name="steps" style={{ marginRight: 15, padding: 10, marginTop: 10 }} placeholder={"Bearbeitungsschritt"}/>
                                 </Col>
                               </Row>
                             </FormGroup>
