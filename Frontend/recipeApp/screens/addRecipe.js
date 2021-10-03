@@ -22,6 +22,7 @@ class AddRecipe extends Component {
     hasMeat : false,
     isVegetarian : false,
     isVegan : false,
+    description : [null],
     // category: { id: '1', name: 'Vegan' }
   }
 
@@ -34,6 +35,7 @@ class AddRecipe extends Component {
       categories: [],
       recipes: [],
       recipe: this.emptyRecipe,
+      description : [null],
       inputs: [
         {
           key: '',
