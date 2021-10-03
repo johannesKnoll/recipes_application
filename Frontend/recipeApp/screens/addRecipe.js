@@ -10,7 +10,7 @@ import { createRecipe } from '../api';
 
 class AddRecipe extends Component {
   emptyRecipe = {
-    name: 'Default Recipe',
+    name: 'default',
     time: 0,
     image: '/recipes/recipe-background-alt.jpg',
     calories: 0,
@@ -35,7 +35,7 @@ class AddRecipe extends Component {
       categories: [],
       recipes: [],
       recipe: this.emptyRecipe,
-      description : [null],
+      
       inputs: [
         {
           key: '',
@@ -47,7 +47,8 @@ class AddRecipe extends Component {
           key: '',
           value: ''
         }
-      ]
+      ],
+      inputDescription:""
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -61,13 +62,25 @@ class AddRecipe extends Component {
   handleChange(event) {
     const target = event.target;
     const value = target.value;
+    console.log(value);
+
     const name = target.name;
-    let recipe = { ...this.state.recipe };
-    recipe[name] = value;
-    this.setState({ recipe });
-    recipe['preparation'].push("Test");
+    let newRecipe = { ...this.state.recipe };
+    console.log(this.state);
+    console.log(newRecipe);
+
+    newRecipe.name = value;
+    console.log(newRecipe);
+    this.setState({ recipe: newRecipe });
+    setTimeout(function(){
+      console.log(this.state)
+    }, 1000);
+    console.log(this.state);
+    //recipe['preparation'].push("Test");
     console.log(this.state.recipe, "Recipe handle Change");
   }
+
+
 
   handleChangeTime(event) {
     const target = event.target;
@@ -89,8 +102,16 @@ class AddRecipe extends Component {
    console.log(this.state.recipe, "Recipe handle Change");
  }
 
- handleStepChange(event){
-
+ setSteps(event){
+    let value = event.target.value;
+//     console.log(value)
+// let newRecipe ={...this.state.recipe}
+// console.log(newRecipe)
+//     newRecipe.
+    this.setState({
+      inputDescription: value
+    })
+    console.log(this.state)
  }
 
 
@@ -204,14 +225,20 @@ class AddRecipe extends Component {
 
 
     //Methods for adding and deleting cooking steps
-    const addHandlerSteps = ()=>{
-      const _inputs = [...this.state.inputsSteps];
-      _inputs.push({key: '', value: ''});
+    const addHandlerSteps = (e)=>{
+      let _inputs = [...this.state.inputsSteps];
+      _inputs.push(this.state.inputDescription);
       this.setState({
         inputsSteps: _inputs
       })
-    }
+      console.log(this.state)
     
+
+    let newInputs =[...this.state.inputsSteps,{key:'',value: ''}];
+    this.setState({
+      inputsSteps: newInputs
+    })
+  }
     const deleteHandlerSteps = (key)=>{
       const _inputs = this.state.inputsSteps.filter((input,index) => index != key);
       this.setState({
@@ -386,17 +413,23 @@ class AddRecipe extends Component {
                             <FormGroup>
                               <Row>
                                 <Col>
-                                  <Input type="name" name="steps" style={{ marginRight: 15, padding: 10, marginTop: 10 }} placeholder={"Bearbeitungsschritt"} onChange={e => console.log(e.target.value, "Steps event")}/>
+                                  <Input type="name" name="steps" style={{ marginRight: 15, padding: 10, marginTop: 10 }}
+                                   placeholder={"Bearbeitungsschritt"}
+
+                                    // onChange={e => console.log(e.target.value, "Steps event")}
+                                    value ={this.state.inputDescription}
+                                    onChange={(e) => this.setSteps(e)}
+                                    />
                                 </Col>
                               </Row>
                             </FormGroup>
                           </Form>
-                          <Button color="red" title="Eintrag löschen" onPress={() => deleteHandlerSteps(key)}>
+                          <Button color="red" title="Eintrag löschen" onClick={() => deleteHandlerSteps(key)}>
                           </Button>
                         </View>
                       ))}
                     </ScrollView>
-                    <Button title="Neuer Schritt" onPress={addHandlerSteps} />
+                    <Button title="Neuer Schritt" onClick={(e)=>addHandlerSteps(e)} />
                   </View>
 
                 </FormGroup>
