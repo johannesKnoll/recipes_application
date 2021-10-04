@@ -3,9 +3,10 @@ import './AddRecipe.css';
 import { Link } from 'react-router-dom';
 import { SafeAreaView, ScrollView, View, Button } from 'react-native';
 import { Container, Form, Input, Label, FormGroup, Row, Col } from 'reactstrap';
-import { NotificationContainer, NotificationManager } from 'react-notifications';
+//import { NotificationContainer, NotificationManager } from 'react-notifications';
 import { createRecipe } from '../api';
-import Steps from "./Steps"
+import Steps from "./Steps";
+import StepZutat from "./StepZutat";
 import axios from 'axios';
 
 
@@ -19,7 +20,7 @@ class AddRecipe extends Component {
     protein: 0,
     fat: 0,
     carbohydrate: 0,
-    ingredients: 'Rice',
+    ingredients: [],
     preparation: [],
     hasMeat: false,
     isVegetarian: false,
@@ -38,6 +39,7 @@ class AddRecipe extends Component {
       recipes: [],
       recipe: this.emptyRecipe,
       stepList: [{ index: Math.random(), description: "" }],
+      stepZutat: [{ index: Math.random(), zutat: "", menge: "", einheit: "" }],
 
       inputs: [
         {
@@ -70,7 +72,20 @@ class AddRecipe extends Component {
     if (["description"].includes(e.target.name)) {
       let stepList = [...this.state.stepList]
       stepList[e.target.dataset.id][e.target.name] = e.target.value;
-    } else {
+    }
+    else if(["zutat"].includes(e.target.name)){
+      let stepZutatChange = [...this.state.stepZutat];
+      stepZutatChange[e.target.dataset.id][e.target.name] = e.target.value;
+    }
+    else if(["menge"].includes(e.target.name)){
+      let stepMengeChange = [...this.state.stepZutat];
+      stepMengeChange[e.target.dataset.id][e.target.name] = e.target.value;
+    }
+    else if(["einheit"].includes(e.target.name)){
+      let stepEinheitChange = [...this.state.stepZutat];
+      stepEinheitChange[e.target.dataset.id][e.target.name] = e.target.value;
+    }
+    else {
       this.setState({ [e.target.name]: e.target.value })
     }
   }
@@ -83,7 +98,22 @@ class AddRecipe extends Component {
       preperationList.push(element.description) 
      })
      console.log(preperationList);
-      this.state.recipe['preperation'] = preperationList;
+      this.state.recipe['preparation'] = preperationList;
+      console.log( this.state.recipe);
+          
+  }
+
+  seveRecipeZutat =()=>{
+    const saveList = this.state.stepZutat;
+    let preperationListZutat = [];
+    console.log(saveList);
+     saveList.map(element =>{
+       const newZutat = element.menge + " " + element.einheit + " " + element.zutat;
+       console.log("Zutaten", newZutat);
+      preperationListZutat.push(newZutat) 
+     })
+     console.log(preperationListZutat);
+      this.state.recipe['ingredients'] = preperationListZutat;
       console.log( this.state.recipe);
           
   }
@@ -96,6 +126,20 @@ class AddRecipe extends Component {
   deteteRoww = (index) => {
     this.setState({
       stepList: this.state.stepList.filter((s, sindex) => index !== sindex),
+    });
+    // const stepList1 = [...this.state.stepList];
+    // stepList1.splice(index, 1);
+    // this.setState({ stepList: stepList1 });
+  }
+
+  addNewRowZutat = () => {
+    this.setState((prevState) => ({
+      stepZutat: [...prevState.stepZutat, { index: Math.random(), zutat: "", menge: "", einheit: "" }],
+    }));
+  }
+  deteteRowZutat = (index) => {
+    this.setState({
+      stepZutat: this.state.stepZutat.filter((s, sindex) => index !== sindex),
     });
     // const stepList1 = [...this.state.stepList];
     // stepList1.splice(index, 1);
@@ -221,7 +265,7 @@ class AddRecipe extends Component {
   render() {
     const title = <h3 className="pt-2" style={{ display: 'flex', justifyContent: 'center' }}>Add New Recipe</h3>
     const { categories, isLoading } = this.state;
-    let { stepList } = this.state
+    let { stepList, stepZutat } = this.state
     // const newRecipe = {
     //   name: "Frontend Yippie",
     //   description: [
@@ -323,7 +367,7 @@ class AddRecipe extends Component {
           showVerticalScrollIndicator={false}
           style={{ flex: 1, backgroundColor: "white" }}
         >
-          <NotificationContainer />
+          {/* <NotificationContainer /> */}
 
           <ScrollView showVerticalScrollIndicator={false}>
             <div className="Site">
@@ -415,13 +459,16 @@ class AddRecipe extends Component {
                             <FormGroup>
                               <Row>
                                 <Col>
+                                  <StepZutat add={this.addNewRowZutat} delete={this.deteteRowZutat.bind(this)} stepZutat={stepZutat}></StepZutat>
+                                </Col>
+                                {/* <Col>
                                   <Input style={{ marginRight: 15, padding: 10, marginTop: 10 }} type="name" placeholder={"Zutat"} onChangeText={(text) => inputHandler(text, key)} />
                                 </Col>
                                 <Col>
                                   <Input style={{ marginRight: 15, padding: 10, marginTop: 10 }} type="name" placeholder={"Menge"} onChangeText={(text) => inputHandler(text, key)} />
-                                </Col>
+                                </Col> */}
                                 {/* <Label for="exampleSelect">Select</Label> */}
-                                <Col>
+                                {/* <Col>
                                   <Input style={{ marginRight: 15, padding: 10, marginTop: 10 }} className="form-control" type="select" placeholder="Einheit" name="select" id="exampleSelect">
                                     <option>kg</option>
                                     <option>l</option>
@@ -429,7 +476,7 @@ class AddRecipe extends Component {
                                     <option>g</option>
                                     <option>Stk</option>
                                   </Input>
-                                </Col>
+                                </Col> */}
                               </Row>
                             </FormGroup>
                           </Form>
@@ -478,7 +525,7 @@ class AddRecipe extends Component {
                                       onChange={(e) => this.setSteps(e)}
                                     /> */}
                                       <tbody>
-                                    <Steps add={this.addNewRoww} delete={this.clickOnDeletee.bind(this)} stepList={stepList} placeholder={"Bearbeitungsschritt"}/>
+                                    <Steps add={this.addNewRoww} delete={this.clickOnDeletee.bind(this)} stepList={stepList}/>
                                 </tbody>
                                   </Col>
                                 </Row>
@@ -498,7 +545,10 @@ class AddRecipe extends Component {
                   <FormGroup>
                     <Row>
                       <Col>
-                        <Button title="Save Recipe" onPress={this.seveRecipe} ></Button>
+                        <Button title="Save Recipe" onPress={() => {
+                          this.seveRecipe();
+                          this.seveRecipeZutat();
+                        }} ></Button>
                       </Col>
                       <Col>
                         <Button title="Cancel"></Button>
