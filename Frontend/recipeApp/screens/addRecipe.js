@@ -22,7 +22,7 @@ class AddRecipe extends Component {
     carbohydrate: 0,
     ingredients: 'Rice',
     preparation: [],
-    stepZutat: [],
+    ingredients: [],
     hasMeat: false,
     isVegetarian: false,
     isVegan: false,
@@ -78,6 +78,14 @@ class AddRecipe extends Component {
       this.setState({ [e.target.name]: e.target.value })
     }
   }
+  handleChangeZutat = (e) => {
+    if (["zutat", "menge", "einheit"].includes(e.target.name)) {
+      let stepZutat = [...this.state.stepZutat]
+      stepZutat[e.target.dataset.id][e.target.name] = e.target.value;
+    } else {
+      this.setState({ [e.target.name]: e.target.value })
+    }
+  }
 
   seveRecipe = () => {
     const saveList = this.state.stepList;
@@ -102,7 +110,7 @@ class AddRecipe extends Component {
       zutatList.push(zutat)
     })
     console.log(zutatList);
-    this.state.recipe['stepZutat'] = zutatList;
+    this.state.recipe['ingredients'] = zutatList;
     console.log(this.state.recipe);
 
   }
@@ -112,15 +120,27 @@ class AddRecipe extends Component {
       stepList: [...prevState.stepList, { index: Math.random(), description: "" }],
     }));
   }
-  deteteRoww = (index) => {
+  // deteteRoww = (index) => {
+  //   this.setState({
+  //     stepList: this.state.stepList.filter((s, sindex) => index !== sindex),
+  //   });
+  //   // const stepList1 = [...this.state.stepList];
+  //   // stepList1.splice(index, 1);
+  //   // this.setState({ stepList: stepList1 });
+  // }
+  addNewRowZutat = () => {
+    this.setState((prevState) => ({
+      stepZutat: [...prevState.stepZutat, { index: Math.random(),  zutat: "", menge: "", einheit: ""  }],
+    }));
+  }
+  deteteRowZutat = (index) => {
     this.setState({
-      stepList: this.state.stepList.filter((s, sindex) => index !== sindex),
+      stepZutat: this.state.stepZutat.filter((s, sindex) => index !== sindex),
     });
     // const stepList1 = [...this.state.stepList];
     // stepList1.splice(index, 1);
     // this.setState({ stepList: stepList1 });
   }
-
   handleSubmitt = (e) => {
     e.preventDefault();
     console.log(this.state)
@@ -128,6 +148,12 @@ class AddRecipe extends Component {
   clickOnDeletee(record) {
     this.setState({
       stepList: this.state.stepList.filter(r => r !== record)
+    });
+  }
+
+  clickOnDeleteZutat(record) {
+    this.setState({
+      stepZutat: this.state.stepZutat.filter(r => r !== record)
     });
   }
 
@@ -174,17 +200,17 @@ class AddRecipe extends Component {
     console.log(this.state.recipe, "Recipe handle Change");
   }
 
-  setSteps(event) {
-    let value = event.target.value;
-    //     console.log(value)
-    // let newRecipe ={...this.state.recipe}
-    // console.log(newRecipe)
-    //     newRecipe.
-    this.setState({
-      inputDescription: value
-    })
-    console.log(this.state)
-  }
+  // setSteps(event) {
+  //   let value = event.target.value;
+  //   //     console.log(value)
+  //   // let newRecipe ={...this.state.recipe}
+  //   // console.log(newRecipe)
+  //   //     newRecipe.
+  //   this.setState({
+  //     inputDescription: value
+  //   })
+  //   console.log(this.state)
+  // }
 
 
   handleChangeImage(event) {
@@ -337,7 +363,7 @@ class AddRecipe extends Component {
 
 
     return (
-      <form onSubmit={this.handleSubmitt} onChange={this.handleChangee}>
+      <form onSubmit={this.handleSubmitt} onChange={this.handleChangee} onChange={this.handleChangeZutat}>
         <SafeAreaView
           showHorizontalScrollIndicator={false}
           showVerticalScrollIndicator={false}
@@ -456,7 +482,7 @@ class AddRecipe extends Component {
                                 <Col>
 
                                   <tbody>
-                                    <StepZutat add={this.addNewRoww} delete={this.clickOnDeletee.bind(this)} stepZutat={stepZutat} />
+                                    <StepZutat add={this.addNewRowZutat} delete={this.clickOnDeleteZutat.bind(this)} stepZutat={stepZutat} />
                                   </tbody>
                                 </Col>
                               </Row>
@@ -507,7 +533,7 @@ class AddRecipe extends Component {
                                       onChange={(e) => this.setSteps(e)}
                                     /> */}
                                     <tbody>
-                                      <Steps add={this.addNewRoww} delete={this.clickOnDeletee.bind(this)} stepList={stepList} placeholder={"Bearbeitungsschritt"} />
+                                      <Steps add={this.addNewRowZutat} delete={this.clickOnDeletee.bind(this)} stepList={stepList} placeholder={"Bearbeitungsschritt"} />
                                     </tbody>
                                   </Col>
                                 </Row>
@@ -528,11 +554,11 @@ class AddRecipe extends Component {
                     <Row>
                       <Col>
                         <Button title="Save Recipe"
-                          // onPress={() => {
-                          //   { this.seveRecipe };
-                          //   { this.seveStepZutat };
-                          // }}
-                          onPress ={this.seveStepZutat }
+                          onPress={() => {
+                            { this.seveRecipe };
+                            { this.seveStepZutat };
+                          }}
+                          // onPress ={this.seveStepZutat }
                         ></Button>
                       </Col>
                       <Col>
