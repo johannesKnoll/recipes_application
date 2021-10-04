@@ -14,6 +14,7 @@ import axios from 'axios';
 class AddRecipe extends Component {
   emptyRecipe = {
     name: 'default',
+    isPublic: false,
     time: 0,
     image: '/recipes/recipe-background-alt.jpg',
     calories: 0,
@@ -90,6 +91,13 @@ class AddRecipe extends Component {
     }
   }
 
+  saveRecipe = () => {
+    this.seveRecipe();
+    this.seveRecipeZutat();
+
+    createRecipe(this.state.recipe);
+  }
+
   seveRecipe =()=>{
     const saveList = this.state.stepList;
     let preperationList = [];
@@ -156,6 +164,12 @@ class AddRecipe extends Component {
     });
   }
 
+  clickOnDeleteeZutat(record) {
+    this.setState({
+      stepZutat: this.state.stepZutat.filter(r => r !== record)
+    });
+  }
+
   handleChange(event) {
     const target = event.target;
     const value = target.value;
@@ -190,6 +204,16 @@ class AddRecipe extends Component {
   }
 
   setStateCategory(event) {
+    const target = event.target;
+    const value = target.checked;
+    const name = target.name;
+    let recipe = { ...this.state.recipe };
+    recipe[name] = value;
+    this.setState({ recipe });
+    console.log(this.state.recipe, "Recipe handle Change");
+  }
+
+  setStatePublic(event) {
     const target = event.target;
     const value = target.checked;
     const name = target.name;
@@ -416,6 +440,15 @@ class AddRecipe extends Component {
                   </FormGroup>
 
                   <FormGroup>
+                    <Label for="category">Öffentlichkeit</Label>
+                    <div className="form-check">
+                      <input className="form-check-input" name="isPublic" type="checkbox" value="" id="defaultCheck1" onChange={e => this.setStatePublic(e)} />
+                      <label className="form-check-label" htmlFor="defaultCheck1">
+                        öffentlich
+                      </label>
+                    </div>
+                  </FormGroup>
+                  <FormGroup>
                     <Label for="category">Kategorie</Label>
                     <div className="form-check">
                       <input className="form-check-input" name="hasMeat" type="checkbox" value="" id="defaultCheck1" onChange={e => this.setStateCategory(e)} />
@@ -459,7 +492,7 @@ class AddRecipe extends Component {
                             <FormGroup>
                               <Row>
                                 <Col>
-                                  <StepZutat add={this.addNewRowZutat} delete={this.deteteRowZutat.bind(this)} stepZutat={stepZutat}></StepZutat>
+                                  <StepZutat add={this.addNewRowZutat} delete={this.clickOnDeleteeZutat.bind(this)} stepZutat={stepZutat}></StepZutat>
                                 </Col>
                                 {/* <Col>
                                   <Input style={{ marginRight: 15, padding: 10, marginTop: 10 }} type="name" placeholder={"Zutat"} onChangeText={(text) => inputHandler(text, key)} />
@@ -480,12 +513,9 @@ class AddRecipe extends Component {
                               </Row>
                             </FormGroup>
                           </Form>
-                          <Button color="red" title="Eintrag löschen" onPress={() => deleteHandler(key)}>
-                          </Button>
                         </View>
                       ))}
                     </ScrollView>
-                    <Button title="Neue Zutat" onPress={e => addHandler} />
                   </View>
 
                   {/* <HomeScreen /> */}
@@ -536,8 +566,6 @@ class AddRecipe extends Component {
                           </View>
                         ))}
                       </ScrollView>
-                      <Button title="Neuer Schritt" onClick={(e) => addHandlerSteps(e)}
-                       />
                     </View>
 
                   </FormGroup>
@@ -545,10 +573,7 @@ class AddRecipe extends Component {
                   <FormGroup>
                     <Row>
                       <Col>
-                        <Button title="Save Recipe" onPress={() => {
-                          this.seveRecipe();
-                          this.seveRecipeZutat();
-                        }} ></Button>
+                        <Button title="Save Recipe" onPress={this.saveRecipe}></Button>
                       </Col>
                       <Col>
                         <Button title="Cancel"></Button>
