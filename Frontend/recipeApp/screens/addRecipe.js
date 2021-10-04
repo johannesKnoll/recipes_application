@@ -90,7 +90,6 @@ class AddRecipe extends Component {
   seveRecipe = () => {
     const saveList = this.state.stepList;
     let preperationList = [];
-    console.log(saveList);
     saveList.map(element => {
       preperationList.push(element.description)
     })
@@ -103,8 +102,6 @@ class AddRecipe extends Component {
   seveStepZutat = () => {
     const saveList = this.state.stepZutat;
     let zutatList = [];
-
-    console.log(saveList);
     saveList.map(element => {
       let zutat = element.menge + "" + element.einheit + " " + element.zutat;
       zutatList.push(zutat)
@@ -120,14 +117,7 @@ class AddRecipe extends Component {
       stepList: [...prevState.stepList, { index: Math.random(), description: "" }],
     }));
   }
-  // deteteRoww = (index) => {
-  //   this.setState({
-  //     stepList: this.state.stepList.filter((s, sindex) => index !== sindex),
-  //   });
-  //   // const stepList1 = [...this.state.stepList];
-  //   // stepList1.splice(index, 1);
-  //   // this.setState({ stepList: stepList1 });
-  // }
+
   addNewRowZutat = () => {
     this.setState((prevState) => ({
       stepZutat: [...prevState.stepZutat, { index: Math.random(),  zutat: "", menge: "", einheit: ""  }],
@@ -137,11 +127,10 @@ class AddRecipe extends Component {
     this.setState({
       stepZutat: this.state.stepZutat.filter((s, sindex) => index !== sindex),
     });
-    // const stepList1 = [...this.state.stepList];
-    // stepList1.splice(index, 1);
-    // this.setState({ stepList: stepList1 });
+
   }
   handleSubmitt = (e) => {
+    
     e.preventDefault();
     console.log(this.state)
   }
@@ -200,17 +189,6 @@ class AddRecipe extends Component {
     console.log(this.state.recipe, "Recipe handle Change");
   }
 
-  // setSteps(event) {
-  //   let value = event.target.value;
-  //   //     console.log(value)
-  //   // let newRecipe ={...this.state.recipe}
-  //   // console.log(newRecipe)
-  //   //     newRecipe.
-  //   this.setState({
-  //     inputDescription: value
-  //   })
-  //   console.log(this.state)
-  // }
 
 
   handleChangeImage(event) {
