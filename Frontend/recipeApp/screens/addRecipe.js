@@ -3,8 +3,10 @@ import './AddRecipe.css';
 import { Link } from 'react-router-dom';
 import { SafeAreaView, ScrollView, View, Button } from 'react-native';
 import { Container, Form, Input, Label, FormGroup, Row, Col } from 'reactstrap';
-import ScreenNavigation from './ScreenNavigation';
+import { NotificationContainer, NotificationManager } from 'react-notifications';
 import { createRecipe } from '../api';
+import Steps from "./Steps"
+import axios from 'axios';
 
 
 
@@ -19,10 +21,10 @@ class AddRecipe extends Component {
     carbohydrate: 0,
     ingredients: 'Rice',
     preparation: [],
-    hasMeat : false,
-    isVegetarian : false,
-    isVegan : false,
-    description : [null],
+    hasMeat: false,
+    isVegetarian: false,
+    isVegan: false,
+    ///stepList: [{ index: Math.random(), description: "" }],
     // category: { id: '1', name: 'Vegan' }
   }
 
@@ -35,7 +37,8 @@ class AddRecipe extends Component {
       categories: [],
       recipes: [],
       recipe: this.emptyRecipe,
-      
+      stepList: [{ index: Math.random(), description: "" }],
+
       inputs: [
         {
           key: '',
@@ -48,15 +51,65 @@ class AddRecipe extends Component {
           value: ''
         }
       ],
-      inputDescription:""
+      inputDescription: ""
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeImage = this.handleChangeImage.bind(this);
     this.handleChangeCategory = this.handleChangeCategory.bind(this);
-    this. handleChangeTime = this.handleChangeTime.bind(this);
+    this.handleChangeTime = this.handleChangeTime.bind(this);
     this.setStateCategory = this.setStateCategory.bind(this);
+    this.seveRecipe = this.seveRecipe.bind(this);
 
+  }
+  //   state = {
+  //     stepList: [{ index: Math.random(), description: "" }],
+
+  // }
+  handleChangee = (e) => {
+    if (["description"].includes(e.target.name)) {
+      let stepList = [...this.state.stepList]
+      stepList[e.target.dataset.id][e.target.name] = e.target.value;
+    } else {
+      this.setState({ [e.target.name]: e.target.value })
+    }
+  }
+
+  seveRecipe =()=>{
+    const saveList = this.state.stepList;
+    let preperationList = [];
+    console.log(saveList);
+     saveList.map(element =>{
+      preperationList.push(element.description) 
+     })
+     console.log(preperationList);
+      this.state.recipe['preperation'] = preperationList;
+      console.log( this.state.recipe);
+          
+  }
+  
+  addNewRoww = () => {
+    this.setState((prevState) => ({
+      stepList: [...prevState.stepList, { index: Math.random(), description: "" }],
+    }));
+  }
+  deteteRoww = (index) => {
+    this.setState({
+      stepList: this.state.stepList.filter((s, sindex) => index !== sindex),
+    });
+    // const stepList1 = [...this.state.stepList];
+    // stepList1.splice(index, 1);
+    // this.setState({ stepList: stepList1 });
+  }
+
+  handleSubmitt = (e) => {
+    e.preventDefault();
+    console.log(this.state)
+  }
+  clickOnDeletee(record) {
+    this.setState({
+      stepList: this.state.stepList.filter(r => r !== record)
+    });
   }
 
   handleChange(event) {
@@ -72,7 +125,7 @@ class AddRecipe extends Component {
     newRecipe.name = value;
     console.log(newRecipe);
     this.setState({ recipe: newRecipe });
-    setTimeout(function(){
+    setTimeout(function () {
       console.log(this.state)
     }, 1000);
     console.log(this.state);
@@ -93,26 +146,26 @@ class AddRecipe extends Component {
   }
 
   setStateCategory(event) {
-   const target = event.target;
-   const value = target.checked;
-   const name = target.name;
-   let recipe = { ...this.state.recipe };
-   recipe[name] = value;
-   this.setState({ recipe });
-   console.log(this.state.recipe, "Recipe handle Change");
- }
+    const target = event.target;
+    const value = target.checked;
+    const name = target.name;
+    let recipe = { ...this.state.recipe };
+    recipe[name] = value;
+    this.setState({ recipe });
+    console.log(this.state.recipe, "Recipe handle Change");
+  }
 
- setSteps(event){
+  setSteps(event) {
     let value = event.target.value;
-//     console.log(value)
-// let newRecipe ={...this.state.recipe}
-// console.log(newRecipe)
-//     newRecipe.
+    //     console.log(value)
+    // let newRecipe ={...this.state.recipe}
+    // console.log(newRecipe)
+    //     newRecipe.
     this.setState({
       inputDescription: value
     })
     console.log(this.state)
- }
+  }
 
 
   handleChangeImage(event) {
@@ -168,8 +221,7 @@ class AddRecipe extends Component {
   render() {
     const title = <h3 className="pt-2" style={{ display: 'flex', justifyContent: 'center' }}>Add New Recipe</h3>
     const { categories, isLoading } = this.state;
-
-    
+    let { stepList } = this.state
     // const newRecipe = {
     //   name: "Frontend Yippie",
     //   description: [
@@ -196,61 +248,62 @@ class AddRecipe extends Component {
     // Methods for adding and deleting ingredients
     //const [inputs, setInputs] = React.useState([{key: '', value: ''}]);
 
-    const addHandler = (event)=>{
+    const addHandler = (event) => {
       const _inputs = [...this.state.inputs];
-      _inputs.push({key: '', value: ''});
+      _inputs.push({ key: '', value: '' });
       this.setState({
         inputs: _inputs
       })
 
       console.log(event.target.value);
     }
-    
-    const deleteHandler = (key)=>{
-      const _inputs = this.state.inputs.filter((input,index) => index != key);
+
+    const deleteHandler = (key) => {
+      const _inputs = this.state.inputs.filter((input, index) => index != key);
       this.setState({
         inputs: _inputs
       })
     }
 
-    const inputHandler = (text, key)=>{
+    const inputHandler = (text, key) => {
       const _inputs = [...this.state.inputs];
       _inputs[key].value = text;
-      _inputs[key].key   = key;
+      _inputs[key].key = key;
       this.setState({
         inputs: _inputs
       })
     }
+
 
 
 
     //Methods for adding and deleting cooking steps
-    const addHandlerSteps = (e)=>{
+    const addHandlerSteps = (e) => {
       let _inputs = [...this.state.inputsSteps];
       _inputs.push(this.state.inputDescription);
       this.setState({
         inputsSteps: _inputs
       })
       console.log(this.state)
-    
 
-    let newInputs =[...this.state.inputsSteps,{key:'',value: ''}];
-    this.setState({
-      inputsSteps: newInputs
-    })
-  }
-    const deleteHandlerSteps = (key)=>{
-      const _inputs = this.state.inputsSteps.filter((input,index) => index != key);
+
+      let newInputs = [...this.state.inputsSteps, { key: '', value: '' }];
+      this.setState({
+        inputsSteps: newInputs
+      })
+    }
+    const deleteHandlerSteps = (key) => {
+      const _inputs = this.state.inputsSteps.filter((input, index) => index != key);
       this.setState({
         inputsSteps: _inputs
       })
     }
 
 
-    const inputHandlerSteps = (text, key)=>{
+    const inputHandlerSteps = (text, key) => {
       const _inputs = [...this.state.inputsSteps];
       _inputs[key].value = text;
-      _inputs[key].key   = key;
+      _inputs[key].key = key;
       this.state.setInputs(_inputs);
     }
 
@@ -262,79 +315,83 @@ class AddRecipe extends Component {
 
     let optionList = categories.map(category => <option id={category.id}> {category.name} </option>);
 
+
     return (
-      <SafeAreaView
-        showHorizontalScrollIndicator={false}
-        showVerticalScrollIndicator={false}
-            style={{flex: 1, backgroundColor: "white"}}
+      <form onSubmit={this.handleSubmitt} onChange={this.handleChangee}>
+        <SafeAreaView
+          showHorizontalScrollIndicator={false}
+          showVerticalScrollIndicator={false}
+          style={{ flex: 1, backgroundColor: "white" }}
         >
-      <ScrollView showVerticalScrollIndicator={false}>
-      <div className="Site">
+          <NotificationContainer />
 
-        <div className="Home-image"></div>
-        <Container className="Site-content">
-          <Form onSubmit={this.handleSubmit} className="test">
-            {title}
-            <FormGroup>
-              <Row>
-                <Col>
-                  <Label for="name" placeholder="Name">Name</Label>
-                  <Input type="name" name="name" id="name" onChange={this.handleChange} autoComplete="name" />
-                </Col>
-                <Col>
-                  <Label>Zeitaufwand (in Min)</Label>
-                  <Input type="number" name="time" id="time" placeholder="Zeit" onChange={this.handleChange} autoComplete="time"></Input>
-                </Col>
-              </Row>
-            </FormGroup>
+          <ScrollView showVerticalScrollIndicator={false}>
+            <div className="Site">
 
-            <FormGroup>
-              <Row>
-                <Col>
-                  <Label>Kalorien</Label>
-                  <Input type="number" name="calories" placeholder="Kalorien" onChange={this.handleChange}></Input>
-                </Col>
-                <Col>
-                  <Label>Proteine</Label>
-                  <Input type="number" name= "protein" placeholder="Proteine" onChange={this.handleChange}></Input>
-                </Col>
-                <Col>
-                  <Label>Fett</Label>
-                  <Input type="number" name="fat" placeholder="Fett" onChange={this.handleChange}></Input>
-                </Col>
-                <Col>
-                  <Label>Kohlenhydrate</Label>
-                  <Input type="number" name="carbohydrate" placeholder="Kohlenhydrate" onChange={this.handleChange}></Input>
-                </Col>
-              </Row>
-            </FormGroup>
+              <div className="Home-image"></div>
+              <Container className="Site-content">
+                <Form onSubmit={this.handleSubmit} className="test">
+                  {title}
+                  <FormGroup>
+                    <Row>
+                      <Col>
+                        <Label for="name" placeholder="Name">Name</Label>
+                        <Input type="name" name="name" id="name" onChange={this.handleChange} autoComplete="name" />
+                      </Col>
+                      <Col>
+                        <Label>Zeitaufwand (in Min)</Label>
+                        <Input type="number" name="time" id="time" placeholder="Zeit" onChange={this.handleChange} autoComplete="time"></Input>
+                      </Col>
+                    </Row>
+                  </FormGroup>
 
-            <FormGroup>
-              <Label for="image">Bild aussuchen: </Label>
-              <input className="mt-2 ml-2" type="file" name="image" onChange={this.handleChangeImage} />
-            </FormGroup>
+                  <FormGroup>
+                    <Row>
+                      <Col>
+                        <Label>Kalorien</Label>
+                        <Input type="number" name="calories" placeholder="Kalorien" onChange={this.handleChange}></Input>
+                      </Col>
+                      <Col>
+                        <Label>Proteine</Label>
+                        <Input type="number" name="protein" placeholder="Proteine" onChange={this.handleChange}></Input>
+                      </Col>
+                      <Col>
+                        <Label>Fett</Label>
+                        <Input type="number" name="fat" placeholder="Fett" onChange={this.handleChange}></Input>
+                      </Col>
+                      <Col>
+                        <Label>Kohlenhydrate</Label>
+                        <Input type="number" name="carbohydrate" placeholder="Kohlenhydrate" onChange={this.handleChange}></Input>
+                      </Col>
+                    </Row>
+                  </FormGroup>
 
-            <FormGroup>
-              <Label for="category">Kategorie</Label>
-              <div className="form-check">
-                <input className="form-check-input" name="hasMeat" type="checkbox" value="" id="defaultCheck1" onChange={ e => this.setStateCategory(e)} />
-                <label className="form-check-label" htmlFor="defaultCheck1">
-                  Fleisch
-                </label>
-              </div>
-              <div className="form-check">
-                <input className="form-check-input" name="isVegetarian" type="checkbox" value="" id="defaultCheck1" onChange={e => this.setStateCategory(e)} />
-                <label className="form-check-label" htmlFor="defaultCheck1">
-                  Vegetarisch
-                </label>
-              </div>
-              <div className="form-check">
-                <input className="form-check-input" name="isVegan" type="checkbox" value="" id="defaultCheck2" onChange={e => this.setStateCategory(e)}/>
-                <label className="form-check-label" htmlFor="defaultCheck2">
-                  Vegan
-                </label>
-              </div>
-            </FormGroup>
+                  <FormGroup>
+                    <Label for="image">Bild aussuchen: </Label>
+                    <input className="mt-2 ml-2" type="file" name="image" onChange={this.handleChangeImage} />
+                  </FormGroup>
+
+                  <FormGroup>
+                    <Label for="category">Kategorie</Label>
+                    <div className="form-check">
+                      <input className="form-check-input" name="hasMeat" type="checkbox" value="" id="defaultCheck1" onChange={e => this.setStateCategory(e)} />
+                      <label className="form-check-label" htmlFor="defaultCheck1">
+                        Fleisch
+                      </label>
+                    </div>
+                    <div className="form-check">
+                      <input className="form-check-input" name="isVegetarian" type="checkbox" value="" id="defaultCheck1" onChange={e => this.setStateCategory(e)} />
+                      <label className="form-check-label" htmlFor="defaultCheck1">
+                        Vegetarisch
+                      </label>
+                    </div>
+                    <div className="form-check">
+                      <input className="form-check-input" name="isVegan" type="checkbox" value="" id="defaultCheck2" onChange={e => this.setStateCategory(e)} />
+                      <label className="form-check-label" htmlFor="defaultCheck2">
+                        Vegan
+                      </label>
+                    </div>
+                  </FormGroup>
                   <Label>Zutaten</Label>
 
                   <View style={{
@@ -343,7 +400,7 @@ class AddRecipe extends Component {
                     backgroundColor: 'white',
                   }}>
                     <ScrollView style={{
-                      flex: 1, 
+                      flex: 1,
                       marginBottom: 20
                     }}>
                       {this.state.inputs.map((input, key) => (
@@ -355,7 +412,7 @@ class AddRecipe extends Component {
                           borderBottomColor: "lightgray"
                         }}>
                           <Form>
-                          <FormGroup>
+                            <FormGroup>
                               <Row>
                                 <Col>
                                   <Input style={{ marginRight: 15, padding: 10, marginTop: 10 }} type="name" placeholder={"Zutat"} onChangeText={(text) => inputHandler(text, key)} />
@@ -374,8 +431,8 @@ class AddRecipe extends Component {
                                   </Input>
                                 </Col>
                               </Row>
-                              </FormGroup>
-                              </Form>
+                            </FormGroup>
+                          </Form>
                           <Button color="red" title="Eintrag löschen" onPress={() => deleteHandler(key)}>
                           </Button>
                         </View>
@@ -384,73 +441,78 @@ class AddRecipe extends Component {
                     <Button title="Neue Zutat" onPress={e => addHandler} />
                   </View>
 
-              {/* <HomeScreen /> */}
-              {/* <Label for="ingredients">Ingredients</Label>
+                  {/* <HomeScreen /> */}
+                  {/* <Label for="ingredients">Ingredients</Label>
               <Input type="text" name="ingredients" id="ingredients" onChange={this.handleChange}/> */}
-            
-            <FormGroup>
-                  <Label>Bearbeitungsschritte</Label>
 
-                  <View style={{
-                    flex: 1,
-                    padding: 20,
-                    backgroundColor: 'white',
-                  }}>
-                    <ScrollView style={{
-                      flex: 1, 
-                      marginBottom: 20
+                  <FormGroup>
+                    <Label>Bearbeitungsschritte</Label>
+
+                    <View style={{
+                      flex: 1,
+                      padding: 20,
+                      backgroundColor: 'white',
                     }}>
-                      {this.state.inputsSteps.map((input, key) => (
-                        <View style={{
-                          flexDirection: 'row',
-                          justifyContent: 'space-between',
-                          alignItems: 'center',
-                          borderBottomWidth: 1,
-                          borderBottomColor: "lightgray",
-                        }}>
+                      <ScrollView style={{
+                        flex: 1,
+                        marginBottom: 20
+                      }}>
+                        {this.state.inputsSteps.map((input, key) => (
+                          <View style={{
+                            flexDirection: 'row',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            borderBottomWidth: 1,
+                            borderBottomColor: "lightgray",
+                          }}>
 
-                          <Form>
-                            <FormGroup>
-                              <Row>
-                                <Col>
-                                  <Input type="name" name="steps" style={{ marginRight: 15, padding: 10, marginTop: 10 }}
-                                   placeholder={"Bearbeitungsschritt"}
+                            <Form>
+                              <FormGroup>
+                                <Row>
+                                  <Col>
+                                    {/* <Input type="name" name="steps" style={{ marginRight: 15, padding: 10, marginTop: 10 }}
+                                      placeholder={"Bearbeitungsschritt"}
 
-                                    // onChange={e => console.log(e.target.value, "Steps event")}
-                                    value ={this.state.inputDescription}
-                                    onChange={(e) => this.setSteps(e)}
-                                    />
-                                </Col>
-                              </Row>
-                            </FormGroup>
-                          </Form>
-                          <Button color="red" title="Eintrag löschen" onClick={() => deleteHandlerSteps(key)}>
-                          </Button>
-                        </View>
-                      ))}
-                    </ScrollView>
-                    <Button title="Neuer Schritt" onClick={(e)=>addHandlerSteps(e)} />
-                  </View>
+                                      // onChange={e => console.log(e.target.value, "Steps event")}
+                                      value={this.state.inputDescription}
+                                      onChange={(e) => this.setSteps(e)}
+                                    /> */}
+                                      <tbody>
+                                    <Steps add={this.addNewRoww} delete={this.clickOnDeletee.bind(this)} stepList={stepList} placeholder={"Bearbeitungsschritt"}/>
+                                </tbody>
+                                  </Col>
+                                </Row>
+                              </FormGroup>
+                            </Form>
+                            {/* <Button color="red" title="Eintrag löschen" onClick={() => deleteHandlerSteps(key)}>
+                            </Button> */}
+                          </View>
+                        ))}
+                      </ScrollView>
+                      <Button title="Neuer Schritt" onClick={(e) => addHandlerSteps(e)}
+                       />
+                    </View>
 
-                </FormGroup>
+                  </FormGroup>
 
-            <FormGroup>
-              <Row>
-                <Col>
-                  <Button title="Save Recipe"></Button>
-                </Col>
-                <Col>
-                  <Button title="Cancel"></Button>
-                </Col>
-              </Row>
-            </FormGroup>
+                  <FormGroup>
+                    <Row>
+                      <Col>
+                        <Button title="Save Recipe" onPress={this.seveRecipe} ></Button>
+                      </Col>
+                      <Col>
+                        <Button title="Cancel"></Button>
+                      </Col>
+                    </Row>
+                  </FormGroup>
 
-          </Form>
-        </Container>
+                </Form>
+              </Container>
 
-      </div>
-      </ScrollView>
-      </SafeAreaView>
+            </div>
+          </ScrollView>
+        </SafeAreaView>
+      </form>
     );
   }
 }
