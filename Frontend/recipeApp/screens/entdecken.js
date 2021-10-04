@@ -14,6 +14,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import  RecipeCard  from '../components/RecipeCard';
 import RecentCard from '../components/RecentCard';
 import { SearchBar } from 'react-native-elements';
+import { getMeatRecipes, getVeganRecipes, getVegetarianRecipes } from '../api';
 
 export function Entdecken() {
     const testData = [
@@ -31,6 +32,33 @@ export function Entdecken() {
         }
     ];
 
+    const [veganRecipes, setVeganRecipes] = React.useState([]);
+    const [vegetarianRecipes, setVegetarianRecipes] = React.useState([]);
+    const [meatRecipes, setMeatRecipes] = React.useState([]);
+
+    React.useEffect(() => {
+
+        getVeganRecipes()
+            .then(res => {
+                const recipesNew = res;
+                setVeganRecipes(recipesNew);
+            })
+
+        getVegetarianRecipes()
+            .then(res => {
+                const vegetarianRecipeNew = res;
+                setVegetarianRecipes(vegetarianRecipeNew);
+                //console.log(dailyRecipeNew, "Daily Recipe");
+            })
+
+        getMeatRecipes()
+            .then(res => {
+                const meatRecipesNew = res;
+                setMeatRecipes(meatRecipesNew);
+            })
+
+    },[]);
+
     // state = {
     //     search: '',
     //   };
@@ -42,8 +70,8 @@ export function Entdecken() {
 
     return (
         <SafeAreaView
-            showHorizontalScrollIndicator={false}
             showVerticalScrollIndicator={false}
+            showHorizontalScrollIndicator={false}
             style={{flex: 1, backgroundColor: "white"}}
         >
             <View
@@ -59,8 +87,17 @@ export function Entdecken() {
                     value={search}
                 />
             </View>
+
+            <FlatList
+                data={testData}
+                keyExtractor={item => `${item.id}`}
+                keyboardDismissMode="on-drag"
+                showsHorizontalScrollIndicator={false}
+                ListHeaderComponent={
+                    <View>
                         <Text
                             style={{
+                                marginTop: 20,
                                 marginLeft: 20,
                                 fontSize: 30,
                                 fontWeight: "bold",
@@ -69,50 +106,112 @@ export function Entdecken() {
                         >
                             Vegan
                         </Text>
-                        <FlatList
-                            horizontal
-                            data={testData}
-                            keyExtractor={item => `${item.id}`}
-                            keyboardDismissMode="on-drag"
-                            showsHorizontalScrollIndicator={false}
-                            renderItem={({ item }) => {
-                                return (
-                                    <RecentCard
-                                        recipe={item}
-                                        onPress={null}
-                                    >
-                                    </RecentCard>
-                                )
-                            }}>
-
-                        </FlatList>
-                        {/* <Text
+                        <View>
+                            <FlatList
+                                data={veganRecipes}
+                                horizontal 
+                                showsHorizontalScrollIndicator={false}
+                                showVerticalScrollIndicator={false}
+                                keyExtractor={item => `${item.id}`}
+                                renderItem={({ item }) => {
+                                    return (
+                                        <RecentCard
+                                            recipe={item}
+                                            onPress={null}
+                                        >
+                                        </RecentCard>
+                                    )
+                                }}
+                            >
+                            </FlatList>
+                        </View>
+                        <Text
                             style={{
+                                marginTop: 20,
                                 marginLeft: 20,
                                 fontSize: 30,
                                 fontWeight: "bold",
                                 marginBottom: 10
                             }}
                         >
-                            Vegatarisch
+                            Vegetarisch
                         </Text>
-                        <FlatList
-                            horizontal
-                            data={testData}
-                            keyExtractor={item => `${item.id}`}
-                            keyboardDismissMode="on-drag"
-                            showsHorizontalScrollIndicator={false}
-                            renderItem={({ item }) => {
-                                return (
-                                    <RecentCard
-                                        recipe={item}
-                                        onPress={null}
-                                    >
-                                    </RecentCard>
-                                )
-                            }}>
+                        <View>
+                            <FlatList
+                                data={vegetarianRecipes}
+                                horizontal 
+                                showsHorizontalScrollIndicator={false}
+                                showVerticalScrollIndicator={false}
+                                keyExtractor={item => `${item.id}`}
+                                renderItem={({ item }) => {
+                                    return (
+                                        <RecentCard
+                                            recipe={item}
+                                            onPress={null}
+                                        >
+                                        </RecentCard>
+                                    )
+                                }}
+                            >
+                            </FlatList>
+                        </View>
+                        <Text
+                            style={{
+                                marginTop: 20,
+                                marginLeft: 20,
+                                fontSize: 30,
+                                fontWeight: "bold",
+                                marginBottom: 10
+                            }}
+                        >
+                            Fleischhaltig
+                        </Text>
+                        <View>
+                            <FlatList
+                                data={meatRecipes}
+                                horizontal 
+                                showsHorizontalScrollIndicator={false}
+                                showVerticalScrollIndicator={false}
+                                keyExtractor={item => `${item.id}`}
+                                renderItem={({ item }) => {
+                                    return (
+                                        <RecentCard
+                                            recipe={item}
+                                            onPress={null}
+                                        >
+                                        </RecentCard>
+                                    )
+                                }}
+                            >
+                            </FlatList>
+                        </View>
+                    </View>
+                }
+                renderItem={({ item }) => {
+                    return (
+                        <View>
+                            <Text
+                                style={{
+                                    marginLeft: 20,
+                                    fontSize: 30,
+                                    fontWeight: "bold",
+                                    marginBottom: 10,
+                                    marginTop: 35
+                                }}
+                            >
+                                
+                            </Text>
+                            <RecentCard
+                                recipe={item}
+                                onPress={null}
+                            >
+                            </RecentCard>
+                        </View>
+                    )
+                }}>
 
-                        </FlatList> */}
+            </FlatList>
+
         </SafeAreaView>
     );
 }

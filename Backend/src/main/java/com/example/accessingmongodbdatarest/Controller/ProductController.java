@@ -126,6 +126,12 @@ public class ProductController {
         return allVeganRecipes;
     }
 
+    @GetMapping("/getMeatRecipes")
+    public List<Product> getMeatRecipes(){
+        List<Product> allMeatRecipes = productService.getMeatRecipes();
+        return allMeatRecipes;
+    }
+
 
     @GetMapping("/getAllByCompanyId/{companyId}")
     public List<ProductDTO> getAllByCompanyId(@PathVariable("companyId") long id){

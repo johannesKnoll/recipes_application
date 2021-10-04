@@ -66,6 +66,7 @@ export function Favoriten() {
                     <View>
                         <Text
                             style={{
+                                marginTop: 20,
                                 marginLeft: 20,
                                 fontSize: 30,
                                 fontWeight: "bold",
@@ -74,43 +75,77 @@ export function Favoriten() {
                         >
                             Favoriten
                         </Text>
-                        <FlatList
-                            data={testData}
-                            horizontal 
-                            showsHorizontalScrollIndicator={false}
-                            showVerticalScrollIndicator={false}
-                            keyExtractor={item => `${item.id}`}
-                            renderItem={({ item }) => {
-                                return (
-                                    <RecentCard
-                                        recipe={item}
-                                        onPress={null}
-                                    >
-                                    </RecentCard>
-                                )
-                            }}
-                        >
-                        </FlatList>
+                        <View>
+                            <FlatList
+                                data={testData}
+                                horizontal 
+                                showsHorizontalScrollIndicator={false}
+                                showVerticalScrollIndicator={false}
+                                keyExtractor={item => `${item.id}`}
+                                renderItem={({ item }) => {
+                                    return (
+                                        <RecentCard
+                                            recipe={item}
+                                            onPress={null}
+                                        >
+                                        </RecentCard>
+                                    )
+                                }}
+                            >
+                            </FlatList>
+                        </View>
                         <Text
                             style={{
+                                marginTop: 20,
                                 marginLeft: 20,
                                 fontSize: 30,
                                 fontWeight: "bold",
-                                marginBottom: 10,
-                                marginTop: 35
+                                marginBottom: 10
                             }}
                         >
                             Eigene Rezepte
                         </Text>
+                        <View>
+                            <FlatList
+                                data={testData}
+                                horizontal 
+                                showsHorizontalScrollIndicator={false}
+                                showVerticalScrollIndicator={false}
+                                keyExtractor={item => `${item.id}`}
+                                renderItem={({ item }) => {
+                                    return (
+                                        <RecentCard
+                                            recipe={item}
+                                            onPress={null}
+                                        >
+                                        </RecentCard>
+                                    )
+                                }}
+                            >
+                            </FlatList>
+                        </View>
                     </View>
                 }
                 renderItem={({ item }) => {
                     return (
-                        <RecentCard
-                            recipe={item}
-                            onPress={null}
-                        >
-                        </RecentCard>
+                        <View>
+                            <Text
+                                style={{
+                                    marginLeft: 20,
+                                    fontSize: 30,
+                                    fontWeight: "bold",
+                                    marginBottom: 10,
+                                    marginTop: 35
+                                }}
+                            >
+                                Eigene Rezepte
+                            </Text>
+                            <RecentCard
+                                recipe={item}
+                                onPress={null}
+                            >
+                            </RecentCard>
+                        </View>
                     )
                 }}>
 

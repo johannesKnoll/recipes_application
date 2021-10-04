@@ -51,3 +51,24 @@ export const createRecipe = (recipe: RecipeCreate): Promise<RecipeCreate | undef
         .then(res => {
             return res.data
         })
+
+
+export const getVeganRecipes = (): Promise<Array<Recipe>> =>
+    Api.get("/product/getVeganRecipes")
+        .then(res => {
+            return res.data
+        })
+
+
+export const getVegetarianRecipes = (): Promise<Array<Recipe>> =>
+    Api.get("/product/getVegetarianRecipes")
+        .then(res => {
+            return res.data
+        })
+
+
+export const getMeatRecipes = (): Promise<Array<Recipe>> =>
+    Api.get("/product/getMeatRecipes")
+        .then(res => {
+            return res.data
+        })
