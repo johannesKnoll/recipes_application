@@ -101,11 +101,11 @@ class AddRecipe extends Component {
   seveRecipe =()=>{
     const saveList = this.state.stepList;
     let preperationList = [];
-    console.log(saveList);
+    //console.log(saveList);
      saveList.map(element =>{
       preperationList.push(element.description) 
      })
-     console.log(preperationList);
+    // console.log(preperationList);
       this.state.recipe['preparation'] = preperationList;
       console.log( this.state.recipe);
           
@@ -114,13 +114,13 @@ class AddRecipe extends Component {
   seveRecipeZutat =()=>{
     const saveList = this.state.stepZutat;
     let preperationListZutat = [];
-    console.log(saveList);
+   // console.log(saveList);
      saveList.map(element =>{
        const newZutat = element.menge + " " + element.einheit + " " + element.zutat;
-       console.log("Zutaten", newZutat);
+     //  console.log("Zutaten", newZutat);
       preperationListZutat.push(newZutat) 
      })
-     console.log(preperationListZutat);
+    // console.log(preperationListZutat);
       this.state.recipe['ingredients'] = preperationListZutat;
       console.log( this.state.recipe);
           
@@ -156,7 +156,7 @@ class AddRecipe extends Component {
 
   handleSubmitt = (e) => {
     e.preventDefault();
-    console.log(this.state)
+  //  console.log(this.state)
   }
   clickOnDeletee(record) {
     this.setState({
@@ -173,21 +173,10 @@ class AddRecipe extends Component {
   handleChange(event) {
     const target = event.target;
     const value = target.value;
-    console.log(value);
-
     const name = target.name;
-    let newRecipe = { ...this.state.recipe };
-    console.log(this.state);
-    console.log(newRecipe);
-
-    newRecipe.name = value;
-    console.log(newRecipe);
-    this.setState({ recipe: newRecipe });
-    setTimeout(function () {
-      console.log(this.state)
-    }, 1000);
-    console.log(this.state);
-    //recipe['preparation'].push("Test");
+    let recipe = { ...this.state.recipe };
+    recipe[name] = value;
+    this.setState({ recipe: recipe });
     console.log(this.state.recipe, "Recipe handle Change");
   }
 
@@ -408,7 +397,7 @@ class AddRecipe extends Component {
                       </Col>
                       <Col>
                         <Label>Zeitaufwand (in Min)</Label>
-                        <Input type="number" name="time" id="time" placeholder="Zeit" onChange={this.handleChange} autoComplete="time"></Input>
+                        <Input type="number" name="time" id="time" placeholder="Zeit" onChange={this.handleChange} ></Input>
                       </Col>
                     </Row>
                   </FormGroup>
