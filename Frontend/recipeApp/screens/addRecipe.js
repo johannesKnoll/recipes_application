@@ -6,6 +6,7 @@ import { Container, Form, Input, Label, FormGroup, Row, Col } from 'reactstrap';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import { createRecipe } from '../api';
 import Steps from "./Steps"
+import StepZutat from "./StepZutat"
 import axios from 'axios';
 
 
@@ -21,6 +22,7 @@ class AddRecipe extends Component {
     carbohydrate: 0,
     ingredients: 'Rice',
     preparation: [],
+    stepZutat: [],
     hasMeat: false,
     isVegetarian: false,
     isVegan: false,
@@ -37,6 +39,7 @@ class AddRecipe extends Component {
       categories: [],
       recipes: [],
       recipe: this.emptyRecipe,
+      stepZutat: [{ index: Math.random(), zutat: "", menge: "", einheit: "" }],
       stepList: [{ index: Math.random(), description: "" }],
 
       inputs: [
@@ -60,6 +63,7 @@ class AddRecipe extends Component {
     this.handleChangeTime = this.handleChangeTime.bind(this);
     this.setStateCategory = this.setStateCategory.bind(this);
     this.seveRecipe = this.seveRecipe.bind(this);
+    this.seveStepZutat = this.seveStepZutat.bind(this);
 
   }
   //   state = {
@@ -75,19 +79,34 @@ class AddRecipe extends Component {
     }
   }
 
-  seveRecipe =()=>{
+  seveRecipe = () => {
     const saveList = this.state.stepList;
     let preperationList = [];
     console.log(saveList);
-     saveList.map(element =>{
-      preperationList.push(element.description) 
-     })
-     console.log(preperationList);
-      this.state.recipe['preperation'] = preperationList;
-      console.log( this.state.recipe);
-          
+    saveList.map(element => {
+      preperationList.push(element.description)
+    })
+    console.log(preperationList);
+    this.state.recipe['preperation'] = preperationList;
+    console.log(this.state.recipe);
+
   }
-  
+
+  seveStepZutat = () => {
+    const saveList = this.state.stepZutat;
+    let zutatList = [];
+
+    console.log(saveList);
+    saveList.map(element => {
+      let zutat = element.menge + "" + element.einheit + " " + element.zutat;
+      zutatList.push(zutat)
+    })
+    console.log(zutatList);
+    this.state.recipe['stepZutat'] = zutatList;
+    console.log(this.state.recipe);
+
+  }
+
   addNewRoww = () => {
     this.setState((prevState) => ({
       stepList: [...prevState.stepList, { index: Math.random(), description: "" }],
@@ -222,6 +241,7 @@ class AddRecipe extends Component {
     const title = <h3 className="pt-2" style={{ display: 'flex', justifyContent: 'center' }}>Add New Recipe</h3>
     const { categories, isLoading } = this.state;
     let { stepList } = this.state
+    let { stepZutat } = this.state
     // const newRecipe = {
     //   name: "Frontend Yippie",
     //   description: [
@@ -413,14 +433,15 @@ class AddRecipe extends Component {
                         }}>
                           <Form>
                             <FormGroup>
-                              <Row>
+                              {/*   
+                            <Row>
                                 <Col>
                                   <Input style={{ marginRight: 15, padding: 10, marginTop: 10 }} type="name" placeholder={"Zutat"} onChangeText={(text) => inputHandler(text, key)} />
                                 </Col>
                                 <Col>
                                   <Input style={{ marginRight: 15, padding: 10, marginTop: 10 }} type="name" placeholder={"Menge"} onChangeText={(text) => inputHandler(text, key)} />
                                 </Col>
-                                {/* <Label for="exampleSelect">Select</Label> */}
+                                {/* <Label for="exampleSelect">Select</Label> 
                                 <Col>
                                   <Input style={{ marginRight: 15, padding: 10, marginTop: 10 }} className="form-control" type="select" placeholder="Einheit" name="select" id="exampleSelect">
                                     <option>kg</option>
@@ -429,6 +450,14 @@ class AddRecipe extends Component {
                                     <option>g</option>
                                     <option>Stk</option>
                                   </Input>
+                                </Col>
+                              </Row> */}
+                              <Row>
+                                <Col>
+
+                                  <tbody>
+                                    <StepZutat add={this.addNewRoww} delete={this.clickOnDeletee.bind(this)} stepZutat={stepZutat} />
+                                  </tbody>
                                 </Col>
                               </Row>
                             </FormGroup>
@@ -477,9 +506,9 @@ class AddRecipe extends Component {
                                       value={this.state.inputDescription}
                                       onChange={(e) => this.setSteps(e)}
                                     /> */}
-                                      <tbody>
-                                    <Steps add={this.addNewRoww} delete={this.clickOnDeletee.bind(this)} stepList={stepList} placeholder={"Bearbeitungsschritt"}/>
-                                </tbody>
+                                    <tbody>
+                                      <Steps add={this.addNewRoww} delete={this.clickOnDeletee.bind(this)} stepList={stepList} placeholder={"Bearbeitungsschritt"} />
+                                    </tbody>
                                   </Col>
                                 </Row>
                               </FormGroup>
@@ -490,7 +519,7 @@ class AddRecipe extends Component {
                         ))}
                       </ScrollView>
                       <Button title="Neuer Schritt" onClick={(e) => addHandlerSteps(e)}
-                       />
+                      />
                     </View>
 
                   </FormGroup>
@@ -498,7 +527,13 @@ class AddRecipe extends Component {
                   <FormGroup>
                     <Row>
                       <Col>
-                        <Button title="Save Recipe" onPress={this.seveRecipe} ></Button>
+                        <Button title="Save Recipe"
+                          // onPress={() => {
+                          //   { this.seveRecipe };
+                          //   { this.seveStepZutat };
+                          // }}
+                          onPress ={this.seveStepZutat }
+                        ></Button>
                       </Col>
                       <Col>
                         <Button title="Cancel"></Button>
