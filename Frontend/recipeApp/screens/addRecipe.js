@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { SafeAreaView, ScrollView, View, Button } from 'react-native';
 import { Container, Form, Input, Label, FormGroup, Row, Col } from 'reactstrap';
 //import { NotificationContainer, NotificationManager } from 'react-notifications';
-import { createRecipe } from '../api';
+import { createRecipe, login } from '../api';
 import Steps from "./Steps";
 import StepZutat from "./StepZutat";
 import axios from 'axios';
@@ -14,20 +14,18 @@ import axios from 'axios';
 class AddRecipe extends Component {
   emptyRecipe = {
     name: 'default',
-    isPublic: false,
-    time: 0,
-    image: '/recipes/recipe-background-alt.jpg',
+    description: [],
     calories: 0,
     protein: 0,
     fat: 0,
     carbohydrate: 0,
-    ingredients: [],
-    preparation: [],
+    time: 0,
     hasMeat: false,
-    isVegetarian: false,
+    picture: '/recipes/recipe-background-alt.jpg',
+    ingredients: [],
+    isPublic: false,
     isVegan: false,
-    ///stepList: [{ index: Math.random(), description: "" }],
-    // category: { id: '1', name: 'Vegan' }
+    isVegetarian: false
   }
 
 
@@ -95,6 +93,7 @@ class AddRecipe extends Component {
     this.seveRecipe();
     this.seveRecipeZutat();
 
+    login("thorstenBorsten", "password");
     createRecipe(this.state.recipe);
   }
 
@@ -106,7 +105,7 @@ class AddRecipe extends Component {
       preperationList.push(element.description) 
      })
     // console.log(preperationList);
-      this.state.recipe['preparation'] = preperationList;
+      this.state.recipe['description'] = preperationList;
       console.log( this.state.recipe);
           
   }
@@ -425,7 +424,7 @@ class AddRecipe extends Component {
 
                   <FormGroup>
                     <Label for="image">Bild aussuchen: </Label>
-                    <input className="mt-2 ml-2" type="file" name="image" onChange={this.handleChangeImage} />
+                    <input className="mt-2 ml-2" type="file" name="picture" onChange={this.handleChangeImage} />
                   </FormGroup>
 
                   <FormGroup>

@@ -9,7 +9,7 @@ export interface RecipeCreate{
     hasMeat: boolean,
     picture: string,
     ingredients: Array<string>,
-    isPublic: boolean,
-    isVegan: boolean,
-    isVegetarian: boolean
+    public: boolean,
+    vegan: boolean,
+    vegetarian: boolean
 }

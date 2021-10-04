@@ -17,8 +17,6 @@ public class ProductDTO {
     private String name;
     private List<String> description;
     private double calories;
-    //private String type;                //Sach- oder Dienstleistung
-    //private boolean shipable;
     private double protein;
     private double fat;
     private double carbohydrate;
@@ -26,11 +24,9 @@ public class ProductDTO {
     private boolean isVegan;
     private boolean isVegetarian;
     private boolean hasMeat;
-
-    //Versandsfähig oder nicht
+    private boolean isPublic;
     private String picture;
     private ArrayList<String> ingredients;
-    //private double valuation;
 
     public ProductDTO(Product product){
         this.id = product.getId();
@@ -46,6 +42,7 @@ public class ProductDTO {
         this.isVegetarian = product.isVegetarian();
         this.hasMeat = product.isHasMeat();
         this.ingredients = product.getIngredients();
+        this.isPublic = product.isPublic();
 
 /*  this.shipable = product.isShipable();*//*
 
@@ -86,22 +83,6 @@ public class ProductDTO {
     public void setCalories(double calories) {
         this.calories = calories;
     }
-
-    /*public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public boolean isShipable() {
-        return shipable;
-    }
-
-    public void setShipable(boolean shipable) {
-        this.shipable = shipable;
-    }*/
 
     public String getPicture() {
         return picture;
@@ -151,7 +132,7 @@ public class ProductDTO {
         this.time = time;
     }
 
-    public boolean isVegan() {
+    public boolean isIsVegan() {
         return isVegan;
     }
 
@@ -159,7 +140,7 @@ public class ProductDTO {
         isVegan = vegan;
     }
 
-    public boolean isVegetarian() {
+    public boolean isIsVegetarian() {
         return isVegetarian;
     }
 

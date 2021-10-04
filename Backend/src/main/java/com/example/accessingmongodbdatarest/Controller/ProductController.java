@@ -3,6 +3,7 @@ package com.example.accessingmongodbdatarest.Controller;
 import com.example.accessingmongodbdatarest.DTO.ProductDTO;
 import com.example.accessingmongodbdatarest.Entities.Product;
 import com.example.accessingmongodbdatarest.Entities.User;
+import com.example.accessingmongodbdatarest.Payload.Request.NewRecipeRequest;
 import com.example.accessingmongodbdatarest.Payload.Request.RatingRequest;
 import com.example.accessingmongodbdatarest.Repositories.ProductRepository;
 import com.example.accessingmongodbdatarest.Repositories.UserRepository;
@@ -44,7 +45,7 @@ public class ProductController {
 
     //@PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping(value = "/createProduct", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Product> create(@RequestBody Product product, @AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {
+    public ResponseEntity<Product> create(@RequestBody NewRecipeRequest product, @AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {
         User user = userRepository.findById(userDetailsImpl.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Keinen User gefunden"));
         Product product1 = new Product(user, product.isPublic(),  product.getName(), product.getDescription(),product.getCalories(),  product.getProtein(),
                 product.getFat(), product.getCarbohydrate(),  product.getTime(), product.isVegan(),  product.isVegetarian(), product.isHasMeat(),
