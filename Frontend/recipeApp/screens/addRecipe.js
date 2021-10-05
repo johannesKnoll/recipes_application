@@ -36,6 +36,8 @@ class AddRecipe extends Component {
       imageFilePath: null,
       categories: [],
       recipes: [],
+      base64URL:"",
+      picture : null,
       recipe: this.emptyRecipe,
       stepList: [{ index: Math.random(), description: "" }],
       stepZutat: [{ index: Math.random(), zutat: "", menge: "", einheit: "" }],
@@ -234,6 +236,17 @@ class AddRecipe extends Component {
     this.setState({ recipe });
     
   }
+
+  // handleChangeImage(event) {
+  //   const target = event.target;
+  //   const value = target.files[0].name;
+  //   console.log(target.files[0])
+  //   const name = target.name;
+  //   let recipe = { ...this.state.recipe };
+  //   recipe[name] = value;
+  //   this.setState({ recipe });
+    
+  // }
   getBase64 = file => {
     return new Promise(resolve => {
       let fileInfo;
@@ -249,18 +262,15 @@ class AddRecipe extends Component {
         // Make a fileInfo Object
         console.log("Called", reader);
         baseURL = reader.result;
-        console.log(baseURL);
+         console.log(baseURL);
         resolve(baseURL);
+
       };
-      this.setState(picture)
-      console.log(fileInfo);
+      // this.setState(picture)
+      // console.log(fileInfo);
     });
   };
-
-  state = {
-    file: null,
-    base64URL: ""
-  };
+ 
   handleFileInputChange = e => {
     console.log(e.target.files[0]);
     let { file } = this.state;
@@ -279,11 +289,15 @@ class AddRecipe extends Component {
       .catch(err => {
         console.log(err);
       });
-
+    
     this.setState({
-      file: e.target.files[0]
+      picture: e.target.files[0]
     });
   };
+  // state = {
+  //   file: null,
+  //   base64URL: ""
+  // };
 
 
   handleChangeCategory(event) {
