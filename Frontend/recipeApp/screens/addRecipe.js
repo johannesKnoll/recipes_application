@@ -21,7 +21,7 @@ class AddRecipe extends Component {
     carbohydrate: 0,
     time: 0,
     hasMeat: false,
-    picture: '/recipes/recipe-background-alt.jpg',
+    picture: "",
     ingredients: [],
     isPublic: false,
     isVegan: false,
@@ -227,11 +227,64 @@ class AddRecipe extends Component {
   handleChangeImage(event) {
     const target = event.target;
     const value = target.files[0].name;
+    console.log(target.files[0])
     const name = target.name;
     let recipe = { ...this.state.recipe };
     recipe[name] = value;
     this.setState({ recipe });
+    
   }
+  getBase64 = file => {
+    return new Promise(resolve => {
+      let fileInfo;
+      let baseURL = "";
+      // Make new FileReader
+      let reader = new FileReader();
+
+      // Convert the file to base64 text
+      reader.readAsDataURL(file);
+
+      // on reader load somthing...
+      reader.onload = () => {
+        // Make a fileInfo Object
+        console.log("Called", reader);
+        baseURL = reader.result;
+        console.log(baseURL);
+        resolve(baseURL);
+      };
+      this.setState(picture)
+      console.log(fileInfo);
+    });
+  };
+
+  state = {
+    file: null,
+    base64URL: ""
+  };
+  handleFileInputChange = e => {
+    console.log(e.target.files[0]);
+    let { file } = this.state;
+
+    file = e.target.files[0];
+
+    this.getBase64(file)
+      .then(result => {
+        file["base64"] = result;
+        console.log("File Is", file);
+        this.setState({
+          base64URL: result,
+          file
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
+    this.setState({
+      file: e.target.files[0]
+    });
+  };
+
 
   handleChangeCategory(event) {
     const target = event.target;
@@ -424,7 +477,7 @@ class AddRecipe extends Component {
 
                   <FormGroup>
                     <Label for="image">Bild aussuchen: </Label>
-                    <input className="mt-2 ml-2" type="file" name="picture" onChange={this.handleChangeImage} />
+                    <input className="mt-2 ml-2" type="file" name="picture" onChange={this.handleFileInputChange} />
                   </FormGroup>
 
                   <FormGroup>
