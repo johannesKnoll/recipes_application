@@ -36,8 +36,9 @@ class AddRecipe extends Component {
       imageFilePath: null,
       categories: [],
       recipes: [],
-      base64URL:"",
       picture : null,
+      file: null,
+    base64URL: "",
       recipe: this.emptyRecipe,
       stepList: [{ index: Math.random(), description: "" }],
       stepZutat: [{ index: Math.random(), zutat: "", menge: "", einheit: "" }],
@@ -237,16 +238,7 @@ class AddRecipe extends Component {
     
   }
 
-  // handleChangeImage(event) {
-  //   const target = event.target;
-  //   const value = target.files[0].name;
-  //   console.log(target.files[0])
-  //   const name = target.name;
-  //   let recipe = { ...this.state.recipe };
-  //   recipe[name] = value;
-  //   this.setState({ recipe });
-    
-  // }
+  
   getBase64 = file => {
     return new Promise(resolve => {
       let fileInfo;
@@ -262,12 +254,19 @@ class AddRecipe extends Component {
         // Make a fileInfo Object
         console.log("Called", reader);
         baseURL = reader.result;
-         console.log(baseURL);
+         console.log("this is the String: ",baseURL);
         resolve(baseURL);
+        // this.setState({
+        //   picture: baseURL
+        // })
+        const value = baseURL
+        const name = "picture"
+        let recipe = { ...this.state.recipe };
+        recipe[name] = value;
+        this.setState({ recipe });
 
       };
-      // this.setState(picture)
-      // console.log(fileInfo);
+       console.log(fileInfo);
     });
   };
  
@@ -283,22 +282,35 @@ class AddRecipe extends Component {
         console.log("File Is", file);
         this.setState({
           base64URL: result,
-          file
+          file,
         });
-      })
-      .catch(err => {
+        console.log(e)
+  
+      }).catch(err => {
         console.log(err);
       });
     
     this.setState({
-      picture: e.target.files[0]
+      file: e.target.files[0]
     });
+    
+  
+   
   };
   // state = {
   //   file: null,
   //   base64URL: ""
   // };
 
+handleChangeImage(event) {
+    const target = event.target;
+    const value = target.files[0].name;
+    const name = target.name;
+    let recipe = { ...this.state.recipe };
+    recipe[name] = value;
+    this.setState({ recipe });
+    
+  }
 
   handleChangeCategory(event) {
     const target = event.target;
@@ -491,7 +503,7 @@ class AddRecipe extends Component {
 
                   <FormGroup>
                     <Label for="image">Bild aussuchen: </Label>
-                    <input className="mt-2 ml-2" type="file" name="picture" onChange={this.handleFileInputChange} />
+                    <input className="mt-2 ml-2" name="picture" type="file" name="picture" onChange={this.handleFileInputChange} />
                   </FormGroup>
 
                   <FormGroup>
