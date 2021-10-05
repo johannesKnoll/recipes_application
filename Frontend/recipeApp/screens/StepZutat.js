@@ -18,7 +18,8 @@ const StepZutat = (props) => {
             <input type="text"  name="einheit" data-id={idx} id={einheit} className="form-control " />
           </td> */}
           <td>
-              <select style={{marginRight: 20}} name ="einheit" id={einheit} data-id={idx} className ="form-control ">
+              <select name ="einheit" id={einheit} data-id={idx} className ="form-control ">
+              <option value ="kg">▼Einheit</option>
                   <option value ="kg">Kg</option>
                   <option value ="g">g</option>
                   <option value ="stk">Stk</option>
