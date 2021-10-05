@@ -72,3 +72,21 @@ export const getMeatRecipes = (): Promise<Array<Recipe>> =>
         .then(res => {
             return res.data
         })
+
+export const addToFavorite = (recipeId: number): Promise<string> => 
+    Api.post(`/users/addToFavorite/${recipeId}`)
+        .then(res => {
+            return res.data;
+        })
+
+export const getFavoriteRecipes = (): Promise<Array<Recipe>> =>
+    Api.get("/users/getAllFavorites")
+        .then(res => {
+            return res.data;
+        })
+
+export const checkIfFavoriteListContainsRecipe = (recipeId: number): Promise<boolean> =>
+    Api.get(`/users/checkIfFavoriteListContainsRecipe/${recipeId}`)
+        .then(res => {
+            return res.data;
+        })

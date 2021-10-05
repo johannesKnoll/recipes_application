@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import {
     Text,
     View,
@@ -6,8 +6,28 @@ import {
     Image
 } from 'react-native';
 import { Icon } from 'react-native-elements';
+import { addToFavorite, checkIfFavoriteListContainsRecipe } from '../api';
 
 const RecentCard = ({recipe, onPress}) => {
+
+    const [isFavorite, setIsFavorite] = React.useState(false);
+
+    React.useEffect(() => {
+        checkIfFavoriteListContainsRecipe(recipe.id)
+            .then(res => {
+                const isFavoriteNew = res;
+                console.log(res, "Response for isFavorite");
+                setIsFavorite(isFavoriteNew);
+            })
+    },[]);
+
+    const addFavorite = () => {
+        addToFavorite(recipe.id)
+            .then(res => {
+                console.log(res, "Response for Add REcipe");
+            })
+    }
+
     return( 
     
         <TouchableOpacity
@@ -64,12 +84,13 @@ const RecentCard = ({recipe, onPress}) => {
                     right: 10
                 }}
             >
-                <Icon
-                    name='bookmark-outline'
-                    type='ionicon'
-                    color='tomato'
-                    size={35}
-                />
+                    <Icon
+                        name={isFavorite? 'bookmark' : 'bookmark-outline'}
+                        type='ionicon'
+                        color='tomato'
+                        size={35}
+                        onPress={addFavorite}
+                    />
                 {/* To do: call setFavourite route on backend after onPress */}
             </View>
 

@@ -103,6 +103,19 @@ public class UserController {
         return user.getFavoriteList();
     }
 
+    @GetMapping("/checkIfFavoriteListContainsRecipe/{recipeId}")
+    public boolean checkIfFavoriteListContainsRecipe(@PathVariable("recipeId") long recipeId){
+        User user = getAuthorizedUser();
+        Set<Product> favoriteList = user.getFavoriteList();
+
+        for (Product product: favoriteList) {
+            if(product.getId() == recipeId){
+                return true;
+            }
+        }
+        return false;
+    }
+
     @GetMapping("/getAllRecipes")
     public List<Product> getAllRecipes(){
         User user = getAuthorizedUser();

@@ -14,6 +14,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import  RecipeCard  from '../components/RecipeCard';
 import RecentCard from '../components/RecentCard';
 import { SearchBar } from 'react-native-elements';
+import { getFavoriteRecipes } from '../api';
 
 export function Favoriten() {
     const testData = [
@@ -32,6 +33,16 @@ export function Favoriten() {
     ];
 
     const [search, setSearch] = React.useState("");
+    const [favoriteRecipes, setFavoriteRecipes] = React.useState([]);
+
+    React.useEffect(() => {
+
+        getFavoriteRecipes()
+            .then(res => {
+                const favoriteRecipesNew = res;
+                setFavoriteRecipes(favoriteRecipesNew);
+            })
+    },[]);
 
     const updateSearch = (search) => {
       setSearch(search);
@@ -77,7 +88,7 @@ export function Favoriten() {
                         </Text>
                         <View>
                             <FlatList
-                                data={testData}
+                                data={favoriteRecipes}
                                 horizontal 
                                 showsHorizontalScrollIndicator={false}
                                 showVerticalScrollIndicator={false}
