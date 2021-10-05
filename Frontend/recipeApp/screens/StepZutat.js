@@ -19,6 +19,7 @@ const StepZutat = (props) => {
           </td> */}
           <td>
               <select name ="einheit" id={einheit} data-id={idx} className ="form-control ">
+              <option value ="kg">Einheit</option>
                   <option value ="kg">Kg</option>
                   <option value ="g">g</option>
                   <option value ="stk">Stk</option>
