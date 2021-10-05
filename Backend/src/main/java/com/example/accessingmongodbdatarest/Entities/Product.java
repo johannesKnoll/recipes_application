@@ -60,7 +60,7 @@ public class Product {
         this.ratelist = new ArrayList<>();
         this.ingredients = ingredients;
         //ratelist
-        averageRate = 0.0;
+        this.averageRate = 0.0;
     }
 
     public Product() {
@@ -195,7 +195,7 @@ public class Product {
     }
 
     public double getAverageRate() {
-        return averageRate;
+        return this.averageRate;
     }
 
     public void addToRate(int actualRate){

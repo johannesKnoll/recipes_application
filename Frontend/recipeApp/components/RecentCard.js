@@ -19,6 +19,7 @@ const RecentCard = ({recipe, onPress}) => {
                 console.log(res, "Response for isFavorite");
                 setIsFavorite(isFavoriteNew);
             })
+        console.log(recipe.hasMeat, "Has Meat");
     },[]);
 
     const addFavorite = () => {
@@ -103,7 +104,7 @@ const RecentCard = ({recipe, onPress}) => {
                     left: 10,
                     right: 10,
                     paddingHorizontal: 20,
-                    paddingVertical: 40,
+                    paddingVertical: 20,
                     backgroundColor: 'black',
                     borderRadius: 10,
                     opacity: 0.7
@@ -126,7 +127,17 @@ const RecentCard = ({recipe, onPress}) => {
                         flex: 1
                     }}    
                 >
-                    {recipe.name}
+                    {recipe.calories + ' Kalorien, ' + recipe.protein + 'g Eiweiß, ' + recipe.fat + 'g Fett'}
+                </Text> 
+                <Text
+                    style={{
+                        color: 'white',
+                        fontSize: 10,
+                        flex: 1,
+                        marginTop: 10
+                    }}    
+                >
+                    {recipe.averageRate + ' / 5 Sterne'}
                 </Text> 
             </View>
         </TouchableOpacity>

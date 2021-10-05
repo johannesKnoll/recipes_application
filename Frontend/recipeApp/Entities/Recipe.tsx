@@ -13,5 +13,6 @@ export interface Recipe{
     ingredients: Array<string>,
     compynayId: number,
     vegan: boolean,
-    vegetarian: boolean
+    vegetarian: boolean,
+    averageRate: number
 }

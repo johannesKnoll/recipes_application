@@ -90,3 +90,17 @@ export const checkIfFavoriteListContainsRecipe = (recipeId: number): Promise<boo
         .then(res => {
             return res.data;
         })
+
+export const getAllRecipesFromUser = (): Promise<Array<Recipe>> =>
+    Api.get("/getAllRecipes")
+        .then(res => {
+            return res.data;
+        })
+
+export const rateRecipe = (recipeId: number, rating: number): Promise<string> =>
+    Api.post(`/product/rateProduct/${recipeId}`, {
+        rating
+    })
+        .then(res => {
+            return res.data;
+        })

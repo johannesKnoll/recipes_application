@@ -14,7 +14,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import  RecipeCard  from '../components/RecipeCard';
 import RecentCard from '../components/RecentCard';
 import { SearchBar } from 'react-native-elements';
-import { getFavoriteRecipes } from '../api';
+import { getFavoriteRecipes, getAllRecipesFromUser } from '../api';
 
 export function Favoriten() {
     const testData = [
@@ -34,6 +34,7 @@ export function Favoriten() {
 
     const [search, setSearch] = React.useState("");
     const [favoriteRecipes, setFavoriteRecipes] = React.useState([]);
+    const [userRecipes, setUserRecipes] = React.useState([]);
 
     React.useEffect(() => {
 
@@ -41,6 +42,12 @@ export function Favoriten() {
             .then(res => {
                 const favoriteRecipesNew = res;
                 setFavoriteRecipes(favoriteRecipesNew);
+            })
+
+        getAllRecipesFromUser()
+            .then(res => {
+                const userRecipesNew = res;
+                setUserRecipes(userRecipesNew);
             })
     },[]);
 
@@ -118,7 +125,7 @@ export function Favoriten() {
                         </Text>
                         <View>
                             <FlatList
-                                data={testData}
+                                data={userRecipes}
                                 horizontal 
                                 showsHorizontalScrollIndicator={false}
                                 showVerticalScrollIndicator={false}
@@ -140,22 +147,7 @@ export function Favoriten() {
                 renderItem={({ item }) => {
                     return (
                         <View>
-                            <Text
-                                style={{
-                                    marginLeft: 20,
-                                    fontSize: 30,
-                                    fontWeight: "bold",
-                                    marginBottom: 10,
-                                    marginTop: 35
-                                }}
-                            >
-                                Eigene Rezepte
-                            </Text>
-                            <RecentCard
-                                recipe={item}
-                                onPress={null}
-                            >
-                            </RecentCard>
+                        
                         </View>
                     )
                 }}>
