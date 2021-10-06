@@ -7,6 +7,14 @@ import SignUp from './screens/signUp';
 import RecipeOverview from './screens/RecipeOverview';
 import { ChangeEmail } from './screens/changeEmail';
 import { ChangePassword } from './screens/changePassword';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { login } from './api';
+import { Overview } from "./screens/overview";
+
+const Stack = createNativeStackNavigator();
+
+
 export default function App() {
   return (
     //<SignUp></SignUp>
@@ -15,8 +23,25 @@ export default function App() {
     //                showHorizontalScrollIndicator={false}
     //          showVerticalScrollIndicator={false}
     //  </ScreenNavigation>
-    <RecipeOverview></RecipeOverview>
+    //<RecipeOverview></RecipeOverview>
   //<ChangePassword></ChangePassword>
+
+  <NavigationContainer>
+        <Stack.Navigator 
+        screenOptions={{
+          headerShown: false
+        }}
+        initialRouteName="login_screen">
+            <Stack.Screen
+            name="overview_screen"
+            component={Overview}
+            />
+            <Stack.Screen
+            name="login_screen"
+            component={Login}
+            />
+        </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 

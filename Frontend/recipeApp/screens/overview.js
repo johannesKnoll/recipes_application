@@ -16,7 +16,7 @@ import { SearchBar } from 'react-native-elements';
 import {login, getAllRecipes, getDailyRecipe } from '../api';
 import { Recipe } from '../Entities/Recipe';
 
-export function Overview({navigation}) {
+export function Overview() {
     const testData = [
         {
             id: 1,
@@ -64,7 +64,7 @@ export function Overview({navigation}) {
     const updateSearch = (search) => {
       setSearch(search);
     };
-
+console.log("test", dailyRecipeArray)
     return (
         // <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         //     <Text>Overview!</Text>
