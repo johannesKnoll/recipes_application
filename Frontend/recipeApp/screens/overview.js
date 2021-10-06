@@ -58,6 +58,7 @@ export function Overview() {
             .then(res => {
                 const recipesNew = res;
                 setRecipes(recipesNew);
+                console.log(res, "Recipes in Overview");
             })
 
         getDailyRecipe()

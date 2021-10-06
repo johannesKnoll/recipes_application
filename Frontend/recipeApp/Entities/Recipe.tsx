@@ -9,7 +9,7 @@ export interface Recipe{
     carbohydrate: number,
     time: number,
     hasMeat: boolean,
-    picture: string,
+    picture?: string,
     ingredients: Array<string>,
     compynayId: number,
     vegan: boolean,
