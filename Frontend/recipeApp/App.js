@@ -19,11 +19,19 @@ export default function App() {
   return (
     //<SignUp></SignUp>
     //<Login></Login>
+<<<<<<< HEAD
     //  <ScreenNavigation>
     //                showHorizontalScrollIndicator={false}
     //          showVerticalScrollIndicator={false}
     //  </ScreenNavigation>
     //<RecipeOverview></RecipeOverview>
+=======
+     <ScreenNavigation>
+                   showHorizontalScrollIndicator={false}
+             showVerticalScrollIndicator={false}
+     </ScreenNavigation>
+    // <RecipeOverview></RecipeOverview>
+>>>>>>> b67c53645f73217218f7e6b52ca26bf23a26d83e
   //<ChangePassword></ChangePassword>
 
   <NavigationContainer>
