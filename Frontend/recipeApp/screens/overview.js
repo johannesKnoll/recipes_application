@@ -19,11 +19,10 @@ import { useNavigation } from '@react-navigation/native';
 
 export function Overview() {
 
-    const navigation = useNavigation();
-    const onPressHandler = (id) => {
-      console.log(navigation)
-          navigation.navigate('recipe_overview', {id:id});
-    }
+    // const onPressHandler = (id) => {
+    //   console.log(navigation)
+    //       navigation.navigate('recipe_overview', {id:id});
+    // }
 
     const testData = [
         {
