@@ -104,10 +104,10 @@ public class ProductController {
     }*/
 
 
-    @RequestMapping("/getAllProduct")
-    public List<ProductDTO> getAll(){
-        return productService.getAll().stream().map(ProductDTO::new).collect(Collectors.toList());
-    }
+                            @RequestMapping("/getAllProduct")
+                            public List<ProductDTO> getAll(){
+                                return productService.getAll().stream().map(ProductDTO::new).collect(Collectors.toList());
+                            }
 
     @GetMapping("/getAllPublicRecipes")
     public List<Product> getAllPublicRecipes(){

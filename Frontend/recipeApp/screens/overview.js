@@ -50,6 +50,7 @@ export function Overview() {
         getAllRecipes()
             .then(res => {
                 const recipesNew = res;
+                console.log("here is the res from overview line 53: ",recipesNew)
                 setRecipes(recipesNew);
             })
 
