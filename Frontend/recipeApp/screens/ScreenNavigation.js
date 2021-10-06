@@ -17,8 +17,13 @@ const Tab = createBottomTabNavigator();
 
 export function ScreenNavigation() {
   return (
+<<<<<<< HEAD
       <Tab.Navigator 
       screenOptions={({ route }) => ({
+=======
+    <NavigationContainer independent={true}>
+      <Tab.Navigator screenOptions={({ route }) => ({
+>>>>>>> 924f6be40eed90617dd0ee0dc93aedb1377a5ab4
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 

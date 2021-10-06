@@ -40,6 +40,12 @@ export function Overview() {
         }
     ];
 
+    const navigation = useNavigation();
+    const onPressHandler = () => {
+        console.log(navigation)
+            navigation.navigate('recipe-overview');
+      }
+
     const [recipes, setRecipes] = React.useState([]);
     const dailyRecipeArray = [];
     const [dailyRecipe, setDailyRecipe] = React.useState([]);
@@ -127,7 +133,11 @@ console.log("test", dailyRecipeArray)
                                 return (
                                     <RecentCard
                                         recipe={item}
+<<<<<<< HEAD
                                         onPress={()=>onPressHandler(item.id)}
+=======
+                                        onPress={onPressHandler}
+>>>>>>> 924f6be40eed90617dd0ee0dc93aedb1377a5ab4
                                     >
                                     </RecentCard>
                                 )

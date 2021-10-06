@@ -46,7 +46,7 @@ const RecentCard = ({recipe, onPress}) => {
 
             {/*Background Image*/}
             <Image
-            source={require("../pictures/picture2.jpg")}
+            source={recipe.picture}
             resizeMode="cover"
             style={{
                 width: 250,
