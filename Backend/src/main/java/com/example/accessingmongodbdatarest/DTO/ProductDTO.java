@@ -42,6 +42,7 @@ public class ProductDTO {
         this.isVegan = product.isVegan();
         this.isVegetarian = product.isVegetarian();
         this.hasMeat = product.isHasMeat();
+        this.picture = product.getPicture();
         this.ingredients = product.getIngredients();
         this.isPublic = product.isPublic();
         this.averageRate = product.getAverageRate();

@@ -36,6 +36,8 @@ export const getAllRecipes = (): Promise<Array<Recipe>> =>
     Api.get("/product/getAllProduct")
         .then(res => {
             console.log("Recipes", res.data);
+            console.log("Recipes", res.data);
+            console.log(res.data)
             return res.data;
         })
 
@@ -45,11 +47,14 @@ export const getDailyRecipe = (): Promise<Recipe> =>
             return res.data
         })
 
-export const createRecipe = (recipe: RecipeCreate): Promise<RecipeCreate | undefined> =>
-    Api.post("/product/createProduct", recipe)
+export const createRecipe = (recipe: RecipeCreate): Promise<RecipeCreate | undefined> =>{
+return  Api.post("/product/createProduct", recipe)
         .then(res => {
-            return res.data
-        })
+            return res.data as Recipe;
+            
+        },fail => undefined)
+        .catch(err => undefined);
+        }
 
 
 export const getVeganRecipes = (): Promise<Array<Recipe>> =>

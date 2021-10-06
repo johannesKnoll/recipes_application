@@ -39,11 +39,11 @@ export function Overview() {
         }
     ];
 
-    const navigation = useNavigation();
-    const onPressHandler = () => {
-        console.log(navigation)
-            navigation.navigate('recipe-overview');
-      }
+    // const navigation = useNavigation();
+    // const onPressHandler = () => {
+    //     console.log(navigation)
+    //         navigation.navigate('recipe-overview');
+    //   }
 
     const [recipes, setRecipes] = React.useState([]);
     const dailyRecipeArray = [];
@@ -56,6 +56,7 @@ export function Overview() {
         getAllRecipes()
             .then(res => {
                 const recipesNew = res;
+                console.log("here is the res from overview line 53: ",recipesNew)
                 setRecipes(recipesNew);
                 console.log(res, "Recipes in Overview");
             })

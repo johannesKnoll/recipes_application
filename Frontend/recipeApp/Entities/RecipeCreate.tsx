@@ -7,9 +7,16 @@ export interface RecipeCreate{
     carbohydrate: number,
     time: number,
     hasMeat: boolean,
-    picture: string,
-    ingredients: Array<string>,
+    picture?: string,
     public: boolean,
     vegan: boolean,
-    vegetarian: boolean
+    vegetarian: boolean,
+    // ingredients: Array<string>,
+    
+    
+    
 }
+
+
+   
+    
