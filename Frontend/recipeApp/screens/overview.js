@@ -15,6 +15,7 @@ import RecentCard from '../components/RecentCard';
 import { SearchBar } from 'react-native-elements';
 import {login, getAllRecipes, getDailyRecipe } from '../api';
 import { Recipe } from '../Entities/Recipe';
+import { useNavigation } from '@react-navigation/native';
 
 export function Overview() {
     const testData = [
@@ -31,6 +32,12 @@ export function Overview() {
             name: "Test3"
         }
     ];
+
+    const navigation = useNavigation();
+    const onPressHandler = () => {
+        console.log(navigation)
+            navigation.navigate('recipe-overview');
+      }
 
     const [recipes, setRecipes] = React.useState([]);
     const dailyRecipeArray = [];
@@ -119,7 +126,7 @@ console.log("test", dailyRecipeArray)
                                 return (
                                     <RecentCard
                                         recipe={item}
-                                        onPress={null}
+                                        onPress={onPressHandler}
                                     >
                                     </RecentCard>
                                 )

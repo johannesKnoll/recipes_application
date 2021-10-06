@@ -74,7 +74,7 @@ export default function Login() {
                     <Text style={styles.forgot_button}>Noch kein Konto? Jetzt Registrieren</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.loginBtn} onPress={s} >
+                <TouchableOpacity style={styles.loginBtn} onPress={onPressHandler} >
                     <Text style={styles.loginText}>Einloggen</Text>
                 </TouchableOpacity>
             </ImageBackground>
