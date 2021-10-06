@@ -38,7 +38,7 @@ class AddRecipe extends Component {
       recipes: [],
       picture : null,
       file: null,
-    base64URL: "",
+      base64URL: "",
       recipe: this.emptyRecipe,
       stepList: [{ index: Math.random(), description: "" }],
       stepZutat: [{ index: Math.random(), zutat: "", menge: "", einheit: "" }],
