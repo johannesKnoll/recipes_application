@@ -263,5 +263,4 @@ const RecipeOverview = ({ recipeArgument }) => {
         </SafeAreaView>
     )
 }
-
 export default RecipeOverview;

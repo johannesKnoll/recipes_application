@@ -18,6 +18,13 @@ import { Recipe } from '../Entities/Recipe';
 import { useNavigation } from '@react-navigation/native';
 
 export function Overview() {
+
+    const navigation = useNavigation();
+    const onPressHandler = (id) => {
+      console.log(navigation)
+          navigation.navigate('recipe_overview', {id:id});
+    }
+
     const testData = [
         {
             id: 1,
@@ -127,7 +134,7 @@ console.log("test", dailyRecipeArray)
                                 return (
                                     <RecentCard
                                         recipe={item}
-                                        onPress={onPressHandler}
+                                        onPress={()=>onPressHandler(item.id)}
                                     >
                                     </RecentCard>
                                 )
@@ -151,7 +158,7 @@ console.log("test", dailyRecipeArray)
                     return (
                         <RecipeCard
                             recipe={item}
-                            onPress={null}
+                            onPress={onPressHandler}
                         >
                         </RecipeCard>
                     )

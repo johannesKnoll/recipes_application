@@ -13,11 +13,6 @@ import {
 } from "react-native";
 import { login } from "../api";
 import SignUp from "./signUp";
-//import { createStackNavigator } from 'react-navigation-stack';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Overview } from "./overview";
-import { NavigationContainer } from '@react-navigation/native';
-//import { createStackNavigator } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
 import { User } from './user';
 
