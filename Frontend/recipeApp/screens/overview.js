@@ -40,11 +40,11 @@ export function Overview() {
         }
     ];
 
-    const navigation = useNavigation();
-    const onPressHandler = () => {
-        console.log(navigation)
-            navigation.navigate('recipe-overview');
-      }
+    // const navigation = useNavigation();
+    // const onPressHandler = () => {
+    //     console.log(navigation)
+    //         navigation.navigate('recipe-overview');
+    //   }
 
     const [recipes, setRecipes] = React.useState([]);
     const dailyRecipeArray = [];
