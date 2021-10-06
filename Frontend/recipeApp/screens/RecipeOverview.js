@@ -10,12 +10,31 @@ import {
     ScrollView
 } from 'react-native';
 import { Icon, Divider } from 'react-native-elements';
-import { rateRecipe } from '../api';
+import { rateRecipe, getRecipeById } from '../api';
+import { Recipe } from '../Entities/Recipe';
 
-const RecipeOverview = () => {
+const RecipeOverview = ({ recipeArgument }) => {
 
     const [defaultRating, setDefaultRating] = React.useState(2);
     const [maxRating, setMaxRating] = React.useState([1,2,3,4,5]);
+    const [recipe, setRecipe] = React.useState<Recipe>({
+        id: 0,
+        userId: 0,
+        name: "",
+        description: [],
+        calories: 0,
+        protein: 0,
+        fat: 0,
+        carbohydrate: 0,
+        time: 0,
+        hasMeat: false,
+        picture: "",
+        ingredients: [],
+        compynayId: 0,
+        vegan: false,
+        vegetarian: false,
+        averageRate: 0
+    })
 
     const starImageFilled = "https://raw.githubusercontent.com/tranhonghan/images/main/star_filled.png";
     const starImageCorner = "https://raw.githubusercontent.com/tranhonghan/images/main/star_corner.png";
@@ -23,6 +42,15 @@ const RecipeOverview = () => {
     const rateRecipeById = () => {
         rateRecipe(3, defaultRating);
     }
+
+    React.useEffect(() => {
+        getRecipeById(recipeArgument.id)
+            .then(res => {
+                const recipeNew = res;
+                setRecipe(recipeNew);
+                console.log(recipe, "Recipe in overview page");
+            })
+    },[]);
 
     const RatingBar = () => {
         return(

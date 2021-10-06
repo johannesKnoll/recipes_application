@@ -38,7 +38,7 @@ class AddRecipe extends Component {
       recipes: [],
       picture : null,
       file: null,
-    base64URL: "",
+      base64URL: "",
       recipe: this.emptyRecipe,
       stepList: [{ index: Math.random(), description: "" }],
       stepZutat: [{ index: Math.random(), zutat: "", menge: "", einheit: "" }],
@@ -503,7 +503,7 @@ handleChangeImage(event) {
 
                   <FormGroup>
                     <Label for="image">Bild aussuchen: </Label>
-                    <input className="mt-2 ml-2" name="picture" type="file" name="picture" onChange={this.handleFileInputChange} />
+                    <input className="mt-2 ml-2" type="file" name="picture" onChange={this.handleFileInputChange} />
                   </FormGroup>
 
                   <FormGroup>

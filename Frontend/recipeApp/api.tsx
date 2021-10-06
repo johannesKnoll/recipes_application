@@ -20,7 +20,6 @@ export const login = (username: string, password: string): Promise<User | undefi
         localStorage.setItem("user", JSON.stringify(res.data));
         const user = {
             id: res.data.id,
-            roles: res.data.roles,
             token: res.data.accessToken,
             username: res.data.username
         } as User;
@@ -101,6 +100,12 @@ export const rateRecipe = (recipeId: number, rating: number): Promise<string> =>
     Api.post(`/product/rateProduct/${recipeId}`, {
         rating
     })
+        .then(res => {
+            return res.data;
+        })
+
+export const getRecipeById = (recipeId: number): Promise<Recipe> => 
+    Api.get(`/product/getProduct/${recipeId}`)
         .then(res => {
             return res.data;
         })
