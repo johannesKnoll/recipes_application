@@ -31,11 +31,7 @@ export default function App() {
     //                showHorizontalScrollIndicator={false}
     //          showVerticalScrollIndicator={false}
     //  </ScreenNavigation>
-<<<<<<< HEAD
     //<RecipeOverview></RecipeOverview>
-=======
-    // <RecipeOverview></RecipeOverview>
->>>>>>> 924f6be40eed90617dd0ee0dc93aedb1377a5ab4
   //<ChangePassword></ChangePassword>
 
   /*
