@@ -12,46 +12,41 @@ import {
 
 } from "react-native";
 import { login } from "../api";
-import { Overview } from "./overview";
 import SignUp from "./signUp";
-//import { createStackNavigator } from 'react-navigation-stack';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
+import { User } from './user';
 
 
-
-export default function Login({navigation}) {
-
-    const Stack = createNativeStackNavigator();
-
-    const StackNavigator = (
-        <Stack.Navigator>
-          <Stack.Screen
-            name="overview"
-            component={Overview} 
-          />
-          </Stack.Navigator>);
-
-function Login_Navigation() {
-    return (
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="overview" component={Overview} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    );
-  }
-
-
+export default function Login() {
+    
+    
     const [userName, setuserName] = React.useState("");
     const [password, setPassword] = React.useState("");
+    let loggedInUser = {
+        username: "",
+        token: "",
+        id: 0
+    }
+    const navigation = useNavigation();
+    
     function onClickSignin(userName, password) {
         console.log("Login clicked")
         login(userName, password)
-            .then(loggedInUser => {
-                console.log(loggedInUser);
-            })
+        .then(res => {
+            loggedInUser = res;
+            console.log(loggedInUser);
+            if(loggedInUser){
+                navigation.navigate('overview_screen');
+            }else{
+                alert("Falsches Passwort oder Benutzername");
+            }
+        })
     }
+    
+    const onPressHandler = () => {
+        onClickSignin(userName, password);
+    }
+
     return (
         <View style={styles.container}>
             <ImageBackground resizeMode="cover" style={styles.backgroundImage} source={require("../assets/login.jpeg")}>
@@ -86,13 +81,15 @@ function Login_Navigation() {
                     <Text style={styles.forgot_button}>Noch kein Konto? Jetzt Registrieren</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.navigate('overview')} onClick={onClickSignin(userName, password)}>
+                <TouchableOpacity style={styles.loginBtn} onPress={onPressHandler} >
                     <Text style={styles.loginText}>Einloggen</Text>
                 </TouchableOpacity>
             </ImageBackground>
         </View>
     );
 }
+//onClick={onClickSignin(userName, password)}
+
 
 //const Navigator = createStackNavigator({
 //  Login: { screen: login },

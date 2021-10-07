@@ -15,11 +15,11 @@ const Steps = (props) => {
           {
             idx===0?<button onClick={()=>props.add()} type="button" 
             className="button_add">
-              <i className="fa fa-plus-circle" >add</i></button>
+              <i className="fa fa-plus-circle" >Hinzufügen</i></button>
             :
              <button className="button_delete" 
              onClick={(() => props.delete(val))} >
-                 <div >delete</div>
+                 <div >Löschen</div>
                  </button>
             }
           </td>

@@ -27,6 +27,7 @@ public class ProductDTO {
     private boolean isPublic;
     private String picture;
     private ArrayList<String> ingredients;
+    private double averageRate;
 
     public ProductDTO(Product product){
         this.id = product.getId();
@@ -41,8 +42,10 @@ public class ProductDTO {
         this.isVegan = product.isVegan();
         this.isVegetarian = product.isVegetarian();
         this.hasMeat = product.isHasMeat();
+        this.picture = product.getPicture();
         this.ingredients = product.getIngredients();
         this.isPublic = product.isPublic();
+        this.averageRate = product.getAverageRate();
 
 /*  this.shipable = product.isShipable();*//*
 
@@ -162,6 +165,30 @@ public class ProductDTO {
 
     public void setIngredients(ArrayList<String> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public boolean isVegan() {
+        return isVegan;
+    }
+
+    public boolean isVegetarian() {
+        return isVegetarian;
+    }
+
+    public boolean isPublic() {
+        return isPublic;
+    }
+
+    public void setPublic(boolean aPublic) {
+        isPublic = aPublic;
+    }
+
+    public double getAverageRate() {
+        return averageRate;
+    }
+
+    public void setAverageRate(double averageRate) {
+        this.averageRate = averageRate;
     }
 
     /*public double getValuation() {

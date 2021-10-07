@@ -190,22 +190,6 @@ export function Entdecken() {
                 renderItem={({ item }) => {
                     return (
                         <View>
-                            <Text
-                                style={{
-                                    marginLeft: 20,
-                                    fontSize: 30,
-                                    fontWeight: "bold",
-                                    marginBottom: 10,
-                                    marginTop: 35
-                                }}
-                            >
-                                
-                            </Text>
-                            <RecentCard
-                                recipe={item}
-                                onPress={null}
-                            >
-                            </RecentCard>
                         </View>
                     )
                 }}>

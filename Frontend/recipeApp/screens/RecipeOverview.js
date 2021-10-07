@@ -1,6 +1,6 @@
-import React from 'react';
-import { 
-    Text, 
+import * as React from 'react';
+import {
+    Text,
     View,
     Image,
     SafeAreaView,
@@ -10,9 +10,88 @@ import {
     ScrollView
 } from 'react-native';
 import { Icon, Divider } from 'react-native-elements';
+import { rateRecipe, getRecipeById } from '../api';
+import { Recipe } from '../Entities/Recipe';
 
-const RecipeOverview = () => {
-    return(
+const RecipeOverview = ({ recipeArgument }) => {
+
+    const [defaultRating, setDefaultRating] = React.useState(2);
+    const [maxRating, setMaxRating] = React.useState([1,2,3,4,5]);
+    const [recipe, setRecipe] = React.useState<Recipe>({
+        id: 0,
+        userId: 0,
+        name: "",
+        description: [],
+        calories: 0,
+        protein: 0,
+        fat: 0,
+        carbohydrate: 0,
+        time: 0,
+        hasMeat: false,
+        picture: "",
+        ingredients: [],
+        compynayId: 0,
+        vegan: false,
+        vegetarian: false,
+        averageRate: 0
+    })
+
+    const starImageFilled = "https://raw.githubusercontent.com/tranhonghan/images/main/star_filled.png";
+    const starImageCorner = "https://raw.githubusercontent.com/tranhonghan/images/main/star_corner.png";
+
+    const rateRecipeById = () => {
+        rateRecipe(3, defaultRating);
+    }
+
+    React.useEffect(() => {
+        getRecipeById(recipeArgument.id)
+            .then(res => {
+                const recipeNew = res;
+                setRecipe(recipeNew);
+                console.log(recipe, "Recipe in overview page");
+            })
+    },[]);
+
+    const RatingBar = () => {
+        return(
+            <View style={{
+                justifyContent: 'center',
+                flexDirection: 'row',
+                marginTop: 10
+            }}>
+                {
+                    maxRating.map((item, key) => {
+                        return(
+                            <TouchableOpacity
+                                activeOpacity={0.7}
+                                key={item}
+                                onPress={() => setDefaultRating(item)}
+                            >
+
+                                <Image
+                                    style={{
+                                        width: 20,
+                                        height: 20,
+                                        resizeMode: 'cover'
+                                    }}
+                                    source={
+                                        item <= defaultRating
+                                            ? {uri: starImageFilled}
+                                            : {uri: starImageCorner}
+                                    }>
+
+                                </Image>
+
+                            </TouchableOpacity>
+                        )
+                    })
+                }
+            </View>
+        )
+    }
+
+
+    return (
         <SafeAreaView
             showHorizontalScrollIndicator={false}
             showVerticalScrollIndicator={false}
@@ -89,13 +168,13 @@ const RecipeOverview = () => {
                     width: '30%'
                 }}>
                 <Text
-                style={{
-                    fontSize: 25,
-                    fontWeight: 'bold'
-                }}>
-                Zutaten
-            </Text>
-                <ScrollView 
+                    style={{
+                        fontSize: 25,
+                        fontWeight: 'bold'
+                    }}>
+                    Zutaten
+                </Text>
+                <ScrollView
                     showsVerticalScrollIndicator={false}
                     style={{
                         margin: 10,
@@ -108,9 +187,38 @@ const RecipeOverview = () => {
                         200g Kartoffeln <br></br>
                         100g Möhren <br></br>
                         250ml Wasser <br></br>
+                        200g Kartoffeln <br></br>
+                        100g Möhren <br></br>
+                        250ml Wasser <br></br>
+                        200g Kartoffeln <br></br>
+                        100g Möhren <br></br>
+                        250ml Wasser <br></br>
                     </Text>
 
                 </ScrollView>
+                
+                <RatingBar></RatingBar>
+                <Text style={{
+                    textAlign: 'center',
+                    fontSize: 12,
+                    marginTop: 10
+                }}>
+                    {defaultRating + ' / ' + maxRating.length}
+                </Text>
+                <TouchableOpacity
+                    activeOpacity={0.7}
+                    style={{
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        marginTop: 15,
+                        padding: 7,
+                        backgroundColor: "green"
+                    }}
+                    onPress={rateRecipeById}>
+                        <Text>
+                            Rezept Bewerten
+                        </Text>
+                </TouchableOpacity>
             </View>
             <View
                 style={{
@@ -128,13 +236,13 @@ const RecipeOverview = () => {
                     }}>
                     Bearbeitungsschritte
                 </Text>
-                <ScrollView 
+                <ScrollView
                     showsVerticalScrollIndicator={false}
                     style={{
                         margin: 10,
                         marginHorizontal: 20
                     }}>
-                    
+
 
                     <Text style={{
                         fontSize: 21
@@ -155,5 +263,4 @@ const RecipeOverview = () => {
         </SafeAreaView>
     )
 }
-
 export default RecipeOverview;

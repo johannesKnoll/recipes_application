@@ -1,8 +1,11 @@
+
 import * as React from 'react';
 import { Text, View, Dimensions } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Overview } from './overview';
+import  RecipeOverview  from './RecipeOverview';
 import { User } from './user';
 import { Favoriten } from './favoriten';
 import { Entdecken } from './entdecken';
@@ -14,8 +17,8 @@ const Tab = createBottomTabNavigator();
 
 export function ScreenNavigation() {
   return (
-    <NavigationContainer>
-      <Tab.Navigator screenOptions={({ route }) => ({
+      <Tab.Navigator 
+      screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
@@ -41,7 +44,8 @@ export function ScreenNavigation() {
         },
         tabBarActiveTintColor: 'tomato',
         tabBarInactiveTintColor: 'gray',
-      })}>
+      })
+      }>
         <Tab.Screen name="Übersicht" component={Overview} />
         <Tab.Screen name="Favoriten" component={Favoriten} />
         <Tab.Screen name="Entdecken" component={Entdecken} />
@@ -49,6 +53,5 @@ export function ScreenNavigation() {
         <Tab.Screen name="User" component={User} />
 
       </Tab.Navigator>
-    </NavigationContainer>
   );
 }

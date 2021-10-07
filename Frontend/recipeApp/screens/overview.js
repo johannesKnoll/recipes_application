@@ -15,8 +15,16 @@ import RecentCard from '../components/RecentCard';
 import { SearchBar } from 'react-native-elements';
 import {login, getAllRecipes, getDailyRecipe } from '../api';
 import { Recipe } from '../Entities/Recipe';
+import { useNavigation } from '@react-navigation/native';
 
-export function Overview({navigation}) {
+export function Overview() {
+
+    const navigation = useNavigation();
+    const onPressHandler = (id) => {
+      console.log(navigation)
+          navigation.navigate('recipe_overview', {id:id});
+    }
+
     const testData = [
         {
             id: 1,
@@ -32,24 +40,15 @@ export function Overview({navigation}) {
         }
     ];
 
+    // const navigation = useNavigation();
+    // const onPressHandler = () => {
+    //     console.log(navigation)
+    //         navigation.navigate('recipe-overview');
+    //   }
+
     const [recipes, setRecipes] = React.useState([]);
-    // const [dailyRecipe, setDailyRecipe] = React.useState<Product>({
-    //     id: 0,
-    //     userId: 0,
-    //     name: "",
-    //     description: [],
-    //     calories: 0,
-    //     protein: 0,
-    //     fat: 0,
-    //     carbohydrate: 0,
-    //     time: 0,
-    //     hasMeat: false,
-    //     picture: "",
-    //     ingredients: [],
-    //     compynayId: 0,
-    //     vegan: false,
-    //     vegetarian: false
-    // });
+    const dailyRecipeArray = [];
+    const [dailyRecipe, setDailyRecipe] = React.useState([]);
 
 
     React.useEffect(() => {
@@ -58,13 +57,16 @@ export function Overview({navigation}) {
         getAllRecipes()
             .then(res => {
                 const recipesNew = res;
+                console.log("here is the res from overview line 53: ",recipesNew)
                 setRecipes(recipesNew);
+                console.log(res, "Recipes in Overview");
             })
 
         getDailyRecipe()
             .then(res => {
                 const dailyRecipeNew = res;
-                //setDailyRecipe(dailyRecipeNew);
+                dailyRecipeArray.push(dailyRecipeNew)
+                setDailyRecipe(dailyRecipeArray);
                 console.log(dailyRecipeNew, "Daily Recipe");
             })
 
@@ -78,7 +80,7 @@ export function Overview({navigation}) {
     const updateSearch = (search) => {
       setSearch(search);
     };
-
+console.log("test", dailyRecipeArray)
     return (
         // <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         //     <Text>Overview!</Text>
@@ -107,7 +109,7 @@ export function Overview({navigation}) {
             
 
             <FlatList
-                data={testData}
+                data={dailyRecipeArray}
                 keyExtractor={item => `${item.id}`}
                 keyboardDismissMode="on-drag"
                 showsHorizontalScrollIndicator={false}
@@ -133,7 +135,7 @@ export function Overview({navigation}) {
                                 return (
                                     <RecentCard
                                         recipe={item}
-                                        onPress={null}
+                                        onPress={()=>onPressHandler(item.id)}
                                     >
                                     </RecentCard>
                                 )
@@ -157,7 +159,7 @@ export function Overview({navigation}) {
                     return (
                         <RecipeCard
                             recipe={item}
-                            onPress={null}
+                            onPress={onPressHandler}
                         >
                         </RecipeCard>
                     )
