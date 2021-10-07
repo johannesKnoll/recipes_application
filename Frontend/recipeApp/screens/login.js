@@ -36,7 +36,7 @@ export default function Login() {
             loggedInUser = res;
             console.log(loggedInUser);
             if(loggedInUser){
-                navigation.navigate('overview_screen');
+                navigation.navigate('home');
             }else{
                 alert("Falsches Passwort oder Benutzername");
             }

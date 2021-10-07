@@ -19,7 +19,6 @@ const RecentCard = ({recipe, onPress}) => {
                 console.log(res, "Response for isFavorite");
                 setIsFavorite(isFavoriteNew);
             })
-        console.log(recipe.hasMeat, "Has Meat");
     },[]);
 
     const addFavorite = () => {
@@ -74,8 +73,7 @@ const RecentCard = ({recipe, onPress}) => {
                         color: 'white',
                     }}    
                 >
-                    {recipe.hasMeat??
-                    recipe.name}
+                    Test
                 </Text>
             </View>
             <View

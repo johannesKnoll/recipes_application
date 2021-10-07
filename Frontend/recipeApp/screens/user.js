@@ -13,8 +13,33 @@ import {
 
 } from "react-native";
 
+import { useNavigation } from '@react-navigation/native';
+import FooterMenu from '../components/FooterMenu';
+
 
 export function User() {
+
+    const navigation = useNavigation();
+    const onPressHandlerHome = () => {
+      console.log(navigation)
+          navigation.navigate('favoriten');
+    }
+    const onPressHandlerFavoriten = () => {
+      console.log(navigation)
+          navigation.navigate('favoriten');
+    }
+    const onPressHandlerEntdecken = () => {
+      console.log(navigation)
+          navigation.navigate('favoriten');
+    }
+    const onPressHandlerHinzufuegen = () => {
+      console.log(navigation)
+          navigation.navigate('favoriten');
+    }
+    const onPressHandlerUser = () => {
+      console.log(navigation)
+          navigation.navigate('favoriten');
+    }
 
 
 
@@ -32,6 +57,11 @@ export function User() {
                     <Text style={styles.font} ><b>Logout</b></Text>
                 </TouchableOpacity>
             </ImageBackground>
+            <FooterMenu onPressHome={onPressHandlerHome}
+                onPressFavoriten={onPressHandlerFavoriten}
+                onPressEntdecken={onPressHandlerEntdecken}
+                onPressHinzufuegen={onPressHandlerHinzufuegen}
+                onPressUser={onPressHandlerUser}></FooterMenu>
         </View>
 
     );
