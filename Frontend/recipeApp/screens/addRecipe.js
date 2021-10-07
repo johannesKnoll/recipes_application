@@ -8,6 +8,8 @@ import { createRecipe, login } from '../api';
 import Steps from "./Steps";
 import StepZutat from "./StepZutat";
 import axios from 'axios';
+import { useNavigation } from '@react-navigation/native';
+import FooterMenu from '../components/FooterMenu';
 
 
 
@@ -32,6 +34,7 @@ class AddRecipe extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      navigation: null,
       isLoading: true,
       imageFilePath: null,
       categories: [],
@@ -64,6 +67,11 @@ class AddRecipe extends Component {
     this.handleChangeTime = this.handleChangeTime.bind(this);
     this.setStateCategory = this.setStateCategory.bind(this);
     this.seveRecipe = this.seveRecipe.bind(this);
+    this.onPressHandlerEntdecken = this.onPressHandlerEntdecken.bind(this);
+    this.onPressHandlerHome = this.onPressHandlerHome.bind(this);
+    this.onPressHandlerFavoriten = this.onPressHandlerFavoriten.bind(this);
+    this.onPressHandlerHinzufuegen = this.onPressHandlerHinzufuegen.bind(this);
+    this.onPressHandlerUser = this.onPressHandlerUser.bind(this);
 
   }
   //   state = {
@@ -302,6 +310,33 @@ class AddRecipe extends Component {
   //   base64URL: ""
   // };
 
+  
+  onPressHandlerHome(){
+    this.setState({ navigation: useNavigation() });
+    console.log(navigation)
+        this.navigation.navigate('home');
+  }
+  onPressHandlerFavoriten(){
+    this.setState({ navigation: useNavigation() });
+    console.log(navigation)
+    this.navigation.navigate('favoriten');
+  }
+  onPressHandlerEntdecken(){
+    this.setState({ navigation: useNavigation() });
+    console.log(navigation)
+    this.navigation.navigate('entdecken');
+  }
+  onPressHandlerHinzufuegen(){
+    this.setState({ navigation: useNavigation() });
+    console.log(navigation)
+    this.navigation.navigate('hinzufuegen');
+  }
+  onPressHandlerUser(){
+    this.setState({ navigation: useNavigation() });
+    console.log(navigation)
+    this.navigation.navigate('user');
+  }
+
 handleChangeImage(event) {
     const target = event.target;
     const value = target.files[0].name;
@@ -354,6 +389,9 @@ handleChangeImage(event) {
   }
 
   render() {
+
+    
+
     const title = <h3 className="pt-2" style={{ display: 'flex', justifyContent: 'center' }}>Add New Recipe</h3>
     const { categories, isLoading } = this.state;
     let { stepList, stepZutat } = this.state
@@ -653,6 +691,11 @@ handleChangeImage(event) {
 
             </div>
           </ScrollView>
+          <FooterMenu onPressHome={this.onPressHandlerHome}
+                onPressFavoriten={this.onPressHandlerFavoriten}
+                onPressEntdecken={this.onPressHandlerEntdecken}
+                onPressHinzufuegen={this.onPressHandlerHinzufuegen}
+                onPressUser={this.onPressHandlerUser}></FooterMenu>
         </SafeAreaView>
       </form>
     );

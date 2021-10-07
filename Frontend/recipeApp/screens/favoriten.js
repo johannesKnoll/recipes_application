@@ -15,8 +15,33 @@ import  RecipeCard  from '../components/RecipeCard';
 import RecentCard from '../components/RecentCard';
 import { SearchBar } from 'react-native-elements';
 import { getFavoriteRecipes, getAllRecipesFromUser } from '../api';
+import FooterMenu from '../components/FooterMenu';
+import { useNavigation } from '@react-navigation/native';
 
 export function Favoriten() {
+
+    const navigation = useNavigation();
+    const onPressHandlerHome = () => {
+        console.log(navigation)
+            navigation.navigate('home');
+      }
+      const onPressHandlerFavoriten = () => {
+        console.log(navigation)
+            navigation.navigate('favoriten');
+      }
+      const onPressHandlerEntdecken = () => {
+        console.log(navigation)
+            navigation.navigate('entdecken');
+      }
+      const onPressHandlerHinzufuegen = () => {
+        console.log(navigation)
+            navigation.navigate('hinzufuegen');
+      }
+      const onPressHandlerUser = () => {
+        console.log(navigation)
+            navigation.navigate('user');
+      }
+
     const testData = [
         {
             id: 1,
@@ -153,7 +178,11 @@ export function Favoriten() {
                 }}>
 
             </FlatList>
-
+            <FooterMenu onPressHome={onPressHandlerHome}
+                onPressFavoriten={onPressHandlerFavoriten}
+                onPressEntdecken={onPressHandlerEntdecken}
+                onPressHinzufuegen={onPressHandlerHinzufuegen}
+                onPressUser={onPressHandlerUser}></FooterMenu>
         </SafeAreaView>
     );
 }

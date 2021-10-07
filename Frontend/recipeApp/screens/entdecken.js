@@ -15,8 +15,33 @@ import  RecipeCard  from '../components/RecipeCard';
 import RecentCard from '../components/RecentCard';
 import { SearchBar } from 'react-native-elements';
 import { getMeatRecipes, getVeganRecipes, getVegetarianRecipes } from '../api';
+import { useNavigation } from '@react-navigation/native';
+import FooterMenu from '../components/FooterMenu';
 
 export function Entdecken() {
+
+    const navigation = useNavigation();
+    const onPressHandlerHome = () => {
+        console.log(navigation)
+            navigation.navigate('home');
+      }
+      const onPressHandlerFavoriten = () => {
+        console.log(navigation)
+            navigation.navigate('favoriten');
+      }
+      const onPressHandlerEntdecken = () => {
+        console.log(navigation)
+            navigation.navigate('entdecken');
+      }
+      const onPressHandlerHinzufuegen = () => {
+        console.log(navigation)
+            navigation.navigate('hinzufuegen');
+      }
+      const onPressHandlerUser = () => {
+        console.log(navigation)
+            navigation.navigate('user');
+      }
+
     const testData = [
         {
             id: 1,
@@ -195,7 +220,11 @@ export function Entdecken() {
                 }}>
 
             </FlatList>
-
+            <FooterMenu onPressHome={onPressHandlerHome}
+                onPressFavoriten={onPressHandlerFavoriten}
+                onPressEntdecken={onPressHandlerEntdecken}
+                onPressHinzufuegen={onPressHandlerHinzufuegen}
+                onPressUser={onPressHandlerUser}></FooterMenu>
         </SafeAreaView>
     );
 }

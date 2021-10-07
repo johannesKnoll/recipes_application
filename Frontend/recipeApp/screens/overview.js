@@ -16,13 +16,34 @@ import { SearchBar } from 'react-native-elements';
 import {login, getAllRecipes, getDailyRecipe } from '../api';
 import { Recipe } from '../Entities/Recipe';
 import { useNavigation } from '@react-navigation/native';
+import FooterMenu from '../components/FooterMenu';
 
 export function Overview() {
     
     const navigation = useNavigation();
+    const onPressHandlerHome = () => {
+      console.log(navigation)
+          navigation.navigate('home');
+    }
+    const onPressHandlerFavoriten = () => {
+      console.log(navigation)
+          navigation.navigate('favoriten');
+    }
+    const onPressHandlerEntdecken = () => {
+      console.log(navigation)
+          navigation.navigate('entdecken');
+    }
+    const onPressHandlerHinzufuegen = () => {
+      console.log(navigation)
+          navigation.navigate('hinzufuegen');
+    }
+    const onPressHandlerUser = () => {
+      console.log(navigation)
+          navigation.navigate('user');
+    }
     const onPressHandler = () => {
       console.log(navigation)
-          navigation.navigate("recipe-overview");
+          navigation.navigate('recipe-overview');
     }
 
     const testData = [
@@ -165,7 +186,12 @@ console.log("test", dailyRecipeArray)
                 }}>
 
             </FlatList>
-            
+            <FooterMenu 
+                onPressHome={onPressHandlerHome}
+                onPressFavoriten={onPressHandlerFavoriten}
+                onPressEntdecken={onPressHandlerEntdecken}
+                onPressHinzufuegen={onPressHandlerHinzufuegen}
+                onPressUser={onPressHandlerUser}></FooterMenu>
         </SafeAreaView>
     );
 }
