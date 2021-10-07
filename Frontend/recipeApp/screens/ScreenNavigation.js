@@ -1,11 +1,8 @@
-
 import * as React from 'react';
 import { Text, View, Dimensions } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Overview } from './overview';
-import  RecipeOverview  from './RecipeOverview';
 import { User } from './user';
 import { Favoriten } from './favoriten';
 import { Entdecken } from './entdecken';
@@ -17,25 +14,25 @@ const Tab = createBottomTabNavigator();
 
 export function ScreenNavigation() {
   return (
-      <Tab.Navigator 
-      screenOptions={({ route }) => ({
+    <NavigationContainer independent={true}>
+      <Tab.Navigator screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
-          if (route.name === 'Übersicht') {
+          if (route.name === '1') {
             iconName = focused
               ? 'home'
               : 'home-outline';
-          } else if (route.name === 'Favoriten') {
+          } else if (route.name === '2') {
             iconName = focused ? 'star' : 'star-outline';
           }
-          else if (route.name === 'User') {
+          else if (route.name === '5') {
             iconName = focused ? 'person' : 'person-outline';
           }
-          else if (route.name === 'Hinzufügen') {
+          else if (route.name === '4') {
             iconName = focused ? 'add-circle' : 'add-circle-outline';
           }
-          else if (route.name === 'Entdecken') {
+          else if (route.name === '3') {
             iconName = focused ? 'md-glasses' : 'md-glasses-outline';
           }
 
@@ -44,14 +41,14 @@ export function ScreenNavigation() {
         },
         tabBarActiveTintColor: 'tomato',
         tabBarInactiveTintColor: 'gray',
-      })
-      }>
-        <Tab.Screen name="Übersicht" component={Overview} />
-        <Tab.Screen name="Favoriten" component={Favoriten} />
-        <Tab.Screen name="Entdecken" component={Entdecken} />
-        <Tab.Screen name="Hinzufügen" component={AddRecipe} />
-        <Tab.Screen name="User" component={User} />
+      })}>
+        <Tab.Screen name="1" component={Overview} />
+        <Tab.Screen name="2" component={Favoriten} />
+        <Tab.Screen name="3" component={Entdecken} />
+        <Tab.Screen name="4" component={AddRecipe} />
+        <Tab.Screen name="5" component={User} />
 
       </Tab.Navigator>
+    </NavigationContainer>
   );
 }

@@ -54,28 +54,51 @@ export default function App() {
 */
 
 
-  <NavigationContainer>
-        <Stack.Navigator> 
-          <Stack.Screen
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{
+          headerShown: false
+        }}>
+        {/* <Stack.Screen
           name="tab_navigation"
           component={ScreenNavigation}
+        /> */}
+        {/* <Stack.Screen
+          name="overview_screen"
+          component={Overview}
+        /> */}
+        {/* <Stack.Screen
+            
+            name="login_screen"
+            component={Login}
+            /> */}
+          <Stack.Screen
+            name="home"
+            component={Overview}
           />
-            <Stack.Screen
-            name="overview_screen"
-            component={ScreenNavigation}
-            />
-            <Stack.Screen
-            name="recipe_overview"
-            component={RecipeOverview}
-            />
-            <Stack.Screen
-            name="recipe-overview"
-            component={RecipeOverview}
-            />
-        </Stack.Navigator>
+        <Stack.Screen
+          name="recipe-overview"
+          component={RecipeOverview}
+        />
+        <Stack.Screen
+          name="favoriten"
+          component={Favoriten}
+        />
+        <Stack.Screen
+          name="entdecken"
+          component={Entdecken}
+        />
+        <Stack.Screen
+          name="hinzufuegen"
+          component={AddRecipe}
+        />
+        <Stack.Screen
+          name="user"
+          component={User}
+        />
+      </Stack.Navigator>
     </NavigationContainer>
   );
-  }
+}
 
 const styles = StyleSheet.create({
   container: {
