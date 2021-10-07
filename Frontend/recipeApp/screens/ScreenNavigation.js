@@ -46,10 +46,10 @@ export function ScreenNavigation() {
         tabBarInactiveTintColor: 'gray',
       })
       }>
-        <Tab.Screen name="Übersicht" component={Overview} />
-        <Tab.Screen name="Favoriten" component={Favoriten} />
-        <Tab.Screen name="Entdecken" component={Entdecken} />
-        <Tab.Screen name="Hinzufügen" component={AddRecipe} />
+        <Tab.Screen name="Übersicht" component={Overview} options={{unmountOnBlur: true}} />
+        <Tab.Screen name="Favoriten" component={Favoriten}options={{unmountOnBlur: true}} />
+        <Tab.Screen name="Entdecken" component={Entdecken} options={{unmountOnBlur: true}}/>
+        <Tab.Screen name="Hinzufügen" component={AddRecipe} options={{unmountOnBlur: true}}/>
         <Tab.Screen name="User" component={User} />
 
       </Tab.Navigator>
