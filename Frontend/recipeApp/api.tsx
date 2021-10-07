@@ -25,7 +25,7 @@ export const login = (username: string, password: string): Promise<User | undefi
             username: res.data.username
         } as User;
         Api.defaults.headers.common['Authorization'] = `Bearer ${user.token}`;
-         console.log("In Login", user);
+        console.log("In Login", user);
         return user;
         //}
         return undefined;
@@ -33,7 +33,7 @@ export const login = (username: string, password: string): Promise<User | undefi
         .catch(err => undefined);
 
 
-export const getAllRecipes = (): Promise<Array<Recipe>> => 
+export const getAllRecipes = (): Promise<Array<Recipe>> =>
     Api.get("/product/getAllProduct")
         .then(res => {
             console.log("Recipes", res.data);
@@ -73,7 +73,7 @@ export const getMeatRecipes = (): Promise<Array<Recipe>> =>
             return res.data
         })
 
-export const addToFavorite = (recipeId: number): Promise<string> => 
+export const addToFavorite = (recipeId: number): Promise<string> =>
     Api.post(`/users/addToFavorite/${recipeId}`)
         .then(res => {
             return res.data;
@@ -87,6 +87,21 @@ export const getFavoriteRecipes = (): Promise<Array<Recipe>> =>
 
 export const checkIfFavoriteListContainsRecipe = (recipeId: number): Promise<boolean> =>
     Api.get(`/users/checkIfFavoriteListContainsRecipe/${recipeId}`)
+        .then(res => {
+            return res.data;
+        })
+export const setEmail = (email: String): Promise<boolean> =>
+    Api.get(`/users/UpdateEmailRequest/${email}`)
+        .then(res => {
+            return res.data;
+        })
+export const setPassword = (password: String): Promise<boolean> =>
+    Api.get(`/users/UpdatePasswordRequest/${password}`)
+        .then(res => {
+            return res.data;
+        })
+export const setUserName = (username: String): Promise<boolean> =>
+    Api.get(`/users/UpdateUsernameRequest/${username}`)
         .then(res => {
             return res.data;
         })
