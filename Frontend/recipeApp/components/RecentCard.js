@@ -74,8 +74,7 @@ const RecentCard = ({recipe, onPress}) => {
                         color: 'white',
                     }}    
                 >
-                    {recipe.hasMeat??
-                    recipe.name}
+                    Test
                 </Text>
             </View>
             <View

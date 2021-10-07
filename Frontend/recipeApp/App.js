@@ -54,28 +54,24 @@ export default function App() {
 */
 
 
-  <NavigationContainer>
-        <Stack.Navigator> 
-          <Stack.Screen
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
           name="tab_navigation"
           component={ScreenNavigation}
-          />
-            <Stack.Screen
-            name="overview_screen"
-            component={ScreenNavigation}
-            />
-            <Stack.Screen
-            name="recipe_overview"
-            component={RecipeOverview}
-            />
-            <Stack.Screen
-            name="recipe-overview"
-            component={RecipeOverview}
-            />
-        </Stack.Navigator>
+        />
+        <Stack.Screen
+          name="overview_screen"
+          component={Overview}
+        />
+        <Stack.Screen
+          name="recipe_overview"
+          component={RecipeOverview}
+        />
+      </Stack.Navigator>
     </NavigationContainer>
   );
-  }
+}
 
 const styles = StyleSheet.create({
   container: {

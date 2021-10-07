@@ -18,11 +18,12 @@ import { Recipe } from '../Entities/Recipe';
 import { useNavigation } from '@react-navigation/native';
 
 export function Overview() {
-
-    // const onPressHandler = (id) => {
-    //   console.log(navigation)
-    //       navigation.navigate('recipe_overview', {id:id});
-    // }
+    
+    const navigation = useNavigation();
+    const onPressHandler = () => {
+      console.log(navigation)
+          navigation.navigate("recipe-overview");
+    }
 
     const testData = [
         {
@@ -39,7 +40,6 @@ export function Overview() {
         }
     ];
 
-    // const navigation = useNavigation();
     // const onPressHandler = () => {
     //     console.log(navigation)
     //         navigation.navigate('recipe-overview');
@@ -134,7 +134,7 @@ console.log("test", dailyRecipeArray)
                                 return (
                                     <RecentCard
                                         recipe={item}
-                                        onPress={()=>onPressHandler(item.id)}
+                                        onPress={onPressHandler}
                                     >
                                     </RecentCard>
                                 )
