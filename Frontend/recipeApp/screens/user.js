@@ -21,36 +21,47 @@ export function User() {
 
     const navigation = useNavigation();
     const onPressHandlerHome = () => {
-      console.log(navigation)
-          navigation.navigate('favoriten');
+        console.log(navigation)
+        navigation.navigate('favoriten');
     }
     const onPressHandlerFavoriten = () => {
-      console.log(navigation)
-          navigation.navigate('favoriten');
+        console.log(navigation)
+        navigation.navigate('favoriten');
     }
     const onPressHandlerEntdecken = () => {
-      console.log(navigation)
-          navigation.navigate('favoriten');
+        console.log(navigation)
+        navigation.navigate('favoriten');
     }
     const onPressHandlerHinzufuegen = () => {
-      console.log(navigation)
-          navigation.navigate('favoriten');
+        console.log(navigation)
+        navigation.navigate('favoriten');
     }
     const onPressHandlerUser = () => {
-      console.log(navigation)
-          navigation.navigate('favoriten');
+        console.log(navigation)
+        navigation.navigate('favoriten');
     }
-
+    const handelrChangePassword = () => {
+        navigation.navigate('changePassword');
+    }
+    const handelrChangeUsername = () => {
+        navigation.navigate('changeUsername');
+    }
+    const handelrChangeEmail = () => {
+        navigation.navigate('changeEmail');
+    }
 
 
     return (
         <View style={styles.container}>
             <ImageBackground resizeMode="cover" style={styles.backgroundImage} source={require("../assets/settings.jpg")}>
-                <TouchableOpacity style={styles.changePasswordEmail}>
+                <TouchableOpacity style={styles.changePasswordEmail} onPress={handelrChangeEmail}>
                     <Text>E-Mail ändern</Text>
                 </TouchableOpacity >
-                <TouchableOpacity style={styles.changePasswordEmail}  >
+                <TouchableOpacity style={styles.changePasswordEmail} onPress={handelrChangePassword} >
                     <Text >Passwort ändern</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.changePasswordEmail} onPress={handelrChangeUsername} >
+                    <Text >User Name ändern</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.logoutBtn} >
@@ -75,7 +86,8 @@ const styles = StyleSheet.create({
 
         alignItems: "center",
         justifyContent: "center",
-    }, logoutBtn: {
+    },
+    logoutBtn: {
         width: "80%",
         borderRadius: 25,
         height: 50,

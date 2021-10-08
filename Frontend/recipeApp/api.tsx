@@ -47,14 +47,14 @@ export const getDailyRecipe = (): Promise<Recipe> =>
             return res.data
         })
 
-export const createRecipe = (recipe: RecipeCreate): Promise<RecipeCreate | undefined> =>{
-return  Api.post("/product/createProduct", recipe)
+export const createRecipe = (recipe: RecipeCreate): Promise<RecipeCreate | undefined> => {
+    return Api.post("/product/createProduct", recipe)
         .then(res => {
             return res.data as Recipe;
-            
-        },fail => undefined)
+
+        }, fail => undefined)
         .catch(err => undefined);
-        }
+}
 
 
 export const getVeganRecipes = (): Promise<Array<Recipe>> =>
@@ -94,20 +94,24 @@ export const checkIfFavoriteListContainsRecipe = (recipeId: number): Promise<boo
         .then(res => {
             return res.data;
         })
-<<<<<<< HEAD
-export const setEmail = (email: String): Promise<boolean> =>
-    Api.get(`/users/UpdateEmailRequest/${email}`)
-        .then(res => {
-            return res.data;
-        })
-export const setPassword = (password: String): Promise<boolean> =>
-    Api.get(`/users/UpdatePasswordRequest/${password}`)
-        .then(res => {
-            return res.data;
-        })
-export const setUserName = (username: String): Promise<boolean> =>
-    Api.get(`/users/UpdateUsernameRequest/${username}`)
-=======
+export const setEmail = (email: string): Promise<boolean> =>
+    Api.post(`/users/updateEmail`, {
+        email
+    }).then(res => {
+        return res.data;
+    })
+export const setPassword = (password: string): Promise<boolean> =>
+    Api.post(`/users/updatePassword`, {
+        password
+    }).then(res => {
+        return res.data;
+    })
+export const setUsername = (username: string): Promise<boolean> =>
+    Api.post(`/users/updateUsername`, {
+        username
+    }).then(res => {
+        return res.data;
+    })
 
 export const getAllRecipesFromUser = (): Promise<Array<Recipe>> =>
     Api.get("/getAllRecipes")
@@ -123,9 +127,8 @@ export const rateRecipe = (recipeId: number, rating: number): Promise<string> =>
             return res.data;
         })
 
-export const getRecipeById = (recipeId: number): Promise<Recipe> => 
+export const getRecipeById = (recipeId: number): Promise<Recipe> =>
     Api.get(`/product/getProduct/${recipeId}`)
->>>>>>> 4026cb252ba21cd02a34338090762ab5893297f3
         .then(res => {
             return res.data;
         })

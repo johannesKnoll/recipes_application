@@ -7,8 +7,9 @@ import {
 } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { addToFavorite, checkIfFavoriteListContainsRecipe } from '../api';
+import RecipeOverview from '../screens/RecipeOverview';
 
-const RecentCard = ({recipe, onPress}) => {
+const RecentCard = ({ recipe, onPress }) => {
 
     const [isFavorite, setIsFavorite] = React.useState(false);
 
@@ -19,7 +20,7 @@ const RecentCard = ({recipe, onPress}) => {
                 console.log(res, "Response for isFavorite");
                 setIsFavorite(isFavoriteNew);
             })
-    },[]);
+    }, []);
 
     const addFavorite = () => {
         addToFavorite(recipe.id)
@@ -28,8 +29,8 @@ const RecentCard = ({recipe, onPress}) => {
             })
     }
 
-    return( 
-    
+    return (
+
         <TouchableOpacity
             style={{
                 flexDirection: 'row',
@@ -45,13 +46,13 @@ const RecentCard = ({recipe, onPress}) => {
 
             {/*Background Image*/}
             <Image
-            source={recipe.picture}
-            resizeMode="cover"
-            style={{
-                width: 250,
-                height: 350,
-                borderRadius: 10
-            }}
+                source={recipe.picture}
+                resizeMode="cover"
+                style={{
+                    width: 250,
+                    height: 350,
+                    borderRadius: 10
+                }}
             >
             </Image>
 
@@ -71,9 +72,9 @@ const RecentCard = ({recipe, onPress}) => {
                 <Text
                     style={{
                         color: 'white',
-                    }}    
+                    }}
                 >
-                    Test
+                    {recipe.hasMeat ? 'has meat' : recipe.vegetarian ? 'vegetarian' : 'vegan'}
                 </Text>
             </View>
             <View
@@ -83,13 +84,13 @@ const RecentCard = ({recipe, onPress}) => {
                     right: 10
                 }}
             >
-                    <Icon
-                        name={isFavorite? 'bookmark' : 'bookmark-outline'}
-                        type='ionicon'
-                        color='tomato'
-                        size={35}
-                        onPress={addFavorite}
-                    />
+                <Icon
+                    name={isFavorite ? 'bookmark' : 'bookmark-outline'}
+                    type='ionicon'
+                    color='tomato'
+                    size={35}
+                    onPress={addFavorite}
+                />
                 {/* To do: call setFavourite route on backend after onPress */}
             </View>
 
@@ -114,29 +115,29 @@ const RecentCard = ({recipe, onPress}) => {
                         color: 'white',
                         fontWeight: "bold",
                         fontSize: 20
-                    }}    
+                    }}
                 >
                     {recipe.name}
-                </Text> 
+                </Text>
                 <Text
                     style={{
                         color: 'white',
                         fontSize: 15,
                         flex: 1
-                    }}    
+                    }}
                 >
                     {recipe.calories + ' Kalorien, ' + recipe.protein + 'g Eiweiß, ' + recipe.fat + 'g Fett'}
-                </Text> 
+                </Text>
                 <Text
                     style={{
                         color: 'white',
                         fontSize: 10,
                         flex: 1,
                         marginTop: 10
-                    }}    
+                    }}
                 >
                     {recipe.averageRate + ' / 5 Sterne'}
-                </Text> 
+                </Text>
             </View>
         </TouchableOpacity>
     )

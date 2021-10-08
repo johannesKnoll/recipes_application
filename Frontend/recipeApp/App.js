@@ -15,10 +15,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { User } from './screens/user';
 import { Favoriten } from './screens/favoriten';
 import { Entdecken } from './screens/entdecken';
-import  AddRecipe  from './screens/addRecipe';
+import AddRecipe from './screens/addRecipe';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { ScreenContainer } from 'react-native-screens';
 import { ScreenNavigation } from './screens/ScreenNavigation';
+import { ChangeUsername } from './screens/changeUsername';
 
 const Stack = createNativeStackNavigator();
 
@@ -32,47 +33,47 @@ export default function App() {
     //          showVerticalScrollIndicator={false}
     //  </ScreenNavigation>
     //<RecipeOverview></RecipeOverview>
-  //<ChangePassword></ChangePassword>
+    //<ChangePassword></ChangePassword>
 
-  /*
-  <NavigationContainer>
-        <Stack.Navigator 
-        screenOptions={{
-          headerShown: false
-        }}>
-            <Stack.Screen
-            name="login_screen"
-            component={Login}
-            />
-            <Stack.Screen
-            name="overview_screen"
-            component={Overview}
-            />
-        </Stack.Navigator>
-    </NavigationContainer>
-  );
-*/
+    /*
+    <NavigationContainer>
+          <Stack.Navigator 
+          screenOptions={{
+            headerShown: false
+          }}>
+              <Stack.Screen
+              name="login_screen"
+              component={Login}
+              />
+              <Stack.Screen
+              name="overview_screen"
+              component={Overview}
+              />
+          </Stack.Navigator>
+      </NavigationContainer>
+    );
+  */
 
 
     <NavigationContainer>
-        {/* <Stack.Screen
+      {/* <Stack.Screen
           name="tab_navigation"
           component={ScreenNavigation}
         /> */}
-        {/* <Stack.Screen
+      {/* <Stack.Screen
           name="overview_screen"
           component={Overview}
         /> */}
-        {/* <Stack.Screen
+      {/* <Stack.Screen
             name="login_screen"
             component={Login}
             /> */}
-            <Stack.Navigator>
-          <Stack.Screen
-            name="home"
-            component={Overview}
-            options={{headerShown:false}}
-          />
+      <Stack.Navigator>
+        <Stack.Screen
+          name="home"
+          component={Overview}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen
           name="recipe-overview"
           component={RecipeOverview}
@@ -80,24 +81,42 @@ export default function App() {
         <Stack.Screen
           name="favoriten"
           component={Favoriten}
-          options={{headerShown:false}}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
           name="entdecken"
           component={Entdecken}
-          options={{headerShown:false}}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
           name="hinzufuegen"
           component={AddRecipe}
-          options={{headerShown:false}}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
           name="user"
           component={User}
-          options={{headerShown:false}}
+          options={{ headerShown: false }}
         />
+
+        <Stack.Screen
+          name="changePassword"
+          component={ChangePassword}
+
+        />
+        <Stack.Screen
+          name="changeUsername"
+          component={ChangeUsername}
+
+        />
+        <Stack.Screen
+          name="changeEmail"
+          component={ChangeEmail}
+
+        />
+
       </Stack.Navigator>
+
     </NavigationContainer>
   );
 }

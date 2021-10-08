@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useState } from 'react';
+
 
 import {
     StyleSheet,
@@ -11,10 +12,17 @@ import {
     ImageBackground,
 
 } from "react-native";
-
+import { setUsername, login } from '../api';
 
 export function ChangeUsername() {
-
+    const [text, setText] = React.useState('');
+    const changeUsernameHandler = () => {
+        login('thorstenBorsten', 'password')
+        setUsername(text)
+            .then(response => {
+                console.log(response)
+            })
+    }
 
 
     return (
@@ -25,14 +33,12 @@ export function ChangeUsername() {
                         style={styles.TextInput}
                         placeholder="neuer Benutzername"
                         placeholderTextColor="#003f5c"
+                        onChangeText={text => setText(text)}
 
                     />
-                </View>
 
 
-                <View style={styles.inputView}>
-
-                    <TouchableOpacity style={styles.changeUsername} >
+                    <TouchableOpacity style={styles.changeUsername} onPress={changeUsernameHandler} >
                         <Text style={styles.font}><b>ändere den Nutzernamen</b></Text>
                     </TouchableOpacity>
 
@@ -68,7 +74,7 @@ const styles = StyleSheet.create({
         width: "70%",
         height: 45,
         marginBottom: 10,
-        marginLeft: 20,
+        marginLeft: 40,
 
         alignItems: "center",
         opacity: "0.4",
@@ -81,7 +87,9 @@ const styles = StyleSheet.create({
         padding: 10,
         marginLeft: 40,
         fontWeight: "bold",
+        alignItems: "center",
         margin: "auto",
+
 
     },
     changeUsername: {
