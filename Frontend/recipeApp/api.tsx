@@ -31,6 +31,10 @@ export const login = (username: string, password: string): Promise<User | undefi
     }, fail => undefined)
         .catch(err => undefined);
 
+export const logAPI = (): void => {
+    console.log("API", Api.defaults.headers.common);
+}
+
 
 export const getAllRecipes = (): Promise<Array<Recipe>> =>
     Api.get("/product/getAllProduct")
@@ -132,3 +136,9 @@ export const getRecipeById = (recipeId: number): Promise<Recipe> =>
         .then(res => {
             return res.data;
         })
+
+export const getRecentlyViewed = (): Promise<Array<Recipe>> =>
+    Api.get("/product/getRecentlyViewed")
+    .then(res => {
+        return res.data;
+    })

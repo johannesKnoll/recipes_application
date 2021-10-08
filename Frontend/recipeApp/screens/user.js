@@ -21,14 +21,20 @@ export function User() {
 
     const navigation = useNavigation();
     const onPressHandlerHome = () => {
+<<<<<<< HEAD
         console.log(navigation)
         navigation.navigate('favoriten');
+=======
+      console.log(navigation)
+          navigation.navigate('home');
+>>>>>>> 498065c97a319f287a7632949a99a0bd98827922
     }
     const onPressHandlerFavoriten = () => {
         console.log(navigation)
         navigation.navigate('favoriten');
     }
     const onPressHandlerEntdecken = () => {
+<<<<<<< HEAD
         console.log(navigation)
         navigation.navigate('favoriten');
     }
@@ -48,6 +54,18 @@ export function User() {
     }
     const handelrChangeEmail = () => {
         navigation.navigate('changeEmail');
+=======
+      console.log(navigation)
+          navigation.navigate('entdecken');
+    }
+    const onPressHandlerHinzufuegen = () => {
+      console.log(navigation)
+          navigation.navigate('hinzufuegen');
+    }
+    const onPressHandlerUser = () => {
+      console.log(navigation)
+          navigation.navigate('user');
+>>>>>>> 498065c97a319f287a7632949a99a0bd98827922
     }
 
 

@@ -41,6 +41,10 @@ export function Favoriten() {
         console.log(navigation)
             navigation.navigate('user');
       }
+      const onPressHandler = () => {
+        console.log(navigation)
+            navigation.navigate('recipe-overview');
+      }
 
     const testData = [
         {
@@ -129,7 +133,9 @@ export function Favoriten() {
                                     return (
                                         <RecentCard
                                             recipe={item}
-                                            onPress={null}
+                                            onPress={() => {
+                                                navigation.navigate('recipe-overview', {id: item.id});
+                                            }}
                                         >
                                         </RecentCard>
                                     )
@@ -159,7 +165,7 @@ export function Favoriten() {
                                     return (
                                         <RecentCard
                                             recipe={item}
-                                            onPress={null}
+                                            onPress={onPressHandler}
                                         >
                                         </RecentCard>
                                     )

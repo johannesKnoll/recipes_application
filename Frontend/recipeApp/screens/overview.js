@@ -13,7 +13,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import  RecipeCard  from '../components/RecipeCard';
 import RecentCard from '../components/RecentCard';
 import { SearchBar } from 'react-native-elements';
-import {login, getAllRecipes, getDailyRecipe } from '../api';
+import {login, getAllRecipes, getDailyRecipe, getRecentlyViewed, logAPI } from '../api';
 import { Recipe } from '../Entities/Recipe';
 import { useNavigation } from '@react-navigation/native';
 import FooterMenu from '../components/FooterMenu';
@@ -41,9 +41,9 @@ export function Overview() {
       console.log(navigation)
           navigation.navigate('user');
     }
-    const onPressHandler = () => {
+    const onPressHandlerRecipeOverview = (id) => {
       console.log(navigation)
-          navigation.navigate('recipe-overview');
+          navigation.navigate('recipe-overview', {id: id});
     }
 
     const testData = [
@@ -72,9 +72,10 @@ export function Overview() {
 
 
     React.useEffect(() => {
-        login("thorstenBorsten", "password");
 
-        getAllRecipes()
+        logAPI();
+
+        getRecentlyViewed()
             .then(res => {
                 const recipesNew = res;
                 console.log("here is the res from overview line 53: ",recipesNew)
@@ -158,7 +159,9 @@ console.log("test", dailyRecipeArray)
                                 return (
                                     <RecentCard
                                         recipe={item}
-                                        onPress={onPressHandler}
+                                        onPress={() => {
+                                            navigation.navigate('recipe-overview', {id: item.id});
+                                        }}
                                     >
                                     </RecentCard>
                                 )
