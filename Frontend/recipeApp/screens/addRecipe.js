@@ -550,7 +550,9 @@ handleChangeImage(event) {
         >
            <NotificationContainer /> 
 
-          <ScrollView showVerticalScrollIndicator={false}>
+          <ScrollView 
+          showHorizontalScrollIndicator={false}
+          showVerticalScrollIndicator={false}>
             <div className="Site">
 
               <div className="Home-image"></div>
@@ -591,12 +593,18 @@ handleChangeImage(event) {
                     </Row>
                   </FormGroup>
 
-                  <FormGroup>
+                  <FormGroup
+                  style={{
+                    marginLeft: 15,
+                  }}>
                     <Label for="image">Bild aussuchen: </Label>
                     <input className="mt-2 ml-2" type="file" name="picture" onChange={this.handleFileInputChange} />
                   </FormGroup>
 
-                  <FormGroup>
+                  <FormGroup
+                  style={{
+                    marginLeft: 15,
+                  }}>
                     <Label for="category">Öffentlichkeit</Label>
                     <div className="form-check">
                       <input className="form-check-input" name="isPublic" type="checkbox" value="" id="defaultCheck1" onChange={e => this.setStatePublic(e)} />
@@ -605,8 +613,12 @@ handleChangeImage(event) {
                       </label>
                     </div>
                   </FormGroup>
-                  <FormGroup>
+                  <FormGroup
+                  style={{
+                    marginLeft: 15,
+                  }}>
                     <Label for="category">Kategorie</Label>
+
                     <div className="form-check">
                       <input className="form-check-input" name="hasMeat" type="checkbox" value="" id="defaultCheck1" onChange={e => this.setStateCategory(e)} />
                       <label className="form-check-label" htmlFor="defaultCheck1">
@@ -626,27 +638,29 @@ handleChangeImage(event) {
                       </label>
                     </div>
                   </FormGroup>
+
+                  <Form>
+                  <FormGroup>
+
                   <Label>Zutaten</Label>
 
                   <View style={{
-                    flex: 1,
-                    padding: 20,
+                    flex: 1,                    
                     backgroundColor: 'white',
                   }}>
                     <ScrollView style={{
                       flex: 1,
-                      marginBottom: 20
+                      marginBottom: 5
                     }}>
                       {this.state.inputs.map((input, key) => (
                         <View style={{
                           flexDirection: 'row',
                           justifyContent: 'space-between',
                           alignItems: 'center',
-                          borderBottomWidth: 1,
+                          borderBottomWidth: 0,
                           borderBottomColor: "lightgray"
                         }}>
-                          <Form>
-                            <FormGroup>
+                          
                               <Row>
                                 <Col>
                                   <StepZutat add={this.addNewRowZutat} delete={this.clickOnDeleteeZutat.bind(this)} stepZutat={stepZutat}></StepZutat>
@@ -668,35 +682,39 @@ handleChangeImage(event) {
                                   </Input>
                                 </Col> */}
                               </Row>
-                            </FormGroup>
-                          </Form>
                         </View>
                       ))}
                     </ScrollView>
                   </View>
+                </FormGroup>
+              </Form>
 
                   {/* <HomeScreen /> */}
                   {/* <Label for="ingredients">Ingredients</Label>
               <Input type="text" name="ingredients" id="ingredients" onChange={this.handleChange}/> */}
 
-                  <FormGroup>
+                  <FormGroup
+                  style={{
+                    marginLeft: 15,
+                    }}>
                     <Label>Bearbeitungsschritte</Label>
 
                     <View style={{
                       flex: 1,
-                      padding: 20,
+                      marginLeft: -10,
+                      padding: 0,
                       backgroundColor: 'white',
                     }}>
                       <ScrollView style={{
                         flex: 1,
-                        marginBottom: 20
+                        marginBottom: 10
                       }}>
                         {this.state.inputsSteps.map((input, key) => (
                           <View style={{
                             flexDirection: 'row',
                             justifyContent: 'space-between',
                             alignItems: 'center',
-                            borderBottomWidth: 1,
+                            borderBottomWidth: 0,
                             borderBottomColor: "lightgray",
                           }}>
 
