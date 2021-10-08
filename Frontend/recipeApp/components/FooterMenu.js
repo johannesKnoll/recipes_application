@@ -10,7 +10,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHinzufuegen, onPressUser }) => {
 
-    return( 
+    return (
         <View
             style={{
                 flexDirection: 'row',
@@ -21,54 +21,56 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
                 justifyContent: 'center',
             }}
         >
-            <Ionicons 
+            <Ionicons
                 style={{
                     marginLeft: 40,
                     marginRight: 40,
                     top: '50%'
-                }} 
-                name="home" 
-                size={40} 
+                }}
+                name="home"
+                size={40}
                 color="white"
-                onPress={onPressHome}>  
+                onPress={onPressHome}>
             </Ionicons>
-            <Ionicons 
+
+            <Ionicons
                 style={{
                     marginRight: 40,
                     top: '50%'
-                }}  
-                name="star" 
-                size={40} 
+                }}
+                name="star"
+                size={40}
                 color="white"
                 onPress={onPressFavoriten}>
             </Ionicons>
-            <Ionicons 
+            <Ionicons
                 style={{
                     marginRight: 40,
                     top: '50%'
-                }}  
-                name="star" 
-                size={40} 
+                }}
+
+                name="map-outline"
+                size={40}
                 color="white"
                 onPress={onPressEntdecken}>
             </Ionicons>
-            <Ionicons 
+            <Ionicons
                 style={{
                     marginRight: 40,
                     top: '50%'
-                }}  
-                name="star" 
-                size={40} 
+                }}
+                name="add-circle"
+                size={40}
                 color="white"
                 onPress={onPressHinzufuegen}>
             </Ionicons>
-            <Ionicons 
+            <Ionicons
                 style={{
                     marginRight: 40,
                     top: '50%'
-                }}  
-                name="star" 
-                size={40} 
+                }}
+                name='person'
+                size={40}
                 color="white"
                 onPress={onPressUser}>
             </Ionicons>

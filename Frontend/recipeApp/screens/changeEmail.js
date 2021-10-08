@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 
 import {
     StyleSheet,
@@ -10,43 +10,40 @@ import {
     TouchableOpacity,
     ImageBackground,
 
+
 } from "react-native";
+import { setEmail, login } from '../api';
 
 
 export function ChangeEmail() {
-
+    const [text, setText] = React.useState('');
+    const changeEmailHandler = () => {
+        login('thorstenBorsten', 'password')
+        setEmail(text)
+            .then(response => {
+                console.log(response)
+            })
+    }
 
 
     return (
         <View style={styles.container}>
             <ImageBackground resizeMode="cover" style={styles.backgroundImage} source={require("../assets/settings.jpg")}>
-                <View style={styles.inputView}>
-                    <TextInput
-                        style={styles.TextInput}
-                        placeholder="Alte E-Mail Adresse"
-                        placeholderTextColor="#003f5c"
 
-                    />
-                </View>
 
                 <View style={styles.inputView}>
                     <TextInput
                         style={styles.TextInput}
                         placeholder="Neue Email Adresse"
                         placeholderTextColor="#003f5c"
-                        secureTextEntry={true}
+
+                        onChangeText={text => setText(text)}
 
                     />
-                </View>
-                <View style={styles.inputView}>
-                    <TextInput
-                        style={styles.TextInput}
-                        placeholder="Neue Email Adresse bestätigen"
-                        placeholderTextColor="#003f5c"
-                        secureTextEntry={true}
 
-                    />
-                    <TouchableOpacity style={styles.changeEmail} >
+
+
+                    <TouchableOpacity style={styles.changeEmail} onPress={changeEmailHandler} >
                         <Text style={styles.font}><b>E-Mail ändern</b></Text>
                     </TouchableOpacity>
 

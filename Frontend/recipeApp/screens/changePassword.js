@@ -1,4 +1,5 @@
-import * as React from 'react';
+import { Center } from 'native-base';
+import React, { useState } from 'react';
 
 import {
     StyleSheet,
@@ -11,23 +12,25 @@ import {
     ImageBackground,
 
 } from "react-native";
+import { setPassword, login } from '../api';
 
 
 export function ChangePassword() {
-
+    const [text, setText] = React.useState('');
+    const [text2, setText2] = React.useState('');
+    const changePasswordHandler = () => {
+        login('thorstenBorsten', 'password')
+        setPassword(text)
+            .then(response => {
+                console.log(response)
+            })
+    }
 
 
     return (
         <View style={styles.container}>
             <ImageBackground resizeMode="cover" style={styles.backgroundImage} source={require("../assets/settings.jpg")}>
-                <View style={styles.inputView}>
-                    <TextInput
-                        style={styles.TextInput}
-                        placeholder="Alte E-Mail Adresse"
-                        placeholderTextColor="#003f5c"
 
-                    />
-                </View>
 
                 <View style={styles.inputView}>
                     <TextInput
@@ -35,6 +38,7 @@ export function ChangePassword() {
                         placeholder="Neues Passwort"
                         placeholderTextColor="#003f5c"
                         secureTextEntry={true}
+                        onChangeText={text => setText(text)}
 
                     />
                 </View>
@@ -44,9 +48,10 @@ export function ChangePassword() {
                         placeholder="Neues Passwort bestätigen"
                         placeholderTextColor="#003f5c"
                         secureTextEntry={true}
+                        onChangeText={text2 => setText2(text2)}
 
                     />
-                    <TouchableOpacity style={styles.changePassword} >
+                    <TouchableOpacity style={styles.changePassword} onPress={changePasswordHandler}>
                         <Text style={styles.font}><b>Passwort ändern</b></Text>
                     </TouchableOpacity>
 
@@ -83,6 +88,7 @@ const styles = StyleSheet.create({
         height: 45,
         marginBottom: 10,
         marginLeft: 20,
+
 
         alignItems: "center",
         opacity: "0.4",

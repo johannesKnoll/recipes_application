@@ -10,13 +10,32 @@ import {
     ScrollView
 } from 'react-native';
 import { Icon, Divider } from 'react-native-elements';
-import { rateRecipe, getRecipeById } from '../api';
+import { rateRecipe, getRecipeById, login } from '../api';
 import { Recipe } from '../Entities/Recipe';
 
-const RecipeOverview = ({ recipeArgument }) => {
+function RecipeOverview({ route }){
 
     const [defaultRating, setDefaultRating] = React.useState(2);
     const [maxRating, setMaxRating] = React.useState([1,2,3,4,5]);
+    const [recipe, setRecipe] = React.useState<Recipe>({
+        id: 0,
+        public: false,
+        name: "",
+        description: [],
+        calories: 0,
+        protein: 0,
+        fat: 0,
+        carbohydrate: 0,
+        time: 0,
+        hasMeat: false,
+        picture: "",
+        ingredients: [],
+        compynayId: 0,
+        vegan: false,
+        vegetarian: false,
+        averageRate: 0
+    });
+    const { id } = route.params;
     // const [recipe, setRecipe] = React.useState<Recipe>({
     //     id: 0,
     //     userId: 0,
@@ -35,6 +54,15 @@ const RecipeOverview = ({ recipeArgument }) => {
     //     vegetarian: false,
     //     averageRate: 0
     // })
+
+    React.useEffect(() => {
+        getRecipeById(id)
+            .then(res => {
+                setRecipe(res);
+                console.log(recipe, "Recipe to show");
+                console.log(recipe.name, "Recipe to show name");
+            })
+    },[]);
 
     const starImageFilled = "https://raw.githubusercontent.com/tranhonghan/images/main/star_filled.png";
     const starImageCorner = "https://raw.githubusercontent.com/tranhonghan/images/main/star_corner.png";
@@ -93,8 +121,6 @@ const RecipeOverview = ({ recipeArgument }) => {
 
     return (
         <SafeAreaView
-            showHorizontalScrollIndicator={false}
-            showVerticalScrollIndicator={false}
             style={{
                 flex: 1,
                 position: 'relative'
@@ -118,7 +144,7 @@ const RecipeOverview = ({ recipeArgument }) => {
                         fontSize: 40,
                         fontWeight: 'bold'
                     }}>
-                    Gemüsesuppe
+                    {recipe.name}
                 </Text>
             </View>
             <View
@@ -131,30 +157,36 @@ const RecipeOverview = ({ recipeArgument }) => {
                     height: 100,
                     marginBottom: 15
                 }}>
-                <Icon
-                    style={{
-                        marginRight: 50
-                    }}
-                    name='leaf'
-                    type='font-awesome-5'
-                    color='grey'
-                    size={35}
-                />
-                <Icon
-                    style={{
-                        marginRight: 50
-                    }}
-                    name='carrot'
-                    type='font-awesome-5'
-                    color='grey'
-                    size={35}
-                />
-                <Icon
-                    name='drumstick-bite'
-                    type='font-awesome-5'
-                    color='grey'
-                    size={35}
-                />
+                {recipe.hasMeat &&
+                    <Icon
+                        name='drumstick-bite'
+                        type='font-awesome-5'
+                        color='grey'
+                        size={35}
+                    />
+                }
+                {recipe.vegan &&
+                    <Icon
+                        style={{
+                            marginRight: 50
+                        }}
+                        name='leaf'
+                        type='font-awesome-5'
+                        color='grey'
+                        size={35}
+                    />
+                }
+                {recipe.vegetarian &&
+                    <Icon
+                        style={{
+                            marginRight: 50
+                        }}
+                        name='carrot'
+                        type='font-awesome-5'
+                        color='grey'
+                        size={35}
+                    />
+                }
             </View>
 
 
@@ -163,7 +195,6 @@ const RecipeOverview = ({ recipeArgument }) => {
                     left: 20,
                     position: 'absolute',
                     marginTop: 430,
-                    float: 'left',
                     height: '35%',
                     width: '30%'
                 }}>
@@ -184,15 +215,13 @@ const RecipeOverview = ({ recipeArgument }) => {
                     <Text style={{
                         fontSize: 20
                     }}>
-                        200g Kartoffeln <br></br>
-                        100g Möhren <br></br>
-                        250ml Wasser <br></br>
-                        200g Kartoffeln <br></br>
-                        100g Möhren <br></br>
-                        250ml Wasser <br></br>
-                        200g Kartoffeln <br></br>
-                        100g Möhren <br></br>
-                        250ml Wasser <br></br>
+                        {recipe.ingredients.map(ingredient => {
+                            return(
+                                <Text>
+                                    {ingredient}
+                                </Text>
+                            )
+                        })}
                     </Text>
 
                 </ScrollView>
@@ -247,14 +276,13 @@ const RecipeOverview = ({ recipeArgument }) => {
                     <Text style={{
                         fontSize: 21
                     }}>
-                        1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor incididunt ut labore et dolore magna aliqua. <p></p>
-                        2. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex ea commodo consequat. <p></p>
-                        3. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                        pariatur. <p></p>
-                        4. Excepteur sint occaecat cupidatat non proident, sunt in
-                        culpa qui officia deserunt mollit anim id est laborum.
+                        {recipe.description.map(step => {
+                            return(
+                                <Text>
+                                    {step}
+                                </Text>
+                            )
+                        })}
                     </Text>
 
                 </ScrollView>
