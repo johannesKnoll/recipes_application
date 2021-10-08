@@ -3,7 +3,7 @@ import './AddRecipe.css';
 import { Link } from 'react-router-dom';
 import { SafeAreaView, ScrollView, View, Button } from 'react-native';
 import { Container, Form, Input, Label, FormGroup, Row, Col } from 'reactstrap';
-//import { NotificationContainer, NotificationManager } from 'react-notifications';
+import { NotificationContainer, NotificationManager } from 'react-notifications';
 import { createRecipe, login } from '../api';
 import Steps from "./Steps";
 import StepZutat from "./StepZutat";
@@ -15,7 +15,7 @@ import FooterMenu from '../components/FooterMenu';
 
 class AddRecipe extends Component {
   emptyRecipe = {
-    name: 'default',
+    name: "",
     description: [],
     calories: 0,
     protein: 0,
@@ -60,7 +60,7 @@ class AddRecipe extends Component {
       ],
       inputDescription: ""
     }
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmitt = this.handleSubmitt.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeImage = this.handleChangeImage.bind(this);
     this.handleChangeCategory = this.handleChangeCategory.bind(this);
@@ -72,8 +72,86 @@ class AddRecipe extends Component {
     this.onPressHandlerFavoriten = this.onPressHandlerFavoriten.bind(this);
     this.onPressHandlerHinzufuegen = this.onPressHandlerHinzufuegen.bind(this);
     this.onPressHandlerUser = this.onPressHandlerUser.bind(this);
+    this.ifSaveisOkay = this.ifSaveisOkay.bind(this);
 
   }
+  
+  ifSaveisOkay = (e) =>{
+    var i = true;
+    if(i === true){
+    if(this.state.recipe.name===""){
+      NotificationManager.warning("Please Fill up Name Field .");
+      return i= false;
+    } if (this.state.recipe.calories===0){
+      NotificationManager.warning("Please Fill up calories Field . ");
+      return i= false; 
+    } if (this.state.recipe.time===0){
+      NotificationManager.warning("Please Fill up time Field . ");
+      return i= false;
+    }
+     if (this.state.recipe.isVegetarian===false && this.state.recipe.isVegan===false && this.state.recipe.hasMeat===false){
+      NotificationManager.warning("Please Fill up Kategorie Field . ");
+      return i= false;
+    }
+     if (this.state.recipe.protein===0){
+      NotificationManager.warning("Please Fill up protein Field . ");
+      return i= false;
+    }
+     if (this.state.recipe.fat===0){
+      NotificationManager.warning("Please Fill up fat Field . ");
+      return i= false;
+    }if (this.state.recipe.carbohydrate===0){
+      NotificationManager.warning("Please Fill up carbohydrate Field . ");
+      return i= false;
+    }
+     if (this.state.recipe.description===0){
+      NotificationManager.warning("Please Fill up calories Field . ");
+      return i= false;
+    }  if (this.state.recipe.ingredients===0){
+      NotificationManager.warning("Please Fill up calories Field . ");
+      i= false;
+    }if (this.state.recipe.picture===""){
+      NotificationManager.warning("Please Fill up calories Field . ");
+      return i= false;
+    }
+  }else if(i ===true){
+    
+      return this.saveRecipe
+  }
+  }
+
+  handleSubmitt = (e) => {
+    
+    e.preventDefault();
+    if( this.state.recipe.name===null)
+    {
+
+        NotificationManager.warning("Please Fill up Required Field . Please check Task and Date Field");
+        return false;
+    }
+    // else{
+    //   return true;
+    // }
+  }
+//     // for(var i=0;i<this.state.stepList.length;i++)
+//     // {
+//     //         if(this.state.stepList[i].description==='')
+//     //         {
+//     //             NotificationManager.warning("Please Fill up Required Field.Please Check Project name And Task Field");
+//     //             return false;
+//     //         }
+//     // }
+//     // let data = { formData: this.state, userData: localStorage.getItem('user') }
+//     // axios.defaults.headers.common["Authorization"] = localStorage.getItem('token');
+//     // axios.post("http://localhost:9000/api/task", data).then(res => {
+//     //     if(res.data.success) NotificationManager.success(res.data.msg);
+//     // }).catch(error => {
+//     //     if(error.response.status && error.response.status===400)
+//     //     NotificationManager.error("Bad Request");
+//     //     else NotificationManager.error("Something Went Wrong");
+//     //     this.setState({ errors: error })
+//     // });
+// }
   //   state = {
   //     stepList: [{ index: Math.random(), description: "" }],
 
@@ -164,10 +242,10 @@ class AddRecipe extends Component {
     // this.setState({ stepList: stepList1 });
   }
 
-  handleSubmitt = (e) => {
-    e.preventDefault();
-  //  console.log(this.state)
-  }
+  // handleSubmitt = (e) => {
+  //   e.preventDefault();
+  // //  console.log(this.state)
+  // }
   clickOnDeletee(record) {
     this.setState({
       stepList: this.state.stepList.filter(r => r !== record)
@@ -277,6 +355,8 @@ class AddRecipe extends Component {
        console.log(fileInfo);
     });
   };
+
+  
  
   handleFileInputChange = e => {
     console.log(e.target.files[0]);
@@ -431,62 +511,62 @@ handleChangeImage(event) {
       console.log(event.target.value);
     }
 
-    const deleteHandler = (key) => {
-      const _inputs = this.state.inputs.filter((input, index) => index != key);
-      this.setState({
-        inputs: _inputs
-      })
-    }
-
-    const inputHandler = (text, key) => {
-      const _inputs = [...this.state.inputs];
-      _inputs[key].value = text;
-      _inputs[key].key = key;
-      this.setState({
-        inputs: _inputs
-      })
-    }
-
-
-
-
-    //Methods for adding and deleting cooking steps
-    const addHandlerSteps = (e) => {
-      let _inputs = [...this.state.inputsSteps];
-      _inputs.push(this.state.inputDescription);
-      this.setState({
-        inputsSteps: _inputs
-      })
-      console.log(this.state)
-
-
-      let newInputs = [...this.state.inputsSteps, { key: '', value: '' }];
-      this.setState({
-        inputsSteps: newInputs
-      })
-    }
-    const deleteHandlerSteps = (key) => {
-      const _inputs = this.state.inputsSteps.filter((input, index) => index != key);
-      this.setState({
-        inputsSteps: _inputs
-      })
-    }
-
-
-    const inputHandlerSteps = (text, key) => {
-      const _inputs = [...this.state.inputsSteps];
-      _inputs[key].value = text;
-      _inputs[key].key = key;
-      this.state.setInputs(_inputs);
-    }
-
-    // if(isLoading) {
-    //   return (
-    //     <div>Loading...</div>
-    //   );
+    // const deleteHandler = (key) => {
+    //   const _inputs = this.state.inputs.filter((input, index) => index != key);
+    //   this.setState({
+    //     inputs: _inputs
+    //   })
     // }
 
-    let optionList = categories.map(category => <option id={category.id}> {category.name} </option>);
+    // const inputHandler = (text, key) => {
+    //   const _inputs = [...this.state.inputs];
+    //   _inputs[key].value = text;
+    //   _inputs[key].key = key;
+    //   this.setState({
+    //     inputs: _inputs
+    //   })
+    // }
+
+
+
+
+    // //Methods for adding and deleting cooking steps
+    // const addHandlerSteps = (e) => {
+    //   let _inputs = [...this.state.inputsSteps];
+    //   _inputs.push(this.state.inputDescription);
+    //   this.setState({
+    //     inputsSteps: _inputs
+    //   })
+    //   console.log(this.state)
+
+
+    //   let newInputs = [...this.state.inputsSteps, { key: '', value: '' }];
+    //   this.setState({
+    //     inputsSteps: newInputs
+    //   })
+    // }
+    // const deleteHandlerSteps = (key) => {
+    //   const _inputs = this.state.inputsSteps.filter((input, index) => index != key);
+    //   this.setState({
+    //     inputsSteps: _inputs
+    //   })
+    // }
+
+
+    // const inputHandlerSteps = (text, key) => {
+    //   const _inputs = [...this.state.inputsSteps];
+    //   _inputs[key].value = text;
+    //   _inputs[key].key = key;
+    //   this.state.setInputs(_inputs);
+    // }
+
+    // // if(isLoading) {
+    // //   return (
+    // //     <div>Loading...</div>
+    // //   );
+    // // }
+
+    // let optionList = categories.map(category => <option id={category.id}> {category.name} </option>);
 
 
     return (
@@ -496,7 +576,7 @@ handleChangeImage(event) {
           showVerticalScrollIndicator={false}
           style={{ flex: 1, backgroundColor: "white" }}
         >
-          {/* <NotificationContainer /> */}
+           <NotificationContainer/> 
 
           <ScrollView showVerticalScrollIndicator={false}>
             <div className="Site">
@@ -678,7 +758,8 @@ handleChangeImage(event) {
                   <FormGroup>
                     <Row>
                       <Col>
-                        <Button title="Save Recipe" onPress={this.saveRecipe}></Button>
+                        <Button title="Save Recipe" onPress={this.ifSaveisOkay}
+                         ></Button>
                       </Col>
                       <Col>
                         <Button title="Cancel"></Button>
