@@ -3,7 +3,7 @@ import './AddRecipe.css';
 import { Link } from 'react-router-dom';
 import { SafeAreaView, ScrollView, View, Button } from 'react-native';
 import { Container, Form, Input, Label, FormGroup, Row, Col } from 'reactstrap';
-//import { NotificationContainer, NotificationManager } from 'react-notifications';
+import { NotificationContainer, NotificationManager } from 'react-notifications';
 import { createRecipe, login } from '../api';
 import Steps from "./Steps";
 import StepZutat from "./StepZutat";
@@ -72,11 +72,62 @@ class AddRecipe extends Component {
     this.onPressHandlerFavoriten = this.onPressHandlerFavoriten.bind(this);
     this.onPressHandlerHinzufuegen = this.onPressHandlerHinzufuegen.bind(this);
     this.onPressHandlerUser = this.onPressHandlerUser.bind(this);
+     // this.ifSaveisOkay = this.ifSaveisOkay.bind(this);
 
   }
-  //   state = {
-  //     stepList: [{ index: Math.random(), description: "" }],
-
+  
+  // ifSaveisOkay = (e) =>{
+  //   var i = true;
+  //   if(i === true){
+  //   if(this.state.recipe.name===""){
+  //     NotificationManager.warning("Please Fill up Name Field .");
+  //     window.location.reload(false);
+  //     return i= false;
+  //   } if (this.state.recipe.calories===0){
+  //     NotificationManager.warning("Please Fill up calories Field . ");
+  //     window.location.reload(false);
+  //     return i= false; 
+  //   } if (this.state.recipe.time===0){
+  //     NotificationManager.warning("Please Fill up time Field . ");
+  //     window.location.reload(false);
+  //     return i= false;
+  //   }
+  //    if (this.state.recipe.isVegetarian===false && this.state.recipe.isVegan===false && this.state.recipe.hasMeat===false){
+  //     NotificationManager.warning("Please Fill up Kategorie Field . ");
+  //     window.location.reload(false);
+  //     return i= false;
+  //   }
+  //    if (this.state.recipe.protein===0){
+  //     NotificationManager.warning("Please Fill up protein Field . ");
+  //     window.location.reload(false);
+  //     return i= false;
+  //   }
+  //    if (this.state.recipe.fat===0){
+  //     NotificationManager.warning("Please Fill up fat Field . ");
+  //     window.location.reload(false);
+  //     return i= false;
+  //   }if (this.state.recipe.carbohydrate===0){
+  //     NotificationManager.warning("Please Fill up carbohydrate Field . ");
+  //     window.location.reload(false);
+  //     return i= false;
+  //   }
+  //    if (this.state.recipe.description===0){
+  //     NotificationManager.warning("Please Fill up description Field . ");
+  //     window.location.reload(false);
+  //     return i= false;
+  //   }  if (this.state.recipe.ingredients===0){
+  //     NotificationManager.warning("Please Fill up calories Field . ");
+  //     window.location.reload(false);
+  //     i= false;
+  //   }if (this.state.recipe.picture===""){
+  //     NotificationManager.warning("Please Fill up calories Field . ");
+  //     window.location.reload(false);
+  //     return i= false;
+  //   }
+  // }
+    
+  //     return this.saveRecipe
+  
   // }
   handleChangee = (e) => {
     if (["description"].includes(e.target.name)) {
@@ -118,6 +169,7 @@ class AddRecipe extends Component {
     // console.log(preperationList);
       this.state.recipe['description'] = preperationList;
       console.log( this.state.recipe);
+      window.location.reload(false);
           
   }
 
@@ -496,7 +548,7 @@ handleChangeImage(event) {
           showVerticalScrollIndicator={false}
           style={{ flex: 1, backgroundColor: "white" }}
         >
-          {/* <NotificationContainer /> */}
+           <NotificationContainer /> 
 
           <ScrollView showVerticalScrollIndicator={false}>
             <div className="Site">

@@ -55,9 +55,6 @@ export default function App() {
 
 
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{
-          headerShown: false
-        }}>
         {/* <Stack.Screen
           name="tab_navigation"
           component={ScreenNavigation}
@@ -67,13 +64,14 @@ export default function App() {
           component={Overview}
         /> */}
         {/* <Stack.Screen
-            
             name="login_screen"
             component={Login}
             /> */}
+            <Stack.Navigator>
           <Stack.Screen
             name="home"
             component={Overview}
+            options={{headerShown:false}}
           />
         <Stack.Screen
           name="recipe-overview"
@@ -82,18 +80,22 @@ export default function App() {
         <Stack.Screen
           name="favoriten"
           component={Favoriten}
+          options={{headerShown:false}}
         />
         <Stack.Screen
           name="entdecken"
           component={Entdecken}
+          options={{headerShown:false}}
         />
         <Stack.Screen
           name="hinzufuegen"
           component={AddRecipe}
+          options={{headerShown:false}}
         />
         <Stack.Screen
           name="user"
           component={User}
+          options={{headerShown:false}}
         />
       </Stack.Navigator>
     </NavigationContainer>

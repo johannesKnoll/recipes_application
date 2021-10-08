@@ -101,6 +101,8 @@ export function Overview() {
       setSearch(search);
     };
 console.log("test", dailyRecipeArray)
+
+
     return (
         // <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         //     <Text>Overview!</Text>
@@ -111,6 +113,7 @@ console.log("test", dailyRecipeArray)
         showVerticalScrollIndicator={false}
             style={{flex: 1, backgroundColor: "white"}}
         >
+            
           
             <View
                 style={{
@@ -182,6 +185,7 @@ console.log("test", dailyRecipeArray)
                             onPress={onPressHandler}
                         >
                         </RecipeCard>
+                        
                     )
                 }}>
 
