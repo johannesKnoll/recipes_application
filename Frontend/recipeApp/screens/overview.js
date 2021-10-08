@@ -159,11 +159,11 @@ console.log("test", dailyRecipeArray)
                                     <RecentCard
                                         recipe={item}
                                         onPress={onPressHandler}
-                                    >
+                                        >
                                     </RecentCard>
                                 )
                             }}
-                        >
+                            >
                         </FlatList>
                         <Text
                             style={{

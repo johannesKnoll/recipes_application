@@ -83,6 +83,12 @@ export const addToFavorite = (recipeId: number): Promise<string> =>
             return res.data;
         })
 
+        export const addToFavoritee = (recipeId: number): Promise<string> => 
+    Api.post(`/users/addToFavorite/${recipeId}`)
+        .then(res => {
+            return res.data;
+        })
+
 export const getFavoriteRecipes = (): Promise<Array<Recipe>> =>
     Api.get("/users/getAllFavorites")
         .then(res => {
