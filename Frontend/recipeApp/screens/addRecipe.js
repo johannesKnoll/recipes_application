@@ -242,8 +242,6 @@ class AddRecipe extends Component {
     console.log(this.state.recipe, "Recipe handle Change");
   }
 
-
-
   handleChangeTime(event) {
     const target = event.target;
     const value = target.value;

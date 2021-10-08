@@ -92,9 +92,10 @@ public class ProductController {
 
 
     @RequestMapping("/getProduct/{productId}")
-    public Product getProduct(@PathVariable("productId") long id) {
+    public Product getProduct(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl, @PathVariable("productId") long id) {
        // productRepository.save(productService.getProductById(id));
-        return productService.getProductById(id);
+        User user = userRepository.findById(userDetailsImpl.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Keinen User gefunden"));
+        return productService.getProductById(user, id);
     }
 
     /*@RequestMapping("/getProductById/{productId}")
@@ -104,10 +105,10 @@ public class ProductController {
     }*/
 
 
-                            @RequestMapping("/getAllProduct")
-                            public List<ProductDTO> getAll(){
-                                return productService.getAll().stream().map(ProductDTO::new).collect(Collectors.toList());
-                            }
+    @RequestMapping("/getAllProduct")
+    public List<ProductDTO> getAll(){
+        return productService.getAll().stream().map(ProductDTO::new).collect(Collectors.toList());
+    }
 
     @GetMapping("/getAllPublicRecipes")
     public List<Product> getAllPublicRecipes(){
@@ -162,12 +163,11 @@ public class ProductController {
         return productService.getDailyRecipe().stream().map(ProductDTO::new).collect(Collectors.toList());
     }
 
+
     @GetMapping("/getRecentlyViewed")
-    public List<Product> getRecebtlyViewed() {
+    public List<Product> getRecebtlyViewed(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {
        // return productService.getRecentlyViewed().stream().map(ProductDTO::new).collect(Collectors.toList());
-        return productService.getRecentlyViewed();
+        User user = userRepository.findById(userDetailsImpl.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Keinen User gefunden"));
+        return user.getRecentylyViewed();
     }
-
-
-
 }

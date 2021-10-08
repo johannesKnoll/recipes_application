@@ -9,8 +9,11 @@ import com.example.accessingmongodbdatarest.Security.services.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.sql.Blob;
 import java.util.*;
@@ -144,12 +147,18 @@ public class ProductService {
         return productRepository.findProductByName(name);
     }
 
-    public Product getProductById(long id) {
+    public Product getProductById(User user, long id) {
         //recentlyViewd.add(productRepository.findById(id));
         //getRecentlyViewed();
-
-        User user = getAuthorizedUser();
-        if(user.getRecentylyViewed().size() < 5){
+        if(user.getRecentylyViewed().size() == 0){
+            user.addToRecently(productRepository.findById(id));
+        }else if(user.getRecentylyViewed().size() < 5){
+            for (Product product: user.getRecentylyViewed()
+                 ) {
+                if(product.getId() == id){
+                    continue;
+                }
+            }
             user.addToRecently(productRepository.findById(id));
         }else if(user.getRecentylyViewed().size() >= 5){
             user.removeFromRecently(productRepository.findById(id));

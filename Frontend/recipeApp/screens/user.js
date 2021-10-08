@@ -22,7 +22,7 @@ export function User() {
     const navigation = useNavigation();
     const onPressHandlerHome = () => {
       console.log(navigation)
-          navigation.navigate('favoriten');
+          navigation.navigate('home');
     }
     const onPressHandlerFavoriten = () => {
       console.log(navigation)
@@ -30,15 +30,15 @@ export function User() {
     }
     const onPressHandlerEntdecken = () => {
       console.log(navigation)
-          navigation.navigate('favoriten');
+          navigation.navigate('entdecken');
     }
     const onPressHandlerHinzufuegen = () => {
       console.log(navigation)
-          navigation.navigate('favoriten');
+          navigation.navigate('hinzufuegen');
     }
     const onPressHandlerUser = () => {
       console.log(navigation)
-          navigation.navigate('favoriten');
+          navigation.navigate('user');
     }
 
 
