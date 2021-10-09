@@ -6,12 +6,13 @@ import {
     Image
 } from 'react-native';
 import { Icon } from 'react-native-elements';
-import { addToFavorite, checkIfFavoriteListContainsRecipe } from '../api';
+import { addToFavorite, checkIfFavoriteListContainsRecipe, getUserByUserId } from '../api';
 import RecipeOverview from '../screens/RecipeOverview';
 
 const RecentCard = ({ recipe, onPress }) => {
 
     const [isFavorite, setIsFavorite] = React.useState(false);
+    const [username, setUserName] = React.useState("");
 
     React.useEffect(() => {
         checkIfFavoriteListContainsRecipe(recipe.id)
@@ -20,12 +21,17 @@ const RecentCard = ({ recipe, onPress }) => {
                 console.log(res, "Response for isFavorite");
                 setIsFavorite(isFavoriteNew);
             })
+
+        getUserByUserId(recipe.userId)
+            .then(user => {
+                setUserName(user.username);
+            })
     }, []);
 
     const addFavorite = () => {
         addToFavorite(recipe.id)
             .then(res => {
-                console.log(res, "Response for Add REcipe");
+                alert(res);
             })
     }
 
@@ -74,7 +80,27 @@ const RecentCard = ({ recipe, onPress }) => {
                         color: 'white',
                     }}
                 >
-                    {recipe.hasMeat ? 'has meat' : recipe.vegetarian ? 'vegetarian' : 'vegan'}
+                    {recipe.hasMeat ? 'Mit Fleisch' : recipe.vegetarian ? 'Vegetarisch' : 'Vegan'}
+                </Text>
+            </View>
+            <View
+                style={{
+                    position: 'absolute',
+                    top: 40,
+                    left: 10,
+                    paddingHorizontal: 10,
+                    paddingVertical: 5,
+                    backgroundColor: 'black',
+                    borderRadius: 10,
+                    opacity: 0.5
+                }}
+            >
+                <Text
+                    style={{
+                        color: 'white',
+                    }}
+                >
+                    {"Von: " + username}
                 </Text>
             </View>
             <View

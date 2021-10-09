@@ -2,6 +2,7 @@ import axios from 'axios';
 import { User } from './Entities/User';
 import { Recipe } from './Entities/Recipe';
 import { RecipeCreate } from './Entities/RecipeCreate';
+import { UserDTO } from './Entities/UserDTO';
 
 const instance = axios.create({
     baseURL: "http://localhost:8080",
@@ -160,6 +161,12 @@ export const getRecipeById = (recipeId: number): Promise<Recipe> =>
 
 export const getRecentlyViewed = (): Promise<Array<Recipe>> =>
     Api.get("/product/getRecentlyViewed")
+        .then(res => {
+            return res.data;
+        })
+
+export const getUserByUserId = (userId: number): Promise<UserDTO> =>
+    Api.get(`/users/getUserByUserId/${userId}`)
         .then(res => {
             return res.data;
         })

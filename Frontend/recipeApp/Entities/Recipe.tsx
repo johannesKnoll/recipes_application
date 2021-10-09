@@ -1,5 +1,6 @@
 export interface Recipe{
     id: number,
+    userId: number,
     public: boolean,
     name: string,
     description: Array<string>,
