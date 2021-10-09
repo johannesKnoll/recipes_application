@@ -102,7 +102,7 @@ export const addToFavorite = (recipeId: number): Promise<string> =>
             return res.data;
         })
 
-        export const addToFavoritee = (recipeId: number): Promise<string> => 
+export const addToFavoritee = (recipeId: number): Promise<string> =>
     Api.post(`/users/addToFavorite/${recipeId}`)
         .then(res => {
             return res.data;
@@ -125,9 +125,9 @@ export const setEmail = (email: string): Promise<boolean> =>
     }).then(res => {
         return res.data;
     })
-export const setPassword = (password: string): Promise<boolean> =>
+export const setPassword = (password: string, repeatPassword: string): Promise<boolean> =>
     Api.post(`/users/updatePassword`, {
-        password
+        password, repeatPassword
     }).then(res => {
         return res.data;
     })
@@ -160,6 +160,6 @@ export const getRecipeById = (recipeId: number): Promise<Recipe> =>
 
 export const getRecentlyViewed = (): Promise<Array<Recipe>> =>
     Api.get("/product/getRecentlyViewed")
-    .then(res => {
-        return res.data;
-    })
+        .then(res => {
+            return res.data;
+        })

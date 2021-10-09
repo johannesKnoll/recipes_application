@@ -21,24 +21,36 @@ export function User() {
 
     const navigation = useNavigation();
     const onPressHandlerHome = () => {
-      console.log(navigation)
-          navigation.navigate('home');
+        console.log(navigation)
+        navigation.navigate('home');
     }
     const onPressHandlerFavoriten = () => {
         console.log(navigation)
         navigation.navigate('favoriten');
     }
     const onPressHandlerEntdecken = () => {
-      console.log(navigation)
-          navigation.navigate('entdecken');
+        console.log(navigation)
+        navigation.navigate('entdecken');
     }
     const onPressHandlerHinzufuegen = () => {
-      console.log(navigation)
-          navigation.navigate('hinzufuegen');
+        console.log(navigation)
+        navigation.navigate('hinzufuegen');
     }
     const onPressHandlerUser = () => {
-      console.log(navigation)
-          navigation.navigate('user');
+        console.log(navigation)
+        navigation.navigate('user');
+    }
+    const handelrChangeEmail = () => {
+        console.log(navigation)
+        navigation.navigate('changeEmail');
+    }
+    const handelrChangePassword = () => {
+        console.log(navigation)
+        navigation.navigate('changePassword');
+    }
+    const handelrChangeUsername = () => {
+        console.log(navigation)
+        navigation.navigate('changeUsername');
     }
 
 
