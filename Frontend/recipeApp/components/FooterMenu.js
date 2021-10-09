@@ -28,6 +28,7 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
                 onPress={() => alert('Pressed!')}>
                 <Ionicons
                     style={{
+                        marginTop: 8,
                         marginLeft: 30,
                         marginRight: 30,
                         top: '50%'
@@ -47,6 +48,7 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
                     style={{
                         marginRight: 30,
                         marginLeft: 30,
+                        marginTop: 8,
                         top: '50%'
                     }}
                     name="star"
@@ -63,6 +65,7 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
                     style={{
                         marginRight: 30,
                         marginLeft: 30,
+                        marginTop: 8,
                         top: '50%'
                     }}
 
@@ -80,6 +83,7 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
                     style={{
                         marginRight: 30,
                         marginLeft: 30,
+                        marginTop: 8,
                         top: '50%'
                     }}
                     name="add-circle"
@@ -96,6 +100,7 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
                     style={{
                         marginRight: 30,
                         marginLeft: 30,
+                        marginTop: 8,
                         top: '50%'
                     }}
                     name='person'
