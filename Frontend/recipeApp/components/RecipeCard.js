@@ -60,7 +60,7 @@ const RecipeCard = ({recipe, onPress}) => {
                         fontSize: 20
                     }}
                 >
-                    {recipe.id}
+                    {recipe.name}
                 </Text>
             </View>
             <View

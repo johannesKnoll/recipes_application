@@ -2,6 +2,7 @@ import axios from 'axios';
 import { User } from './Entities/User';
 import { Recipe } from './Entities/Recipe';
 import { RecipeCreate } from './Entities/RecipeCreate';
+import { UserDTO } from './Entities/UserDTO';
 
 const instance = axios.create({
     baseURL: "http://localhost:8080",
@@ -31,6 +32,21 @@ export const login = (username: string, password: string): Promise<User | undefi
     }, fail => undefined)
         .catch(err => undefined);
 
+export const signup = (username: string, email: string, password: string, name: string, lastName: string): Promise<User | undefined> =>
+    Api.post("/api/auth/signup", {
+        username,
+        email,
+        password,
+        name,
+        lastName
+    }).then(res => {
+            return res.data;
+        }, fail => {
+            console.log("fail", fail.response)
+            return fail.response.data.message;
+        })
+        .catch(err => console.log("error", err));
+
 export const logAPI = (): void => {
     console.log("API", Api.defaults.headers.common);
 }
@@ -45,7 +61,7 @@ export const getAllRecipes = (): Promise<Array<Recipe>> =>
             return res.data;
         })
 
-export const getDailyRecipe = (): Promise<Recipe> =>
+export const getDailyRecipe = (): Promise<Array<Recipe>> =>
     Api.get("/product/getDailyRecipe")
         .then(res => {
             return res.data
@@ -87,6 +103,12 @@ export const addToFavorite = (recipeId: number): Promise<string> =>
             return res.data;
         })
 
+export const addToFavoritee = (recipeId: number): Promise<string> =>
+    Api.post(`/users/addToFavorite/${recipeId}`)
+        .then(res => {
+            return res.data;
+        })
+
 export const getFavoriteRecipes = (): Promise<Array<Recipe>> =>
     Api.get("/users/getAllFavorites")
         .then(res => {
@@ -104,9 +126,9 @@ export const setEmail = (email: string): Promise<boolean> =>
     }).then(res => {
         return res.data;
     })
-export const setPassword = (password: string): Promise<boolean> =>
+export const setPassword = (password: string, repeatPassword: string): Promise<boolean> =>
     Api.post(`/users/updatePassword`, {
-        password
+        password, repeatPassword
     }).then(res => {
         return res.data;
     })
@@ -118,7 +140,7 @@ export const setUsername = (username: string): Promise<boolean> =>
     })
 
 export const getAllRecipesFromUser = (): Promise<Array<Recipe>> =>
-    Api.get("/getAllRecipes")
+    Api.get("/users/getAllRecipes")
         .then(res => {
             return res.data;
         })
@@ -139,6 +161,12 @@ export const getRecipeById = (recipeId: number): Promise<Recipe> =>
 
 export const getRecentlyViewed = (): Promise<Array<Recipe>> =>
     Api.get("/product/getRecentlyViewed")
-    .then(res => {
-        return res.data;
-    })
+        .then(res => {
+            return res.data;
+        })
+
+export const getUserByUserId = (userId: number): Promise<UserDTO> =>
+    Api.get(`/users/getUserByUserId/${userId}`)
+        .then(res => {
+            return res.data;
+        })

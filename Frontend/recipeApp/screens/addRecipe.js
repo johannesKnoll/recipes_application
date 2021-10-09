@@ -39,7 +39,7 @@ class AddRecipe extends Component {
       imageFilePath: null,
       categories: [],
       recipes: [],
-      picture : null,
+      picture: null,
       file: null,
       base64URL: "",
       recipe: this.emptyRecipe,
@@ -72,10 +72,10 @@ class AddRecipe extends Component {
     this.onPressHandlerFavoriten = this.onPressHandlerFavoriten.bind(this);
     this.onPressHandlerHinzufuegen = this.onPressHandlerHinzufuegen.bind(this);
     this.onPressHandlerUser = this.onPressHandlerUser.bind(this);
-     // this.ifSaveisOkay = this.ifSaveisOkay.bind(this);
+    // this.ifSaveisOkay = this.ifSaveisOkay.bind(this);
 
   }
-  
+
   // ifSaveisOkay = (e) =>{
   //   var i = true;
   //   if(i === true){
@@ -125,24 +125,24 @@ class AddRecipe extends Component {
   //     return i= false;
   //   }
   // }
-    
+
   //     return this.saveRecipe
-  
+
   // }
   handleChangee = (e) => {
     if (["description"].includes(e.target.name)) {
       let stepList = [...this.state.stepList]
       stepList[e.target.dataset.id][e.target.name] = e.target.value;
     }
-    else if(["zutat"].includes(e.target.name)){
+    else if (["zutat"].includes(e.target.name)) {
       let stepZutatChange = [...this.state.stepZutat];
       stepZutatChange[e.target.dataset.id][e.target.name] = e.target.value;
     }
-    else if(["menge"].includes(e.target.name)){
+    else if (["menge"].includes(e.target.name)) {
       let stepMengeChange = [...this.state.stepZutat];
       stepMengeChange[e.target.dataset.id][e.target.name] = e.target.value;
     }
-    else if(["einheit"].includes(e.target.name)){
+    else if (["einheit"].includes(e.target.name)) {
       let stepEinheitChange = [...this.state.stepZutat];
       stepEinheitChange[e.target.dataset.id][e.target.name] = e.target.value;
     }
@@ -159,35 +159,35 @@ class AddRecipe extends Component {
     createRecipe(this.state.recipe);
   }
 
-  seveRecipe =()=>{
+  seveRecipe = () => {
     const saveList = this.state.stepList;
     let preperationList = [];
     //console.log(saveList);
-     saveList.map(element =>{
-      preperationList.push(element.description) 
-     })
+    saveList.map(element => {
+      preperationList.push(element.description)
+    })
     // console.log(preperationList);
-      this.state.recipe['description'] = preperationList;
-      console.log( this.state.recipe);
-      window.location.reload(false);
-          
+    this.state.recipe['description'] = preperationList;
+    console.log(this.state.recipe);
+    window.location.reload(false);
+
   }
 
-  seveRecipeZutat =()=>{
+  seveRecipeZutat = () => {
     const saveList = this.state.stepZutat;
     let preperationListZutat = [];
-   // console.log(saveList);
-     saveList.map(element =>{
-       const newZutat = element.menge + " " + element.einheit + " " + element.zutat;
-     //  console.log("Zutaten", newZutat);
-      preperationListZutat.push(newZutat) 
-     })
+    // console.log(saveList);
+    saveList.map(element => {
+      const newZutat = element.menge + " " + element.einheit + " " + element.zutat;
+      //  console.log("Zutaten", newZutat);
+      preperationListZutat.push(newZutat)
+    })
     // console.log(preperationListZutat);
-      this.state.recipe['ingredients'] = preperationListZutat;
-      console.log( this.state.recipe);
-          
+    this.state.recipe['ingredients'] = preperationListZutat;
+    console.log(this.state.recipe);
+
   }
-  
+
   addNewRoww = () => {
     this.setState((prevState) => ({
       stepList: [...prevState.stepList, { index: Math.random(), description: "" }],
@@ -218,7 +218,7 @@ class AddRecipe extends Component {
 
   handleSubmitt = (e) => {
     e.preventDefault();
-  //  console.log(this.state)
+    //  console.log(this.state)
   }
   clickOnDeletee(record) {
     this.setState({
@@ -293,10 +293,8 @@ class AddRecipe extends Component {
     let recipe = { ...this.state.recipe };
     recipe[name] = value;
     this.setState({ recipe });
-    
-  }
 
-  
+  }
   getBase64 = file => {
     return new Promise(resolve => {
       let fileInfo;
@@ -312,7 +310,7 @@ class AddRecipe extends Component {
         // Make a fileInfo Object
         console.log("Called", reader);
         baseURL = reader.result;
-         console.log("this is the String: ",baseURL);
+        console.log("this is the String: ", baseURL);
         resolve(baseURL);
         // this.setState({
         //   picture: baseURL
@@ -324,10 +322,10 @@ class AddRecipe extends Component {
         this.setState({ recipe });
 
       };
-       console.log(fileInfo);
+      console.log(fileInfo);
     });
   };
- 
+
   handleFileInputChange = e => {
     console.log(e.target.files[0]);
     let { file } = this.state;
@@ -343,58 +341,58 @@ class AddRecipe extends Component {
           file,
         });
         console.log(e)
-  
+
       }).catch(err => {
         console.log(err);
       });
-    
+
     this.setState({
       file: e.target.files[0]
     });
-    
-  
-   
+
+
+
   };
   // state = {
   //   file: null,
   //   base64URL: ""
   // };
 
-  
-  onPressHandlerHome(){
+
+  onPressHandlerHome() {
     this.setState({ navigation: useNavigation() });
     console.log(navigation)
-        this.navigation.navigate('home');
+    this.navigation.navigate('home');
   }
-  onPressHandlerFavoriten(){
+  onPressHandlerFavoriten() {
     this.setState({ navigation: useNavigation() });
     console.log(navigation)
     this.navigation.navigate('favoriten');
   }
-  onPressHandlerEntdecken(){
+  onPressHandlerEntdecken() {
     this.setState({ navigation: useNavigation() });
     console.log(navigation)
     this.navigation.navigate('entdecken');
   }
-  onPressHandlerHinzufuegen(){
+  onPressHandlerHinzufuegen() {
     this.setState({ navigation: useNavigation() });
     console.log(navigation)
     this.navigation.navigate('hinzufuegen');
   }
-  onPressHandlerUser(){
+  onPressHandlerUser() {
     this.setState({ navigation: useNavigation() });
     console.log(navigation)
     this.navigation.navigate('user');
   }
 
-handleChangeImage(event) {
+  handleChangeImage(event) {
     const target = event.target;
     const value = target.files[0].name;
     const name = target.name;
     let recipe = { ...this.state.recipe };
     recipe[name] = value;
     this.setState({ recipe });
-    
+
   }
 
   handleChangeCategory(event) {
@@ -440,7 +438,7 @@ handleChangeImage(event) {
 
   render() {
 
-    
+
 
     const title = <h3 className="pt-2" style={{ display: 'flex', justifyContent: 'center' }}>Add New Recipe</h3>
     const { categories, isLoading } = this.state;
@@ -546,11 +544,11 @@ handleChangeImage(event) {
           showVerticalScrollIndicator={false}
           style={{ flex: 1, backgroundColor: "white" }}
         >
-           <NotificationContainer /> 
+          <NotificationContainer />
 
-          <ScrollView 
-          showHorizontalScrollIndicator={false}
-          showVerticalScrollIndicator={false}>
+          <ScrollView
+            showHorizontalScrollIndicator={false}
+            showVerticalScrollIndicator={false}>
             <div className="Site">
 
               <div className="Home-image"></div>
@@ -592,17 +590,17 @@ handleChangeImage(event) {
                   </FormGroup>
 
                   <FormGroup
-                  style={{
-                    marginLeft: 15,
-                  }}>
+                    style={{
+                      marginLeft: 15,
+                    }}>
                     <Label for="image">Bild aussuchen: </Label>
                     <input className="mt-2 ml-2" type="file" name="picture" onChange={this.handleFileInputChange} />
                   </FormGroup>
 
                   <FormGroup
-                  style={{
-                    marginLeft: 15,
-                  }}>
+                    style={{
+                      marginLeft: 15,
+                    }}>
                     <Label for="category">Öffentlichkeit</Label>
                     <div className="form-check">
                       <input className="form-check-input" name="isPublic" type="checkbox" value="" id="defaultCheck1" onChange={e => this.setStatePublic(e)} />
@@ -612,9 +610,9 @@ handleChangeImage(event) {
                     </div>
                   </FormGroup>
                   <FormGroup
-                  style={{
-                    marginLeft: 15,
-                  }}>
+                    style={{
+                      marginLeft: 15,
+                    }}>
                     <Label for="category">Kategorie</Label>
 
                     <div className="form-check">
@@ -638,27 +636,27 @@ handleChangeImage(event) {
                   </FormGroup>
 
                   <Form>
-                  <FormGroup>
+                    <FormGroup>
 
-                  <Label>Zutaten</Label>
+                      <Label>Zutaten</Label>
 
-                  <View style={{
-                    flex: 1,                    
-                    backgroundColor: 'white',
-                  }}>
-                    <ScrollView style={{
-                      flex: 1,
-                      marginBottom: 5
-                    }}>
-                      {this.state.inputs.map((input, key) => (
-                        <View style={{
-                          flexDirection: 'row',
-                          justifyContent: 'space-between',
-                          alignItems: 'center',
-                          borderBottomWidth: 0,
-                          borderBottomColor: "lightgray"
+                      <View style={{
+                        flex: 1,
+                        backgroundColor: 'white',
+                      }}>
+                        <ScrollView style={{
+                          flex: 1,
+                          marginBottom: 5
                         }}>
-                          
+                          {this.state.inputs.map((input, key) => (
+                            <View style={{
+                              flexDirection: 'row',
+                              justifyContent: 'space-between',
+                              alignItems: 'center',
+                              borderBottomWidth: 0,
+                              borderBottomColor: "lightgray"
+                            }}>
+
                               <Row>
                                 <Col>
                                   <StepZutat add={this.addNewRowZutat} delete={this.clickOnDeleteeZutat.bind(this)} stepZutat={stepZutat}></StepZutat>
@@ -680,20 +678,20 @@ handleChangeImage(event) {
                                   </Input>
                                 </Col> */}
                               </Row>
-                        </View>
-                      ))}
-                    </ScrollView>
-                  </View>
-                </FormGroup>
-              </Form>
+                            </View>
+                          ))}
+                        </ScrollView>
+                      </View>
+                    </FormGroup>
+                  </Form>
 
                   {/* <HomeScreen /> */}
                   {/* <Label for="ingredients">Ingredients</Label>
               <Input type="text" name="ingredients" id="ingredients" onChange={this.handleChange}/> */}
 
                   <FormGroup
-                  style={{
-                    marginLeft: 15,
+                    style={{
+                      marginLeft: 15,
                     }}>
                     <Label>Bearbeitungsschritte</Label>
 
@@ -727,9 +725,9 @@ handleChangeImage(event) {
                                       value={this.state.inputDescription}
                                       onChange={(e) => this.setSteps(e)}
                                     /> */}
-                                      <tbody>
-                                    <Steps add={this.addNewRoww} delete={this.clickOnDeletee.bind(this)} stepList={stepList}/>
-                                </tbody>
+                                    <tbody>
+                                      <Steps add={this.addNewRoww} delete={this.clickOnDeletee.bind(this)} stepList={stepList} />
+                                    </tbody>
                                   </Col>
                                 </Row>
                               </FormGroup>
@@ -759,11 +757,13 @@ handleChangeImage(event) {
 
             </div>
           </ScrollView>
-          <FooterMenu onPressHome={this.onPressHandlerHome}
-                onPressFavoriten={this.onPressHandlerFavoriten}
-                onPressEntdecken={this.onPressHandlerEntdecken}
-                onPressHinzufuegen={this.onPressHandlerHinzufuegen}
-                onPressUser={this.onPressHandlerUser}></FooterMenu>
+          <FooterMenu
+            onPressHome={this.onPressHandlerHome}
+            onPressFavoriten={this.onPressHandlerFavoriten}
+            onPressEntdecken={this.onPressHandlerEntdecken}
+            onPressHinzufuegen={this.onPressHandlerHinzufuegen}
+            onPressUser={this.onPressHandlerUser}>
+          </FooterMenu>
         </SafeAreaView>
       </form>
     );

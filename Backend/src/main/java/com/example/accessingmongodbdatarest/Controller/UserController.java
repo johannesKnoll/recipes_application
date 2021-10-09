@@ -1,6 +1,5 @@
 package com.example.accessingmongodbdatarest.Controller;
 
-import com.example.accessingmongodbdatarest.DTO.ProductDTO;
 import com.example.accessingmongodbdatarest.DTO.UserDTO;
 import com.example.accessingmongodbdatarest.Entities.Product;
 import com.example.accessingmongodbdatarest.Entities.User;
@@ -30,7 +29,6 @@ import java.security.Principal;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/users")
@@ -90,19 +88,28 @@ public class UserController {
     }
 
     @RequestMapping("/addToFavorite/{recipeId}")
-    public String addToFavorite(@PathVariable("recipeId")long id){
+    public void addToFavorite(@PathVariable("recipeId")long id){
         User user = getAuthorizedUser();
         Product productToAdd = productRepository.findById(id);
+        if(user.getFavoriteList().contains(productToAdd)){
+            user.removeFromFavorite(productToAdd);
+            userRepository.save(user);
+            //return "removed!";
+        }else if(!user.getFavoriteList().contains(productToAdd)){
         user.addToFavorite(productToAdd);
         userRepository.save(user);
 
-        return "Das Rezept wurde erfolgreich in die Favoriteliste hinzugefügt. Guten Apptitet;)";
-    }
+      //  return "Das Rezept wurde erfolgreich in die Favoriteliste hinzugefügt. Guten Apptitet;)";
+
+    }else{
+      //  return "error by adding/removing the product in the favorite list!";
+        }}
 
     @GetMapping("/getAllFavorites")
-    public List<ProductDTO> getAllFavoritesByUserId(){
+    public Set<Product> getAllFavoritesByUserId(){
         User user = getAuthorizedUser();
-        return user.getFavoriteList().stream().map(ProductDTO::new).collect(Collectors.toList());
+        System.out.println(user.getFavoriteList());
+        return user.getFavoriteList();
     }
 
     @GetMapping("/checkIfFavoriteListContainsRecipe/{recipeId}")
@@ -119,16 +126,11 @@ public class UserController {
     }
 
     @GetMapping("/getAllRecipes")
-    public List<ProductDTO> getAllRecipes(){
+    public List<Product> getAllRecipes(){
         User user = getAuthorizedUser();
         long userId = user.getId();
-        List<ProductDTO> allProducts = productService.getAllByUserId(userId).stream().map(ProductDTO::new).collect(Collectors.toList());
+        List<Product> allProducts = productService.getAllByUserId(userId);
         return allProducts;
-    }
-
-    @GetMapping("/getUserByUserId/{userId}")
-    public UserDTO getUserByUserId(@PathVariable("userId") long userId){
-        return userService.getUserByUserId(userId);
     }
 
     @GetMapping("/getLoggedInUser")

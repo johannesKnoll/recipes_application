@@ -18,10 +18,11 @@ import { setEmail, login } from '../api';
 export function ChangeEmail() {
     const [text, setText] = React.useState('');
     const changeEmailHandler = () => {
-        login('thorstenBorsten', 'password')
+
         setEmail(text)
             .then(response => {
                 console.log(response)
+                alert(response.message)
             })
     }
 

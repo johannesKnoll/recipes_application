@@ -19,10 +19,11 @@ export function ChangePassword() {
     const [text, setText] = React.useState('');
     const [text2, setText2] = React.useState('');
     const changePasswordHandler = () => {
-        login('thorstenBorsten', 'password')
-        setPassword(text)
+
+        setPassword(text, text2)
             .then(response => {
                 console.log(response)
+                alert(response.message)
             })
     }
 
@@ -51,7 +52,7 @@ export function ChangePassword() {
                         onChangeText={text2 => setText2(text2)}
 
                     />
-                    <TouchableOpacity style={styles.changePassword} onPress={changePasswordHandler}>
+                    <TouchableOpacity style={styles.changePassword} onPress={changePasswordHandler}  >
                         <Text style={styles.font}><b>Passwort ändern</b></Text>
                     </TouchableOpacity>
 
