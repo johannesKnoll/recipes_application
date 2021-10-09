@@ -140,7 +140,7 @@ export const setUsername = (username: string): Promise<boolean> =>
     })
 
 export const getAllRecipesFromUser = (): Promise<Array<Recipe>> =>
-    Api.get("/getAllRecipes")
+    Api.get("/users/getAllRecipes")
         .then(res => {
             return res.data;
         })

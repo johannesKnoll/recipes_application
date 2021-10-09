@@ -10,6 +10,7 @@ import {
     ScrollView
 } from 'react-native';
 import { Icon, Divider } from 'react-native-elements';
+import { bottom } from 'styled-system';
 import { rateRecipe, getRecipeById, login } from '../api';
 import { Recipe } from '../Entities/Recipe';
 
@@ -128,69 +129,91 @@ function RecipeOverview({ route }){
             }}
         >
 
-            <View>
-                <Image
-                    source={require('../pictures/picture1.jpg')}
-                    resizeMode="cover"
-                    style={{
-                        width: '100%',
-                        height: 270
-                    }}>
-
-                </Image>
-                <Text
-                    style={{
-                        margin: 10,
-                        textAlign: 'center',
-                        fontSize: 40,
-                        fontWeight: 'bold'
-                    }}>
-                    {recipe.name}
-                </Text>
-            </View>
-            <View
-                style={{
-                    position: 'relative',
-                    margin: 20,
-                    flex: 1,
-                    justifyContent: 'center',
-                    flexDirection: 'row',
-                    height: 100,
-                    marginBottom: 15
-                }}>
-                {recipe.hasMeat &&
-                    <Icon
-                        name='drumstick-bite'
-                        type='font-awesome-5'
-                        color='grey'
-                        size={35}
-                    />
-                }
-                {recipe.vegan &&
-                    <Icon
+            <View style={{
+            }}>
+                <View>
+                    <Image
+                        source={require('../pictures/picture1.jpg')}
+                        resizeMode="cover"
                         style={{
-                            marginRight: 50
-                        }}
-                        name='leaf'
-                        type='font-awesome-5'
-                        color='grey'
-                        size={35}
-                    />
-                }
-                {recipe.vegetarian &&
-                    <Icon
+                            width: '100%',
+                            height: 270
+                        }}>
+
+                    </Image>
+                    <View>
+                        <View
+                            style={{
+                                position: 'absolute',
+                                bottom: 10,
+                                left: 10,
+                                paddingHorizontal: 10,
+                                paddingVertical: 5,
+                                backgroundColor: 'black',
+                                borderRadius: 10,
+                                opacity: 0.7
+                            }}
+                        >
+                            <Text
+                                style={{
+                                    color: 'white',
+                                }}
+                            >
+                                {recipe.hasMeat ? 'Mit Fleisch' : recipe.vegetarian ? 'Vegetarisch' : 'Vegan'}
+                            </Text>
+                        </View>
+                        <View
+                            style={{
+                                position: 'absolute',
+                                bottom: 45,
+                                left: 10,
+                                paddingHorizontal: 10,
+                                paddingVertical: 5,
+                                backgroundColor: 'black',
+                                borderRadius: 10,
+                                opacity: 0.7
+                            }}
+                        >
+                            <Text
+                                style={{
+                                    color: 'white',
+                                }}
+                            >
+                                {recipe.time + " Min."}
+                            </Text>
+                        </View>
+                    </View>
+                </View>
+                <View>
+                    <Text
                         style={{
-                            marginRight: 50
-                        }}
-                        name='carrot'
-                        type='font-awesome-5'
-                        color='grey'
-                        size={35}
-                    />
-                }
+                            margin: 10,
+                            textAlign: 'center',
+                            fontSize: 40,
+                            fontWeight: 'bold'
+                        }}>
+                        {recipe.name}
+                    </Text>
+                    <Text
+                        style={{
+                            marginLeft: 10,
+                            marginTop: 5,
+                            textAlign: 'left',
+                            fontSize: 15,
+                        }}>
+                        {recipe.calories + " Kalorien   |   " + recipe.carbohydrate + "g Kohlenhydrate"}
+                    </Text>
+                    <Text
+                        style={{
+                            marginLeft: 10,
+                            marginTop: 5,
+                            textAlign: 'left',
+                            fontSize: 15,
+                        }}>
+                        {recipe.fat + "g Fett   |   " + recipe.protein + "g Eiweiß"}
+                    </Text>
+                </View>
             </View>
-
-
             <View
                 style={{
                     left: 20,
@@ -214,7 +237,7 @@ function RecipeOverview({ route }){
                     }}>
 
                     <Text style={{
-                        fontSize: 20
+                        fontSize: 15
                     }}>
                         {recipe.ingredients.map(ingredient => {
                             return(
@@ -244,7 +267,8 @@ function RecipeOverview({ route }){
                         padding: 7,
                         backgroundColor: "green"
                     }}
-                    onPress={rateRecipeById}>
+                    onPress={rateRecipeById}
+                    >
                         <Text>
                             Rezept Bewerten
                         </Text>
@@ -275,7 +299,7 @@ function RecipeOverview({ route }){
 
 
                     <Text style={{
-                        fontSize: 21
+                        fontSize: 15
                     }}>
                         {recipe.description.map(step => {
                             return(

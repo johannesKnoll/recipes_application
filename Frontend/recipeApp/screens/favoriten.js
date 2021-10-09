@@ -76,6 +76,7 @@ export function Favoriten() {
         getAllRecipesFromUser()
             .then(res => {
                 const userRecipesNew = res;
+                console.log("User recipes", res);
                 setUserRecipes(userRecipesNew);
             })
     },[]);
@@ -165,7 +166,9 @@ export function Favoriten() {
                                     return (
                                         <RecentCard
                                             recipe={item}
-                                            onPress={onPressHandler}
+                                            onPress={() => {
+                                                navigation.navigate('recipe-overview', {id: item.id});
+                                            }}
                                         >
                                         </RecentCard>
                                     )
