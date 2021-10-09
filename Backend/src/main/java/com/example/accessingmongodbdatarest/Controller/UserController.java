@@ -1,5 +1,6 @@
 package com.example.accessingmongodbdatarest.Controller;
 
+import com.example.accessingmongodbdatarest.DTO.ProductDTO;
 import com.example.accessingmongodbdatarest.DTO.UserDTO;
 import com.example.accessingmongodbdatarest.Entities.Product;
 import com.example.accessingmongodbdatarest.Entities.User;
@@ -29,6 +30,7 @@ import java.security.Principal;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/users")
@@ -106,10 +108,11 @@ public class UserController {
         }}
 
     @GetMapping("/getAllFavorites")
-    public Set<Product> getAllFavoritesByUserId(){
+    public List<ProductDTO> getAllFavoritesByUserId(){
         User user = getAuthorizedUser();
-        System.out.println(user.getFavoriteList());
-        return user.getFavoriteList();
+        //System.out.println(user.getFavoriteList());
+        //return user.getFavoriteList();
+        return user.getFavoriteList().stream().map(ProductDTO::new).collect(Collectors.toList());
     }
 
     @GetMapping("/checkIfFavoriteListContainsRecipe/{recipeId}")
