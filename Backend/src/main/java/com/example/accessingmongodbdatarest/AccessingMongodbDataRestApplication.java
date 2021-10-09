@@ -71,7 +71,6 @@ public class AccessingMongodbDataRestApplication extends SpringBootServletInitia
 			ingredients.add("200g Kartoffeln");
 
 			ArrayList<Product> RecipeDailyList = new ArrayList<Product>();
-			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Kichererbsensalat mit Feta", test,800, 30,25, 80, 30, true, true,false, ingredients, "pic" )));
 			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Quinoa-Pfanne", test,800, 30,25, 80, 30, true, true,false, ingredients, "pic" )));
 			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Blumenkohl-Curry", test,800, 30,25, 80, 30, true, true,false, ingredients, "pic" )));
 			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Nudeln mit Tomatensoße", test,800, 30,25, 80, 30, true, true,false, ingredients, "pic" )));

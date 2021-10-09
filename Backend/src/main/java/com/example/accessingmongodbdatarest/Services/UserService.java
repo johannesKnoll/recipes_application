@@ -45,6 +45,13 @@ public class UserService {
         return target;
     }
 
+    public UserDTO getUserByUserId(long userId){
+        User user = userRepository.findById(userId);
+        UserDTO userDTO = new UserDTO(user);
+
+        return userDTO;
+    }
+
     public UserDTO getLoggedInUser() {
         User user = getAuthorizedUser();
         UserDTO userDTO = new UserDTO(user);

@@ -1,5 +1,6 @@
 package com.example.accessingmongodbdatarest.Controller;
 
+import com.example.accessingmongodbdatarest.DTO.ProductDTO;
 import com.example.accessingmongodbdatarest.DTO.UserDTO;
 import com.example.accessingmongodbdatarest.Entities.Product;
 import com.example.accessingmongodbdatarest.Entities.User;
@@ -29,6 +30,7 @@ import java.security.Principal;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/users")
@@ -98,9 +100,9 @@ public class UserController {
     }
 
     @GetMapping("/getAllFavorites")
-    public Set<Product> getAllFavoritesByUserId(){
+    public List<ProductDTO> getAllFavoritesByUserId(){
         User user = getAuthorizedUser();
-        return user.getFavoriteList();
+        return user.getFavoriteList().stream().map(ProductDTO::new).collect(Collectors.toList());
     }
 
     @GetMapping("/checkIfFavoriteListContainsRecipe/{recipeId}")
@@ -117,11 +119,16 @@ public class UserController {
     }
 
     @GetMapping("/getAllRecipes")
-    public List<Product> getAllRecipes(){
+    public List<ProductDTO> getAllRecipes(){
         User user = getAuthorizedUser();
         long userId = user.getId();
-        List<Product> allProducts = productService.getAllByUserId(userId);
+        List<ProductDTO> allProducts = productService.getAllByUserId(userId).stream().map(ProductDTO::new).collect(Collectors.toList());
         return allProducts;
+    }
+
+    @GetMapping("/getUserByUserId/{userId}")
+    public UserDTO getUserByUserId(@PathVariable("userId") long userId){
+        return userService.getUserByUserId(userId);
     }
 
     @GetMapping("/getLoggedInUser")

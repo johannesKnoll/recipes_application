@@ -1,6 +1,7 @@
 package com.example.accessingmongodbdatarest.Services;
 
 import ch.qos.logback.core.joran.spi.NoAutoStart;
+import com.example.accessingmongodbdatarest.DTO.ProductDTO;
 import com.example.accessingmongodbdatarest.Entities.Product;
 import com.example.accessingmongodbdatarest.Entities.User;
 import com.example.accessingmongodbdatarest.Repositories.ProductRepository;
@@ -149,17 +150,19 @@ public class ProductService {
 
     public Product getProductById(User user, long id) {
         //recentlyViewd.add(productRepository.findById(id));
+        boolean add = true;
         //getRecentlyViewed();
         if(user.getRecentylyViewed().size() == 0){
             user.addToRecently(productRepository.findById(id));
         }else if(user.getRecentylyViewed().size() < 5){
-            for (Product product: user.getRecentylyViewed()
-                 ) {
+            for (Product product: user.getRecentylyViewed()) {
                 if(product.getId() == id){
-                    continue;
+                    add = false;
                 }
             }
-            user.addToRecently(productRepository.findById(id));
+            if(add){
+                user.addToRecently(productRepository.findById(id));
+            }
         }else if(user.getRecentylyViewed().size() >= 5){
             user.removeFromRecently(productRepository.findById(id));
         }

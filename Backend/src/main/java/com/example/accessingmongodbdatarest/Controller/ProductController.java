@@ -117,28 +117,28 @@ public class ProductController {
     }
 
     @GetMapping("/getVegetarianRecipes")
-    public List<Product> getVegetarianRecipes(){
-        List<Product> allVegetarianRecipes = productService.getVegetarianRecipes();
+    public List<ProductDTO> getVegetarianRecipes(){
+        List<ProductDTO> allVegetarianRecipes = productService.getVegetarianRecipes().stream().map(ProductDTO::new).collect(Collectors.toList());
         return allVegetarianRecipes;
     }
 
     @GetMapping("/getVeganRecipes")
-    public List<Product> getVeganRecipes(){
-        List<Product> allVeganRecipes = productService.getVeganRecipes();
+    public List<ProductDTO> getVeganRecipes(){
+        List<ProductDTO> allVeganRecipes = productService.getVeganRecipes().stream().map(ProductDTO::new).collect(Collectors.toList());
         return allVeganRecipes;
     }
 
     @GetMapping("/getMeatRecipes")
-    public List<Product> getMeatRecipes(){
-        List<Product> allMeatRecipes = productService.getMeatRecipes();
+    public List<ProductDTO> getMeatRecipes(){
+        List<ProductDTO> allMeatRecipes = productService.getMeatRecipes().stream().map(ProductDTO::new).collect(Collectors.toList());
         return allMeatRecipes;
     }
 
 
-    @GetMapping("/getAllByCompanyId/{companyId}")
+    /*@GetMapping("/getAllByCompanyId/{companyId}")
     public List<ProductDTO> getAllByCompanyId(@PathVariable("companyId") long id){
         return productService.getAllByUserId(id).stream().map(ProductDTO::new).collect(Collectors.toList());
-    }
+    }*/
 
     @RequestMapping("/update")
     public String update(@RequestParam String name, @RequestParam ArrayList<String> description,
@@ -165,9 +165,9 @@ public class ProductController {
 
 
     @GetMapping("/getRecentlyViewed")
-    public List<Product> getRecebtlyViewed(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {
+    public List<ProductDTO> getRecebtlyViewed(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {
        // return productService.getRecentlyViewed().stream().map(ProductDTO::new).collect(Collectors.toList());
         User user = userRepository.findById(userDetailsImpl.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Keinen User gefunden"));
-        return user.getRecentylyViewed();
+        return user.getRecentylyViewed().stream().map(ProductDTO::new).collect(Collectors.toList());
     }
 }
