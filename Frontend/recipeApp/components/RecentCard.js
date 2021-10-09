@@ -128,16 +128,31 @@ const RecentCard = ({ recipe, onPress }) => {
                 >
                     {recipe.calories + ' Kalorien, ' + recipe.protein + 'g Eiweiß, ' + recipe.fat + 'g Fett'}
                 </Text>
-                <Text
-                    style={{
-                        color: 'white',
-                        fontSize: 10,
-                        flex: 1,
-                        marginTop: 10
-                    }}
-                >
-                    {recipe.averageRate + ' / 5 Sterne'}
-                </Text>
+                <View style={{
+                    flexDirection: 'row'
+                }}>
+                    <Text
+                        style={{
+                            color: 'white',
+                            fontSize: 10,
+                            flex: 1,
+                            marginTop: 10
+                        }}
+                    >
+                        {recipe.averageRate + ' / 5 Sterne'}
+                    </Text>
+                    <Text
+                        style={{
+                            color: 'white',
+                            fontSize: 15,
+                            flex: 1,
+                            marginTop: 10,
+                            fontWeight: 'bold'
+                        }}
+                    >
+                        {recipe.time + ' Minuten'}
+                    </Text>
+                </View>
             </View>
         </TouchableOpacity>
     )

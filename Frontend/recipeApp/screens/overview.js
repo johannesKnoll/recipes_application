@@ -70,6 +70,8 @@ export function Overview() {
     const dailyRecipeArray = [];
     const [dailyRecipe, setDailyRecipe] = React.useState([]);
 
+    let recipe;
+
 
     React.useEffect(() => {
 
@@ -85,10 +87,8 @@ export function Overview() {
 
         getDailyRecipe()
             .then(res => {
-                const dailyRecipeNew = res;
-                dailyRecipeArray.push(dailyRecipeNew)
-                setDailyRecipe(dailyRecipeArray);
-                console.log(dailyRecipeNew, "Daily Recipe");
+                setDailyRecipe(res)
+                console.log(dailyRecipe, "Daily Recipe");
             })
 
     },[]);
@@ -133,7 +133,7 @@ console.log("test", dailyRecipeArray)
             
 
             <FlatList
-                data={dailyRecipeArray}
+                data={dailyRecipe}
                 keyExtractor={item => `${item.id}`}
                 keyboardDismissMode="on-drag"
                 showsHorizontalScrollIndicator={false}
@@ -186,7 +186,9 @@ console.log("test", dailyRecipeArray)
                     return (
                         <RecipeCard
                             recipe={item}
-                            onPress={onPressHandler}
+                            onPress={() => {
+                                navigation.navigate('recipe-overview', {id: item.id});
+                            }}
                         >
                         </RecipeCard>
                         

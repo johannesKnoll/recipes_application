@@ -295,8 +295,6 @@ class AddRecipe extends Component {
     this.setState({ recipe });
 
   }
-
-
   getBase64 = file => {
     return new Promise(resolve => {
       let fileInfo;
@@ -759,11 +757,13 @@ class AddRecipe extends Component {
 
             </div>
           </ScrollView>
-          <FooterMenu onPressHome={this.onPressHandlerHome}
+          <FooterMenu
+            onPressHome={this.onPressHandlerHome}
             onPressFavoriten={this.onPressHandlerFavoriten}
             onPressEntdecken={this.onPressHandlerEntdecken}
             onPressHinzufuegen={this.onPressHandlerHinzufuegen}
-            onPressUser={this.onPressHandlerUser}></FooterMenu>
+            onPressUser={this.onPressHandlerUser}>
+          </FooterMenu>
         </SafeAreaView>
       </form>
     );

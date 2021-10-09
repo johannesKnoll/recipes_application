@@ -12,7 +12,6 @@ import {
 
 } from "react-native";
 import { login } from "../api";
-import SignUp from "./signUp";
 import { useNavigation } from '@react-navigation/native';
 import { User } from './user';
 
@@ -51,34 +50,36 @@ export default function Login() {
         <View style={styles.container}>
             <ImageBackground resizeMode="cover" style={styles.backgroundImage} source={require("../assets/login.jpeg")}>
                 <Text style={styles.title}>COOKIPEDIA</Text>
-                <Image style={styles.image} source={require("../assets/logo.jpg")} />
+                {/* <Image style={styles.image} source={require("../assets/logo.jpg")} /> */}
 
                 <StatusBar style="auto" />
-                <View style={styles.inputView}>
-                    <TextInput
-                        style={styles.TextInput}
-                        placeholder="Username"
-                        placeholderTextColor="#003f5c"
-                        onChangeText={(userName) => setuserName(userName)}
-                    />
+                <View>
+                    <View style={styles.inputView}>
+                        <TextInput
+                            style={styles.TextInput}
+                            placeholder="Username"
+                            placeholderTextColor="#003f5c"
+                            onChangeText={(userName) => setuserName(userName)}
+                        />
+                    </View>
+
+                    <View style={styles.inputView}>
+                        <TextInput
+                            style={styles.TextInput}
+                            placeholder="Passwort"
+                            placeholderTextColor="#003f5c"
+                            secureTextEntry={true}
+                            onChangeText={(password) => setPassword(password)}
+                        />
+
+                    </View>
                 </View>
 
-                <View style={styles.inputView}>
-                    <TextInput
-                        style={styles.TextInput}
-                        placeholder="Passwort"
-                        placeholderTextColor="#003f5c"
-                        secureTextEntry={true}
-                        onChangeText={(password) => setPassword(password)}
-                    />
-
-                </View>
-
-                <TouchableOpacity>
+                {/* <TouchableOpacity>
                     <Text style={styles.forgot_}>Passwort vergessen?</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('SignUp')}  >
-                    <Text style={styles.forgot_button}>Noch kein Konto? Jetzt Registrieren</Text>
+                </TouchableOpacity> */}
+                <TouchableOpacity onPress={() => navigation.navigate('SignUp')}  >
+                    <Text style={styles.forgot_button}>Noch kein Konto? Jetzt Registrieren!</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.loginBtn} onPress={onPressHandler} >
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
 
     image: {
         flex: 1,
-        hight: "100px",
+        height: "100px",
         width: "100px",
         margin: "auto",
         marginBottom: 50,
@@ -119,7 +120,7 @@ const styles = StyleSheet.create({
     },
     backgroundImage: {
         width: "100%",
-        hight: "100%",
+        height: "100%",
         flex: 1,
         justifyContent: "center"
     },
