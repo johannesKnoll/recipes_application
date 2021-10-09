@@ -72,21 +72,22 @@ export function Entdecken() {
                 const recipesNew = res;
                 setVeganRecipes(recipesNew);
             })
-
-        getVegetarianRecipes()
+            
+            getVegetarianRecipes()
             .then(res => {
                 const vegetarianRecipeNew = res;
                 setVegetarianRecipes(vegetarianRecipeNew);
-                //console.log(dailyRecipeNew, "Daily Recipe");
+                console.log(res, "Vegetarian Products");
             })
-
-        getMeatRecipes()
+            
+            getMeatRecipes()
             .then(res => {
                 const meatRecipesNew = res;
                 setMeatRecipes(meatRecipesNew);
             })
-
-    },[]);
+            
+            console.log(veganRecipes, "Vegan recipes");
+        },[]);
 
     // state = {
     //     search: '',

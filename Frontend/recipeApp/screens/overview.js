@@ -88,7 +88,7 @@ export function Overview() {
         getDailyRecipe()
             .then(res => {
                 setDailyRecipe(res)
-                console.log(dailyRecipe, "Daily Recipe");
+                console.log(res, "Daily Recipe");
             })
 
     },[]);

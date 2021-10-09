@@ -19,6 +19,7 @@ function RecipeOverview({ route }){
     const [maxRating, setMaxRating] = React.useState([1,2,3,4,5]);
     const [recipe, setRecipe] = React.useState<Recipe>({
         id: 0,
+        userId: 0,
         public: false,
         name: "",
         description: [],
