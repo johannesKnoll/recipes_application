@@ -68,7 +68,7 @@ function RecipeOverview({ route }){
     const starImageCorner = "https://raw.githubusercontent.com/tranhonghan/images/main/star_corner.png";
 
     const rateRecipeById = () => {
-        rateRecipe(3, defaultRating);
+        rateRecipe(id, defaultRating);
     }
 
     // React.useEffect(() => {

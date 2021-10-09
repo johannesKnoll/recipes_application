@@ -10,82 +10,97 @@ import {
     TouchableOpacity,
     ImageBackground,
 } from "react-native";
-import { login } from "../api";
+import { signup } from "../api";
+import { useNavigation } from '@react-navigation/native';
 
 
 
 export default function SignUp() {
 
-    const [userName, setuserName] = useState("");
-    const [password, setPassword] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
-    const [name, setName] = useState("");
-    function onClickSignin(userName, password) {
-        login(userName, password)
+    const [userName, setuserName] = React.useState("");
+    const [password, setPassword] = React.useState("");
+    const [lastName, setLastName] = React.useState("");
+    const [email, setEmail] = React.useState("");
+    const [name, setName] = React.useState("");
+    const navigation = useNavigation();
+
+    function onClickSignUp(userName, email, password, name, lastName){
+        signup(userName, email, password, name, lastName)
             .then(loggedInUser => {
-                console.log(loggedInUser);
-            })
+                console.log("Message:", loggedInUser);
+                if(typeof loggedInUser === "string"){
+                  alert(loggedInUser);
+                }else{
+                  alert('Registrierung ist erfolgreich abgeschlossen');
+                  navigation.navigate('login_screen');
+                }
+              })
+    }
+
+    const onPressHandler = () => {
+        onClickSignUp(userName, email, password, name, lastName);
     }
     return (
         <View style={styles.container}>
             <ImageBackground resizeMode="cover" style={styles.backgroundImage} source={require("../assets/signup.jpg")}>
-
+                <Text style={styles.title}>COOKIPEDIA</Text>
 
 
                 <StatusBar style="auto" />
-                <View style={styles.inputView}>
-                    <TextInput
-                        style={styles.TextInput}
-                        placeholder="E-Mail"
-                        placeholderTextColor="#003f5c"
-                        onChangeText={(userName) => setuserName(userName)}
-                    />
+                <View>
+                    <View style={styles.inputView}>
+                        <TextInput
+                            style={styles.TextInput}
+                            placeholder="E-Mail"
+                            placeholderTextColor="#003f5c"
+                            onChangeText={(email) => setEmail(email)}
+                        />
 
+                    </View>
+
+                    <View style={styles.inputView}>
+                        <TextInput
+                            style={styles.TextInput}
+                            placeholder="Passwort"
+                            placeholderTextColor="#003f5c"
+                            secureTextEntry={true}
+                            onChangeText={(password) => setPassword(password)}
+                        />
+
+                    </View>
+                    <View style={styles.inputView}>
+                        <TextInput
+                            style={styles.TextInput}
+                            placeholder="Nutzername"
+                            placeholderTextColor="#003f5c"
+                            onChangeText={(userName) => setuserName(userName)}
+                        />
+
+                    </View>
+                    <View style={styles.inputView}>
+                        <TextInput
+                            style={styles.TextInput}
+                            placeholder="Name"
+                            placeholderTextColor="#003f5c"
+                            onChangeText={(name) => setName(name)}
+                        />
+
+                    </View>
+                    <View style={styles.inputView}>
+                        <TextInput
+                            style={styles.TextInput}
+                            placeholder="Nachname"
+                            placeholderTextColor="#003f5c"
+                            onChangeText={(lastName) => setLastName(lastName)}
+                        />
+
+                    </View>
                 </View>
+                <TouchableOpacity onPress={() => navigation.navigate('login_screen')}  >
+                    <Text style={styles.forgot_button}>Bereits registriert? Jetzt anmelden!</Text>
+                </TouchableOpacity>
 
-                <View style={styles.inputView}>
-                    <TextInput
-                        style={styles.TextInput}
-                        placeholder="Passwort"
-                        placeholderTextColor="#003f5c"
-                        secureTextEntry={true}
-                        onChangeText={(password) => setPassword(password)}
-                    />
-
-                </View>
-                <View style={styles.inputView}>
-                    <TextInput
-                        style={styles.TextInput}
-                        placeholder="Natzername"
-                        placeholderTextColor="#003f5c"
-                        secureTextEntry={true}
-                        onChangeText={(userName) => setuserName(userName)}
-                    />
-
-                </View>
-                <View style={styles.inputView}>
-                    <TextInput
-                        style={styles.TextInput}
-                        placeholder="Name"
-                        placeholderTextColor="#003f5c"
-                        secureTextEntry={true}
-                        onChangeText={(name) => setName(name)}
-                    />
-
-                </View>
-                <View style={styles.inputView}>
-                    <TextInput
-                        style={styles.TextInput}
-                        placeholder="Nachname"
-                        placeholderTextColor="#003f5c"
-                        secureTextEntry={true}
-                        onChangeText={(lastName) => setLastName(lastName)}
-                    />
-
-                </View>
-
-                <TouchableOpacity style={styles.loginBtn} onClick={onClickSignin(userName, password)}>
+                <TouchableOpacity style={styles.loginBtn} onPress={onPressHandler}>
                     <Text style={styles.loginText}>Registrieren</Text>
                 </TouchableOpacity>
             </ImageBackground>
@@ -150,4 +165,22 @@ const styles = StyleSheet.create({
         opacity: "1",
         fontWeight: "bold",
     },
+    title: {
+
+        color: "#FFFFFF",
+        margin: "auto",
+        fontWeight: "bold",
+        fontSize: "40px",
+        marginTop: "10%",
+
+    },
+    forgot_button: {
+        height: 30,
+        marginBottom: 30,
+        color: "#FFFFFF",
+        margin: "auto",
+        marginTop: 20
+
+
+    }
 });

@@ -295,7 +295,6 @@ class AddRecipe extends Component {
     this.setState({ recipe });
     
   }
-
   
   getBase64 = file => {
     return new Promise(resolve => {
@@ -364,7 +363,7 @@ class AddRecipe extends Component {
   onPressHandlerHome(){
     this.setState({ navigation: useNavigation() });
     console.log(navigation)
-        this.navigation.navigate('home');
+    this.navigation.navigate('home');
   }
   onPressHandlerFavoriten(){
     this.setState({ navigation: useNavigation() });
@@ -759,11 +758,13 @@ handleChangeImage(event) {
 
             </div>
           </ScrollView>
-          <FooterMenu onPressHome={this.onPressHandlerHome}
-                onPressFavoriten={this.onPressHandlerFavoriten}
-                onPressEntdecken={this.onPressHandlerEntdecken}
-                onPressHinzufuegen={this.onPressHandlerHinzufuegen}
-                onPressUser={this.onPressHandlerUser}></FooterMenu>
+          <FooterMenu 
+              onPressHome={this.onPressHandlerHome}
+              onPressFavoriten={this.onPressHandlerFavoriten}
+              onPressEntdecken={this.onPressHandlerEntdecken}
+              onPressHinzufuegen={this.onPressHandlerHinzufuegen}
+              onPressUser={this.onPressHandlerUser}>
+                </FooterMenu>
         </SafeAreaView>
       </form>
     );

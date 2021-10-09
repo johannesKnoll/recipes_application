@@ -31,6 +31,21 @@ export const login = (username: string, password: string): Promise<User | undefi
     }, fail => undefined)
         .catch(err => undefined);
 
+export const signup = (username: string, email: string, password: string, name: string, lastName: string): Promise<User | undefined> =>
+    Api.post("/api/auth/signup", {
+        username,
+        email,
+        password,
+        name,
+        lastName
+    }).then(res => {
+            return res.data;
+        }, fail => {
+            console.log("fail", fail.response)
+            return fail.response.data.message;
+        })
+        .catch(err => console.log("error", err));
+
 export const logAPI = (): void => {
     console.log("API", Api.defaults.headers.common);
 }
@@ -45,7 +60,7 @@ export const getAllRecipes = (): Promise<Array<Recipe>> =>
             return res.data;
         })
 
-export const getDailyRecipe = (): Promise<Recipe> =>
+export const getDailyRecipe = (): Promise<Array<Recipe>> =>
     Api.get("/product/getDailyRecipe")
         .then(res => {
             return res.data
