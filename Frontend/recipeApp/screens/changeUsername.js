@@ -15,10 +15,11 @@ import { setUsername, login } from '../api';
 export function ChangeUsername() {
     const [text, setText] = React.useState('');
     const changeUsernameHandler = () => {
-        login('thorstenBorsten', 'password')
+
         setUsername(text)
             .then(response => {
                 console.log(response)
+                alert(response.message)
             })
     }
 
