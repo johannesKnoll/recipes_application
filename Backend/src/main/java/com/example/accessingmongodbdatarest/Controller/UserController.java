@@ -91,11 +91,18 @@ public class UserController {
     public String addToFavorite(@PathVariable("recipeId")long id){
         User user = getAuthorizedUser();
         Product productToAdd = productRepository.findById(id);
+        if(user.getFavoriteList().contains(productToAdd)){
+            user.removeFromFavorite(productToAdd);
+            return "removed!";
+        }else if(!user.getFavoriteList().contains(productToAdd)){
         user.addToFavorite(productToAdd);
         userRepository.save(user);
 
         return "Das Rezept wurde erfolgreich in die Favoriteliste hinzugefügt. Guten Apptitet;)";
-    }
+
+    }else{
+        return "error by adding/removing the product in the favorite list!";
+        }}
 
     @GetMapping("/getAllFavorites")
     public Set<Product> getAllFavoritesByUserId(){

@@ -171,6 +171,9 @@ public class User {
     public void addToFavorite(Product addedProductFavorite){
         favoriteList.add(addedProductFavorite);
     }
+    public void removeFromFavorite(Product addedProductFavorite){
+        favoriteList.remove(addedProductFavorite);
+    }
 
     public void addToRecipes(Product product){
         recipes.add(product);
