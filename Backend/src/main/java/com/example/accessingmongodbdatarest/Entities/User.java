@@ -173,6 +173,7 @@ public class User {
     }
     public void removeFromFavorite(Product addedProductFavorite){
         favoriteList.remove(addedProductFavorite);
+
     }
 
     public void addToRecipes(Product product){

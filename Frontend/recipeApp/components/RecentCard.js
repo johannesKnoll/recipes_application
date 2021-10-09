@@ -8,12 +8,13 @@ import {
 import { Icon } from 'react-native-elements';
 import { addToFavorite, checkIfFavoriteListContainsRecipe, getUserByUserId } from '../api';
 import RecipeOverview from '../screens/RecipeOverview';
+import { useNavigation } from '@react-navigation/native';
 
 const RecentCard = ({ recipe, onPress }) => {
 
     const [isFavorite, setIsFavorite] = React.useState(false);
     const [username, setUserName] = React.useState("");
-
+    const navigation = useNavigation();
     React.useEffect(() => {
         checkIfFavoriteListContainsRecipe(recipe.id)
             .then(res => {
@@ -31,8 +32,9 @@ const RecentCard = ({ recipe, onPress }) => {
     const addFavorite = () => {
         addToFavorite(recipe.id)
             .then(res => {
-                alert(res);
+            //    alert(res);
             })
+            //navigation.navigate('home');
     }
 
     return (

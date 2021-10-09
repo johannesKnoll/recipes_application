@@ -25,7 +25,8 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
             <TouchableHighlight
                 activeOpacity={0.6}
                 underlayColor='tomato'
-                onPress={() => alert('Pressed!')}>
+                // onPress={() => alert('Pressed!')}
+                >
                 <Ionicons
                     style={{
                         marginTop: 8,
@@ -42,7 +43,8 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
             <TouchableHighlight
                 activeOpacity={0.6}
                 underlayColor='tomato'
-                onPress={() => alert('Pressed!')}>
+                // onPress={() => alert('Pressed!')}
+                >
 
                 <Ionicons
                     style={{
@@ -60,7 +62,8 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
             <TouchableHighlight
                 activeOpacity={0.6}
                 underlayColor='tomato'
-                onPress={() => alert('Pressed!')}>
+                // onPress={() => alert('Pressed!')}
+                >
                 <Ionicons
                     style={{
                         marginRight: 30,
@@ -78,7 +81,8 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
             <TouchableHighlight
                 activeOpacity={0.6}
                 underlayColor='tomato'
-                onPress={() => alert('Pressed!')}>
+                // onPress={() => alert('Pressed!')}
+                >
                 <Ionicons
                     style={{
                         marginRight: 30,
@@ -95,7 +99,8 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
             <TouchableHighlight
                 activeOpacity={0.6}
                 underlayColor='tomato'
-                onPress={() => alert('Pressed!')}>
+                // onPress={() => alert('Pressed!')}
+                >
                 <Ionicons
                     style={{
                         marginRight: 30,
