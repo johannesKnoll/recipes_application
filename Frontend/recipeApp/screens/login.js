@@ -1,4 +1,4 @@
-import *as React from 'react';
+import React, { useState } from 'react';
 import { StatusBar } from "expo-status-bar";
 import {
     StyleSheet,
@@ -14,11 +14,12 @@ import {
 import { login } from "../api";
 import { useNavigation } from '@react-navigation/native';
 import { User } from './user';
+import ModalComponent from '../components/Modal';
 
 
 export default function Login() {
     
-    
+    const [modalVisible, setModalVisible] = React.useState(false);
     const [userName, setuserName] = React.useState("");
     const [password, setPassword] = React.useState("");
     let loggedInUser = {

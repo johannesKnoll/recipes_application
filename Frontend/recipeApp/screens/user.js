@@ -15,6 +15,7 @@ import {
 
 import { useNavigation } from '@react-navigation/native';
 import FooterMenu from '../components/FooterMenu';
+import { logout } from '../api';
 
 
 export function User() {
@@ -53,6 +54,12 @@ export function User() {
         navigation.navigate('changeUsername');
     }
 
+    const logoutHandler = () => {
+        alert("Erfolgreich ausgeloggt");
+        logout();
+        navigation.navigate('login_screen');
+    }
+
 
     return (
         <View style={styles.container}>
@@ -67,7 +74,7 @@ export function User() {
                     <Text >User Name ändern</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.logoutBtn} >
+                <TouchableOpacity style={styles.logoutBtn} onPress={logoutHandler}>
                     <Text style={styles.font} ><b>Logout</b></Text>
                 </TouchableOpacity>
             </ImageBackground>
