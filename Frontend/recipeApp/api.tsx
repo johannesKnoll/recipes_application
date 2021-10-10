@@ -51,6 +51,11 @@ export const logAPI = (): void => {
     console.log("API", Api.defaults.headers.common);
 }
 
+export const logout = (): string => {
+    Api.defaults.headers.common['Authorization'] = '';
+    return "Erfolgreich ausgeloggt";
+}
+
 
 export const getAllRecipes = (): Promise<Array<Recipe>> =>
     Api.get("/product/getAllProduct")
