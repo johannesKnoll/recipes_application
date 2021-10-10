@@ -30,6 +30,7 @@ const RecentCard = ({ recipe, onPress }) => {
     }, []);
 
     const addFavorite = () => {
+        setIsFavorite(!isFavorite)
         addToFavorite(recipe.id)
             .then(res => {
             //    alert(res);
@@ -116,13 +117,13 @@ const RecentCard = ({ recipe, onPress }) => {
                 }}
             >
                 <Icon
-                    // name={isFavorite ? 'bookmark' : 'bookmark-outline'}
-                    name={isToggled ? 'bookmark' : 'bookmark-outline'}
+                    name={isFavorite ? 'bookmark' : 'bookmark-outline'}
+                    // name={isToggled ? 'bookmark' : 'bookmark-outline'}
                     type='ionicon'
                     color='tomato'
                     size={35}
-                    // onPress={addFavorite}
-                    onPress={toggle}
+                    onPress={addFavorite}
+                    // onPress={toggle}
                 />
                 {/* To do: call setFavourite route on backend after onPress */}
             </View>
