@@ -128,11 +128,16 @@ public class UserController {
         return false;
     }
 
+    @GetMapping("/getUserByUserId/{userId}")
+    public UserDTO getUserByUserId(@PathVariable("userId") long userId){
+        return userService.getUserByUserId(userId);
+    }
+
     @GetMapping("/getAllRecipes")
-    public List<Product> getAllRecipes(){
+    public List<ProductDTO> getAllRecipes(){
         User user = getAuthorizedUser();
         long userId = user.getId();
-        List<Product> allProducts = productService.getAllByUserId(userId);
+        List<ProductDTO> allProducts = productService.getAllByUserId(userId).stream().map(ProductDTO::new).collect(Collectors.toList());
         return allProducts;
     }
 
