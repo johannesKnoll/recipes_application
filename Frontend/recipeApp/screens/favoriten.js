@@ -17,6 +17,7 @@ import { SearchBar } from 'react-native-elements';
 import { getFavoriteRecipes, getAllRecipesFromUser } from '../api';
 import FooterMenu from '../components/FooterMenu';
 import { useNavigation } from '@react-navigation/native';
+import { logAPI } from '../api';
 
 export function Favoriten() {
 
@@ -66,7 +67,7 @@ export function Favoriten() {
     const [userRecipes, setUserRecipes] = React.useState([]);
 
     React.useEffect(() => {
-
+        logAPI();
         getFavoriteRecipes()
             .then(res => {
                 const favoriteRecipesNew = res;

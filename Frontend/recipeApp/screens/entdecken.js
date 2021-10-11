@@ -17,35 +17,36 @@ import { SearchBar } from 'react-native-elements';
 import { getMeatRecipes, getVeganRecipes, getVegetarianRecipes } from '../api';
 import { useNavigation } from '@react-navigation/native';
 import FooterMenu from '../components/FooterMenu';
+import { logAPI } from '../api';
 
 export function Entdecken() {
 
+
     const navigation = useNavigation();
     const onPressHandlerHome = () => {
-        console.log(navigation)
-            navigation.navigate('home');
-      }
-      const onPressHandlerFavoriten = () => {
-        console.log(navigation)
-            navigation.navigate('favoriten');
-      }
-      const onPressHandlerEntdecken = () => {
-        console.log(navigation)
-            navigation.navigate('entdecken');
-      }
-      const onPressHandlerHinzufuegen = () => {
-        console.log(navigation)
-            navigation.navigate('hinzufuegen');
-      }
-      const onPressHandlerUser = () => {
-        console.log(navigation)
-            navigation.navigate('user');
-      }
-      const onPressHandler = () => {
-        console.log(navigation)
-            navigation.navigate('recipe-overview');
-      }
-
+      console.log(navigation)
+          navigation.navigate('home');
+    }
+    const onPressHandlerFavoriten = () => {
+      console.log(navigation)
+          navigation.navigate('favoriten');
+    }
+    const onPressHandlerEntdecken = () => {
+      console.log(navigation)
+          navigation.navigate('entdecken');
+    }
+    const onPressHandlerHinzufuegen = () => {
+      console.log(navigation)
+          navigation.navigate('hinzufuegen');
+    }
+    const onPressHandlerUser = () => {
+      console.log(navigation)
+          navigation.navigate('user');
+    }
+    const onPressHandlerRecipeOverview = (id) => {
+      console.log(navigation)
+          navigation.navigate('recipe-overview', {id: id});
+    }
     const testData = [
         {
             id: 1,
@@ -65,8 +66,9 @@ export function Entdecken() {
     const [vegetarianRecipes, setVegetarianRecipes] = React.useState([]);
     const [meatRecipes, setMeatRecipes] = React.useState([]);
 
+  
     React.useEffect(() => {
-
+        logAPI();
         getVeganRecipes()
             .then(res => {
                 const recipesNew = res;
