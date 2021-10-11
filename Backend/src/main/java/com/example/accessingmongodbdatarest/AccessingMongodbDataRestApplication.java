@@ -72,10 +72,7 @@ public class AccessingMongodbDataRestApplication extends SpringBootServletInitia
 			ArrayList<String> ingredients = new ArrayList<>();
 			test.add("Test");
 			ingredients.add("200g Kartoffeln");
-			byte[] data = Base64.decodeBase64();
-			try (OutputStream stream = new FileOutputStream("c:/decode/abc.bmp")) {
-				stream.write(data);
-			}
+		
 			ArrayList<Product> RecipeDailyList = new ArrayList<Product>();
 			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Quinoa-Pfanne", test,800, 30,25, 80, 30, true, true,false, ingredients, "pic" )));
 			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Blumenkohl-Curry", test,800, 30,25, 80, 30, true, true,false, ingredients, "pic" )));
