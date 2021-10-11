@@ -45,7 +45,7 @@ export function ScreenNavigation() {
         <Tab.Screen name="1" component={Overview}options={{unmountOnBlur: true}} />
         <Tab.Screen name="2" component={Favoriten}options={{unmountOnBlur: true}} />
         <Tab.Screen name="3" component={Entdecken} options={{unmountOnBlur: true}}/>
-        <Tab.Screen name="4" component={AddRecipe}options={{unmountOnBlur: true}} />
+        <Tab.Screen name="4" component={AddRecipe} options={{unmountOnBlur: true}} />
         <Tab.Screen name="5" component={User} />
 
       </Tab.Navigator>

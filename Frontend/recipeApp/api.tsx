@@ -165,7 +165,7 @@ export const getRecipeById = (recipeId: number): Promise<Recipe> =>
         })
 
 export const getRecentlyViewed = (): Promise<Array<Recipe>> =>
-    Api.get("/users/getRecentlyViewed")
+    Api.get("/product/getRecentlyViewed")
         .then(res => {
             return res.data;
         })

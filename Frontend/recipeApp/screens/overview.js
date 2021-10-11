@@ -8,7 +8,7 @@ import {
     TextInput,
     FlatList
 } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useIsFocused } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import  RecipeCard  from '../components/RecipeCard';
 import RecentCard from '../components/RecentCard';
@@ -17,6 +17,7 @@ import {login, getAllRecipes, getDailyRecipe, getRecentlyViewed, logAPI } from '
 import { Recipe } from '../Entities/Recipe';
 import { useNavigation } from '@react-navigation/native';
 import FooterMenu from '../components/FooterMenu';
+import { getFavoriteRecipes, getAllRecipesFromUser } from '../api';
 
 export function Overview() {
     
@@ -69,12 +70,13 @@ export function Overview() {
     const [recipes, setRecipes] = React.useState([]);
     const dailyRecipeArray = [];
     const [dailyRecipe, setDailyRecipe] = React.useState([]);
-
+    const isFocused = useIsFocused();
    // let recipe;
 
 
     React.useEffect(() => {
-
+        console.log("overview.js useEffect")
+        if (!isFocused) return;
          logAPI();
 
         getRecentlyViewed()
@@ -90,8 +92,14 @@ export function Overview() {
                 setDailyRecipe(res)
                 console.log(res, "Daily Recipe");
             })
+            getFavoriteRecipes()
+            .then(res => {
+                const favoriteRecipesNew = res;
+                setFavoriteRecipes(favoriteRecipesNew);
+            })
 
-    },[]);
+    },[isFocused]);
+    const [favoriteRecipes, setFavoriteRecipes] = React.useState([]);
 
     // state = {
     //     search: '',

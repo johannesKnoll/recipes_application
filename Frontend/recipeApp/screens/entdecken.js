@@ -9,7 +9,7 @@ import {
     TextInput,
     FlatList
 } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useIsFocused } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import  RecipeCard  from '../components/RecipeCard';
 import RecentCard from '../components/RecentCard';
@@ -18,6 +18,7 @@ import { getMeatRecipes, getVeganRecipes, getVegetarianRecipes } from '../api';
 import { useNavigation } from '@react-navigation/native';
 import FooterMenu from '../components/FooterMenu';
 import { logAPI } from '../api';
+import { getFavoriteRecipes, getAllRecipesFromUser } from '../api';
 
 export function Entdecken() {
 
@@ -65,10 +66,18 @@ export function Entdecken() {
     const [veganRecipes, setVeganRecipes] = React.useState([]);
     const [vegetarianRecipes, setVegetarianRecipes] = React.useState([]);
     const [meatRecipes, setMeatRecipes] = React.useState([]);
+    const [favoriteRecipes, setFavoriteRecipes] = React.useState([]);
 
-  
+  const isFocused = useIsFocused();
     React.useEffect(() => {
+        console.log("entdecken.js useEffect")
+        if (!isFocused) return;
         logAPI();
+        getFavoriteRecipes()
+        .then(res => {
+            const favoriteRecipesNew = res;
+            setFavoriteRecipes(favoriteRecipesNew);
+        })
         getVeganRecipes()
             .then(res => {
                 const recipesNew = res;
@@ -81,7 +90,7 @@ export function Entdecken() {
                 setVegetarianRecipes(vegetarianRecipeNew);
                 console.log(res, "Vegetarian Products");
             })
-            
+    
             getMeatRecipes()
             .then(res => {
                 const meatRecipesNew = res;
@@ -89,7 +98,7 @@ export function Entdecken() {
             })
             
             console.log(veganRecipes, "Vegan recipes");
-        },[]);
+        },[isFocused]);
 
     // state = {
     //     search: '',
@@ -237,7 +246,9 @@ export function Entdecken() {
                 onPressFavoriten={onPressHandlerFavoriten}
                 onPressEntdecken={onPressHandlerEntdecken}
                 onPressHinzufuegen={onPressHandlerHinzufuegen}
-                onPressUser={onPressHandlerUser}></FooterMenu>
+                onPressUser={onPressHandlerUser}>
+
+                </FooterMenu>
         </SafeAreaView>
     );
 }
