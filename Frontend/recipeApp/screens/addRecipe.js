@@ -661,18 +661,20 @@ class AddRecipe extends Component {
                           marginBottom: 5
                         }}>
                           {this.state.inputs.map((input, key) => (
-                            <View style={{
-                              flexDirection: 'row',
+                            <View
+                             style={{
+                              // flexDirection: 'row',
                               justifyContent: 'space-between',
                               alignItems: 'center',
                               borderBottomWidth: 0,
                               borderBottomColor: "lightgray"
-                            }}>
+                            }}
+                            >
 
-                              <Row>
-                                <Col>
+                              {/* <Row> */}
+                                {/* <Col> */}
                                   <StepZutat add={this.addNewRowZutat} delete={this.clickOnDeleteeZutat.bind(this)} stepZutat={stepZutat}></StepZutat>
-                                </Col>
+                                {/* </Col> */}
                                 {/* <Col>
                                   <Input style={{ marginRight: 15, padding: 10, marginTop: 10 }} type="name" placeholder={"Zutat"} onChangeText={(text) => inputHandler(text, key)} />
                                 </Col>
@@ -689,7 +691,7 @@ class AddRecipe extends Component {
                                     <option>Stk</option>
                                   </Input>
                                 </Col> */}
-                              </Row>
+                              {/* </Row> */}
                             </View>
                           ))}
                         </ScrollView>

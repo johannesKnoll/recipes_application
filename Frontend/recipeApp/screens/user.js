@@ -63,7 +63,7 @@ export function User() {
 
     return (
         <View style={styles.container}>
-            <ImageBackground resizeMode="cover" style={styles.backgroundImage} source={require("../assets/settings.jpg")}>
+            <ImageBackground resizeMode="cover" style={styles.backgroundImage} source={require("../pictures/2020.jpg")}>
                 <TouchableOpacity style={styles.changePasswordEmail} onPress={handelrChangeEmail}>
                     <Text>E-Mail ändern</Text>
                 </TouchableOpacity >

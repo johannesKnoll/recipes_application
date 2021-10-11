@@ -7,6 +7,7 @@ import com.example.accessingmongodbdatarest.Entities.*;
 import com.example.accessingmongodbdatarest.Repositories.ProductRepository;
 import com.example.accessingmongodbdatarest.Repositories.UserRepository;
 import com.example.accessingmongodbdatarest.Services.ProductService;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.aspectj.lang.annotation.After;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
@@ -19,6 +20,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.swing.*;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +72,10 @@ public class AccessingMongodbDataRestApplication extends SpringBootServletInitia
 			ArrayList<String> ingredients = new ArrayList<>();
 			test.add("Test");
 			ingredients.add("200g Kartoffeln");
-
+			byte[] data = Base64.decodeBase64();
+			try (OutputStream stream = new FileOutputStream("c:/decode/abc.bmp")) {
+				stream.write(data);
+			}
 			ArrayList<Product> RecipeDailyList = new ArrayList<Product>();
 			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Quinoa-Pfanne", test,800, 30,25, 80, 30, true, true,false, ingredients, "pic" )));
 			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Blumenkohl-Curry", test,800, 30,25, 80, 30, true, true,false, ingredients, "pic" )));

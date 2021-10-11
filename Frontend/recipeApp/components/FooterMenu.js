@@ -25,13 +25,13 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
             <TouchableHighlight
                 activeOpacity={0.6}
                 underlayColor='tomato'
-                // onPress={() => alert('Pressed!')}
+                //  onPress={() => alert('Pressed!')}
                 >
                 <Ionicons
                     style={{
                         marginTop: 8,
-                        marginLeft: 30,
-                        marginRight: 30,
+                        marginLeft: 20,
+                        marginRight: 20,
                         top: '50%'
                     }}
                     name="home"
@@ -48,8 +48,8 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
 
                 <Ionicons
                     style={{
-                        marginRight: 30,
-                        marginLeft: 30,
+                        marginRight:20 ,
+                        marginLeft: 20,
                         marginTop: 8,
                         top: '50%'
                     }}
@@ -66,8 +66,8 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
                 >
                 <Ionicons
                     style={{
-                        marginRight: 30,
-                        marginLeft: 30,
+                        marginRight: 20,
+                        marginLeft: 20,
                         marginTop: 8,
                         top: '50%'
                     }}
@@ -85,8 +85,8 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
                 >
                 <Ionicons
                     style={{
-                        marginRight: 30,
-                        marginLeft: 30,
+                        marginRight: 20,
+                        marginLeft: 20,
                         marginTop: 8,
                         top: '50%'
                     }}
@@ -103,8 +103,8 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
                 >
                 <Ionicons
                     style={{
-                        marginRight: 30,
-                        marginLeft: 30,
+                        marginRight: 20,
+                        marginLeft: 20,
                         marginTop: 8,
                         top: '50%'
                     }}
