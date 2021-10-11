@@ -35,7 +35,7 @@ export function ChangeEmail() {
                 <View style={styles.inputView}>
                     <TextInput
                         style={styles.TextInput}
-                        placeholder="Neue Email Adresse"
+                        placeholder="Neue E-Mail Adresse"
                         placeholderTextColor="#003f5c"
 
                         onChangeText={text => setText(text)}
@@ -45,7 +45,7 @@ export function ChangeEmail() {
 
 
                     <TouchableOpacity style={styles.changeEmail} onPress={changeEmailHandler} >
-                        <Text style={styles.font}><b>E-Mail ändern</b></Text>
+                        <Text style={styles.font}><b>E-Mail Adresse ändern</b></Text>
                     </TouchableOpacity>
 
 
