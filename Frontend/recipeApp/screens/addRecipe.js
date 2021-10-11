@@ -360,29 +360,34 @@ class AddRecipe extends Component {
 
 
   onPressHandlerHome() {
-    this.setState({ navigation: useNavigation() });
-    console.log(navigation)
-    this.navigation.navigate('home');
+    // this.setState({ navigation: useNavigation() });
+    // console.log(navigation)
+    // this.navigation.navigate('home');
+     this.props.navigation.navigate('home')
   }
   onPressHandlerFavoriten() {
-    this.setState({ navigation: useNavigation() });
-    console.log(navigation)
-    this.navigation.navigate('favoriten');
+    // this.setState({ navigation: useNavigation() });
+    // console.log(navigation)
+    // this.navigation.navigate('favoriten');
+    this.props.navigation.navigate('favoriten')
   }
   onPressHandlerEntdecken() {
-    this.setState({ navigation: useNavigation() });
-    console.log(navigation)
-    this.navigation.navigate('entdecken');
+    // this.setState({ navigation: useNavigation() });
+    // console.log(navigation)
+    // this.navigation.navigate('entdecken');
+    this.props.navigation.navigate('entdecken')
   }
   onPressHandlerHinzufuegen() {
-    this.setState({ navigation: useNavigation() });
-    console.log(navigation)
-    this.navigation.navigate('hinzufuegen');
+    // this.setState({ navigation: useNavigation() });
+    // console.log(navigation)
+    // this.navigation.navigate('hinzufuegen');
+    this.props.navigation.navigate('hinzufuegen')
   }
   onPressHandlerUser() {
-    this.setState({ navigation: useNavigation() });
-    console.log(navigation)
-    this.navigation.navigate('user');
+    // this.setState({ navigation: useNavigation() });
+    // console.log(navigation)
+    // this.navigation.navigate('user');
+    this.props.navigation.navigate('home')
   }
 
   handleChangeImage(event) {
@@ -769,7 +774,9 @@ class AddRecipe extends Component {
             onPressFavoriten={this.onPressHandlerFavoriten}
             onPressEntdecken={this.onPressHandlerEntdecken}
             onPressHinzufuegen={this.onPressHandlerHinzufuegen}
-            onPressUser={this.onPressHandlerUser}>
+            onPressUser={this.onPressHandlerUser}
+            
+            >
           </FooterMenu>
         </SafeAreaView>
       </form>
