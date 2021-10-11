@@ -162,7 +162,12 @@ public class ProductController {
     public List<ProductDTO> getDailyRecipe() {
         return productService.getDailyRecipe().stream().map(ProductDTO::new).collect(Collectors.toList());
     }
-
+    @GetMapping("/getRecentlyViewed")
+    public List<ProductDTO> getRecentlyViewed(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {
+        // return productService.getRecentlyViewed().stream().map(ProductDTO::new).collect(Collectors.toList());
+        User user = userRepository.findById(userDetailsImpl.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Keinen User gefunden"));
+        return user.getRecentylyViewed().stream().map(ProductDTO::new).collect(Collectors.toList());
+    }
 
 
 }
