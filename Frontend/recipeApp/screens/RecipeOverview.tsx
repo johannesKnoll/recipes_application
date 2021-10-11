@@ -30,7 +30,7 @@ function RecipeOverview({ route }){
         carbohydrate: 0,
         time: 0,
         hasMeat: false,
-        picture: "",
+        picture: null,
         ingredients: [],
         compynayId: 0,
         vegan: false,
@@ -133,7 +133,7 @@ function RecipeOverview({ route }){
             }}>
                 <View>
                     <Image
-                        source={require('../pictures/picture1.jpg')}
+                        source={recipe.picture}
                         resizeMode="cover"
                         style={{
                             width: '100%',
@@ -305,6 +305,7 @@ function RecipeOverview({ route }){
                             return(
                                 <Text>
                                     {step}
+                                    {"\n"}
                                 </Text>
                             )
                         })}
