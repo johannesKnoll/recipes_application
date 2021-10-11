@@ -19,8 +19,6 @@ export default function AddRecipeHooks(){
                               <Row>
                                 <Col>
                                   <Input type="name" name="steps" style={{ marginRight: 15, padding: 10, marginTop: 10 }}
-                                   placeholder={"Bearbeitungsschritt"}
-
                                     // onChange={e => console.log(e.target.value, "Steps event")}
                                     value ={inputValue}
                                     onChange={onChange}

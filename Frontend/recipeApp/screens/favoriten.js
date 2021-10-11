@@ -9,7 +9,8 @@ import {
     TextInput,
     FlatList
 } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useIsFocused } from '@react-navigation/native';
+
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import  RecipeCard  from '../components/RecipeCard';
 import RecentCard from '../components/RecentCard';
@@ -17,13 +18,15 @@ import { SearchBar } from 'react-native-elements';
 import { getFavoriteRecipes, getAllRecipesFromUser } from '../api';
 import FooterMenu from '../components/FooterMenu';
 import { useNavigation } from '@react-navigation/native';
+import { logAPI } from '../api';
+
 
 export function Favoriten() {
 
     const navigation = useNavigation();
     const onPressHandlerHome = () => {
         console.log(navigation)
-            navigation.navigate('home');
+        navigation.navigate('home');
       }
       const onPressHandlerFavoriten = () => {
         console.log(navigation)
@@ -64,9 +67,11 @@ export function Favoriten() {
     const [search, setSearch] = React.useState("");
     const [favoriteRecipes, setFavoriteRecipes] = React.useState([]);
     const [userRecipes, setUserRecipes] = React.useState([]);
-
+    const isFocused = useIsFocused();
     React.useEffect(() => {
-
+        console.log("favoriten.js useEffect")
+        if (!isFocused) return;
+        logAPI();
         getFavoriteRecipes()
             .then(res => {
                 const favoriteRecipesNew = res;
@@ -79,7 +84,7 @@ export function Favoriten() {
                 console.log("User recipes", res);
                 setUserRecipes(userRecipesNew);
             })
-    },[]);
+    },[isFocused]);
 
     const updateSearch = (search) => {
       setSearch(search);
@@ -98,7 +103,7 @@ export function Favoriten() {
             >
                 <SearchBar
                     lightTheme={true}
-                    placeholder="Type Here..."
+                    placeholder="Hier Suchbegriff eingeben"
                     backgroundColor="white"
                     onChangeText={updateSearch}
                     value={search}
@@ -191,7 +196,9 @@ export function Favoriten() {
                 onPressFavoriten={onPressHandlerFavoriten}
                 onPressEntdecken={onPressHandlerEntdecken}
                 onPressHinzufuegen={onPressHandlerHinzufuegen}
-                onPressUser={onPressHandlerUser}></FooterMenu>
+                onPressUser={onPressHandlerUser}>
+
+                </FooterMenu>
         </SafeAreaView>
     );
 }

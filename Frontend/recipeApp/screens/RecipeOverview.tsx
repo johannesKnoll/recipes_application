@@ -30,7 +30,7 @@ function RecipeOverview({ route }){
         carbohydrate: 0,
         time: 0,
         hasMeat: false,
-        picture: "",
+        picture: null,
         ingredients: [],
         compynayId: 0,
         vegan: false,
@@ -71,6 +71,7 @@ function RecipeOverview({ route }){
 
     const rateRecipeById = () => {
         rateRecipe(id, defaultRating);
+        alert("Danke für Ihre Bewertung :)");
     }
 
     // React.useEffect(() => {
@@ -133,7 +134,7 @@ function RecipeOverview({ route }){
             }}>
                 <View>
                     <Image
-                        source={require('../pictures/picture1.jpg')}
+                        source={recipe.picture}
                         resizeMode="cover"
                         style={{
                             width: '100%',
@@ -220,7 +221,7 @@ function RecipeOverview({ route }){
                     position: 'absolute',
                     marginTop: 430,
                     height: '35%',
-                    width: '30%'
+                    width: '40%'
                 }}>
                 <Text
                     style={{
@@ -281,7 +282,7 @@ function RecipeOverview({ route }){
                     marginTop: 430,
                     marginLeft: 200,
                     height: '50%',
-                    width: '60%'
+                    width: '50%'
                 }}>
                 <Text
                     style={{
@@ -305,6 +306,7 @@ function RecipeOverview({ route }){
                             return(
                                 <Text>
                                     {step}
+                                    {"\n"}
                                 </Text>
                             )
                         })}

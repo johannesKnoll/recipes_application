@@ -26,11 +26,11 @@ export function ChangeUsername() {
 
     return (
         <View style={styles.container}>
-            <ImageBackground resizeMode="cover" style={styles.backgroundImage} source={require("../assets/settings.jpg")}>
+            <ImageBackground resizeMode="cover" style={styles.backgroundImage} source={require("../pictures/picture4.jpg")}>
                 <View style={styles.inputView}>
                     <TextInput
                         style={styles.TextInput}
-                        placeholder="neuer Benutzername"
+                        placeholder="Neuer Benutzername"
                         placeholderTextColor="#003f5c"
                         onChangeText={text => setText(text)}
 
@@ -38,10 +38,8 @@ export function ChangeUsername() {
 
 
                     <TouchableOpacity style={styles.changeUsername} onPress={changeUsernameHandler} >
-                        <Text style={styles.font}><b>ändere den Nutzernamen</b></Text>
+                        <Text style={styles.font}><b>Benutzername ändern</b></Text>
                     </TouchableOpacity>
-
-
                 </View>
             </ImageBackground>
         </View>
@@ -76,20 +74,21 @@ const styles = StyleSheet.create({
         marginLeft: 40,
 
         alignItems: "center",
-        opacity: "0.4",
+        opacity: 0.7,
 
     },
 
     TextInput: {
-        height: 50,
+        width: "80%",
+        borderRadius: 25,
         flex: 1,
         padding: 10,
-        marginLeft: 40,
-        fontWeight: "bold",
         alignItems: "center",
+        justifyContent: 'center',
+        backgroundColor: "#FFFFFF",
         margin: "auto",
-
-
+        opacity: 0.7,
+        fontWeight: 'bold'
     },
     changeUsername: {
         width: "80%",
@@ -100,7 +99,7 @@ const styles = StyleSheet.create({
         marginTop: 40,
         marginBottom: 30,
         backgroundColor: "#FF0000",
-        opacity: "0.8",
+        opacity: 0.7,
         margin: "auto",
 
     },

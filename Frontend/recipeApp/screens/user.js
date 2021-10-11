@@ -63,7 +63,7 @@ export function User() {
 
     return (
         <View style={styles.container}>
-            <ImageBackground resizeMode="cover" style={styles.backgroundImage} source={require("../assets/settings.jpg")}>
+            <ImageBackground resizeMode="cover" style={styles.backgroundImage} source={require("../pictures/picture4.jpg")}>
                 <TouchableOpacity style={styles.changePasswordEmail} onPress={handelrChangeEmail}>
                     <Text>E-Mail ändern</Text>
                 </TouchableOpacity >
@@ -71,11 +71,11 @@ export function User() {
                     <Text >Passwort ändern</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.changePasswordEmail} onPress={handelrChangeUsername} >
-                    <Text >User Name ändern</Text>
+                    <Text >Benutzername ändern</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.logoutBtn} onPress={logoutHandler}>
-                    <Text style={styles.font} ><b>Logout</b></Text>
+                    <Text style={styles.fontLogout} ><b>Ausloggen</b></Text>
                 </TouchableOpacity>
             </ImageBackground>
             <FooterMenu onPressHome={onPressHandlerHome}
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
         marginTop: 40,
         marginBottom: 30,
         backgroundColor: "#FF0000",
-        opacity: "0.4",
+        opacity: 0.7,
         margin: "auto",
 
     }, changePasswordEmail: {
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
         marginTop: 40,
         marginBottom: 30,
         backgroundColor: "#FFFFFF",
-        opacity: "0.4",
+        opacity: 0.7,
         margin: "auto",
 
     },
@@ -130,6 +130,10 @@ const styles = StyleSheet.create({
     },
     font: {
         fontSize: 16,
+    },
+    fontLogout: {
+        fontSize: 20,
+        color: "black"
     }
 });
 

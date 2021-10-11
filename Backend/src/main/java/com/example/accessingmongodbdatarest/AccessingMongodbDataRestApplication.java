@@ -59,7 +59,7 @@ public class AccessingMongodbDataRestApplication extends SpringBootServletInitia
 			userRepository.save(new User("JohaKno", "johannes@mail.com", encoder.encode("password"), Set.of(roleRepository.findByRoleName(Role.ADMIN))));*/
 
 			// User für die Unternehmen
-			User thorsten = userRepository.save(new User("thorstenBorsten", "thorsten@mail.com", encoder.encode("password"), "Thorsten", "Borsten"));
+			User thorsten = userRepository.save(new User("1", "thorsten@mail.com", encoder.encode("1"), "Thorsten", "Borsten"));
 			User sürem = userRepository.save(new User("süremMeinsch", "süremM@mail.com", encoder.encode("password"), "Sürem", "Meinsch"));
 
 			/*Company company = companyRepository.save(new Company(thorsten, "Friseure Mannhein", "Abdul Lattouf", "info@friseure-mannheim.de", "0621-1234"));

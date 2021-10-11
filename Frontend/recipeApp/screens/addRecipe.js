@@ -360,29 +360,34 @@ class AddRecipe extends Component {
 
 
   onPressHandlerHome() {
-    this.setState({ navigation: useNavigation() });
-    console.log(navigation)
-    this.navigation.navigate('home');
+    // this.setState({ navigation: useNavigation() });
+    // console.log(navigation)
+    // this.navigation.navigate('home');
+     this.props.navigation.navigate('home')
   }
   onPressHandlerFavoriten() {
-    this.setState({ navigation: useNavigation() });
-    console.log(navigation)
-    this.navigation.navigate('favoriten');
+    // this.setState({ navigation: useNavigation() });
+    // console.log(navigation)
+    // this.navigation.navigate('favoriten');
+    this.props.navigation.navigate('favoriten')
   }
   onPressHandlerEntdecken() {
-    this.setState({ navigation: useNavigation() });
-    console.log(navigation)
-    this.navigation.navigate('entdecken');
+    // this.setState({ navigation: useNavigation() });
+    // console.log(navigation)
+    // this.navigation.navigate('entdecken');
+    this.props.navigation.navigate('entdecken')
   }
   onPressHandlerHinzufuegen() {
-    this.setState({ navigation: useNavigation() });
-    console.log(navigation)
-    this.navigation.navigate('hinzufuegen');
+    // this.setState({ navigation: useNavigation() });
+    // console.log(navigation)
+    // this.navigation.navigate('hinzufuegen');
+    this.props.navigation.navigate('hinzufuegen')
   }
   onPressHandlerUser() {
-    this.setState({ navigation: useNavigation() });
-    console.log(navigation)
-    this.navigation.navigate('user');
+    // this.setState({ navigation: useNavigation() });
+    // console.log(navigation)
+    // this.navigation.navigate('user');
+    this.props.navigation.navigate('home')
   }
 
   handleChangeImage(event) {
@@ -440,7 +445,7 @@ class AddRecipe extends Component {
 
 
 
-    const title = <h3 className="pt-2" style={{ display: 'flex', justifyContent: 'center' }}>Add New Recipe</h3>
+    const title = <h3 className="pt-2" style={{ display: 'flex', justifyContent: 'center' }}>Neues Rezept Hinzufügen</h3>
     const { categories, isLoading } = this.state;
     let { stepList, stepZutat } = this.state
     // const newRecipe = {
@@ -558,8 +563,8 @@ class AddRecipe extends Component {
                   <FormGroup>
                     <Row>
                       <Col>
-                        <Label for="name" placeholder="Name">Name</Label>
-                        <Input type="name" name="name" id="name" onChange={this.handleChange} autoComplete="name" />
+                        <Label for="name" >Name</Label>
+                        <Input type="name" name="name" placeholder="Name" id="name" onChange={this.handleChange} autoComplete="name" />
                       </Col>
                       <Col>
                         <Label>Zeitaufwand (in Min)</Label>
@@ -638,13 +643,20 @@ class AddRecipe extends Component {
                   <Form>
                     <FormGroup>
 
-                      <Label>Zutaten</Label>
+                      <Label
+                      style={{
+                        marginLeft:15
+                      }}>Zutaten</Label>
 
                       <View style={{
+                        //type="number"
+                        placeholder:'Name',
                         flex: 1,
                         backgroundColor: 'white',
                       }}>
                         <ScrollView style={{
+                          placeholder:'Name',
+                          placeholder:"Name",
                           flex: 1,
                           marginBottom: 5
                         }}>
@@ -762,7 +774,9 @@ class AddRecipe extends Component {
             onPressFavoriten={this.onPressHandlerFavoriten}
             onPressEntdecken={this.onPressHandlerEntdecken}
             onPressHinzufuegen={this.onPressHandlerHinzufuegen}
-            onPressUser={this.onPressHandlerUser}>
+            onPressUser={this.onPressHandlerUser}
+            
+            >
           </FooterMenu>
         </SafeAreaView>
       </form>

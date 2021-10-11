@@ -30,12 +30,16 @@ const RecentCard = ({ recipe, onPress }) => {
     }, []);
 
     const addFavorite = () => {
+        setIsFavorite(!isFavorite)
         addToFavorite(recipe.id)
             .then(res => {
             //    alert(res);
             })
             //navigation.navigate('home');
     }
+
+    const [isToggled, setIsToggled] = React.useState(false);
+  const toggle = React.useCallback(() => setIsToggled(!isToggled));
 
     return (
 
@@ -47,6 +51,7 @@ const RecentCard = ({ recipe, onPress }) => {
                 marginTop: 10,
                 marginRight: 15,
                 marginLeft: 15,
+                marginBottom: 15,
                 borderRadius: 10,
             }}
             onPress={onPress}
@@ -114,10 +119,12 @@ const RecentCard = ({ recipe, onPress }) => {
             >
                 <Icon
                     name={isFavorite ? 'bookmark' : 'bookmark-outline'}
+                    // name={isToggled ? 'bookmark' : 'bookmark-outline'}
                     type='ionicon'
                     color='tomato'
                     size={35}
                     onPress={addFavorite}
+                    // onPress={toggle}
                 />
                 {/* To do: call setFavourite route on backend after onPress */}
             </View>

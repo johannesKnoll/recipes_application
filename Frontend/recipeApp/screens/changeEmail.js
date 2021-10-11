@@ -29,13 +29,13 @@ export function ChangeEmail() {
 
     return (
         <View style={styles.container}>
-            <ImageBackground resizeMode="cover" style={styles.backgroundImage} source={require("../assets/settings.jpg")}>
+            <ImageBackground resizeMode="cover" style={styles.backgroundImage} source={require("../pictures/picture4.jpg")}>
 
 
                 <View style={styles.inputView}>
                     <TextInput
                         style={styles.TextInput}
-                        placeholder="Neue Email Adresse"
+                        placeholder="Neue E-Mail Adresse"
                         placeholderTextColor="#003f5c"
 
                         onChangeText={text => setText(text)}
@@ -45,7 +45,7 @@ export function ChangeEmail() {
 
 
                     <TouchableOpacity style={styles.changeEmail} onPress={changeEmailHandler} >
-                        <Text style={styles.font}><b>E-Mail ändern</b></Text>
+                        <Text style={styles.font}><b>E-Mail Adresse ändern</b></Text>
                     </TouchableOpacity>
 
 
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
         marginLeft: 20,
 
         alignItems: "center",
-        opacity: "0.4",
+        opacity: 0.7,
 
     },
 
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
         marginTop: 40,
         marginBottom: 30,
         backgroundColor: "#FF0000",
-        opacity: "0.8",
+        opacity: 0.7,
         margin: "auto",
 
     },
