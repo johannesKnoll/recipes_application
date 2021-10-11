@@ -19,12 +19,13 @@ import FooterMenu from '../components/FooterMenu';
 import { useNavigation } from '@react-navigation/native';
 import { logAPI } from '../api';
 
+
 export function Favoriten() {
 
     const navigation = useNavigation();
     const onPressHandlerHome = () => {
         console.log(navigation)
-            navigation.navigate('home');
+        navigation.navigate('home');
       }
       const onPressHandlerFavoriten = () => {
         console.log(navigation)

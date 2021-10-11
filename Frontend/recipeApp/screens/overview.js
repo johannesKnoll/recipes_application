@@ -70,12 +70,12 @@ export function Overview() {
     const dailyRecipeArray = [];
     const [dailyRecipe, setDailyRecipe] = React.useState([]);
 
-    let recipe;
+   // let recipe;
 
 
     React.useEffect(() => {
 
-        logAPI();
+         logAPI();
 
         getRecentlyViewed()
             .then(res => {
@@ -195,9 +195,8 @@ console.log("test", dailyRecipeArray)
                     )
                 }}>
 
-            </FlatList>
-            <FooterMenu 
-                onPressHome={onPressHandlerHome}
+</FlatList>
+            <FooterMenu onPressHome={onPressHandlerHome}
                 onPressFavoriten={onPressHandlerFavoriten}
                 onPressEntdecken={onPressHandlerEntdecken}
                 onPressHinzufuegen={onPressHandlerHinzufuegen}
