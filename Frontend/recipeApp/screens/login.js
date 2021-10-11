@@ -58,7 +58,7 @@ export default function Login() {
                     <View style={styles.inputView}>
                         <TextInput
                             style={styles.TextInput}
-                            placeholder="Username"
+                            placeholder="Benutzername"
                             placeholderTextColor="#003f5c"
                             onChangeText={(userName) => setuserName(userName)}
                         />

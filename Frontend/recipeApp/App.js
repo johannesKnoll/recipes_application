@@ -69,16 +69,16 @@ export default function App() {
             component={Login}
             /> */}
       <Stack.Navigator>
-        <Stack.Screen
+         <Stack.Screen
           name="login_screen"
           component={Login}
           options={{ headerShown: false }}
         />
-        <Stack.Screen
+        {/* <Stack.Screen
           name="SignUp"
           component={SignUp}
           options={{ headerShown: false }}
-        />
+        />  */}
         <Stack.Screen
           name="home"
           component={Overview}

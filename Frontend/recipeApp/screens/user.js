@@ -71,11 +71,11 @@ export function User() {
                     <Text >Passwort ändern</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.changePasswordEmail} onPress={handelrChangeUsername} >
-                    <Text >User Name ändern</Text>
+                    <Text >Benutzername ändern</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.logoutBtn} onPress={logoutHandler}>
-                    <Text style={styles.font} ><b>Logout</b></Text>
+                    <Text style={styles.font} ><b>Ausloggen</b></Text>
                 </TouchableOpacity>
             </ImageBackground>
             <FooterMenu onPressHome={onPressHandlerHome}

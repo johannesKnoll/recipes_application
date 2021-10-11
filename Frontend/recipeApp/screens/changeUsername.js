@@ -30,7 +30,7 @@ export function ChangeUsername() {
                 <View style={styles.inputView}>
                     <TextInput
                         style={styles.TextInput}
-                        placeholder="neuer Benutzername"
+                        placeholder="Neuer Benutzername"
                         placeholderTextColor="#003f5c"
                         onChangeText={text => setText(text)}
 
@@ -38,7 +38,7 @@ export function ChangeUsername() {
 
 
                     <TouchableOpacity style={styles.changeUsername} onPress={changeUsernameHandler} >
-                        <Text style={styles.font}><b>ändere den Nutzernamen</b></Text>
+                        <Text style={styles.font}><b>Benutzername ändern</b></Text>
                     </TouchableOpacity>
 
 

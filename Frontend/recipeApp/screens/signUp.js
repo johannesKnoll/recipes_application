@@ -71,7 +71,7 @@ export default function SignUp() {
                     <View style={styles.inputView}>
                         <TextInput
                             style={styles.TextInput}
-                            placeholder="Nutzername"
+                            placeholder="Benutzername"
                             placeholderTextColor="#003f5c"
                             onChangeText={(userName) => setuserName(userName)}
                         />
@@ -80,7 +80,7 @@ export default function SignUp() {
                     <View style={styles.inputView}>
                         <TextInput
                             style={styles.TextInput}
-                            placeholder="Name"
+                            placeholder="Vorname"
                             placeholderTextColor="#003f5c"
                             onChangeText={(name) => setName(name)}
                         />

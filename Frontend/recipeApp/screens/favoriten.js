@@ -103,7 +103,7 @@ export function Favoriten() {
             >
                 <SearchBar
                     lightTheme={true}
-                    placeholder="Type Here..."
+                    placeholder="Hier Suchbegriff eingeben"
                     backgroundColor="white"
                     onChangeText={updateSearch}
                     value={search}
