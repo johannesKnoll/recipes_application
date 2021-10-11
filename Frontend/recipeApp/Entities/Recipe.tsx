@@ -1,3 +1,5 @@
+import { ImageSourcePropType } from "react-native";
+
 export interface Recipe{
     id: number,
     userId: number,
@@ -10,7 +12,7 @@ export interface Recipe{
     carbohydrate: number,
     time: number,
     hasMeat: boolean,
-    picture ?: string ,
+    picture ?: ImageSourcePropType ,
     ingredients: Array<string>,
     compynayId: number,
     vegan: boolean,

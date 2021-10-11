@@ -90,7 +90,7 @@ public class ProductService {
         List<Product> allVegetarianProducts = new ArrayList<>();
 
         for (Product product : allProducts) {
-            if(product.isVegetarian()){
+            if(product.isVegetarian() && product.isPublic()){
                 allVegetarianProducts.add(product);
             }
         }
@@ -109,7 +109,7 @@ public class ProductService {
         List<Product> allVeganProducts = new ArrayList<>();
 
         for (Product product : allProducts) {
-            if(product.isVegan()){
+            if(product.isVegan() && product.isPublic()){
                 allVeganProducts.add(product);
             }
         }
@@ -128,7 +128,7 @@ public class ProductService {
         List<Product> allMeatProducts = new ArrayList<>();
 
         for (Product product : allProducts) {
-            if(product.isHasMeat()){
+            if(product.isHasMeat() && product.isPublic()){
                 allMeatProducts.add(product);
             }
         }

@@ -30,7 +30,7 @@ export function ChangePassword() {
 
     return (
         <View style={styles.container}>
-            <ImageBackground resizeMode="cover" style={styles.backgroundImage} source={require("../assets/settings.jpg")}>
+            <ImageBackground resizeMode="cover" style={styles.backgroundImage} source={require("../pictures/picture4.jpg")}>
 
 
                 <View style={styles.inputView}>
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
 
 
         alignItems: "center",
-        opacity: "0.4",
+        opacity: 0.7,
 
     },
 
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
         marginTop: 40,
         marginBottom: 30,
         backgroundColor: "#FF0000",
-        opacity: "0.8",
+        opacity: 0.7,
         margin: "auto",
 
     },

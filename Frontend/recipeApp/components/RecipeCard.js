@@ -27,6 +27,7 @@ const RecipeCard = ({recipe, onPress}) => {
                 marginTop: 10,
                 marginRight: 15,
                 marginLeft: 15,
+                marginBottom: 15,
                 borderRadius: 10,
                 backgroundColor:'lightgray'
             }}
