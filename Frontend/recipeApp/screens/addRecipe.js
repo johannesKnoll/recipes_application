@@ -440,7 +440,7 @@ class AddRecipe extends Component {
 
 
 
-    const title = <h3 className="pt-2" style={{ display: 'flex', justifyContent: 'center' }}>Add New Recipe</h3>
+    const title = <h3 className="pt-2" style={{ display: 'flex', justifyContent: 'center' }}>Neues Rezept Hinzufügen</h3>
     const { categories, isLoading } = this.state;
     let { stepList, stepZutat } = this.state
     // const newRecipe = {
@@ -558,8 +558,8 @@ class AddRecipe extends Component {
                   <FormGroup>
                     <Row>
                       <Col>
-                        <Label for="name" placeholder="Name">Name</Label>
-                        <Input type="name" name="name" id="name" onChange={this.handleChange} autoComplete="name" />
+                        <Label for="name" >Name</Label>
+                        <Input type="name" name="name" placeholder="Name" id="name" onChange={this.handleChange} autoComplete="name" />
                       </Col>
                       <Col>
                         <Label>Zeitaufwand (in Min)</Label>
@@ -638,13 +638,20 @@ class AddRecipe extends Component {
                   <Form>
                     <FormGroup>
 
-                      <Label>Zutaten</Label>
+                      <Label
+                      style={{
+                        marginLeft:15
+                      }}>Zutaten</Label>
 
                       <View style={{
+                        //type="number"
+                        placeholder:'Name',
                         flex: 1,
                         backgroundColor: 'white',
                       }}>
                         <ScrollView style={{
+                          placeholder:'Name',
+                          placeholder:"Name",
                           flex: 1,
                           marginBottom: 5
                         }}>

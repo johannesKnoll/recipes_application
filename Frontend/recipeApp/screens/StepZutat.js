@@ -7,11 +7,11 @@ const StepZutat = (props) => {
       return (
         <tr key={val.index}>
           <td>    
-            <input style={{marginRight: 20}} type="text"  name="zutat" data-id={idx} id={zutat} className="form-control " />
+            <input style={{marginRight: 20}} placeholder="Zutat" type="text"  name="zutat" data-id={idx} id={zutat} className="form-control " />
           </td>
           <td>
           
-            <input style={{marginRight: 20}} type="text"  name="menge" data-id={idx} id={menge} className="form-control " />
+            <input style={{marginRight: 20}} placeholder="Anzahl" type="text"  name="menge" data-id={idx} id={menge} className="form-control " />
           </td>
           {/* <td>
           

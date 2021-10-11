@@ -8,7 +8,7 @@ const Steps = (props) => {
         <tr key={val.index}>
           <td>
           
-            <input type="text"  name="description" data-id={idx} id={description} className="form-control " />
+            <input type="text"  name="description" placeholder="Bearbeitungsschritt" data-id={idx} id={description} className="form-control " />
           </td>
           <td>
             
