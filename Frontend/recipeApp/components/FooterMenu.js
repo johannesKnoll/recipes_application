@@ -12,6 +12,36 @@ import { flex } from 'styled-system';
 
 const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHinzufuegen, onPressUser }) => {
 
+    const [isHome, setIsHome] = React.useState(true);
+    const [isFavorite, setIsFavorite] = React.useState(false);
+    const [isDiscover, setIsDiscover] = React.useState(false);
+    const [isAdd, setIsAdd] = React.useState(false);
+    const [isUser, setIsUser] = React.useState(false);
+
+    
+
+    const onPressHomeIn = () => {
+        setIsHome(true);
+        setIsFavorite(false);
+        setIsDiscover(false);
+        setIsAdd(false);
+        setIsUser(false);
+        onPressHome();
+    }
+
+    const onPressFavoritenIn = () => {
+        setTimeout(() => {
+            console.log("Timeout") }, 3000
+        )
+        console.log("Test Favoriten");
+        setIsFavorite(true);
+        setIsHome(false);
+        setIsDiscover(false);
+        setIsAdd(false);
+        setIsUser(false);
+        onPressFavoriten();
+    }
+
     return (
         <View
             style={{
@@ -37,10 +67,10 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
                         marginRight: 20,
                         top: '50%'
                     }}
-                    name="home"
+                    name={isHome? "home": "home-outline"}
                     size={40}
-                    color="white"
-                    onPress={onPressHome}>
+                    color="tomato"
+                    onPress={onPressHomeIn}>
                 </Ionicons>
             </TouchableHighlight>
             <TouchableHighlight
@@ -56,10 +86,10 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
                         marginTop: 8,
                         top: '50%'
                     }}
-                    name="star"
+                    name={isFavorite? "star" : "star-outline"}
                     size={40}
-                    color="white"
-                    onPress={onPressFavoriten}>
+                    color="tomato"
+                    onPress={onPressFavoritenIn}>
                 </Ionicons>
             </TouchableHighlight>
             <TouchableHighlight
@@ -75,9 +105,9 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
                         top: '50%'
                     }}
 
-                    name="map-outline"
+                    name={isDiscover ? "map" : "map-outline"}
                     size={40}
-                    color="white"
+                    color="tomato"
                     onPress={onPressEntdecken}>
                 </Ionicons>
             </TouchableHighlight>
@@ -93,9 +123,9 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
                         marginTop: 8,
                         top: '50%'
                     }}
-                    name="add-circle"
+                    name={isAdd ? "add-circle" : "add-circle-outline"}
                     size={40}
-                    color="white"
+                    color="tomato"
                     onPress={onPressHinzufuegen}>
                 </Ionicons>
             </TouchableHighlight>
@@ -111,9 +141,9 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
                         marginTop: 8,
                         top: '50%'
                     }}
-                    name='person'
+                    name={isUser ? "person" : "person-outline"}
                     size={40}
-                    color="white"
+                    color="tomato"
                     onPress={onPressUser}>
                 </Ionicons>
             </TouchableHighlight>
