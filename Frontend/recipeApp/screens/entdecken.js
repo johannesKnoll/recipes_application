@@ -19,6 +19,8 @@ import { useNavigation } from '@react-navigation/native';
 import FooterMenu from '../components/FooterMenu';
 import { logAPI } from '../api';
 import { getFavoriteRecipes, getAllRecipesFromUser } from '../api';
+import InformationRecipe from '../components/InformationRecipe';
+import InformationRecipeTofu from '../components/InformationRecipeTofu';
 
 export function Entdecken() {
 
@@ -168,6 +170,7 @@ export function Entdecken() {
                             >
                             </FlatList>
                         </View>
+                            <InformationRecipe text="Tipp: Kokusmilch ist ein leckerer Sahne-Ersatz"/>
                         <Text
                             style={{
                                 marginTop: 20,
@@ -200,6 +203,7 @@ export function Entdecken() {
                             >
                             </FlatList>
                         </View>
+                        <InformationRecipeTofu text="Auch Tofu kann lecker sein :)" />
                         <Text
                             style={{
                                 marginTop: 20,

@@ -169,7 +169,7 @@ class AddRecipe extends Component {
     // console.log(preperationList);
     this.state.recipe['description'] = preperationList;
     console.log(this.state.recipe);
-    window.location.reload(false);
+    //window.location.reload(false);
 
   }
 

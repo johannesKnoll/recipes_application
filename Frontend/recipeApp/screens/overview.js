@@ -18,6 +18,7 @@ import { Recipe } from '../Entities/Recipe';
 import { useNavigation } from '@react-navigation/native';
 import FooterMenu from '../components/FooterMenu';
 import { getFavoriteRecipes, getAllRecipesFromUser } from '../api';
+import Information from '../components/Information';
 
 export function Overview() {
     
@@ -177,6 +178,7 @@ console.log("test", dailyRecipeArray)
                             }}
                             >
                         </FlatList>
+                        <Information text="Heute schon etwas getrunken?" />
                         <Text
                             style={{
                                 marginLeft: 20,

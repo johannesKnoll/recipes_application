@@ -289,7 +289,7 @@ function RecipeOverview({ route }){
                         fontSize: 25,
                         fontWeight: 'bold'
                     }}>
-                    Bearbeitungsschritte
+                    Schritte
                 </Text>
                 <ScrollView
                     showsVerticalScrollIndicator={false}
@@ -306,6 +306,7 @@ function RecipeOverview({ route }){
                             return(
                                 <Text>
                                     {step}
+                                    {"\n"}
                                     {"\n"}
                                 </Text>
                             )
