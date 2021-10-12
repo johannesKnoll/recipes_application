@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { Icon } from 'react-native-elements';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { flex } from 'styled-system';
 
 const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHinzufuegen, onPressUser }) => {
 
@@ -20,6 +21,8 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
                 bottom: 0,
                 backgroundColor: 'lightgrey',
                 justifyContent: 'center',
+                position: 'fixed',
+               
             }}
         >
             <TouchableHighlight
