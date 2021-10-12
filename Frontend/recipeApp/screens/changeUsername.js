@@ -70,11 +70,18 @@ const styles = StyleSheet.create({
         borderRadius: 30,
         width: "70%",
         height: 45,
-        marginBottom: 10,
-        marginLeft: 40,
+
+
 
         alignItems: "center",
         opacity: 0.7,
+
+
+
+        margin: "auto",
+
+        alignItems: "center",
+
 
     },
 

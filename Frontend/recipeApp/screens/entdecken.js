@@ -19,6 +19,8 @@ import { useNavigation } from '@react-navigation/native';
 import FooterMenu from '../components/FooterMenu';
 import { logAPI } from '../api';
 import { getFavoriteRecipes, getAllRecipesFromUser } from '../api';
+import InformationRecipe from '../components/InformationRecipe';
+import InformationRecipeTofu from '../components/InformationRecipeTofu';
 
 export function Entdecken() {
 
@@ -68,6 +70,16 @@ export function Entdecken() {
     const [meatRecipes, setMeatRecipes] = React.useState([]);
     const [favoriteRecipes, setFavoriteRecipes] = React.useState([]);
 
+    const[filteredVegan, setFilteredVegan] = React.useState([]);
+    const[filteredVegetarian, setFilteredVegetarian] = React.useState([]);
+    const[filteredMeat, setFilteredMeat] = React.useState([]);
+
+    let veganArray = [];
+    let vegetarianArray = [];
+    let meatArray = [];
+
+    const masterData = veganRecipes.concat(vegetarianRecipes.concat(meatRecipes));
+
   const isFocused = useIsFocused();
     React.useEffect(() => {
         console.log("entdecken.js useEffect")
@@ -82,20 +94,23 @@ export function Entdecken() {
             .then(res => {
                 const recipesNew = res;
                 setVeganRecipes(recipesNew);
-            })
+                setFilteredVegan(recipesNew);
+        })
             
-            getVegetarianRecipes()
-            .then(res => {
-                const vegetarianRecipeNew = res;
-                setVegetarianRecipes(vegetarianRecipeNew);
-                console.log(res, "Vegetarian Products");
-            })
+        getVegetarianRecipes()
+        .then(res => {
+            const vegetarianRecipeNew = res;
+            setVegetarianRecipes(vegetarianRecipeNew);
+            setFilteredVegetarian(vegetarianRecipeNew);
+            console.log(res, "Vegetarian Products");
+        })
     
-            getMeatRecipes()
-            .then(res => {
-                const meatRecipesNew = res;
-                setMeatRecipes(meatRecipesNew);
-            })
+        getMeatRecipes()
+        .then(res => {
+            const meatRecipesNew = res;
+            setMeatRecipes(meatRecipesNew);
+            setFilteredMeat(meatRecipesNew);
+        })
             
             console.log(veganRecipes, "Vegan recipes");
         },[isFocused]);
@@ -105,9 +120,44 @@ export function Entdecken() {
     //   };
     const [search, setSearch] = React.useState("");
 
-    const updateSearch = (search) => {
-      setSearch(search);
-    };
+
+
+    const updateSearch = (text) => {
+      // setSearch(search);
+
+      if(text){
+          const newData = masterData.filter((item) => {
+              const itemData = item.name ?
+                            item.name.toUpperCase()
+                            : ''.toUpperCase();
+                const textData = text.toUpperCase();
+                return itemData.indexOf(textData) > 1;
+          });
+
+          newData.map(item => {
+              if(item.vegan){
+                  veganArray.push(item);
+              }else if(item.vegetarian){
+                  vegetarianArray.push(item);
+              }else if(item.hasMeat){
+                  meatArray.push(item);
+              }
+          })
+
+          setFilteredVegan(veganArray);
+          setFilteredVegetarian(vegetarianArray);
+          setMeatRecipes(meatArray);
+
+          //setFilteredData(newData);
+          setSearch(text);
+      } else{
+          //setFilteredData(recipes);
+          setFilteredVegan(veganRecipes);
+          setFilteredVegetarian(vegetarianRecipes);
+          setMeatRecipes(meatRecipes);
+          setSearch(text);
+      }
+    }
 
     return (
         <SafeAreaView
@@ -124,7 +174,7 @@ export function Entdecken() {
                     lightTheme={true}
                     placeholder="Hier Suchbegriff eingeben"
                     backgroundColor="white"
-                    onChangeText={updateSearch}
+                    onChangeText={(text) => updateSearch(text)}
                     value={search}
                 />
             </View>
@@ -147,9 +197,19 @@ export function Entdecken() {
                         >
                             Vegan
                         </Text>
+                        {filteredVegan.length === 0 &&
+                            <Text style={{
+                                marginLeft: 20,
+                                fontSize: 30,
+                                marginBottom: 10,
+                                color: 'red'
+                            }}>
+                                Keine Daten verfügbar
+                            </Text>
+                        }
                         <View>
                             <FlatList
-                                data={veganRecipes}
+                                data={filteredVegan}
                                 horizontal 
                                 showsHorizontalScrollIndicator={false}
                                 showVerticalScrollIndicator={false}
@@ -168,6 +228,7 @@ export function Entdecken() {
                             >
                             </FlatList>
                         </View>
+                            <InformationRecipe text="Tipp: Kokusmilch ist ein leckerer Sahne-Ersatz"/>
                         <Text
                             style={{
                                 marginTop: 20,
@@ -179,9 +240,19 @@ export function Entdecken() {
                         >
                             Vegetarisch
                         </Text>
+                        {filteredVegetarian.length === 0 &&
+                            <Text style={{
+                                marginLeft: 20,
+                                fontSize: 30,
+                                marginBottom: 10,
+                                color: 'red'
+                            }}>
+                                Keine Daten verfügbar
+                            </Text>
+                        }
                         <View>
                             <FlatList
-                                data={vegetarianRecipes}
+                                data={filteredVegetarian}
                                 horizontal 
                                 showsHorizontalScrollIndicator={false}
                                 showVerticalScrollIndicator={false}
@@ -200,6 +271,7 @@ export function Entdecken() {
                             >
                             </FlatList>
                         </View>
+                        <InformationRecipeTofu text="Auch Tofu kann lecker sein :)" />
                         <Text
                             style={{
                                 marginTop: 20,
@@ -211,9 +283,19 @@ export function Entdecken() {
                         >
                             Fleischhaltig
                         </Text>
+                        {filteredMeat.length === 0 &&
+                            <Text style={{
+                                marginLeft: 20,
+                                fontSize: 30,
+                                marginBottom: 10,
+                                color: 'red'
+                            }}>
+                                Keine Daten verfügbar
+                            </Text>
+                        }
                         <View>
                             <FlatList
-                                data={meatRecipes}
+                                data={filteredMeat}
                                 horizontal 
                                 showsHorizontalScrollIndicator={false}
                                 showVerticalScrollIndicator={false}

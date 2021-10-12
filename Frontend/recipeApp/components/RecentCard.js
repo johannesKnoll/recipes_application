@@ -60,6 +60,7 @@ const RecentCard = ({ recipe, onPress }) => {
             {/*Background Image*/}
             <Image
                 source={recipe.picture}
+                // source={require("../pictures/7.png")}
                 resizeMode="cover"
                 style={{
                     width: 250,
@@ -152,7 +153,7 @@ const RecentCard = ({ recipe, onPress }) => {
                         fontSize: 20
                     }}
                 >
-                    {recipe.name}
+                    {recipe.name.toUpperCase()}
                 </Text>
                 <Text
                     style={{

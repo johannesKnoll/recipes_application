@@ -8,9 +8,65 @@ import {
 } from 'react-native';
 import { Icon } from 'react-native-elements';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { flex } from 'styled-system';
+import { NavigationContainer, useIsFocused } from '@react-navigation/native';
+
 
 const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHinzufuegen, onPressUser }) => {
 
+    const [isHome, setIsHome] = React.useState(true);
+    const [isFavorite, setIsFavorite] = React.useState(false);
+    const [isDiscover, setIsDiscover] = React.useState(false);
+    const [isAdd, setIsAdd] = React.useState(false);
+    const [isUser, setIsUser] = React.useState(false);
+
+    const [isToggled, setIsToggled] = React.useState(false);
+    const toggle = React.useCallback(() => setIsToggled(!isToggled));
+    const isFocused = useIsFocused();
+
+    const onPressHomeIn = () => {
+        console.log("Test Favoriten");
+        setIsHome(true);
+        setIsFavorite(false);
+        setIsDiscover(false);
+        setIsAdd(false);
+        setIsUser(false);
+        onPressHome();
+    }
+
+    const onPressFavoritenIn = () => {
+        setTimeout(() => {
+            console.log("Timeout") }, 3000
+        )
+        console.log("Test Favoriten");
+        setIsFavorite(true);
+        setIsHome(false);
+        setIsDiscover(false);
+        setIsAdd(false);
+        setIsUser(false);
+        onPressFavoriten();
+    }
+    React.useEffect(() => {
+        if (!isFocused) return;
+        // if(onPressHomeIn ){
+        //     setIsHome(true);
+        //     setIsFavorite(false);
+        //     setIsDiscover(false);
+        //     setIsAdd(false);
+        //     setIsUser(false);
+        //     onPressHome();
+        // }
+        // else if(onPressFavoritenIn) {
+        //     console.log("Test Favoriten");
+        //     setIsFavorite(true);
+        //     setIsHome(false);
+        //     setIsDiscover(false);
+        //     setIsAdd(false);
+        //     setIsUser(false);
+        //     onPressFavoriten();
+        //     }
+      
+    }, [isFocused]);
     return (
         <View
             style={{
@@ -20,24 +76,27 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
                 bottom: 0,
                 backgroundColor: 'lightgrey',
                 justifyContent: 'center',
+                position: 'fixed',
+                
+               
             }}
         >
             <TouchableHighlight
                 activeOpacity={0.6}
                 underlayColor='tomato'
-                // onPress={() => alert('Pressed!')}
+                //  onPress={() => alert('Pressed!')}
                 >
                 <Ionicons
                     style={{
                         marginTop: 8,
-                        marginLeft: 30,
-                        marginRight: 30,
+                        marginLeft: 20,
+                        marginRight: 20,
                         top: '50%'
                     }}
-                    name="home"
+                    name={isHome? "home": "home-outline"}
                     size={40}
-                    color="white"
-                    onPress={onPressHome}>
+                    color="tomato"
+                    onPress={onPressHomeIn}>
                 </Ionicons>
             </TouchableHighlight>
             <TouchableHighlight
@@ -48,15 +107,15 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
 
                 <Ionicons
                     style={{
-                        marginRight: 30,
-                        marginLeft: 30,
+                        marginRight:20 ,
+                        marginLeft: 20,
                         marginTop: 8,
                         top: '50%'
                     }}
-                    name="star"
+                    name={isFavorite? "star" : "star-outline"}
                     size={40}
-                    color="white"
-                    onPress={onPressFavoriten}>
+                    color="tomato"
+                    onPress={onPressFavoritenIn}>
                 </Ionicons>
             </TouchableHighlight>
             <TouchableHighlight
@@ -66,15 +125,15 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
                 >
                 <Ionicons
                     style={{
-                        marginRight: 30,
-                        marginLeft: 30,
+                        marginRight: 20,
+                        marginLeft: 20,
                         marginTop: 8,
                         top: '50%'
                     }}
 
-                    name="map-outline"
+                    name={isDiscover ? "map" : "map-outline"}
                     size={40}
-                    color="white"
+                    color="tomato"
                     onPress={onPressEntdecken}>
                 </Ionicons>
             </TouchableHighlight>
@@ -85,14 +144,14 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
                 >
                 <Ionicons
                     style={{
-                        marginRight: 30,
-                        marginLeft: 30,
+                        marginRight: 20,
+                        marginLeft: 20,
                         marginTop: 8,
                         top: '50%'
                     }}
-                    name="add-circle"
+                    name={isAdd ? "add-circle" : "add-circle-outline"}
                     size={40}
-                    color="white"
+                    color="tomato"
                     onPress={onPressHinzufuegen}>
                 </Ionicons>
             </TouchableHighlight>
@@ -103,14 +162,14 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
                 >
                 <Ionicons
                     style={{
-                        marginRight: 30,
-                        marginLeft: 30,
+                        marginRight: 20,
+                        marginLeft: 20,
                         marginTop: 8,
                         top: '50%'
                     }}
-                    name='person'
+                    name={isUser ? "person" : "person-outline"}
                     size={40}
-                    color="white"
+                    color="tomato"
                     onPress={onPressUser}>
                 </Ionicons>
             </TouchableHighlight>
