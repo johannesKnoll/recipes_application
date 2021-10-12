@@ -9,6 +9,8 @@ import {
 import { Icon } from 'react-native-elements';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { flex } from 'styled-system';
+import { NavigationContainer, useIsFocused } from '@react-navigation/native';
+
 
 const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHinzufuegen, onPressUser }) => {
 
@@ -18,9 +20,12 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
     const [isAdd, setIsAdd] = React.useState(false);
     const [isUser, setIsUser] = React.useState(false);
 
-    
+    const [isToggled, setIsToggled] = React.useState(false);
+    const toggle = React.useCallback(() => setIsToggled(!isToggled));
+    const isFocused = useIsFocused();
 
     const onPressHomeIn = () => {
+        console.log("Test Favoriten");
         setIsHome(true);
         setIsFavorite(false);
         setIsDiscover(false);
@@ -41,7 +46,27 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
         setIsUser(false);
         onPressFavoriten();
     }
-
+    React.useEffect(() => {
+        if (!isFocused) return;
+        // if(onPressHomeIn ){
+        //     setIsHome(true);
+        //     setIsFavorite(false);
+        //     setIsDiscover(false);
+        //     setIsAdd(false);
+        //     setIsUser(false);
+        //     onPressHome();
+        // }
+        // else if(onPressFavoritenIn) {
+        //     console.log("Test Favoriten");
+        //     setIsFavorite(true);
+        //     setIsHome(false);
+        //     setIsDiscover(false);
+        //     setIsAdd(false);
+        //     setIsUser(false);
+        //     onPressFavoriten();
+        //     }
+      
+    }, [isFocused]);
     return (
         <View
             style={{

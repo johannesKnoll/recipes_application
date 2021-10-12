@@ -7,7 +7,6 @@ import com.example.accessingmongodbdatarest.Entities.*;
 import com.example.accessingmongodbdatarest.Repositories.ProductRepository;
 import com.example.accessingmongodbdatarest.Repositories.UserRepository;
 import com.example.accessingmongodbdatarest.Services.ProductService;
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.aspectj.lang.annotation.After;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
@@ -20,8 +19,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.swing.*;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
 import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.List;
@@ -72,20 +69,71 @@ public class AccessingMongodbDataRestApplication extends SpringBootServletInitia
 			ArrayList<String> ingredients = new ArrayList<>();
 			test.add("Test");
 			ingredients.add("200g Kartoffeln");
-		
+
+			ArrayList<String> quinoa = new ArrayList<>();
+			ArrayList<String> quinoaSteps = new ArrayList<>();
+			quinoa.add("200g Quinoa");
+			quinoa.add("400ml Gemüsebrühe");
+			quinoa.add("Eine Paprika");
+			quinoa.add("Eine Zucchini");
+			quinoa.add("Salz, Pfeffer");
+			quinoa.add("Eine Zwiebel");
+			quinoa.add("3 Zehen Knoblauch");
+			quinoa.add("Olivenöl");
+
+			quinoaSteps.add("Paprika, Zwiebel, Knoblauch und Zucchini waschen und in kleine Würfel schneiden");
+			quinoaSteps.add("Olivenöl in eine Pfanne geben, erhitzen und das geschnittene Gemüse anbraten.");
+			//quinoaSteps.add("Den Quinoa mit warmen Wasser in einem Sieb abspülen und mit der Gemüsebrühe ca. 15 Minuten köcheln lassen.");
+			//quinoaSteps.add("Den gekochten Quinoa mit in die Pfanne geben und gut umrühren");
+			//quinoaSteps.add("Am Schluss mit Salz und Pfeffer würzen.");
+
+			ArrayList<String> curryIngredients = new ArrayList<>();
+			curryIngredients.add("Ein Blumenkohl");
+			curryIngredients.add("Eine Karotte");
+			curryIngredients.add("Eine Paprika");
+			curryIngredients.add("1 Dose Kokusmilch");
+			curryIngredients.add("200ml Gemüsebrühe");
+			curryIngredients.add("Currypulver");
+			curryIngredients.add("Kreuzkümmel");
+			curryIngredients.add("Kurkuma");
+			curryIngredients.add("Salz und Pfeffer");
+			curryIngredients.add("Olivenöl");
+
+			ArrayList<String> currySteps = new ArrayList<>();
+			currySteps.add("Den Blumenkohl waschen und in kleine Rosen scheiden. Die Karotte schälen und mit der Paprika in kleine Würfel schneiden." +
+					" Danach das Gemüse in einer Pfanne anbraten.");
+			//currySteps.add("Nach ca. 3 Minuten die Gewürze hinzugeben und eine Minute mit anbraten. Danach mit der Kokusmilch und der Gemüsebrühe ablöschen");
+			//currySteps.add("Das Curry für etwa 15 Minuten kochen lassen, bis der Blumenkohl bissfest ist. Danach mit Salz und Pfeffer würzen.");
+			//currySteps.add("");
+
+			ArrayList<String> pastaIngredients = new ArrayList<>();
+			pastaIngredients.add("500g Nudeln");
+			pastaIngredients.add("1kg Tomaten");
+			pastaIngredients.add("Eine Zwiebel");
+			pastaIngredients.add("4 Zehen Knoblauch");
+			pastaIngredients.add("Salz und Pfeffer");
+			pastaIngredients.add("Olivenöl");
+
+			ArrayList<String> pastaSteps = new ArrayList<>();
+			pastaSteps.add("Die Nudeln in kochendes Salzwasser geben und kochen.");
+			pastaSteps.add("Die Tomaten in kleine Stücke schneiden und im Olivenöl anbraten.");
+			//pastaSteps.add("Die Tomaten mit Wasser überdecken und so lange kochen lassen, bis das Wasser verkocht ist.");
+			//pastaSteps.add("Zum Schluss die Nudeln in die Tomatensoße geben.");
+
+
 			ArrayList<Product> RecipeDailyList = new ArrayList<Product>();
-			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Quinoa-Pfanne", test,800, 30,25, 80, 30, true, true,false, ingredients, "pic" )));
-			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Blumenkohl-Curry", test,800, 30,25, 80, 30, true, true,false, ingredients, "pic" )));
-			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Nudeln mit Tomatensoße", test,800, 30,25, 80, 30, true, true,false, ingredients, "pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Quinoa-Pfanne", quinoaSteps,800, 30,25, 80, 30, true, false,false, quinoa, "pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Blumenkohl-Curry", currySteps,800, 30,25, 80, 30, true, false,false, curryIngredients, "pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Nudeln mit Tomatensoße", pastaSteps,800, 30,25, 80, 30, true, false,false, pastaIngredients, "pic" )));
 			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Gemüsepfanne", test,800, 30,25, 80, 30, true, true,false, ingredients, "pic" )));
-			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, true, true,false, ingredients, "pic" )));
-			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, true, true,false, ingredients, "pic" )));
-			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, true, true,false, ingredients, "pic" )));
-			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, true, true,false, ingredients, "pic" )));
-			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, true, true,false, ingredients,"pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, true, false,false, ingredients, "pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, true, false,false, ingredients, "pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, true, false,false, ingredients, "pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, true, false,false, ingredients, "pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, true, false,false, ingredients,"pic" )));
 			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Rührei mit Speckersatz", test,800, 30,25, 80, 30, false, true,false, ingredients,"pic" )));
 			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Rührei", test,800, 30,25, 80, 30, false, true,false, ingredients,"pic" )));
-			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, true,false, ingredients,"pic" )));
+			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Gemüsepfanne mit Tofu", test,800, 30,25, 80, 30, false, true,false, ingredients,"pic" )));
 			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, true,false, ingredients,"pic" )));
 			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, true,false, ingredients,"pic" )));
 			RecipeDailyList.add(productRepository.save(new Product(thorsten, true, "Burger", test,800, 30,25, 80, 30, false, true,false, ingredients,"pic" )));
