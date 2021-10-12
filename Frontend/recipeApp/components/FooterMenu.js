@@ -25,7 +25,7 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
     const isFocused = useIsFocused();
 
     const onPressHomeIn = () => {
-        console.log("Test Favoriten");
+        
         setIsHome(true);
         setIsFavorite(false);
         setIsDiscover(false);
@@ -81,6 +81,7 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
                
             }}
         >
+            
             <TouchableHighlight
                 activeOpacity={0.6}
                 underlayColor='tomato'
