@@ -28,6 +28,32 @@ padding: 0px;
   flex-direction: column;
 }
 
+.StepZutat{
+  /* line-height: 2; */
+  /* background-color: #fff; */
+  /* display: contents; */
+
+
+  /* position: unset; */
+/* width: 90%; */
+/* padding-right: 15px; */
+/* padding-left: 18px; */
+/* display: block; */
+width: 95%;
+
+/* height: calc(2.5em + 0.75rem + 2px); */
+padding: 0.375rem 0.75rem;
+/* font-size: 1rem; */
+/* font-weight: 400; */
+line-height: 1.5;
+color: #495057;
+background-color: #fff;
+background-clip: padding-box;
+/* border: 1px solid #ced4da; */
+border-radius: 0.55rem;
+transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
 .Site-content {
   /* flex: 1; */
   /* position: sticky; */
@@ -176,6 +202,23 @@ background-clip: padding-box;
 border-radius: 0.55rem;
 transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+.form-control-2 {
+  /* display: block; */
+  /* width: 95%; */
+  
+  /* height: calc(2.5em + 0.75rem + 2px); */
+  padding: 0.375rem 0.75rem;
+  /* font-size: 1rem; */
+  /* font-weight: 400; */
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  /* border: 1px solid #ced4da; */
+  border-radius: 0.55rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  
 
 
 /* .btn {

@@ -664,17 +664,22 @@ class AddRecipe extends Component {
                           {this.state.inputs.map((input, key) => (
                             <View
                              style={{
-                              // flexDirection: 'row',
-                              justifyContent: 'space-between',
-                              alignItems: 'center',
-                              borderBottomWidth: 0,
-                              borderBottomColor: "lightgray"
+                              // // flexDirection: 'row',
+                              // justifyContent: 'space-between',
+                              // alignItems: 'center',
+                              // borderBottomWidth: 0,
+                              // borderBottomColor: "lightgray"
+
                             }}
                             >
-
+                                 
+                   
+                  <FormGroup>
+                  <Row>
+                  <Col>
                               {/* <Row> */}
                                 {/* <Col> */}
-                                  <StepZutat add={this.addNewRowZutat} delete={this.clickOnDeleteeZutat.bind(this)} stepZutat={stepZutat}></StepZutat>
+                                  <StepZutat className="StepZutat" add={this.addNewRowZutat} delete={this.clickOnDeleteeZutat.bind(this)} stepZutat={stepZutat}></StepZutat>
                                 {/* </Col> */}
                                 {/* <Col>
                                   <Input style={{ marginRight: 15, padding: 10, marginTop: 10 }} type="name" placeholder={"Zutat"} onChangeText={(text) => inputHandler(text, key)} />
@@ -693,6 +698,9 @@ class AddRecipe extends Component {
                                   </Input>
                                 </Col> */}
                               {/* </Row> */}
+                              </Col>
+                    </Row>
+                  </FormGroup>
                             </View>
                           ))}
                         </ScrollView>

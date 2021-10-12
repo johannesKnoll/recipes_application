@@ -9,3 +9,29 @@
 body{
     background: azure;
 }
+
+.form-control{
+     display: inline-table;
+  width: 100%;
+  /* margin-bottom: 1rem; */
+  position:relative;
+  height: 20%;
+  /* padding: 0,3cm; */
+     /* height: calc(1.5em + 0.75rem + 2px); */
+  padding: 0.375rem 0.75rem;
+  /* padding:  3cm; */
+  /* font-size: 1rem; */
+  /* font-weight: 400; */
+  /* line-height: 2; */
+  /* color: #495057; */
+  /* background-color: #fff; */
+  /* display: contents; */
+  /* background-clip: padding-box; */
+  /* border: 1px solid #ced4da; */
+  /* border-radius: 0.25rem; */
+  /* margin: auto; */
+/* width: 50%; */
+/* border: 8px solid #118b11; */
+/* padding: 0px; */
+
+}
