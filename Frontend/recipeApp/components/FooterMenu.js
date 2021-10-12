@@ -52,6 +52,7 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
                 backgroundColor: 'lightgrey',
                 justifyContent: 'center',
                 position: 'fixed',
+                
                
             }}
         >
