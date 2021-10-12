@@ -149,6 +149,16 @@ export function Entdecken() {
                         >
                             Vegan
                         </Text>
+                        {veganRecipes.length === 0 &&
+                            <Text style={{
+                                marginLeft: 20,
+                                fontSize: 30,
+                                marginBottom: 10,
+                                color: 'red'
+                            }}>
+                                Keine Daten verfügbar
+                            </Text>
+                        }
                         <View>
                             <FlatList
                                 data={veganRecipes}
@@ -182,6 +192,16 @@ export function Entdecken() {
                         >
                             Vegetarisch
                         </Text>
+                        {vegetarianRecipes.length === 0 &&
+                            <Text style={{
+                                marginLeft: 20,
+                                fontSize: 30,
+                                marginBottom: 10,
+                                color: 'red'
+                            }}>
+                                Keine Daten verfügbar
+                            </Text>
+                        }
                         <View>
                             <FlatList
                                 data={vegetarianRecipes}
@@ -215,6 +235,16 @@ export function Entdecken() {
                         >
                             Fleischhaltig
                         </Text>
+                        {meatRecipes.length === 0 &&
+                            <Text style={{
+                                marginLeft: 20,
+                                fontSize: 30,
+                                marginBottom: 10,
+                                color: 'red'
+                            }}>
+                                Keine Daten verfügbar
+                            </Text>
+                        }
                         <View>
                             <FlatList
                                 data={meatRecipes}

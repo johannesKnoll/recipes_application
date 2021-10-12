@@ -158,6 +158,16 @@ console.log("test", dailyRecipeArray)
                         >
                             Zuletzt angesehen
                         </Text>
+                        {recipes.length === 0 &&
+                            <Text style={{
+                                marginLeft: 20,
+                                fontSize: 30,
+                                marginBottom: 10,
+                                color: 'red'
+                            }}>
+                                Keine Daten verfügbar
+                            </Text>
+                        }
                         <FlatList
                             data={recipes}
                             horizontal 
@@ -190,6 +200,16 @@ console.log("test", dailyRecipeArray)
                         >
                             Rezept des Tages
                         </Text>
+                        {dailyRecipe.length === 0 &&
+                            <Text style={{
+                                marginLeft: 20,
+                                fontSize: 30,
+                                marginBottom: 10,
+                                color: 'red'
+                            }}>
+                                Keine Daten verfügbar
+                            </Text>
+                        }
                     </View>
                 }
                 renderItem={({ item }) => {

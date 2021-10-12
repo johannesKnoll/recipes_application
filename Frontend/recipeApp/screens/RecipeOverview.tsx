@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import {
     Text,
     View,
@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { Icon, Divider } from 'react-native-elements';
 import { bottom } from 'styled-system';
-import { rateRecipe, getRecipeById, login } from '../api';
+import { rateRecipe, getRecipeById, addToFavorite } from '../api';
 import { Recipe } from '../Entities/Recipe';
 
 function RecipeOverview({ route }){
@@ -66,12 +66,22 @@ function RecipeOverview({ route }){
             })
     },[]);
 
+    const [isFavorite, setIsFavorite] = React.useState(false);
     const starImageFilled = "https://raw.githubusercontent.com/tranhonghan/images/main/star_filled.png";
     const starImageCorner = "https://raw.githubusercontent.com/tranhonghan/images/main/star_corner.png";
 
     const rateRecipeById = () => {
         rateRecipe(id, defaultRating);
         alert("Danke für Ihre Bewertung :)");
+    }
+
+    const addFavorite = () => {
+        setIsFavorite(!isFavorite)
+        addToFavorite(recipe.id)
+            .then(res => {
+            //    alert(res);
+            })
+            //navigation.navigate('home');
     }
 
     // React.useEffect(() => {
@@ -134,7 +144,7 @@ function RecipeOverview({ route }){
             }}>
                 <View>
                     <Image
-                        source={recipe.picture}
+                        source={require("../pictures/1.png")}
                         resizeMode="cover"
                         style={{
                             width: '100%',
@@ -162,6 +172,21 @@ function RecipeOverview({ route }){
                             >
                                 {recipe.hasMeat ? 'Mit Fleisch' : recipe.vegetarian ? 'Vegetarisch' : 'Vegan'}
                             </Text>
+                        </View>
+                        <View
+                            style={{
+                                position: 'absolute',
+                                bottom: 10,
+                                right: 10
+                            }}
+                        >
+                            <Icon
+                                name={isFavorite ? 'bookmark' : 'bookmark-outline'}
+                                type='ionicon'
+                                color='tomato'
+                                size={35}
+                                onPress={addFavorite}
+                            />
                         </View>
                         <View
                             style={{
@@ -244,6 +269,7 @@ function RecipeOverview({ route }){
                             return(
                                 <Text>
                                     {ingredient}
+                                    {"\n"}
                                 </Text>
                             )
                         })}
