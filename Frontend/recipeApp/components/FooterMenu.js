@@ -30,10 +30,10 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
     }
 
     const onPressFavoritenIn = () => {
-        setTimeout(() => {
-            console.log("Timeout") }, 3000
-        )
-        console.log("Test Favoriten");
+        // setTimeout(() => {
+        //     console.log("Timeout") }, 3000
+        // )
+        // console.log("Test Favoriten");
         setIsFavorite(true);
         setIsHome(false);
         setIsDiscover(false);
@@ -68,7 +68,7 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
                         marginRight: 20,
                         top: '50%'
                     }}
-                    name={isHome? "home": "home-outline"}
+                    name="home"
                     size={40}
                     color="tomato"
                     onPress={onPressHomeIn}>
@@ -87,7 +87,7 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
                         marginTop: 8,
                         top: '50%'
                     }}
-                    name={isFavorite? "star" : "star-outline"}
+                    name="star"
                     size={40}
                     color="tomato"
                     onPress={onPressFavoritenIn}>
@@ -106,7 +106,7 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
                         top: '50%'
                     }}
 
-                    name={isDiscover ? "map" : "map-outline"}
+                    name="map"
                     size={40}
                     color="tomato"
                     onPress={onPressEntdecken}>
@@ -124,7 +124,7 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
                         marginTop: 8,
                         top: '50%'
                     }}
-                    name={isAdd ? "add-circle" : "add-circle-outline"}
+                    name="add-circle"
                     size={40}
                     color="tomato"
                     onPress={onPressHinzufuegen}>
@@ -142,7 +142,7 @@ const FooterMenu = ({ onPressHome, onPressFavoriten, onPressEntdecken, onPressHi
                         marginTop: 8,
                         top: '50%'
                     }}
-                    name={isUser ? "person" : "person-outline"}
+                    name="person"
                     size={40}
                     color="tomato"
                     onPress={onPressUser}>

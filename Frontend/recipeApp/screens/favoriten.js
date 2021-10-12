@@ -133,7 +133,7 @@ export function Favoriten() {
                                 marginLeft: 20,
                                 fontSize: 30,
                                 marginBottom: 10,
-                                color: 'red'
+                                color: 'tomato'
                             }}>
                                 Noch keine Favoriten hinzugefügt
                             </Text>
@@ -175,7 +175,7 @@ export function Favoriten() {
                                 marginLeft: 20,
                                 fontSize: 30,
                                 marginBottom: 10,
-                                color: 'red'
+                                color: 'tomato'
                             }}>
                                 Noch keine Rezepte erstellt
                             </Text>
