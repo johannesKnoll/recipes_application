@@ -363,7 +363,7 @@ class AddRecipe extends Component {
     // this.setState({ navigation: useNavigation() });
     // console.log(navigation)
     // this.navigation.navigate('home');
-     this.props.navigation.navigate('home')
+    this.props.navigation.navigate('home')
   }
   onPressHandlerFavoriten() {
     // this.setState({ navigation: useNavigation() });
@@ -559,223 +559,191 @@ class AddRecipe extends Component {
               <div className="Home-image"></div>
               <Container className="Site-content">
                 <ScrollView>
-                <Form onSubmit={this.handleSubmit} className="test">
-                  {title}
-                  <FormGroup>
-                    <Row>
-                      <Col>
-                        <Label for="name" >Name</Label>
-                        <Input type="name" name="name" placeholder="Name" id="name" onChange={this.handleChange} autoComplete="name" />
-                      </Col>
-                      <Col>
-                        <Label>Zeitaufwand (in Min)</Label>
-                        <Input type="number" name="time" id="time" placeholder="Zeit" onChange={this.handleChange} ></Input>
-                      </Col>
-                    </Row>
-                  </FormGroup>
-
-                  <FormGroup>
-                    <Row>
-                      <Col>
-                        <Label>Kalorien</Label>
-                        <Input type="number" name="calories" placeholder="Kalorien" onChange={this.handleChange}></Input>
-                      </Col>
-                      <Col>
-                        <Label>Proteine</Label>
-                        <Input type="number" name="protein" placeholder="Proteine" onChange={this.handleChange}></Input>
-                      </Col>
-                      <Col>
-                        <Label>Fett</Label>
-                        <Input type="number" name="fat" placeholder="Fett" onChange={this.handleChange}></Input>
-                      </Col>
-                      <Col>
-                        <Label>Kohlenhydrate</Label>
-                        <Input type="number" name="carbohydrate" placeholder="Kohlenhydrate" onChange={this.handleChange}></Input>
-                      </Col>
-                    </Row>
-                  </FormGroup>
-
-                  <FormGroup
-                    style={{
-                      marginLeft: 15,
-                    }}>
-                    <Label for="image">Bild aussuchen: </Label>
-                    <input className="mt-2 ml-2" type="file" name="picture" onChange={this.handleFileInputChange} />
-                  </FormGroup>
-
-                  <FormGroup
-                    style={{
-                      marginLeft: 15,
-                    }}>
-                    <Label for="category">Öffentlichkeit</Label>
-                    <div className="form-check">
-                      <input className="form-check-input" name="isPublic" type="checkbox" value="" id="defaultCheck1" onChange={e => this.setStatePublic(e)} />
-                      <label className="form-check-label" htmlFor="defaultCheck1">
-                        öffentlich
-                      </label>
-                    </div>
-                  </FormGroup>
-                  <FormGroup
-                    style={{
-                      marginLeft: 15,
-                    }}>
-                    <Label for="category">Kategorie</Label>
-
-                    <div className="form-check">
-                      <input className="form-check-input" name="hasMeat" type="checkbox" value="" id="defaultCheck1" onChange={e => this.setStateCategory(e)} />
-                      <label className="form-check-label" htmlFor="defaultCheck1">
-                        Fleisch
-                      </label>
-                    </div>
-                    <div className="form-check">
-                      <input className="form-check-input" name="isVegetarian" type="checkbox" value="" id="defaultCheck1" onChange={e => this.setStateCategory(e)} />
-                      <label className="form-check-label" htmlFor="defaultCheck1">
-                        Vegetarisch
-                      </label>
-                    </div>
-                    <div className="form-check">
-                      <input className="form-check-input" name="isVegan" type="checkbox" value="" id="defaultCheck2" onChange={e => this.setStateCategory(e)} />
-                      <label className="form-check-label" htmlFor="defaultCheck2">
-                        Vegan
-                      </label>
-                    </div>
-                  </FormGroup>
-
-                  <Form>
+                  <Form onSubmit={this.handleSubmit} className="test">
+                    {title}
                     <FormGroup>
+                      <Row>
+                        <Col>
+                          <Label for="name" >Name</Label>
+                          <Input type="name" name="name" placeholder="Name" id="name" onChange={this.handleChange} autoComplete="name" />
+                        </Col>
+                        <Col>
+                          <Label>Zeitaufwand (in Min)</Label>
+                          <Input type="number" name="time" id="time" placeholder="Zeit" onChange={this.handleChange} ></Input>
+                        </Col>
+                      </Row>
+                    </FormGroup>
 
-                      <Label
+                    <FormGroup>
+                      <Row>
+                        <Col>
+                          <Label>Kalorien</Label>
+                          <Input type="number" name="calories" placeholder="Kalorien" onChange={this.handleChange}></Input>
+                        </Col>
+                        <Col>
+                          <Label>Proteine</Label>
+                          <Input type="number" name="protein" placeholder="Proteine" onChange={this.handleChange}></Input>
+                        </Col>
+                        <Col>
+                          <Label>Fett</Label>
+                          <Input type="number" name="fat" placeholder="Fett" onChange={this.handleChange}></Input>
+                        </Col>
+                        <Col>
+                          <Label>Kohlenhydrate</Label>
+                          <Input type="number" name="carbohydrate" placeholder="Kohlenhydrate" onChange={this.handleChange}></Input>
+                        </Col>
+                      </Row>
+                    </FormGroup>
+
+                    <FormGroup
                       style={{
-                        marginLeft:15
-                      }}>Zutaten</Label>
+                        marginLeft: 15,
+                      }}>
+                      <Label for="image">Bild aussuchen: </Label>
+                      <input className="mt-2 ml-2" type="file" name="picture" onChange={this.handleFileInputChange} />
+                    </FormGroup>
+
+                    <FormGroup
+                      style={{
+                        marginLeft: 15,
+                      }}>
+                      <Label for="category">Öffentlichkeit</Label>
+                      <div className="form-check">
+                        <input className="form-check-input" name="isPublic" type="checkbox" value="" id="defaultCheck1" onChange={e => this.setStatePublic(e)} />
+                        <label className="form-check-label" htmlFor="defaultCheck1">
+                          öffentlich
+                        </label>
+                      </div>
+                    </FormGroup>
+                    <FormGroup
+                      style={{
+                        marginLeft: 15,
+                      }}>
+                      <Label for="category">Kategorie</Label>
+
+                      <div className="form-check">
+                        <input className="form-check-input" name="hasMeat" type="checkbox" value="" id="defaultCheck1" onChange={e => this.setStateCategory(e)} />
+                        <label className="form-check-label" htmlFor="defaultCheck1">
+                          Fleisch
+                        </label>
+                      </div>
+                      <div className="form-check">
+                        <input className="form-check-input" name="isVegetarian" type="checkbox" value="" id="defaultCheck1" onChange={e => this.setStateCategory(e)} />
+                        <label className="form-check-label" htmlFor="defaultCheck1">
+                          Vegetarisch
+                        </label>
+                      </div>
+                      <div className="form-check">
+                        <input className="form-check-input" name="isVegan" type="checkbox" value="" id="defaultCheck2" onChange={e => this.setStateCategory(e)} />
+                        <label className="form-check-label" htmlFor="defaultCheck2">
+                          Vegan
+                        </label>
+                      </div>
+                    </FormGroup>
+
+                    <Form>
+                      <FormGroup>
+
+                        <Label
+                          style={{
+                            marginLeft: 15
+                          }}>Zutaten</Label>
+
+                        <View style={{
+                          //type="number"
+                          placeholder: 'Name',
+                          flex: 1,
+                          backgroundColor: 'white',
+                        }}>
+                          <ScrollView style={{
+                            placeholder: 'Name',
+                            placeholder: "Name",
+                            flex: 1,
+                            marginBottom: 5
+                          }}>
+                            {this.state.inputs.map((input, key) => (
+                              <View
+                                style={{
+                                  // // flexDirection: 'row',
+                                  // justifyContent: 'space-between',
+                                  // alignItems: 'center',
+                                  // borderBottomWidth: 0,
+                                  // borderBottomColor: "lightgray"
+
+                                }}
+                              >
+
+
+                                <FormGroup>
+                                  <Row>
+                                    <Col>
+
+                                      <StepZutat className="StepZutat" add={this.addNewRowZutat} delete={this.clickOnDeleteeZutat.bind(this)} stepZutat={stepZutat}></StepZutat>
+
+                                    </Col>
+                                  </Row>
+                                </FormGroup>
+                              </View>
+                            ))}
+                          </ScrollView>
+                        </View>
+                      </FormGroup>
+                    </Form>
+
+                    <Form>
+                    <FormGroup
+                      style={{
+                        marginLeft: 15,
+                      }}>
+                      <Label>Bearbeitungsschritte</Label>
 
                       <View style={{
-                        //type="number"
-                        placeholder:'Name',
                         flex: 1,
+                        marginLeft: -10,
+                        padding: 0,
                         backgroundColor: 'white',
                       }}>
                         <ScrollView style={{
-                          placeholder:'Name',
-                          placeholder:"Name",
                           flex: 1,
-                          marginBottom: 5
+                          marginBottom: 10
                         }}>
-                          {this.state.inputs.map((input, key) => (
-                            <View
-                             style={{
-                              // // flexDirection: 'row',
-                              // justifyContent: 'space-between',
-                              // alignItems: 'center',
-                              // borderBottomWidth: 0,
-                              // borderBottomColor: "lightgray"
+                          {this.state.inputsSteps.map((input, key) => (
+                         
 
-                            }}
-                            >
-                                 
-                   
-                  <FormGroup>
-                  <Row>
-                  <Col>
-                              {/* <Row> */}
-                                {/* <Col> */}
-                                  <StepZutat className="StepZutat" add={this.addNewRowZutat} delete={this.clickOnDeleteeZutat.bind(this)} stepZutat={stepZutat}></StepZutat>
-                                {/* </Col> */}
-                                {/* <Col>
-                                  <Input style={{ marginRight: 15, padding: 10, marginTop: 10 }} type="name" placeholder={"Zutat"} onChangeText={(text) => inputHandler(text, key)} />
-                                </Col>
-                                <Col>
-                                  <Input style={{ marginRight: 15, padding: 10, marginTop: 10 }} type="name" placeholder={"Menge"} onChangeText={(text) => inputHandler(text, key)} />
-                                </Col> */}
-                                {/* <Label for="exampleSelect">Select</Label> */}
-                                {/* <Col>
-                                  <Input style={{ marginRight: 15, padding: 10, marginTop: 10 }} className="form-control" type="select" placeholder="Einheit" name="select" id="exampleSelect">
-                                    <option>kg</option>
-                                    <option>l</option>
-                                    <option>ml</option>
-                                    <option>g</option>
-                                    <option>Stk</option>
-                                  </Input>
-                                </Col> */}
-                              {/* </Row> */}
-                              </Col>
-                    </Row>
-                  </FormGroup>
-                            </View>
-                          ))}
-                        </ScrollView>
-                      </View>
-                    </FormGroup>
-                  </Form>
+                              
+                               
+                                  <Row>
+                                    <Col>
 
-                  {/* <HomeScreen /> */}
-                  {/* <Label for="ingredients">Ingredients</Label>
-              <Input type="text" name="ingredients" id="ingredients" onChange={this.handleChange}/> */}
-
-                  <FormGroup
-                    style={{
-                      marginLeft: 15,
-                    }}>
-                    <Label>Bearbeitungsschritte</Label>
-
-                    <View style={{
-                      flex: 1,
-                      marginLeft: -10,
-                      padding: 0,
-                      backgroundColor: 'white',
-                    }}>
-                      <ScrollView style={{
-                        flex: 1,
-                        marginBottom: 10
-                      }}>
-                        {this.state.inputsSteps.map((input, key) => (
-                          <View style={{
-                            flexDirection: 'row',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                            borderBottomWidth: 0,
-                            borderBottomColor: "lightgray",
-                          }}>
-
-                            <Form>
-                              <FormGroup>
-                                <Row>
-                                  <Col>
-                                    {/* <Input type="name" name="steps" style={{ marginRight: 15, padding: 10, marginTop: 10 }}
-                                      placeholder={"Bearbeitungsschritt"}
-
-                                      // onChange={e => console.log(e.target.value, "Steps event")}
-                                      value={this.state.inputDescription}
-                                      onChange={(e) => this.setSteps(e)}
-                                    /> */}
-                                    <tbody>
                                       <Steps add={this.addNewRoww} delete={this.clickOnDeletee.bind(this)} stepList={stepList} />
-                                    </tbody>
-                                  </Col>
-                                </Row>
-                              </FormGroup>
-                            </Form>
-                            {/* <Button color="red" title="Eintrag löschen" onClick={() => deleteHandlerSteps(key)}>
-                            </Button> */}
-                          </View>
-                        ))}
-                      </ScrollView>
-                    </View>
 
-                  </FormGroup>
+                                    </Col>
+                                  </Row>
+                              
 
-                  <FormGroup>
-                    <Row>
-                      <Col>
-                        <Button title="Save Recipe" onPress={this.saveRecipe}></Button>
-                      </Col>
-                      <Col>
-                        <Button title="Cancel"></Button>
-                      </Col>
-                    </Row>
-                  </FormGroup>
+                         
+                           
+                          ))}
+                    
+                     
+                    </ScrollView>
+                        </View>
+                      </FormGroup>
+                    </Form>
+                   
 
-                </Form>
+                    <FormGroup>
+                      <Row>
+                        <Col>
+                          <Button title="Save Recipe" onPress={this.saveRecipe}></Button>
+                        </Col>
+                        <Col>
+                          <Button title="Cancel"></Button>
+                        </Col>
+                      </Row>
+                    </FormGroup>
+
+                  </Form>
                 </ScrollView>
               </Container>
 
@@ -787,8 +755,8 @@ class AddRecipe extends Component {
             onPressEntdecken={this.onPressHandlerEntdecken}
             onPressHinzufuegen={this.onPressHandlerHinzufuegen}
             onPressUser={this.onPressHandlerUser}
-            
-            >
+
+          >
           </FooterMenu>
         </SafeAreaView>
       </form>
