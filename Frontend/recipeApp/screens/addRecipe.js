@@ -543,7 +543,7 @@ class AddRecipe extends Component {
 
 
     return (
-      <form onSubmit={this.handleSubmitt} onChange={this.handleChangee}>
+      <form onSubmit={this.handleSubmitt} onChange={this.handleChangee} >
         <SafeAreaView
           showHorizontalScrollIndicator={false}
           showVerticalScrollIndicator={false}
@@ -553,7 +553,9 @@ class AddRecipe extends Component {
 
           <ScrollView
             showHorizontalScrollIndicator={false}
-            showVerticalScrollIndicator={false}>
+            showVerticalScrollIndicator={false}
+            
+            >
             <div className="Site">
 
               <div className="Home-image"></div>
@@ -737,9 +739,7 @@ class AddRecipe extends Component {
                         <Col>
                           <Button title="Save Recipe" onPress={this.saveRecipe}></Button>
                         </Col>
-                        <Col>
-                          <Button title="Cancel"></Button>
-                        </Col>
+                      
                       </Row>
                     </FormGroup>
 
@@ -747,9 +747,9 @@ class AddRecipe extends Component {
                 </ScrollView>
               </Container>
 
-            </div>
+            </div >
           </ScrollView>
-          <FooterMenu
+          <FooterMenu 
             onPressHome={this.onPressHandlerHome}
             onPressFavoriten={this.onPressHandlerFavoriten}
             onPressEntdecken={this.onPressHandlerEntdecken}
