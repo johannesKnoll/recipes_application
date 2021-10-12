@@ -179,7 +179,7 @@ export function Overview() {
                                 marginLeft: 20,
                                 fontSize: 30,
                                 marginBottom: 10,
-                                color: 'red'
+                                color: 'tomato'
                             }}>
                                 Noch keine Rezepte angesehen
                             </Text>
@@ -221,7 +221,7 @@ export function Overview() {
                                 marginLeft: 20,
                                 fontSize: 30,
                                 marginBottom: 10,
-                                color: 'red'
+                                color: 'tomato'
                             }}>
                                 Keine Daten verfügbar
                             </Text>

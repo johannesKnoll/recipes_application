@@ -202,7 +202,7 @@ export function Entdecken() {
                                 marginLeft: 20,
                                 fontSize: 30,
                                 marginBottom: 10,
-                                color: 'red'
+                                color: 'tomato'
                             }}>
                                 Keine Daten verfügbar
                             </Text>
@@ -245,7 +245,7 @@ export function Entdecken() {
                                 marginLeft: 20,
                                 fontSize: 30,
                                 marginBottom: 10,
-                                color: 'red'
+                                color: 'tomato'
                             }}>
                                 Keine Daten verfügbar
                             </Text>
@@ -288,7 +288,7 @@ export function Entdecken() {
                                 marginLeft: 20,
                                 fontSize: 30,
                                 marginBottom: 10,
-                                color: 'red'
+                                color: 'tomato'
                             }}>
                                 Keine Daten verfügbar
                             </Text>
