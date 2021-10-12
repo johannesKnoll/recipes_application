@@ -153,7 +153,7 @@ const RecentCard = ({ recipe, onPress }) => {
                         fontSize: 20
                     }}
                 >
-                    {recipe.name}
+                    {recipe.name.toUpperCase()}
                 </Text>
                 <Text
                     style={{

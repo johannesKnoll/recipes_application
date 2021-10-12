@@ -6,11 +6,12 @@ import {
     Image
 } from 'react-native';
 import { Icon } from 'react-native-elements';
-import { getUserByUserId } from '../api';
+import { getUserByUserId, addToFavorite } from '../api';
 
 const RecipeCard = ({recipe, onPress}) => {
 
     
+    const [isFavorite, setIsFavorite] = React.useState(false);
     const [username, setUserName] = React.useState("");
     React.useEffect(() => {
         getUserByUserId(recipe.userId)
@@ -18,6 +19,16 @@ const RecipeCard = ({recipe, onPress}) => {
                 setUserName(user.username);
             })
     }, []);
+
+    const addFavorite = () => {
+        setIsFavorite(!isFavorite)
+        addToFavorite(recipe.id)
+            .then(res => {
+            //    alert(res);
+            })
+            //navigation.navigate('home');
+    }
+
     return(
         <TouchableOpacity
             style={{
@@ -46,43 +57,44 @@ const RecipeCard = ({recipe, onPress}) => {
             </Image>
 
             {/*Details*/}
-            <View
-                style={{
-                    flexDirection: 'row',
-                    width: '65%',
-                    paddingHorizontal: 20
-                }}
-            >
-                {/*Name*/}
-                <Text
-                    style={{
-                        fontWeight: "bold",
-                        flex: 1,
-                        fontSize: 20
-                    }}
-                >
-                    {recipe.name}
-                </Text>
                 <View
-                style={{
-                    position: 'absolute',
-                    right: 6,
-                    paddingHorizontal: 10,
-                    paddingVertical: 5,
-                    backgroundColor: 'black',
-                    borderRadius: 10,
-                    opacity: 0.5
-                }}
-            >
-                <Text
                     style={{
-                        color: 'white',
+                        width: '65%',
+                        paddingHorizontal: 20
                     }}
                 >
-                    {"Von: " + username}
-                </Text>
-            </View>
-            </View>
+                    {/*Name*/}
+                    <Text
+                        style={{
+                            fontWeight: "bold",
+                            flex: 1,
+                            fontSize: 20
+                        }}
+                    >
+                        {recipe.name}
+                    </Text>
+                    </View>
+                    <View
+                        style={{
+                            position: 'absolute',
+                            bottom: 52,
+                            left: 110,
+                            paddingHorizontal: 10,
+                            paddingVertical: 5,
+                            backgroundColor: 'black',
+                            borderRadius: 10,
+                            opacity: 0.5,
+                            marginLeft: 18
+                        }}
+                    >
+                        <Text
+                            style={{
+                                color: 'white',
+                            }}
+                        >
+                            {"Von: " + username}
+                        </Text>
+                    </View>
             <View
                 style={{
                     position: 'absolute',
@@ -91,19 +103,22 @@ const RecipeCard = ({recipe, onPress}) => {
                 }}
             >
                 <Icon
-                    name='bookmark-outline'
+                    name={isFavorite ? 'bookmark' : 'bookmark-outline'}
                     type='ionicon'
                     color='tomato'
                     size={35}
+                    onPress={addFavorite}
                 />
                 {/* To do: call setFavourite route on backend after onPress */}
             </View>
             <View style={{
+                    width: '60%',
                     position: 'absolute',
-                    bottom: 10,
+                    bottom: 1,
                     left: 110,
                     paddingHorizontal: 20,
-                    paddingVertical: 20
+                    paddingVertical: 20,
+                    marginTop: 20
                 }}>
                 <Text style={{
                         flex: 1,
@@ -111,15 +126,7 @@ const RecipeCard = ({recipe, onPress}) => {
                         fontWeight: "bold",
                         fontSize: 10
                     }}>
-                    {recipe.calories + " Kalorien     |     " + recipe.carbohydrate + "g Kohlenhydrate"}
-                </Text>
-                <Text style={{
-                        flex: 1,
-                        color: 'black',
-                        fontWeight: "bold",
-                        fontSize: 10
-                    }}>
-                    {recipe.fat + "g Fett     |     " + recipe.protein + "g Eiweiß"}
+                    {recipe.calories + " Kalorien | " + recipe.carbohydrate + "g Kohlenhydrate | " + recipe.protein + "g Eiweiß"}
                 </Text>
             </View>
         </TouchableOpacity>
