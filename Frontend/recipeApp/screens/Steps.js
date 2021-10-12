@@ -1,5 +1,5 @@
 import React, { useReducer } from "react"
-import "./steps.css"
+import "./Steps.css"
 const Steps = (props) => {
   return (
     props.stepList.map((val, idx) => {

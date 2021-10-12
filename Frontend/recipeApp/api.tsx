@@ -5,7 +5,7 @@ import { RecipeCreate } from './Entities/RecipeCreate';
 import { UserDTO } from './Entities/UserDTO';
 
 const instance = axios.create({
-    baseURL: "http://localhost:8080",
+    baseURL: "http://37.221.196.94:8080/spring-boot-security-jwt-0.0.1-SNAPSHOT/",
 });
 
 const Api = instance;

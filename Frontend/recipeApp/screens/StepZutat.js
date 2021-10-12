@@ -1,5 +1,5 @@
 import React, { useReducer } from "react"
-import "./steps.css"
+import "./Steps.css"
 import { SafeAreaView, ScrollView, View, Button } from 'react-native';
 
 const StepZutat = (props) => {
