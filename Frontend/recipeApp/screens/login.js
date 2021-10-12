@@ -18,7 +18,7 @@ import ModalComponent from '../components/Modal';
 
 
 export default function Login() {
-    
+
     const [modalVisible, setModalVisible] = React.useState(false);
     const [userName, setuserName] = React.useState("");
     const [password, setPassword] = React.useState("");
@@ -28,23 +28,27 @@ export default function Login() {
         id: 0
     }
     const navigation = useNavigation();
-    
+
     function onClickSignin(userName, password) {
         console.log("Login clicked")
         login(userName, password)
-        .then(res => {
-            loggedInUser = res;
-            console.log(loggedInUser);
-            if(loggedInUser){
-                navigation.navigate('home');
-            }else{
-                alert("Falsches Passwort oder Benutzername");
-            }
-        })
+            .then(res => {
+                loggedInUser = res;
+                console.log(loggedInUser);
+                if (loggedInUser) {
+                    navigation.navigate('home');
+                } else {
+                    alert("Falsches Passwort oder Benutzername");
+                }
+            })
     }
-    
+
     const onPressHandler = () => {
         onClickSignin(userName, password);
+    }
+    const onPressHandlerSignup = () => {
+        console.log(navigation)
+        navigation.navigate('signUp');
     }
 
     return (
@@ -79,7 +83,7 @@ export default function Login() {
                 {/* <TouchableOpacity>
                     <Text style={styles.forgot_}>Passwort vergessen?</Text>
                 </TouchableOpacity> */}
-                <TouchableOpacity onPress={() => navigation.navigate('SignUp')}  >
+                <TouchableOpacity onPress={onPressHandlerSignup}  >
                     <Text style={styles.forgot_button}>Noch kein Konto? Jetzt Registrieren!</Text>
                 </TouchableOpacity>
 
@@ -108,17 +112,17 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
 
-    image: {
-        flex: 1,
-        height: "100px",
-        width: "100px",
-        margin: "auto",
-        marginBottom: 50,
-        marginTop: "12%",
+    // image: {
+    //     flex: 1,
+    //     height: "100px",
+    //     width: "100px",
+    //     margin: "auto",
+    //     marginBottom: 50,
+    //     marginTop: "12%",
 
-        borderRadius: "50%",
+    //     borderRadius: "50%",
 
-    },
+    // },
     backgroundImage: {
         width: "100%",
         height: "100%",

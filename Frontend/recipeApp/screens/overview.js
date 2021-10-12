@@ -18,6 +18,7 @@ import { Recipe } from '../Entities/Recipe';
 import { useNavigation } from '@react-navigation/native';
 import FooterMenu from '../components/FooterMenu';
 import { getFavoriteRecipes, getAllRecipesFromUser } from '../api';
+import Information from '../components/Information';
 
 export function Overview() {
     
@@ -157,6 +158,16 @@ console.log("test", dailyRecipeArray)
                         >
                             Zuletzt angesehen
                         </Text>
+                        {recipes.length === 0 &&
+                            <Text style={{
+                                marginLeft: 20,
+                                fontSize: 30,
+                                marginBottom: 10,
+                                color: 'red'
+                            }}>
+                                Keine Daten verfügbar
+                            </Text>
+                        }
                         <FlatList
                             data={recipes}
                             horizontal 
@@ -177,6 +188,7 @@ console.log("test", dailyRecipeArray)
                             }}
                             >
                         </FlatList>
+                        <Information text="Heute schon etwas getrunken?" />
                         <Text
                             style={{
                                 marginLeft: 20,
@@ -188,6 +200,16 @@ console.log("test", dailyRecipeArray)
                         >
                             Rezept des Tages
                         </Text>
+                        {dailyRecipe.length === 0 &&
+                            <Text style={{
+                                marginLeft: 20,
+                                fontSize: 30,
+                                marginBottom: 10,
+                                color: 'red'
+                            }}>
+                                Keine Daten verfügbar
+                            </Text>
+                        }
                     </View>
                 }
                 renderItem={({ item }) => {

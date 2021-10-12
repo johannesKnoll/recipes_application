@@ -19,6 +19,8 @@ import { useNavigation } from '@react-navigation/native';
 import FooterMenu from '../components/FooterMenu';
 import { logAPI } from '../api';
 import { getFavoriteRecipes, getAllRecipesFromUser } from '../api';
+import InformationRecipe from '../components/InformationRecipe';
+import InformationRecipeTofu from '../components/InformationRecipeTofu';
 
 export function Entdecken() {
 
@@ -147,6 +149,16 @@ export function Entdecken() {
                         >
                             Vegan
                         </Text>
+                        {veganRecipes.length === 0 &&
+                            <Text style={{
+                                marginLeft: 20,
+                                fontSize: 30,
+                                marginBottom: 10,
+                                color: 'red'
+                            }}>
+                                Keine Daten verfügbar
+                            </Text>
+                        }
                         <View>
                             <FlatList
                                 data={veganRecipes}
@@ -168,6 +180,7 @@ export function Entdecken() {
                             >
                             </FlatList>
                         </View>
+                            <InformationRecipe text="Tipp: Kokusmilch ist ein leckerer Sahne-Ersatz"/>
                         <Text
                             style={{
                                 marginTop: 20,
@@ -179,6 +192,16 @@ export function Entdecken() {
                         >
                             Vegetarisch
                         </Text>
+                        {vegetarianRecipes.length === 0 &&
+                            <Text style={{
+                                marginLeft: 20,
+                                fontSize: 30,
+                                marginBottom: 10,
+                                color: 'red'
+                            }}>
+                                Keine Daten verfügbar
+                            </Text>
+                        }
                         <View>
                             <FlatList
                                 data={vegetarianRecipes}
@@ -200,6 +223,7 @@ export function Entdecken() {
                             >
                             </FlatList>
                         </View>
+                        <InformationRecipeTofu text="Auch Tofu kann lecker sein :)" />
                         <Text
                             style={{
                                 marginTop: 20,
@@ -211,6 +235,16 @@ export function Entdecken() {
                         >
                             Fleischhaltig
                         </Text>
+                        {meatRecipes.length === 0 &&
+                            <Text style={{
+                                marginLeft: 20,
+                                fontSize: 30,
+                                marginBottom: 10,
+                                color: 'red'
+                            }}>
+                                Keine Daten verfügbar
+                            </Text>
+                        }
                         <View>
                             <FlatList
                                 data={meatRecipes}

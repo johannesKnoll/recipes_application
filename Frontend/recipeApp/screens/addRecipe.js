@@ -155,7 +155,7 @@ class AddRecipe extends Component {
     this.seveRecipe();
     this.seveRecipeZutat();
 
-    login("thorstenBorsten", "password");
+    //login("thorstenBorsten", "password");
     createRecipe(this.state.recipe);
   }
 
@@ -169,7 +169,7 @@ class AddRecipe extends Component {
     // console.log(preperationList);
     this.state.recipe['description'] = preperationList;
     console.log(this.state.recipe);
-    window.location.reload(false);
+    //window.location.reload(false);
 
   }
 
@@ -558,6 +558,7 @@ class AddRecipe extends Component {
 
               <div className="Home-image"></div>
               <Container className="Site-content">
+                <ScrollView>
                 <Form onSubmit={this.handleSubmit} className="test">
                   {title}
                   <FormGroup>
@@ -767,6 +768,7 @@ class AddRecipe extends Component {
                   </FormGroup>
 
                 </Form>
+                </ScrollView>
               </Container>
 
             </div>

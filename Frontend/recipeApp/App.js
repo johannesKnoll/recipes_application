@@ -70,7 +70,7 @@ export default function App() {
             component={Login}
             /> */}
       <Stack.Navigator>
-         <Stack.Screen
+        <Stack.Screen
           name="login_screen"
           component={Login}
           options={{ headerShown: false }}
@@ -123,6 +123,11 @@ export default function App() {
         <Stack.Screen
           name="changeEmail"
           component={ChangeEmail}
+
+        />
+        <Stack.Screen
+          name="signUp"
+          component={SignUp}
 
         />
 

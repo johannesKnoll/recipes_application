@@ -32,31 +32,32 @@ export function ChangePassword() {
         <View style={styles.container}>
             <ImageBackground resizeMode="cover" style={styles.backgroundImage} source={require("../pictures/picture4.jpg")}>
 
+                <View>
+                    <View style={styles.inputView}>
+                        <TextInput
+                            style={styles.TextInput}
+                            placeholder="Neues Passwort"
+                            placeholderTextColor="#003f5c"
+                            secureTextEntry={true}
+                            onChangeText={text => setText(text)}
 
-                <View style={styles.inputView}>
-                    <TextInput
-                        style={styles.TextInput}
-                        placeholder="Neues Passwort"
-                        placeholderTextColor="#003f5c"
-                        secureTextEntry={true}
-                        onChangeText={text => setText(text)}
+                        />
+                    </View>
+                    <View style={styles.inputView}>
+                        <TextInput
+                            style={styles.TextInput}
+                            placeholder="Neues Passwort bestätigen"
+                            placeholderTextColor="#003f5c"
+                            secureTextEntry={true}
+                            onChangeText={text2 => setText2(text2)}
 
-                    />
-                </View>
-                <View style={styles.inputView}>
-                    <TextInput
-                        style={styles.TextInput}
-                        placeholder="Neues Passwort bestätigen"
-                        placeholderTextColor="#003f5c"
-                        secureTextEntry={true}
-                        onChangeText={text2 => setText2(text2)}
-
-                    />
-                    <TouchableOpacity style={styles.changePassword} onPress={changePasswordHandler}  >
-                        <Text style={styles.font}><b>Passwort ändern</b></Text>
-                    </TouchableOpacity>
+                        />
+                        <TouchableOpacity style={styles.changePassword} onPress={changePasswordHandler}  >
+                            <Text style={styles.font}><b>Passwort ändern</b></Text>
+                        </TouchableOpacity>
 
 
+                    </View>
                 </View>
             </ImageBackground>
         </View>
@@ -87,12 +88,12 @@ const styles = StyleSheet.create({
         borderRadius: 30,
         width: "70%",
         height: 45,
-        marginBottom: 10,
-        marginLeft: 20,
-
-
+        marginBottom: 20,
+        margin: "auto",
         alignItems: "center",
-        opacity: 0.7,
+        opacity: "0.7",
+
+
 
     },
 

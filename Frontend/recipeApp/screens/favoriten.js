@@ -128,6 +128,16 @@ export function Favoriten() {
                         >
                             Favoriten
                         </Text>
+                        {favoriteRecipes.length === 0 &&
+                            <Text style={{
+                                marginLeft: 20,
+                                fontSize: 30,
+                                marginBottom: 10,
+                                color: 'red'
+                            }}>
+                                Keine Daten verfügbar
+                            </Text>
+                        }
                         <View>
                             <FlatList
                                 data={favoriteRecipes}
@@ -160,6 +170,16 @@ export function Favoriten() {
                         >
                             Eigene Rezepte
                         </Text>
+                        {userRecipes.length === 0 &&
+                            <Text style={{
+                                marginLeft: 20,
+                                fontSize: 30,
+                                marginBottom: 10,
+                                color: 'red'
+                            }}>
+                                Keine Daten verfügbar
+                            </Text>
+                        }
                         <View>
                             <FlatList
                                 data={userRecipes}
