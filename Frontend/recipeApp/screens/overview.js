@@ -85,6 +85,7 @@ export function Overview() {
                 const recipesNew = res;
                 console.log("here is the res from overview line 53: ",recipesNew)
                 setRecipes(recipesNew);
+                setFilteredData(recipesNew);
                 console.log(res, "Recipes in Overview");
             })
 
@@ -101,16 +102,31 @@ export function Overview() {
 
     },[isFocused]);
     const [favoriteRecipes, setFavoriteRecipes] = React.useState([]);
+    const [filteredData, setFilteredData] = React.useState([]);
 
     // state = {
     //     search: '',
     //   };
     const [search, setSearch] = React.useState("");
 
-    const updateSearch = (search) => {
-      setSearch(search);
-    };
-console.log("test", dailyRecipeArray)
+    const updateSearch = (text) => {
+      // setSearch(search);
+
+      if(text){
+          const newData = recipes.filter((item) => {
+              const itemData = item.name ?
+                            item.name.toUpperCase()
+                            : ''.toUpperCase();
+                const textData = text.toUpperCase();
+                return itemData.indexOf(textData) > 1;
+          });
+          setFilteredData(newData);
+          setSearch(text);
+      } else{
+          setFilteredData(recipes);
+          setSearch(text);
+      }
+    }
 
 
     return (
@@ -135,7 +151,7 @@ console.log("test", dailyRecipeArray)
                     lightTheme={true}
                     placeholder="Hier Suchbegriff eingeben"
                     backgroundColor="white"
-                    onChangeText={updateSearch}
+                    onChangeText={(text) => updateSearch(text)}
                     value={search}
                 />
             </View>
@@ -165,11 +181,11 @@ console.log("test", dailyRecipeArray)
                                 marginBottom: 10,
                                 color: 'red'
                             }}>
-                                Keine Daten verfügbar
+                                Noch keine Rezepte angesehen
                             </Text>
                         }
                         <FlatList
-                            data={recipes}
+                            data={filteredData}
                             horizontal 
                             showsHorizontalScrollIndicator={false}
                             showVerticalScrollIndicator={false}

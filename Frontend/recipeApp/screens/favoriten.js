@@ -135,7 +135,7 @@ export function Favoriten() {
                                 marginBottom: 10,
                                 color: 'red'
                             }}>
-                                Keine Daten verfügbar
+                                Noch keine Favoriten hinzugefügt
                             </Text>
                         }
                         <View>
@@ -177,7 +177,7 @@ export function Favoriten() {
                                 marginBottom: 10,
                                 color: 'red'
                             }}>
-                                Keine Daten verfügbar
+                                Noch keine Rezepte erstellt
                             </Text>
                         }
                         <View>
