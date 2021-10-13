@@ -19,6 +19,7 @@ import { getFavoriteRecipes, getAllRecipesFromUser } from '../api';
 import FooterMenu from '../components/FooterMenu';
 import { useNavigation } from '@react-navigation/native';
 import { logAPI } from '../api';
+import {MenuItems, setSelectedMenuItem,onPressHomeIn} from '../components/FooterMenu'
 
 
 export function Favoriten() {
@@ -70,10 +71,12 @@ export function Favoriten() {
     const isFocused = useIsFocused();
     React.useEffect(() => {
         console.log("favoriten.js useEffect")
+
         if (!isFocused) return;
         logAPI();
         getFavoriteRecipes()
             .then(res => {
+          
                 const favoriteRecipesNew = res;
                 setFavoriteRecipes(favoriteRecipesNew);
             })
@@ -133,7 +136,7 @@ export function Favoriten() {
                                 marginLeft: 20,
                                 fontSize: 30,
                                 marginBottom: 10,
-                                color: 'red'
+                                color: 'tomato'
                             }}>
                                 Noch keine Favoriten hinzugefügt
                             </Text>
@@ -175,7 +178,7 @@ export function Favoriten() {
                                 marginLeft: 20,
                                 fontSize: 30,
                                 marginBottom: 10,
-                                color: 'red'
+                                color: 'tomato'
                             }}>
                                 Noch keine Rezepte erstellt
                             </Text>
@@ -216,7 +219,8 @@ export function Favoriten() {
                 onPressFavoriten={onPressHandlerFavoriten}
                 onPressEntdecken={onPressHandlerEntdecken}
                 onPressHinzufuegen={onPressHandlerHinzufuegen}
-                onPressUser={onPressHandlerUser}>
+                onPressUser={onPressHandlerUser}
+                selectedMenuItem={MenuItems.favorites}>
 
                 </FooterMenu>
         </SafeAreaView>
