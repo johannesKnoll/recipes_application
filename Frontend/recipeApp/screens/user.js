@@ -14,7 +14,7 @@ import {
 } from "react-native";
 
 import { useNavigation } from '@react-navigation/native';
-import FooterMenu from '../components/FooterMenu';
+import FooterMenu, { MenuItems } from '../components/FooterMenu';
 import { logout } from '../api';
 
 
@@ -82,7 +82,8 @@ export function User() {
                 onPressFavoriten={onPressHandlerFavoriten}
                 onPressEntdecken={onPressHandlerEntdecken}
                 onPressHinzufuegen={onPressHandlerHinzufuegen}
-                onPressUser={onPressHandlerUser}></FooterMenu>
+                onPressUser={onPressHandlerUser}
+                selectedMenuItem={MenuItems.user}></FooterMenu>
         </View>
 
     );

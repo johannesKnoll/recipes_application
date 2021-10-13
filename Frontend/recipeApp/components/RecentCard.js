@@ -15,6 +15,7 @@ const RecentCard = ({ recipe, onPress }) => {
     const [isFavorite, setIsFavorite] = React.useState(false);
     const [username, setUserName] = React.useState("");
     const navigation = useNavigation();
+    
     React.useEffect(() => {
         checkIfFavoriteListContainsRecipe(recipe.id)
             .then(res => {

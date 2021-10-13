@@ -16,7 +16,7 @@ import { SearchBar } from 'react-native-elements';
 import {login, getAllRecipes, getDailyRecipe, getRecentlyViewed, logAPI } from '../api';
 import { Recipe } from '../Entities/Recipe';
 import { useNavigation } from '@react-navigation/native';
-import FooterMenu from '../components/FooterMenu';
+import FooterMenu, { MenuItems } from '../components/FooterMenu';
 import { getFavoriteRecipes, getAllRecipesFromUser } from '../api';
 import Information from '../components/Information';
 
@@ -157,7 +157,7 @@ export function Overview() {
             </View>
             
 
-            <FlatList
+            <FlatList 
                 data={dailyRecipe}
                 keyExtractor={item => `${item.id}`}
                 keyboardDismissMode="on-drag"
@@ -246,7 +246,8 @@ export function Overview() {
                 onPressFavoriten={onPressHandlerFavoriten}
                 onPressEntdecken={onPressHandlerEntdecken}
                 onPressHinzufuegen={onPressHandlerHinzufuegen}
-                onPressUser={onPressHandlerUser}></FooterMenu>
+                onPressUser={onPressHandlerUser}
+                selectedMenuItem={MenuItems.home}></FooterMenu>
         </SafeAreaView>
     );
 }

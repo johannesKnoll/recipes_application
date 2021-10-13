@@ -9,7 +9,7 @@ import Steps from "./Steps";
 import StepZutat from "./StepZutat";
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
-import FooterMenu from '../components/FooterMenu';
+import FooterMenu, { MenuItems } from '../components/FooterMenu';
 
 
 
@@ -387,7 +387,7 @@ class AddRecipe extends Component {
     // this.setState({ navigation: useNavigation() });
     // console.log(navigation)
     // this.navigation.navigate('user');
-    this.props.navigation.navigate('home')
+    this.props.navigation.navigate('user')
   }
 
   handleChangeImage(event) {
@@ -755,6 +755,7 @@ class AddRecipe extends Component {
             onPressEntdecken={this.onPressHandlerEntdecken}
             onPressHinzufuegen={this.onPressHandlerHinzufuegen}
             onPressUser={this.onPressHandlerUser}
+            selectedMenuItem={MenuItems.add}
 
           >
           </FooterMenu>
