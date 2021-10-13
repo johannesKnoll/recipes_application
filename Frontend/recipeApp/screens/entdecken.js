@@ -16,7 +16,7 @@ import RecentCard from '../components/RecentCard';
 import { SearchBar } from 'react-native-elements';
 import { getMeatRecipes, getVeganRecipes, getVegetarianRecipes } from '../api';
 import { useNavigation } from '@react-navigation/native';
-import FooterMenu from '../components/FooterMenu';
+import FooterMenu, { MenuItems } from '../components/FooterMenu';
 import { logAPI } from '../api';
 import { getFavoriteRecipes, getAllRecipesFromUser } from '../api';
 import InformationRecipe from '../components/InformationRecipe';
@@ -328,7 +328,8 @@ export function Entdecken() {
                 onPressFavoriten={onPressHandlerFavoriten}
                 onPressEntdecken={onPressHandlerEntdecken}
                 onPressHinzufuegen={onPressHandlerHinzufuegen}
-                onPressUser={onPressHandlerUser}>
+                onPressUser={onPressHandlerUser}
+                selectedMenuItem={MenuItems.discover}>
 
                 </FooterMenu>
         </SafeAreaView>
