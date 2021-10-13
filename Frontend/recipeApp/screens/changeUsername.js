@@ -19,7 +19,7 @@ export function ChangeUsername() {
         setUsername(text)
             .then(response => {
                 console.log(response)
-                alert(response.message)
+                 alert(response.message)
             })
     }
 

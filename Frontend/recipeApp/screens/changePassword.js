@@ -23,7 +23,7 @@ export function ChangePassword() {
         setPassword(text, text2)
             .then(response => {
                 console.log(response)
-                alert(response.message)
+                alert("Das Passwort wurde erfolgreich aktualisiert :)")
             })
     }
 

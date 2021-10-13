@@ -22,7 +22,7 @@ export function ChangeEmail() {
         setEmail(text)
             .then(response => {
                 console.log(response)
-                alert(response.message)
+               alert("Ihre Email wurde erfolgreich geändert :)")
             })
     }
 
